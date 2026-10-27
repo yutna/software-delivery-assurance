@@ -1,0 +1,105 @@
+id: MAP-ASVS
+title:
+  en: SRAS Core and Integration to OWASP ASVS 5.0
+  th: SRAS Core และ Integration ไปยัง OWASP ASVS 5.0
+description:
+  en: Informative crosswalk from SRAS Core and integration requirements to OWASP Application Security Verification Standard 5.0 chapters and sections. It is not an equivalence or certification claim.
+  th: crosswalk เชิงข้อมูลจากข้อกำหนด SRAS Core และ integration ไปยังบทและหมวดของ OWASP Application Security Verification Standard 5.0 ไม่ใช่การอ้างความเท่าเทียมหรือการรับรอง
+version: 0.1.0
+source_standard: OWASP Application Security Verification Standard 5.0
+source_url: https://owasp.org/www-project-application-security-verification-standard/
+mappings:
+  - requirement: SRAS-SEC-001
+    external: v5.0.0-6.3
+    relationship: supports
+    notes: General authentication security.
+  - requirement: SRAS-SEC-002
+    external: v5.0.0-8.3
+    relationship: supports
+    notes: Operation-level authorization.
+  - requirement: SRAS-SEC-003
+    external: v5.0.0-13.3
+    relationship: supports
+    notes: Secret management.
+  - requirement: SRAS-SEC-004
+    external: v5.0.0-11.3, v5.0.0-12.2
+    relationship: supports
+    notes: Encryption algorithms and HTTPS communication.
+  - requirement: SRAS-SEC-005
+    external: v5.0.0-6.3
+    relationship: supports
+    notes: Multi-factor authentication requirements.
+  - requirement: SRAS-SEC-006
+    external: v5.0.0-8.2
+    relationship: supports
+    notes: General authorization design.
+  - requirement: SRAS-SEC-007
+    external: v5.0.0-15.1, v5.0.0-15.2
+    relationship: supports
+    notes: Secure coding documentation, architecture, and dependencies.
+  - requirement: SRAS-SEC-008
+    external: v5.0.0-15.3
+    relationship: supports
+    notes: Defensive coding.
+  - requirement: SRAS-SEC-009
+    external: v5.0.0-15.2
+    relationship: supports
+    notes: Security architecture and dependency management.
+  - requirement: SRAS-SEC-010
+    external: v5.0.0-16.2, v5.0.0-16.3
+    relationship: supports
+    notes: General logging and security events.
+  - requirement: SRAS-SEC-011
+    external: v5.0.0-13.2
+    relationship: partial
+    notes: Backend communication configuration is covered; network segmentation is an infrastructure control outside ASVS.
+  - requirement: SRAS-SEC-012
+    external: v5.0.0-15.3
+    relationship: partial
+    notes: Defensive coding supports testing; independent security testing is an SRAS addition.
+  - requirement: SRAS-INT-001
+    external: v5.0.0-4.1
+    relationship: related
+    notes: Generic web service security is related; an API inventory is not an ASVS requirement.
+  - requirement: SRAS-INT-002
+    external: v5.0.0-6.3
+    relationship: supports
+    notes: General authentication security.
+  - requirement: SRAS-INT-003
+    external: v5.0.0-8.3
+    relationship: supports
+    notes: Operation-level authorization.
+  - requirement: SRAS-INT-004
+    external: v5.0.0-4.1
+    relationship: partial
+    notes: Generic web service security includes anti-automation controls; rate limits are an SRAS addition.
+  - requirement: SRAS-INT-005
+    external: v5.0.0-2.2
+    relationship: related
+    notes: Business logic security is related; idempotency is an API design concern.
+  - requirement: SRAS-INT-006
+    external: v5.0.0-4.2
+    relationship: partial
+    notes: HTTP message structure validation is covered; contract versioning is an SRAS addition.
+  - requirement: SRAS-INT-007
+    external: v5.0.0-16.5
+    relationship: supports
+    notes: Error handling.
+  - requirement: SRAS-INT-008
+    external: v5.0.0-16.2
+    relationship: supports
+    notes: General logging.
+  - requirement: SRAS-INT-009
+    external: v5.0.0-4.1
+    relationship: related
+    notes: Generic web service security is related; partner onboarding is not an ASVS requirement.
+  - requirement: SRAS-INT-010
+    external: v5.0.0-4.2
+    relationship: related
+    notes: HTTP message structure validation is related; deprecation practice is an SRAS addition.
+status: draft
+review_status: unverified
+translation_status: partial
+machine_translated: true
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
