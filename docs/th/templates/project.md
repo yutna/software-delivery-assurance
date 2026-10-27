@@ -5,8 +5,6 @@ machine_translated: true
 
 # Project template
 
-> สถานะคำแปล: ฉบับร่างแปลด้วยเครื่อง (`translation_status: partial`) ยังไม่ผ่านการตรวจโดยมนุษย์ ฉบับภาษาอังกฤษเป็นฉบับหลัก: [Project template](../../en/templates/project.md)
-
 `templates/project/` เป็นจุดเริ่มต้นที่คัดลอกได้สำหรับ SRAS project instance แบบส่วนตัว คำสั่ง `npm run sras -- init <dir> --profile lite|full` จะคัดลอก template แทน placeholder ใช้ profile ที่เลือก คำนวณ lockfile ตรวจสอบผลลัพธ์ และเขียนไฟล์
 
 template เป็น synthetic ไม่มีชื่อลูกค้า evidence จริง production identifier หรือ secret

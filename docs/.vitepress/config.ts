@@ -26,9 +26,19 @@ const enNav: DefaultTheme.NavItem[] = [
 ];
 
 const thNav: DefaultTheme.NavItem[] = [
-  { text: "คู่มือ", link: "/th/quick-start" },
-  { text: "Reference", link: "/en/reference/" },
-  { text: "Template โปรเจกต์", link: "/th/templates/project" },
+  {
+    text: "คู่มือ",
+    items: [
+      { text: "ภาพรวม", link: "/th/overview" },
+      { text: "เริ่มต้นอย่างรวดเร็ว", link: "/th/quick-start" },
+      { text: "อภิธานศัพท์", link: "/th/glossary" },
+    ],
+  },
+  { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
+  { text: "ภาคธุรกิจ", link: "/th/sectors/", activeMatch: "/th/sectors/" },
+  { text: "ทะเบียน", link: "/th/registers/", activeMatch: "/th/registers/" },
+  { text: "Reference", link: "/th/reference/" },
+  { text: "Templates", link: "/th/templates/", activeMatch: "/th/templates/" },
 ];
 
 const enSidebar: DefaultTheme.Sidebar = [
@@ -93,13 +103,57 @@ const thSidebar: DefaultTheme.Sidebar = [
   {
     text: "คู่มือ",
     items: [
+      { text: "ภาพรวม", link: "/th/overview" },
       { text: "เริ่มต้นอย่างรวดเร็ว", link: "/th/quick-start" },
+      { text: "อภิธานศัพท์", link: "/th/glossary" },
+    ],
+  },
+  {
+    text: "แนวคิด",
+    items: [
+      { text: "ภาพรวมแนวคิด", link: "/th/concepts/" },
+      {
+        text: "ข้อกำหนดและ criticality",
+        link: "/th/concepts/requirements",
+      },
+      { text: "Profile และ maturity", link: "/th/concepts/profiles" },
+      {
+        text: "Module และ overlay",
+        link: "/th/concepts/modules-and-overlays",
+      },
+      { text: "Resolution", link: "/th/concepts/resolution" },
+      { text: "Project instance", link: "/th/concepts/project-instance" },
+      {
+        text: "Claim และ evidence",
+        link: "/th/concepts/claims-and-evidence",
+      },
+      { text: "เครื่องมือและการตรวจสอบ", link: "/th/concepts/tools" },
+    ],
+  },
+  {
+    text: "ภาคธุรกิจ",
+    items: [
+      { text: "ภาพรวมภาคธุรกิจ", link: "/th/sectors/" },
+      { text: "การเงิน", link: "/th/sectors/finance" },
+      { text: "อีคอมเมิร์ซ", link: "/th/sectors/e-commerce" },
+      { text: "โลจิสติกส์", link: "/th/sectors/logistics" },
+      { text: "ภาครัฐ", link: "/th/sectors/public-sector" },
+    ],
+  },
+  {
+    text: "ทะเบียน",
+    items: [{ text: "ดัชนีทะเบียน", link: "/th/registers/" }],
+  },
+  {
+    text: "Templates",
+    items: [
+      { text: "ภาพรวม templates", link: "/th/templates/" },
       { text: "Template โปรเจกต์", link: "/th/templates/project" },
     ],
   },
   {
     text: "Reference",
-    items: [{ text: "SRAS reference (ภาษาอังกฤษ)", link: "/en/reference/" }],
+    items: [{ text: "ดัชนี reference", link: "/th/reference/" }],
   },
 ];
 
