@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+package-lock.json
+CLAUDE.md
+.claude/skills
+vendor
+docs/.vitepress/dist
+docs/.vitepress/cache
+tests/fixtures/invalid
+internal

@@ -1,0 +1,16 @@
+max_retries = 2
+timeout = 20
+exclude = [
+  "https://example.com",
+]
+exclude_path = [
+  ".claude/skills",
+  "vendor",
+  "node_modules",
+  "dist",
+  "coverage",
+  "tests/fixtures/invalid",
+  "docs/.vitepress/dist",
+  "docs/.vitepress/cache",
+  "internal",
+]

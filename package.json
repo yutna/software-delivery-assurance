@@ -1,0 +1,57 @@
+{
+  "name": "software-delivery-assurance",
+  "version": "0.1.0",
+  "description": "Software Delivery Assurance Library: SRAS standards, schemas, and TypeScript tools",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24",
+    "npm": ">=11"
+  },
+  "packageManager": "npm@11.12.1",
+  "bin": {
+    "sras": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "lint:md": "markdownlint-cli2",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run --coverage",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "sras": "npm run build --silent && node dist/cli.js",
+    "check:fds": "node tools/check-fds.ts",
+    "sync:fds": "node tools/sync-fds.ts"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "@vitest/coverage-v8": "^5.0.5",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "markdownlint-cli2": "^0.24.0",
+    "prettier": "^3.9.10",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^5.0.5"
+  }
+}
