@@ -1,0 +1,493 @@
+- id: SRAS-CHG-001
+  version: 0.2.0
+  title:
+    en: All source and configuration changes are version controlled
+    th: การเปลี่ยนแปลง source และ configuration ทั้งหมดถูกควบคุมด้วย version control
+  description:
+    en: Production source code, infrastructure definitions, and configuration must be stored in version control with attributable commits and protected main branches. A production change applied outside version control fails the requirement.
+    th: source code, นิยามโครงสร้างพื้นฐาน และ configuration ของ production ต้องถูกเก็บใน version control พร้อม commit ที่ระบุผู้ทำและ branch หลักที่ได้รับการป้องกัน การเปลี่ยนแปลง production ที่ทำนอก version control ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A change that is not in version control cannot be reviewed, reproduced, or rolled back.
+    th: การเปลี่ยนแปลงที่ไม่ได้อยู่ใน version control ไม่สามารถ review ทำซ้ำ หรือ rollback ได้
+  domain: change-release
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Repository and branch protection configuration
+      max_age_days: 180
+    - type: log
+      description: Commit history and change trace for the current release
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Production changes are traceable to reviewed commits on protected branches.
+      partial: Most changes are versioned but some production paths bypass control.
+    full:
+      l2: Enforced for all production source, infrastructure, and configuration.
+      l3: Measured with bypass findings and traceability coverage.
+  references:
+    - title: NIST SP 800-218 SSDF PS.1
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: ISO/IEC 27001:2022 8.32
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [version-control, change-management, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-002
+  version: 0.2.0
+  title:
+    en: Every change is peer reviewed before it reaches production
+    th: ทุกการเปลี่ยนแปลงได้รับการ review โดยเพื่อนร่วมงานก่อนถึง production
+  description:
+    en: Each production change must have at least one qualified reviewer who is not the author, with review evidence and resolved findings. A change merged without review or with unresolved blocking findings fails the requirement.
+    th: การเปลี่ยนแปลง production แต่ละรายการต้องมีผู้ review ที่มีคุณสมบัติอย่างน้อยหนึ่งคนซึ่งไม่ใช่ผู้เขียน พร้อมหลักฐานการ review และ findings ที่ได้รับการแก้ไข การเปลี่ยนแปลงที่ merge โดยไม่มีการ review หรือยังมี blocking findings ที่ไม่ได้รับการแก้ไขถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Review catches defects and unsafe assumptions before they reach users.
+    th: การ review ตรวจจับข้อบกพร่องและสมมติฐานที่ไม่ปลอดภัยก่อนถึงผู้ใช้
+  domain: change-release
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: ticket
+      description: Review approval records for production changes in the current release
+      max_age_days: 90
+    - type: configuration
+      description: Branch protection and required-review configuration
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Every production change has an independent reviewer and resolved findings.
+      partial: Review exists but some changes bypass it or leave blocking findings open.
+    full:
+      l2: Required for all production changes.
+      l3: Measured with review coverage, review time, and escaped-defect trends.
+  references:
+    - title: NIST SP 800-218 SSDF PW.7
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: ISO/IEC 27001:2022 8.32
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [code-review, change-management, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-003
+  version: 0.2.0
+  title:
+    en: A continuous integration pipeline builds, tests, and scans every change
+    th: pipeline แบบ continuous integration build ทดสอบ และสแกนทุกการเปลี่ยนแปลง
+  description:
+    en: Every change must run through an automated pipeline that builds the artifact, runs the test suite, and performs security and dependency scans, and a failing required job must block merge. A pipeline that can be bypassed without an approved exception fails the requirement.
+    th: ทุกการเปลี่ยนแปลงต้องผ่าน pipeline อัตโนมัติที่ build artifact รันชุดทดสอบ และสแกนความปลอดภัยและ dependency โดย job ที่กำหนดซึ่งล้มเหลวต้องบล็อกการ merge pipeline ที่สามารถข้ามได้โดยไม่มีข้อยกเว้นที่ได้รับอนุมัติถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A repeatable pipeline finds failures before release, not after deployment.
+    th: pipeline ที่ทำซ้ำได้พบความล้มเหลวก่อนการปล่อย ไม่ใช่หลังการ deploy
+  domain: change-release
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: CI pipeline definition and required-job configuration
+      max_age_days: 180
+    - type: test_result
+      description: Most recent pipeline result for the current release
+      max_age_days: 30
+    - type: ticket
+      description: Approved bypass exception, if any
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Required pipeline jobs run on every change and failures block merge.
+      partial: The pipeline exists but some required jobs or blocking rules are missing.
+    full:
+      l2: Enforced for all production changes in the current release.
+      l3: Measured with pipeline duration, failure rate, and bypass trends.
+  references:
+    - title: NIST SP 800-218 SSDF PS.2 and PW.8
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: NIST CSF 2.0 PR.PS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [ci-cd, automation, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-004
+  version: 0.2.0
+  title:
+    en: Critical user journeys have repeatable automated test coverage
+    th: critical user journeys มีชุดทดสอบอัตโนมัติที่ทำซ้ำได้
+  description:
+    en: Critical user journeys must have automated or repeatable regression tests tied to acceptance criteria, and the release must record the latest result. A critical journey with no repeatable test or an unreviewed failure fails the requirement.
+    th: critical user journeys ต้องมีชุดทดสอบ regression แบบอัตโนมัติหรือทำซ้ำได้ซึ่งเชื่อมโยงกับเกณฑ์การยอมรับ และการปล่อยต้องบันทึกผลล่าสุด critical journey ที่ไม่มีชุดทดสอบที่ทำซ้ำได้หรือมีผลล้มเหลวที่ไม่ได้รับการทบทวนถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Manual checks at release time cannot prove that a journey still works after change.
+    th: การตรวจสอบด้วยมือตอนปล่อยไม่สามารถพิสูจน์ว่า journey ยังทำงานได้หลังการเปลี่ยนแปลง
+  domain: change-release
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Test strategy and journey-to-test traceability matrix
+      max_age_days: 365
+    - type: test_result
+      description: Latest regression result for critical journeys
+      max_age_days: 30
+  assessment:
+    lite:
+      pass: Critical journeys have repeatable tests and the latest result is recorded.
+      partial: Some critical journeys have no repeatable test or no current result.
+    full:
+      l2: Automated where practical and executed for every release.
+      l3: Measured with journey coverage, flake rate, and escaped-defect trends.
+  references:
+    - title: ISO/IEC 27001:2022 8.29
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST SP 800-218 SSDF PW.8
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+  tags: [testing, regression, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-005
+  version: 0.2.0
+  title:
+    en: Development, test, and production environments are separated
+    th: สภาพแวดล้อม development test และ production ถูกแยกจากกัน
+  description:
+    en: Development, test, and production environments must be separated with distinct access and configuration controls, and production credentials must not be used in lower environments. A shared environment or shared production credential fails the requirement.
+    th: สภาพแวดล้อม development test และ production ต้องถูกแยกจากกันด้วยการควบคุมการเข้าถึงและ configuration ที่แตกต่างกัน และต้องไม่ใช้ production credentials ในสภาพแวดล้อมที่ต่ำกว่า สภาพแวดล้อมที่ใช้ร่วมกันหรือใช้ production credential ร่วมกันถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Shared environments let test activity damage production and leak production data.
+    th: สภาพแวดล้อมที่ใช้ร่วมกันทำให้กิจกรรมทดสอบสร้างความเสียหายต่อ production และทำให้ข้อมูล production รั่วไหล
+  domain: change-release
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: diagram
+      description: Environment and network separation diagram
+      max_age_days: 365
+    - type: configuration
+      description: Environment-specific access and configuration controls
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Environments are separated and production credentials stay in production.
+      partial: Separation exists but some access or configuration is shared.
+    full:
+      l2: Implemented for all in-scope environments.
+      l3: Reviewed after material change and measured with drift findings.
+  references:
+    - title: ISO/IEC 27001:2022 8.31
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 PR.PS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [environment-separation, change-management, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-006
+  version: 0.2.0
+  title:
+    en: Production changes are risk-assessed and approved before deployment
+    th: การเปลี่ยนแปลง production ถูกประเมินความเสี่ยงและอนุมัติก่อน deploy
+  description:
+    en: Each production change must record its risk, impact, test evidence, and approver, and high-risk changes must receive approval from a named owner outside the implementing team. An emergency change without a retrospective record fails the requirement.
+    th: การเปลี่ยนแปลง production แต่ละรายการต้องบันทึกความเสี่ยง ผลกระทบ หลักฐานการทดสอบ และผู้อนุมัติ และการเปลี่ยนแปลงที่มีความเสี่ยงสูงต้องได้รับอนุมัติจาก owner ที่ระบุชื่อซึ่งอยู่นอกทีมที่ดำเนินการ การเปลี่ยนแปลงฉุกเฉินที่ไม่มีบันทึกย้อนหลังถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Approval is only meaningful when the approver can see risk and evidence.
+    th: การอนุมัติมีความหมายก็ต่อเมื่อผู้อนุมัติมองเห็นความเสี่ยงและหลักฐาน
+  domain: change-release
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: ticket
+      description: Change record with risk, impact, test evidence, and approver
+      max_age_days: 90
+    - type: report
+      description: Emergency change retrospective for the current period
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Production changes are recorded and approved in proportion to risk.
+      partial: Approvals exist but risk or evidence is missing for some changes.
+    full:
+      l2: Applied to all production changes.
+      l3: Measured with approval coverage, emergency-change rate, and change-failure trends.
+  references:
+    - title: ISO/IEC 27001:2022 8.32
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 PR.PS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [change-approval, change-management, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-007
+  version: 0.2.0
+  title:
+    en: Critical changes have a tested rollback or roll-forward plan
+    th: การเปลี่ยนแปลงที่สำคัญมีแผน rollback หรือ roll-forward ที่ผ่านการทดสอบ
+  description:
+    en: Every critical production change must define rollback or roll-forward criteria and steps, and the plan must be exercised before or during release. A critical change without a tested recovery path fails the requirement.
+    th: การเปลี่ยนแปลง production ที่สำคัญทุกรายการต้องกำหนดเกณฑ์และขั้นตอน rollback หรือ roll-forward และต้องมีการทดสอบแผนก่อนหรือระหว่างการปล่อย การเปลี่ยนแปลงที่สำคัญโดยไม่มีแนวทางกู้คืนที่ทดสอบแล้วถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A release without a recovery path turns a failed change into an extended outage.
+    th: การปล่อยที่ไม่มีแนวทางกู้คืนทำให้การเปลี่ยนแปลงที่ล้มเหลวกลายเป็น outage ที่ยาวนาน
+  domain: change-release
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Rollback or roll-forward plan with decision criteria
+      max_age_days: 180
+    - type: test_result
+      description: Exercise or dry-run result for the current release
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Critical changes have a tested recovery plan.
+      partial: Plans exist but some critical changes are untested or lack criteria.
+    full:
+      l2: Tested for all critical changes in the current release.
+      l3: Measured with rollback success and time-to-restore trends.
+  references:
+    - title: ISO/IEC 27001:2022 8.32
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 PR.PS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [rollback, release, change-management]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-008
+  version: 0.2.0
+  title:
+    en: Every release has versioned evidence and known limitations
+    th: ทุกการปล่อยมีหลักฐานที่ระบุเวอร์ชันและข้อจำกัดที่ทราบ
+  description:
+    en: Each release must record its version, artifact identity, approvals, test results, and known limitations, and the deployed artifact must match the recorded identity. A release without traceable artifact or approval evidence fails the requirement.
+    th: การปล่อยแต่ละครั้งต้องบันทึกเวอร์ชัน identity ของ artifact การอนุมัติ ผลการทดสอบ และข้อจำกัดที่ทราบ และ artifact ที่ deploy ต้องตรงกับ identity ที่บันทึกไว้ การปล่อยที่ไม่มี artifact หรือหลักฐานการอนุมัติที่ตรวจสอบย้อนกลับได้ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Without release evidence, nobody can prove what is running or who approved it.
+    th: หากไม่มีหลักฐานการปล่อย ไม่มีใครพิสูจน์ได้ว่าอะไรกำลังทำงานหรือใครอนุมัติ
+  domain: change-release
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Release record with version, artifact digest, approvals, tests, and known limitations
+      max_age_days: 180
+    - type: report
+      description: Deployment verification showing running artifact matches the release record
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Each release is traceable to an artifact and an approval record.
+      partial: Release records exist but artifact identity or approval is incomplete.
+    full:
+      l2: Maintained for every production release.
+      l3: Measured with artifact-match rate and release-evidence completeness.
+  references:
+    - title: NIST SP 800-218 SSDF PS.3
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: ISO/IEC 27001:2022 8.32
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [release-evidence, versioning, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-009
+  version: 0.2.0
+  title:
+    en: Configuration is versioned, reviewed, and free of manual drift
+    th: configuration ถูกควบคุมเวอร์ชัน review และไม่มีความคลาดเคลื่อนจากการแก้ไขด้วยมือ
+  description:
+    en: Application and infrastructure configuration must be versioned, reviewed, and applied through the same change process as code, with drift detected and corrected. An unreviewed manual production configuration change fails the requirement.
+    th: configuration ของ application และโครงสร้างพื้นฐานต้องถูกควบคุมเวอร์ชัน review และนำไปใช้ผ่านกระบวนการเปลี่ยนแปลงเดียวกับ code โดยตรวจจับและแก้ไขความคลาดเคลื่อน การแก้ไข configuration production ด้วยมือโดยไม่มีการ review ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Configuration drift makes a tested release behave differently in production.
+    th: ความคลาดเคลื่อนของ configuration ทำให้การปล่อยที่ทดสอบแล้วทำงานแตกต่างใน production
+  domain: change-release
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Versioned configuration and drift-detection configuration
+      max_age_days: 180
+    - type: report
+      description: Latest drift report with remediation status
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Configuration is versioned, reviewed, and drift is detected.
+      partial: Configuration is versioned but some changes bypass review or drift is unmanaged.
+    full:
+      l2: Applied to all in-scope environments.
+      l3: Measured with drift rate and time-to-correct.
+  references:
+    - title: NIST SP 800-128
+      url: https://csrc.nist.gov/pubs/sp/800/128/final
+      type: standard
+    - title: ISO/IEC 27001:2022 8.32
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [configuration-management, drift, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-CHG-010
+  version: 0.2.0
+  title:
+    en: Database changes are reversible or have a tested recovery plan
+    th: การเปลี่ยนแปลงฐานข้อมูลสามารถย้อนกลับได้หรือมีแผนกู้คืนที่ผ่านการทดสอบ
+  description:
+    en: Schema and data migrations must be reviewed, tested against representative data, and have a reversible step or a tested recovery plan before production deployment. A migration without a tested recovery path fails the requirement.
+    th: การเปลี่ยนแปลง schema และข้อมูลต้องได้รับการ review ทดสอบกับข้อมูลตัวแทน และมีขั้นตอนย้อนกลับหรือแผนกู้คืนที่ผ่านการทดสอบก่อน deploy สู่ production การ migration ที่ไม่มีแนวทางกู้คืนที่ทดสอบแล้วถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A failed migration can corrupt data in ways that application rollback cannot fix.
+    th: migration ที่ล้มเหลวสามารถทำให้ข้อมูลเสียหายในลักษณะที่การ rollback application แก้ไขไม่ได้
+  domain: change-release
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Migration plan with reversibility or recovery steps
+      max_age_days: 180
+    - type: test_result
+      description: Dry-run or recovery test result against representative data
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Migrations have a tested recovery path before production deployment.
+      partial: Some migrations are reversible but recovery is untested or undocumented.
+    full:
+      l2: Applied to all production migrations.
+      l3: Measured with migration failure and recovery-time trends.
+  references:
+    - title: ISO/IEC 27001:2022 8.32
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST SP 800-128
+      url: https://csrc.nist.gov/pubs/sp/800/128/final
+      type: standard
+  tags: [database-migration, rollback, release]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
