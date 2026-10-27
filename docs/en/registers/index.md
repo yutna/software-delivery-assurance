@@ -72,11 +72,24 @@ ASEAN entries are register-only. They are not an ASEAN overlay, and they do not
 create region-level requirements. The [ASEAN comparison and cross-border
 page](asean-comparison.md) summarises the six entries without ranking them.
 
+## EU registers
+
+| ID            | Instrument                                                    | Type       | Review status |
+| ------------- | ------------------------------------------------------------- | ---------- | ------------- |
+| `EU-GDPR-001` | Regulation (EU) 2016/679 (General Data Protection Regulation) | Regulation | `unverified`  |
+
+Each EU entry links to its official source and its generated reference page:
+
+- [EU-GDPR-001](../reference/registers/EU-GDPR-001.md)
+
+EU entries are register-only. They are not an EU overlay, and they do not create
+region-level requirements.
+
 ## Review limitation
 
-Every register entry in v0.7.0 is `unverified`. A named qualified reviewer has
-not signed off. The entries are useful for finding the official source and
-structuring an assessment; they are not a legal conclusion.
+Every register entry in this release is `unverified`. A named qualified
+reviewer has not signed off. The entries are useful for finding the official
+source and structuring an assessment; they are not a legal conclusion.
 
 `review_status: reviewed` requires a named reviewer, a review date, and a
 scope. Legal content stays unverified until a qualified legal reviewer signs
