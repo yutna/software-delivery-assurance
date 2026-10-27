@@ -1,0 +1,490 @@
+- id: SRAS-SCM-001
+  version: 0.2.0
+  title:
+    en: An asset inventory covers software, services, and infrastructure
+    th: asset inventory ครอบคลุมซอฟต์แวร์ บริการ และโครงสร้างพื้นฐาน
+  description:
+    en: The product must maintain an inventory of software components, services, infrastructure, and data stores with owner, version, location, and criticality. A production asset that is missing from the inventory fails the requirement.
+    th: ผลิตภัณฑ์ต้องมี inventory ขององค์ประกอบซอฟต์แวร์ บริการ โครงสร้างพื้นฐาน และ data store พร้อม owner เวอร์ชัน ตำแหน่งที่ตั้ง และระดับความสำคัญ asset ใน production ที่ไม่อยู่ใน inventory ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: An asset that is not known cannot be patched, reviewed, or retired.
+    th: asset ที่ไม่รู้จักไม่สามารถถูก patch ทบทวน หรือปลดระวางได้
+  domain: supply-chain
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Asset inventory with owner, version, location, and criticality
+      max_age_days: 90
+    - type: report
+      description: Reconciliation of production assets against the inventory
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Every production asset is inventoried with an owner and criticality.
+      partial: The inventory exists but some assets or owners are missing.
+    full:
+      l2: Maintained and reconciled for the current release.
+      l3: Measured with coverage, stale entries, and unknown-asset findings.
+  references:
+    - title: NIST CSF 2.0 GV.SC
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 5.9
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [asset-inventory, supply-chain, visibility]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-002
+  version: 0.2.0
+  title:
+    en: A software bill of materials is produced for every release
+    th: software bill of materials ถูกจัดทำสำหรับทุกการปล่อย
+  description:
+    en: Each release must include a machine-readable SBOM that lists components, versions, relationships, and licenses, and the SBOM must match the deployed artifact. A release without an SBOM or with an SBOM that differs from the artifact fails the requirement.
+    th: การปล่อยแต่ละครั้งต้องมี SBOM ที่เครื่องอ่านได้ ซึ่งระบุองค์ประกอบ เวอร์ชัน ความสัมพันธ์ และ license และ SBOM ต้องตรงกับ artifact ที่ deploy การปล่อยที่ไม่มี SBOM หรือมี SBOM ที่แตกต่างจาก artifact ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Without an SBOM, component risk cannot be found or answered quickly.
+    th: หากไม่มี SBOM ความเสี่ยงขององค์ประกอบไม่สามารถถูกค้นหาหรือตอบได้อย่างรวดเร็ว
+  domain: supply-chain
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: report
+      description: SBOM for the current release in a standard format
+      max_age_days: 90
+    - type: test_result
+      description: Verification that the SBOM matches the deployed artifact
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Each release has an SBOM that matches the deployed artifact.
+      partial: An SBOM exists but is incomplete or not verified against the artifact.
+    full:
+      l2: Produced for every release and retained.
+      l3: Measured with SBOM completeness and match rates.
+  references:
+    - title: NIST SP 800-218 SSDF PS.3
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: ISO/IEC 5962:2021 SPDX
+      url: https://www.iso.org/standard/81870.html
+      type: standard
+  tags: [sbom, supply-chain, transparency]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-003
+  version: 0.2.0
+  title:
+    en: Dependencies come from trusted sources and are integrity verified
+    th: dependency มาจากแหล่งที่เชื่อถือได้และผ่านการตรวจสอบความสมบูรณ์
+  description:
+    en: Dependencies and build artifacts must be obtained from approved sources and verified with signatures or cryptographic digests before use. An unverified dependency or an artifact from an unapproved source fails the requirement.
+    th: dependency และ build artifact ต้องได้มาจากแหล่งที่ได้รับอนุมัติและตรวจสอบด้วยลายเซ็นหรือ cryptographic digest ก่อนใช้งาน dependency ที่ไม่ได้ตรวจสอบหรือ artifact จากแหล่งที่ไม่อนุมัติถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: An unverified dependency can introduce code that nobody reviewed.
+    th: dependency ที่ไม่ได้ตรวจสอบสามารถนำ code ที่ไม่มีใคร review เข้ามาได้
+  domain: supply-chain
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Approved source and dependency verification configuration
+      max_age_days: 180
+    - type: report
+      description: Signature or digest verification result for the current release
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Dependencies and artifacts are sourced from approved locations and verified.
+      partial: Verification exists but some dependencies or artifacts bypass it.
+    full:
+      l2: Enforced for all production dependencies and artifacts.
+      l3: Measured with verification coverage and exception trends.
+  references:
+    - title: NIST SP 800-218 SSDF PS.2
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: NIST CSF 2.0 GV.SC
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [provenance, dependency-management, supply-chain]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-004
+  version: 0.2.0
+  title:
+    en: Third parties are risk-assessed before use and reviewed on a cadence
+    th: บุคคลภายนอกถูกประเมินความเสี่ยงก่อนใช้งานและทบทวนตามรอบ
+  description:
+    en: Each supplier that handles data, provides a critical service, or affects the product must have a documented risk assessment before use and a review at a defined cadence. A critical supplier with no current assessment fails the requirement.
+    th: ผู้ให้บริการแต่ละรายที่จัดการข้อมูล ให้บริการที่สำคัญ หรือส่งผลต่อผลิตภัณฑ์ ต้องมีการประเมินความเสี่ยงที่จัดทำเอกสารก่อนใช้งานและการทบทวนตามรอบที่กำหนด ผู้ให้บริการที่สำคัญซึ่งไม่มีการประเมินที่เป็นปัจจุบันถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Supplier risk becomes product risk when the supplier fails or changes.
+    th: ความเสี่ยงของผู้ให้บริการกลายเป็นความเสี่ยงของผลิตภัณฑ์เมื่อผู้ให้บริการล้มเหลวหรือเปลี่ยนแปลง
+  domain: supply-chain
+  criticality: gate
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Supplier register with risk rating, owner, and review date
+      max_age_days: 180
+    - type: report
+      description: Current assessment for each critical supplier
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Critical suppliers have a current assessment and owner.
+      partial: Assessments exist but some critical suppliers or reviews are missing.
+    full:
+      l2: Applied to all critical suppliers for the current release.
+      l3: Measured with assessment coverage and risk trend.
+  references:
+    - title: ISO/IEC 27001:2022 5.19 and 5.22
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST SP 800-161 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/161/r1/final
+      type: standard
+  tags: [third-party-risk, supplier-management, supply-chain]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-005
+  version: 0.2.0
+  title:
+    en: Licenses are identified, approved, and tracked for obligations
+    th: license ถูกระบุ อนุมัติ และติดตามข้อผูกพัน
+  description:
+    en: Every third-party component must have a recorded license, an approval decision for its use, and a tracked obligation such as attribution or source disclosure. A component with an unapproved or unknown license fails the requirement.
+    th: องค์ประกอบจากบุคคลภายนอกทุกรายการต้องมี license ที่บันทึกไว้ การตัดสินใจอนุมัติการใช้งาน และข้อผูกพันที่ติดตาม เช่น การระบุที่มา หรือการเปิดเผย source องค์ประกอบที่มี license ที่ไม่อนุมัติหรือไม่ทราบถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: An unknown license can block distribution or create an unexpected obligation.
+    th: license ที่ไม่ทราบสามารถขัดขวางการเผยแพร่หรือสร้างข้อผูกพันที่ไม่คาดคิด
+  domain: supply-chain
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Component license inventory with approval decisions
+      max_age_days: 180
+    - type: report
+      description: Attribution and obligation checklist for the current release
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Components have known, approved licenses and tracked obligations.
+      partial: Some components lack a license record or approval.
+    full:
+      l2: Covered for all distributed components.
+      l3: Measured with unknown-license findings and obligation completeness.
+  references:
+    - title: ISO/IEC 5230:2020
+      url: https://www.iso.org/standard/81068.html
+      type: standard
+    - title: NIST SP 800-218 SSDF PW.4
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+  tags: [license-management, open-source, supply-chain]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-006
+  version: 0.2.0
+  title:
+    en: End-of-life components are tracked and replaced on a plan
+    th: องค์ประกอบที่หมดอายุการสนับสนุนถูกติดตามและแทนที่ตามแผน
+  description:
+    en: The product must track end-of-support dates for components and platforms, and must have a dated plan to replace or accept each end-of-life item. An end-of-life component in production without an approved plan fails the requirement.
+    th: ผลิตภัณฑ์ต้องติดตามวันสิ้นสุดการสนับสนุนขององค์ประกอบและแพลตฟอร์ม และต้องมีแผนที่ระบุวันที่สำหรับการแทนที่หรือยอมรับแต่ละรายการที่หมดอายุ องค์ประกอบที่หมดอายุการสนับสนุนใน production โดยไม่มีแผนที่ได้รับอนุมัติถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: An unsupported component receives no security fixes and becomes a permanent exception.
+    th: องค์ประกอบที่ไม่ได้รับการสนับสนุนไม่ได้รับ security fixes และกลายเป็นข้อยกเว้นถาวร
+  domain: supply-chain
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: End-of-life inventory with support dates and replacement plan
+      max_age_days: 180
+    - type: ticket
+      description: Approval record for any accepted end-of-life risk
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: End-of-life items have a dated replacement or acceptance decision.
+      partial: Some end-of-life items are unsupported without a plan.
+    full:
+      l2: Tracked and planned for all in-scope components.
+      l3: Measured with end-of-life count and replacement lead time.
+  references:
+    - title: ISO/IEC 27001:2022 5.9
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 GV.SC
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [end-of-life, lifecycle, supply-chain]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-007
+  version: 0.2.0
+  title:
+    en: Subcontractor and subprocessor chains are visible and controlled
+    th: ห่วงโซ่ผู้รับจ้างช่วงและผู้ประมวลผลช่วงมีความโปร่งใสและถูกควบคุม
+  description:
+    en: Each critical supplier must disclose the subcontractors and subprocessors that support the product, and those parties must meet the same security and privacy requirements. An undisclosed critical subcontractor fails the requirement.
+    th: ผู้ให้บริการที่สำคัญแต่ละรายต้องเปิดเผยผู้รับจ้างช่วงและผู้ประมวลผลช่วงที่สนับสนุนผลิตภัณฑ์ และคู่สัญญาเหล่านั้นต้องเป็นไปตามข้อกำหนดด้านความปลอดภัยและความเป็นส่วนตัวเดียวกัน ผู้รับจ้างช่วงที่สำคัญซึ่งไม่ถูกเปิดเผยถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Risk does not stop at the first supplier.
+    th: ความเสี่ยงไม่ได้หยุดอยู่ที่ผู้ให้บริการรายแรก
+  domain: supply-chain
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Subcontractor and subprocessor register with roles and flow-down terms
+      max_age_days: 180
+    - type: contract
+      description: Flow-down security and privacy terms
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Critical supply chains are disclosed and flow-down terms are in place.
+      partial: Some subcontractors are undisclosed or lack flow-down terms.
+    full:
+      l2: Covered for all critical suppliers.
+      l3: Reviewed after supplier change and measured with disclosure completeness.
+  references:
+    - title: ISO/IEC 27001:2022 5.21
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST SP 800-161 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/161/r1/final
+      type: standard
+  tags: [subcontractors, supply-chain, third-party-risk]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-008
+  version: 0.2.0
+  title:
+    en: Concentration risk and supplier exit are assessed
+    th: ความเสี่ยงจากการพึ่งพาผู้ให้บริการรายเดียวและการออกจากผู้ให้บริการถูกประเมิน
+  description:
+    en: The product must identify critical suppliers where failure or exit would disrupt delivery, and must record a mitigation or exit plan for each. A single-supplier dependency with no exit plan fails the requirement.
+    th: ผลิตภัณฑ์ต้องระบุผู้ให้บริการที่สำคัญซึ่งความล้มเหลวหรือการออกจากผู้ให้บริการจะกระทบการส่งมอบ และต้องบันทึกมาตรการบรรเทาหรือแผนออกสำหรับแต่ละราย การพึ่งพาผู้ให้บริการรายเดียวโดยไม่มีแผนออกถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A supplier that cannot be replaced quickly controls the product's continuity.
+    th: ผู้ให้บริการที่ไม่สามารถแทนที่ได้อย่างรวดเร็วควบคุมความต่อเนื่องของผลิตภัณฑ์
+  domain: supply-chain
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Concentration-risk assessment with mitigation and exit plans
+      max_age_days: 365
+    - type: ticket
+      description: Review record for critical supplier dependencies
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Critical dependencies have a mitigation or exit plan.
+      partial: Some critical dependencies are identified but not planned.
+    full:
+      l2: Assessed for all critical suppliers.
+      l3: Measured with dependency count, portability, and exit-test evidence.
+  references:
+    - title: NIST SP 800-161 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/161/r1/final
+      type: standard
+    - title: NIST CSF 2.0 GV.SC
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [concentration-risk, exit-planning, supply-chain]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-009
+  version: 0.2.0
+  title:
+    en: Supplier agreements include security, privacy, and exit terms
+    th: สัญญาผู้ให้บริการรวมข้อกำหนดด้านความปลอดภัย ความเป็นส่วนตัว และการออก
+  description:
+    en: Each critical supplier agreement must include security requirements, breach notification, data return or deletion, audit or assurance rights, and termination support. An agreement missing a required term fails the requirement.
+    th: สัญญาผู้ให้บริการที่สำคัญแต่ละฉบับต้องรวมข้อกำหนดด้านความปลอดภัย การแจ้งเหตุละเมิด การคืนหรือลบข้อมูล สิทธิในการตรวจสอบหรือรับการรับรอง และการสนับสนุนเมื่อสิ้นสุดสัญญา สัญญาที่ขาดข้อกำหนดที่จำเป็นถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A control that is not in the agreement is difficult to enforce after an incident.
+    th: การควบคุมที่ไม่อยู่ในสัญญาเป็นเรื่องยากที่จะบังคับใช้หลังเกิดเหตุการณ์
+  domain: supply-chain
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: contract
+      description: Current supplier agreement with security, privacy, and exit terms
+      max_age_days: 365
+    - type: document
+      description: Contract review checklist and exceptions
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Critical supplier agreements include the required security and exit terms.
+      partial: Some agreements are missing a required term or review.
+    full:
+      l2: Covered for all critical suppliers.
+      l3: Measured with clause coverage and renewal review timeliness.
+  references:
+    - title: ISO/IEC 27001:2022 5.20
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST SP 800-161 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/161/r1/final
+      type: standard
+  tags: [supplier-contracts, third-party-risk, supply-chain]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SCM-010
+  version: 0.2.0
+  title:
+    en: Supply chain incidents are monitored and handled
+    th: เหตุการณ์ในห่วงโซ่อุปทานถูกเฝ้าระวังและจัดการ
+  description:
+    en: The product must monitor advisories for critical components and suppliers, and must have a playbook to assess exposure, contain impact, and notify affected parties when a dependency is compromised. A compromised dependency with no exposure assessment fails the requirement.
+    th: ผลิตภัณฑ์ต้องเฝ้าระวังประกาศเตือนสำหรับองค์ประกอบและผู้ให้บริการที่สำคัญ และต้องมี playbook สำหรับประเมินการได้รับผลกระทบ จำกัดผลกระทบ และแจ้งผู้ที่เกี่ยวข้องเมื่อ dependency ถูก compromise dependency ที่ถูก compromise โดยไม่มีการประเมินการได้รับผลกระทบถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A supplier compromise becomes the product's incident within hours.
+    th: การถูก compromise ของผู้ให้บริการกลายเป็นเหตุการณ์ของผลิตภัณฑ์ภายในไม่กี่ชั่วโมง
+  domain: supply-chain
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Supply chain monitoring sources and response playbook
+      max_age_days: 365
+    - type: ticket
+      description: Exposure assessment record for the latest critical advisory
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Critical advisories are monitored and exposure is assessed.
+      partial: Monitoring exists but some critical advisories or assessments are missing.
+    full:
+      l2: Applied to all critical components and suppliers.
+      l3: Measured with advisory-to-assessment time and affected-release coverage.
+  references:
+    - title: NIST SP 800-161 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/161/r1/final
+      type: standard
+    - title: NIST SP 800-218 SSDF RV.1
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+  tags: [supply-chain, incident-response, monitoring]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
