@@ -38,6 +38,20 @@ export {
   lockInputs,
   verifyProjectLock,
 } from "./project/lockfile.js";
+export {
+  planProjectInit,
+  TEMPLATE_FILES,
+  type InitIssue,
+  type InitPlan,
+  type PlannedFile,
+} from "./project/init.js";
+export {
+  initProject,
+  readStandardInputs,
+  type InitProjectInput,
+  type InitResult,
+  type InitShellError,
+} from "./project/workflow.js";
 export { validateProject } from "./project/validate.js";
 export type {
   Assessment,

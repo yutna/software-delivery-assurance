@@ -60,6 +60,69 @@ describe("parseArgs", () => {
     });
   });
 
+  test("init requires a directory and a profile", () => {
+    expect(parseArgs(["init"])).toEqual({
+      ok: false,
+      error: { tag: "MissingArgument", value: "<dir>" },
+    });
+    expect(parseArgs(["init", "example-project"])).toEqual({
+      ok: false,
+      error: { tag: "MissingFlag", value: "--profile" },
+    });
+  });
+
+  test("init accepts both profile spellings", () => {
+    expect(parseArgs(["init", "example-project", "--profile", "lite"])).toEqual(
+      {
+        ok: true,
+        value: { tag: "Init", directory: "example-project", profile: "lite" },
+      },
+    );
+    expect(parseArgs(["init", "example-project", "--profile=full"])).toEqual({
+      ok: true,
+      value: { tag: "Init", directory: "example-project", profile: "full" },
+    });
+  });
+
+  test("init rejects an invalid profile", () => {
+    expect(parseArgs(["init", "example-project", "--profile", "fast"])).toEqual(
+      {
+        ok: false,
+        error: { tag: "InvalidProfile", value: "fast" },
+      },
+    );
+  });
+
+  test("init rejects unknown or repeated arguments", () => {
+    expect(parseArgs(["init", "example-project", "--nope"])).toEqual({
+      ok: false,
+      error: { tag: "UnknownArgument", value: "--nope" },
+    });
+    expect(
+      parseArgs([
+        "init",
+        "example-project",
+        "--profile",
+        "lite",
+        "--profile",
+        "full",
+      ]),
+    ).toEqual({
+      ok: false,
+      error: {
+        tag: "TooManyArguments",
+        values: [
+          "init",
+          "example-project",
+          "--profile",
+          "lite",
+          "--profile",
+          "full",
+        ],
+      },
+    });
+  });
+
   test("an unknown command is rejected", () => {
     expect(parseArgs(["nope"])).toEqual({
       ok: false,
