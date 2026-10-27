@@ -16,9 +16,11 @@ import {
 } from "./ids.js";
 import {
   isoDate,
+  revision,
   version,
   versionRange,
   type IsoDate,
+  type Revision,
   type Version,
   type VersionRange,
 } from "./primitives.js";
@@ -42,10 +44,17 @@ import type {
   Override,
   Profile,
   ProfileId,
+  RegisterAppliesTo,
+  RegisterEntry,
+  RegisterInstrumentType,
+  RegisterObligation,
+  RegisterStatus,
+  ReviewMetadata,
   ReviewStatus,
   StandardManifest,
   StandardMetadata,
   Tier,
+  TranslationMetadata,
   TranslationStatus,
   ValidationIssue,
   Waiver,
@@ -111,6 +120,22 @@ const INDUSTRIES = [
   "logistics",
   "public-sector",
 ] as const satisfies readonly Industry[];
+
+const REGISTER_STATUSES = [
+  "in_force",
+  "amended",
+  "repealed",
+  "draft",
+  "unknown",
+] as const satisfies readonly RegisterStatus[];
+
+const REGISTER_INSTRUMENT_TYPES = [
+  "law",
+  "regulation",
+  "standard",
+  "guidance",
+  "framework",
+] as const satisfies readonly RegisterInstrumentType[];
 
 const CROSSWALK_RELATIONSHIPS = [
   "supports",
@@ -317,6 +342,27 @@ const readVersionRange = (
 
   if (!parsed.ok) {
     push(issues, file, `${path}/${key}`, `invalid version range: ${value}`);
+    return undefined;
+  }
+
+  return parsed.value;
+};
+
+const readRevisionValue = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): Revision | undefined => {
+  if (typeof value !== "string") {
+    push(issues, file, path, "expected a revision string");
+    return undefined;
+  }
+
+  const parsed = revision(value);
+
+  if (!parsed.ok) {
+    push(issues, file, path, `invalid revision: ${value}`);
     return undefined;
   }
 
@@ -609,23 +655,12 @@ const readApplicability = (
   return { tiers, modules, overlays, excludes };
 };
 
-const readMetadata = (
+const readGovernanceMetadata = (
   object: DtoObject,
   file: string,
   path: string,
   issues: Issues,
-): StandardMetadata | undefined => {
-  const versionValue = readVersion(object, "version", file, path, issues);
-  const status = readEnum(
-    object,
-    "status",
-    CONTENT_STATUSES,
-    file,
-    path,
-    issues,
-  );
-  const createdAt = readDate(object, "created_at", file, path, issues);
-  const updatedAt = readDate(object, "updated_at", file, path, issues);
+): (ReviewMetadata & TranslationMetadata) | undefined => {
   const reviewStatus = readEnum(
     object,
     "review_status",
@@ -687,10 +722,6 @@ const readMetadata = (
   );
 
   if (
-    versionValue === undefined ||
-    status === undefined ||
-    createdAt === undefined ||
-    updatedAt === undefined ||
     reviewStatus === undefined ||
     translationStatus === undefined ||
     reviewedBy === undefined ||
@@ -704,11 +735,6 @@ const readMetadata = (
   }
 
   return {
-    sourceFile: file,
-    version: versionValue,
-    status,
-    createdAt,
-    updatedAt,
     reviewStatus,
     reviewedBy,
     reviewedAt,
@@ -717,6 +743,45 @@ const readMetadata = (
     machineTranslated,
     translationReviewedBy,
     translationReviewedAt,
+  };
+};
+
+const readMetadata = (
+  object: DtoObject,
+  file: string,
+  path: string,
+  issues: Issues,
+): StandardMetadata | undefined => {
+  const versionValue = readVersion(object, "version", file, path, issues);
+  const status = readEnum(
+    object,
+    "status",
+    CONTENT_STATUSES,
+    file,
+    path,
+    issues,
+  );
+  const createdAt = readDate(object, "created_at", file, path, issues);
+  const updatedAt = readDate(object, "updated_at", file, path, issues);
+  const governance = readGovernanceMetadata(object, file, path, issues);
+
+  if (
+    versionValue === undefined ||
+    status === undefined ||
+    createdAt === undefined ||
+    updatedAt === undefined ||
+    governance === undefined
+  ) {
+    return undefined;
+  }
+
+  return {
+    sourceFile: file,
+    version: versionValue,
+    status,
+    createdAt,
+    updatedAt,
+    ...governance,
   };
 };
 
@@ -1541,6 +1606,230 @@ const parseProfile = (
   };
 };
 
+const parseRegisterObligation = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): RegisterObligation | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const en = readString(object, "en", file, path, issues);
+  const th = readString(object, "th", file, path, issues);
+
+  if (en === undefined || th === undefined) return undefined;
+
+  return { en, th };
+};
+
+const parseRegisterAppliesTo = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): RegisterAppliesTo | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const sectors = readArray(
+    object,
+    "sectors",
+    file,
+    path,
+    issues,
+    (item, itemPath) =>
+      readEnum({ value: item }, "value", INDUSTRIES, file, itemPath, issues),
+  );
+  const roles = readStringArray(object, "roles", file, path, issues);
+  const dataTypes = readStringArray(object, "data_types", file, path, issues);
+
+  if (sectors === undefined || roles === undefined || dataTypes === undefined) {
+    return undefined;
+  }
+
+  const [firstSector, ...restSectors] = sectors;
+  const [firstRole, ...restRoles] = roles;
+  const [firstDataType, ...restDataTypes] = dataTypes;
+
+  if (
+    firstSector === undefined ||
+    firstRole === undefined ||
+    firstDataType === undefined
+  ) {
+    push(
+      issues,
+      file,
+      path,
+      "expected at least one sector, role, and data type",
+    );
+    return undefined;
+  }
+
+  return {
+    sectors: [firstSector, ...restSectors],
+    roles: [firstRole, ...restRoles],
+    dataTypes: [firstDataType, ...restDataTypes],
+  };
+};
+
+const parseRegisterEntry = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): RegisterEntry | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const governance = readGovernanceMetadata(object, file, path, issues);
+  const id = readRegisterEntryIdValue(object["id"], file, `${path}/id`, issues);
+  const jurisdiction = readString(object, "jurisdiction", file, path, issues);
+  const instrument = readString(object, "instrument", file, path, issues);
+  const instrumentType = readEnum(
+    object,
+    "instrument_type",
+    REGISTER_INSTRUMENT_TYPES,
+    file,
+    path,
+    issues,
+  );
+  const regulator = readString(object, "regulator", file, path, issues);
+  const sourceUrl = readString(object, "source_url", file, path, issues);
+  const effectiveDate = readOptionalDate(
+    object,
+    "effective_date",
+    file,
+    path,
+    issues,
+  );
+  const revisionValue = readRevisionValue(
+    object["revision"],
+    file,
+    `${path}/revision`,
+    issues,
+  );
+  const lastVerified = readDate(object, "last_verified", file, path, issues);
+  const reviewDue = readDate(object, "review_due", file, path, issues);
+  const registerStatus = readEnum(
+    object,
+    "status",
+    REGISTER_STATUSES,
+    file,
+    path,
+    issues,
+  );
+  const summary = readLocalized(
+    object["summary"],
+    file,
+    `${path}/summary`,
+    issues,
+  );
+  const obligations = readArray(
+    object,
+    "obligations",
+    file,
+    path,
+    issues,
+    (item, itemPath) => parseRegisterObligation(item, file, itemPath, issues),
+  );
+  const mappedRequirements = readArray(
+    object,
+    "mapped_requirements",
+    file,
+    path,
+    issues,
+    (item, itemPath) => readRequirementIdValue(item, file, itemPath, issues),
+  );
+  const appliesTo = parseRegisterAppliesTo(
+    object["applies_to"],
+    file,
+    `${path}/applies_to`,
+    issues,
+  );
+  const notes = readLocalized(object["notes"], file, `${path}/notes`, issues);
+  const sourceLanguage = readString(
+    object,
+    "source_language",
+    file,
+    path,
+    issues,
+  );
+
+  if (
+    governance === undefined ||
+    id === undefined ||
+    jurisdiction === undefined ||
+    instrument === undefined ||
+    instrumentType === undefined ||
+    regulator === undefined ||
+    sourceUrl === undefined ||
+    effectiveDate === undefined ||
+    revisionValue === undefined ||
+    lastVerified === undefined ||
+    reviewDue === undefined ||
+    registerStatus === undefined ||
+    summary === undefined ||
+    obligations === undefined ||
+    mappedRequirements === undefined ||
+    appliesTo === undefined ||
+    notes === undefined ||
+    sourceLanguage === undefined
+  ) {
+    return undefined;
+  }
+
+  const [firstObligation, ...restObligations] = obligations;
+
+  if (firstObligation === undefined) {
+    push(
+      issues,
+      file,
+      `${path}/obligations`,
+      "expected at least one obligation",
+    );
+    return undefined;
+  }
+
+  const [firstRequirement, ...restRequirements] = mappedRequirements;
+
+  if (firstRequirement === undefined) {
+    push(
+      issues,
+      file,
+      `${path}/mapped_requirements`,
+      "expected at least one mapped requirement",
+    );
+    return undefined;
+  }
+
+  return {
+    tag: "RegisterEntry",
+    sourceFile: file,
+    ...governance,
+    id,
+    jurisdiction,
+    instrument,
+    instrumentType,
+    regulator,
+    sourceUrl,
+    effectiveDate,
+    revision: revisionValue,
+    lastVerified,
+    reviewDue,
+    registerStatus,
+    summary,
+    obligations: [firstObligation, ...restObligations],
+    mappedRequirements: [firstRequirement, ...restRequirements],
+    appliesTo,
+    notes,
+    sourceLanguage,
+  };
+};
+
 const parseManifest = (
   value: unknown,
   file: string,
@@ -1692,6 +1981,16 @@ export const parseProfileFile = (
   const profile = parseProfile(value, file, "", issues);
 
   return result(profile, issues);
+};
+
+export const parseRegisterFile = (
+  value: unknown,
+  file: string,
+): Result<RegisterEntry, readonly ValidationIssue[]> => {
+  const issues: Issues = [];
+  const register = parseRegisterEntry(value, file, "", issues);
+
+  return result(register, issues);
 };
 
 export const parseManifestFile = (

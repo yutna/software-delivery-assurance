@@ -36,6 +36,13 @@ type Translatable = {
   readonly description: LocalizedText;
 };
 
+type TranslationReviewable = {
+  readonly id: string;
+  readonly translationStatus: TranslationStatus;
+  readonly translationReviewedBy: string | null;
+  readonly translationReviewedAt: string | null;
+};
+
 const addUnique = <
   T extends { readonly id: string; readonly sourceFile: string },
 >(
@@ -85,8 +92,8 @@ const checkReview = (value: Reviewable, issues: ValidationIssue[]): void => {
   }
 };
 
-const checkTranslation = (
-  value: Translatable,
+const checkTranslationReview = (
+  value: TranslationReviewable,
   issues: ValidationIssue[],
 ): void => {
   if (value.translationStatus !== "complete") return;
@@ -106,14 +113,41 @@ const checkTranslation = (
       field: "translation_reviewed_at",
     });
   }
+};
 
-  if (value.title.th.trim() === "") {
-    issues.push({ tag: "Translation", id: value.id, field: "title.th" });
+const checkTranslationText = (
+  id: string,
+  field: string,
+  text: LocalizedText,
+  issues: ValidationIssue[],
+): void => {
+  if (text.th.trim() === "") {
+    issues.push({ tag: "Translation", id, field });
   }
+};
 
-  if (value.description.th.trim() === "") {
-    issues.push({ tag: "Translation", id: value.id, field: "description.th" });
-  }
+const checkTranslation = (
+  value: Translatable,
+  issues: ValidationIssue[],
+): void => {
+  checkTranslationReview(value, issues);
+
+  if (value.translationStatus !== "complete") return;
+
+  checkTranslationText(value.id, "title.th", value.title, issues);
+  checkTranslationText(value.id, "description.th", value.description, issues);
+};
+
+const checkRegisterTranslation = (
+  register: RegisterEntry,
+  issues: ValidationIssue[],
+): void => {
+  checkTranslationReview(register, issues);
+
+  if (register.translationStatus !== "complete") return;
+
+  checkTranslationText(register.id, "summary.th", register.summary, issues);
+  checkTranslationText(register.id, "notes.th", register.notes, issues);
 };
 
 const checkApplicability = (
@@ -306,6 +340,7 @@ const checkRegister = (
   }
 
   checkReview(register, issues);
+  checkRegisterTranslation(register, issues);
 };
 
 const checkCrosswalk = (

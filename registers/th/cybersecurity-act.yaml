@@ -1,0 +1,42 @@
+id: TH-CYBER-001
+jurisdiction: TH
+instrument: Cybersecurity Act B.E. 2562 (2019)
+instrument_type: law
+regulator: National Cyber Security Committee
+source_url: https://law.go.th/DetailLawPage?table_of_law_id=1594
+effective_date: "2019-05-28"
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: in_force
+summary:
+  en: The Act sets national cybersecurity governance and a framework for preventing, handling, and mitigating cyber threats. It defines critical information infrastructure, establishes coordination bodies, and sets duties for organisations in scope, including incident reporting and cooperation with authorities.
+  th: พระราชบัญญัติกำหนดโครงสร้างการกำกับดูแลความมั่นคงปลอดภัยไซเบอร์ระดับชาติ และกรอบการป้องกัน รับมือ และลดผลกระทบจากภัยคุกคามทางไซเบอร์ กำหนดโครงสร้างพื้นฐานสำคัญทางสารสนเทศ จัดตั้งหน่วยงานประสานงาน และกำหนดหน้าที่ขององค์กรที่อยู่ในขอบเขต รวมถึงการรายงานเหตุการณ์และการให้ความร่วมมือกับหน่วยงานที่เกี่ยวข้อง
+obligations:
+  - en: Organisations in scope classify their information systems and apply the cybersecurity standards that apply to them.
+    th: องค์กรที่อยู่ในขอบเขตจัดประเภทระบบสารสนเทศของตนและปฏิบัติตามมาตรฐานความมั่นคงปลอดภัยไซเบอร์ที่ใช้บังคับ
+  - en: Cyber incidents and threats are reported through the channel set by the responsible authority.
+    th: เหตุการณ์และภัยคุกคามทางไซเบอร์ได้รับการรายงานผ่านช่องทางที่หน่วยงานผู้รับผิดชอบกำหนด
+  - en: Critical information infrastructure operators cooperate with assessments and exercises.
+    th: ผู้ประกอบการโครงสร้างพื้นฐานสำคัญทางสารสนเทศให้ความร่วมมือในการประเมินและการฝึกซ้อม
+mapped_requirements:
+  - SRAS-SEC-010
+  - SRAS-SEC-011
+  - SRAS-INC-001
+  - SRAS-INC-002
+  - SRAS-INC-005
+  - SRAS-INC-008
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles:
+    - critical-information-infrastructure-operator
+    - government-agency
+    - service-provider
+  data_types: [personal-data, operational-data]
+notes:
+  en: This entry does not decide whether an organisation is a critical information infrastructure operator or which threat level applies. Subordinate announcements set detailed duties and timelines.
+  th: รายการนี้ไม่วินิจฉัยว่าองค์กรใดเป็นผู้ประกอบการโครงสร้างพื้นฐานสำคัญทางสารสนเทศหรือระดับภัยคุกคามใดใช้บังคับ ประกาศลำดับรองกำหนดหน้าที่และกรอบเวลาโดยละเอียด
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified

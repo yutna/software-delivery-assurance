@@ -1,0 +1,39 @@
+id: TH-BOT-002
+jurisdiction: TH
+instrument: Bank of Thailand Notification No. สนช. 1/2564 on Information Technology Risk Management under the Payment Systems Act (2021)
+instrument_type: regulation
+regulator: Bank of Thailand
+source_url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2564/ThaiPDF/25640024.pdf
+effective_date: null
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: in_force
+summary:
+  en: The notification sets IT risk management and minimum cyber hygiene requirements for payment system providers, payment system business providers, and payment service business providers. It covers governance, security controls, incident response, and reporting to the Bank of Thailand.
+  th: ประกาศฉบับนี้กำหนดหลักเกณฑ์การกำกับดูแลความเสี่ยงด้านเทคโนโลยีสารสนเทศและมาตรฐานขั้นต่ำด้าน cyber hygiene สำหรับผู้ให้บริการระบบการชำระเงิน ผู้ประกอบธุรกิจระบบการชำระเงิน และผู้ประกอบธุรกิจบริการการชำระเงิน ครอบคลุมการกำกับดูแล การควบคุมความมั่นคงปลอดภัย การรับมือเหตุการณ์ และการรายงานต่อธนาคารแห่งประเทศไทย
+obligations:
+  - en: Providers apply IT risk management and the minimum cyber hygiene measures.
+    th: ผู้ให้บริการใช้การบริหารความเสี่ยงด้านไอทีและมาตรการ cyber hygiene ขั้นต่ำ
+  - en: Security incidents are detected, responded to, and reported to the Bank of Thailand.
+    th: เหตุการณ์ด้านความมั่นคงปลอดภัยได้รับการตรวจจับ รับมือ และรายงานต่อธนาคารแห่งประเทศไทย
+  - en: Third-party and cloud arrangements are managed under the applicable IT risk requirements.
+    th: ข้อตกลงกับบุคคลภายนอกและการใช้บริการคลาวด์ได้รับการบริหารภายใต้ข้อกำหนดความเสี่ยงด้านไอทีที่ใช้บังคับ
+mapped_requirements:
+  - SRAS-SEC-001
+  - SRAS-SEC-010
+  - SRAS-INC-001
+  - SRAS-INC-008
+  - SRAS-OPS-001
+  - SRAS-OPS-006
+applies_to:
+  sectors: [finance, ecommerce]
+  roles: [payment-system-provider, payment-service-provider]
+  data_types: [payment-data, transaction-data, personal-data]
+notes:
+  en: This entry does not decide whether a specific provider is in scope or whether a control meets the notification. The source link is the Bank of Thailand transmittal package that contains the notification.
+  th: รายการนี้ไม่วินิจฉัยว่าผู้ให้บริการใดอยู่ในขอบเขตหรือการควบคุมใดเป็นไปตามประกาศ ลิงก์แหล่งอ้างอิงคือชุดหนังสือนำส่งของธนาคารแห่งประเทศไทยซึ่งมีประกาศรวมอยู่
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified

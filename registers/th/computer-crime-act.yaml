@@ -1,0 +1,37 @@
+id: TH-CCA-001
+jurisdiction: TH
+instrument: Computer Crime Act B.E. 2550 (2007)
+instrument_type: law
+regulator: Ministry of Digital Economy and Society
+source_url: https://law.go.th/DetailLawPage?table_of_law_id=9000
+effective_date: "2007-07-18"
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: amended
+summary:
+  en: The Act defines computer-related offences and sets duties for service providers, including the retention of traffic data and cooperation with lawful investigations. It was amended in 2017 to address content removal and access blocking.
+  th: พระราชบัญญัติกำหนดความผิดเกี่ยวกับคอมพิวเตอร์ และกำหนดหน้าที่ของผู้ให้บริการ รวมถึงการเก็บรักษาข้อมูลจราจรทางคอมพิวเตอร์และการให้ความร่วมมือในการสอบสวนตามกฎหมาย และได้รับการแก้ไขเพิ่มเติมในปี 2560 ในเรื่องการลบเนื้อหาและการระงับการเข้าถึง
+obligations:
+  - en: Service providers retain traffic data for the period set by the Act.
+    th: ผู้ให้บริการเก็บรักษาข้อมูลจราจรทางคอมพิวเตอร์ตามระยะเวลาที่พระราชบัญญัติกำหนด
+  - en: Service providers respond to lawful requests from competent officials through the defined process.
+    th: ผู้ให้บริการตอบสนองต่อคำขอตามกฎหมายจากเจ้าหน้าที่ผู้มีอำนาจผ่านกระบวนการที่กำหนด
+  - en: Organisations keep security logs that support investigation and evidence preservation.
+    th: องค์กรเก็บรักษาบันทึกความมั่นคงปลอดภัยที่สนับสนุนการสอบสวนและการรักษาพยานหลักฐาน
+mapped_requirements:
+  - SRAS-SEC-010
+  - SRAS-SEC-011
+  - SRAS-INC-001
+  - SRAS-INC-008
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles: [service-provider, computer-system-operator]
+  data_types: [traffic-data, computer-data, logs]
+notes:
+  en: This entry does not decide criminal liability or the lawfulness of a specific request. Court and law-enforcement procedures apply.
+  th: รายการนี้ไม่วินิจฉัยความรับผิดทางอาญาหรือความชอบด้วยกฎหมายของคำขอใด ขั้นตอนของศาลและหน่วยงานบังคับใช้กฎหมายยังใช้บังคับ
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified

@@ -1,0 +1,39 @@
+id: TH-DGA-001
+jurisdiction: TH
+instrument: Digital Government Administration and Services Act B.E. 2562 (2019)
+instrument_type: law
+regulator: Digital Government Development Agency
+source_url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+effective_date: "2019-05-23"
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: in_force
+summary:
+  en: The Act sets the framework for digital government administration and public services. It covers government data governance, service delivery through digital channels, and the duties of state agencies to keep service information and processes current.
+  th: พระราชบัญญัติกำหนดกรอบการบริหารงานภาครัฐและการให้บริการภาครัฐผ่านระบบดิจิทัล ครอบคลุมธรรมาภิบาลข้อมูลภาครัฐ การให้บริการผ่านช่องทางดิจิทัล และหน้าที่ของหน่วยงานของรัฐในการดูแลข้อมูลและกระบวนการให้บริการให้เป็นปัจจุบัน
+obligations:
+  - en: State agencies provide services through the digital channel in the manner set by the Act and its regulations.
+    th: หน่วยงานของรัฐให้บริการผ่านช่องทางดิจิทัลตามวิธีการที่พระราชบัญญัติและกฎระเบียบกำหนด
+  - en: State agencies manage government data with defined governance, quality, and security controls.
+    th: หน่วยงานของรัฐบริหารจัดการข้อมูลภาครัฐด้วยธรรมาภิบาล คุณภาพ และการควบคุมความมั่นคงปลอดภัยที่กำหนด
+  - en: Service changes and outages that affect the public are communicated.
+    th: การเปลี่ยนแปลงและเหตุขัดข้องของบริการที่กระทบต่อสาธารณะได้รับการสื่อสาร
+mapped_requirements:
+  - SRAS-GOV-001
+  - SRAS-GOV-003
+  - SRAS-PRV-001
+  - SRAS-PRV-002
+  - SRAS-SEC-006
+  - SRAS-INC-005
+applies_to:
+  sectors: [public-sector]
+  roles: [government-agency, service-provider]
+  data_types: [government-data, public-records, personal-data]
+notes:
+  en: This entry does not decide whether a specific service must be delivered digitally or which agency owns a dataset. Subordinate standards set detailed requirements.
+  th: รายการนี้ไม่วินิจฉัยว่าบริการใดต้องให้ผ่านช่องทางดิจิทัลหรือหน่วยงานใดเป็นเจ้าของชุดข้อมูล มาตรฐานลำดับรองกำหนดข้อกำหนดโดยละเอียด
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified

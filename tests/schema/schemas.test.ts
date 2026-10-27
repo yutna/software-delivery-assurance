@@ -19,6 +19,7 @@ const schemaNames = [
   "profile",
   "standard",
   "crosswalk",
+  "register-entry",
 ] as const;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -78,6 +79,7 @@ const validFixtures = [
   ["profile", "valid/profile-lite.yaml"],
   ["standard", "valid/standard.yaml"],
   ["crosswalk", "valid/crosswalk.yaml"],
+  ["register-entry", "valid/register-entry.yaml"],
 ] as const;
 
 const invalidFixtures = [
@@ -92,6 +94,7 @@ const invalidFixtures = [
     "invalid/crosswalk-bad-relationship.yaml",
     "/mappings/0/relationship",
   ],
+  ["register-entry", "invalid/register-entry-bad-status.yaml", "/status"],
 ] as const;
 
 describe("JSON Schema 2020-12 contracts", () => {

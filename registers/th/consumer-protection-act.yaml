@@ -1,0 +1,37 @@
+id: TH-CPA-001
+jurisdiction: TH
+instrument: Consumer Protection Act B.E. 2522 (1979)
+instrument_type: law
+regulator: Office of the Consumer Protection Board
+source_url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+effective_date: "1979-05-04"
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: amended
+summary:
+  en: The Act protects consumers against unsafe products and unfair business practices, and regulates advertising, labelling, and contract terms. It provides complaint and remedy channels for consumers.
+  th: พระราชบัญญัติคุ้มครองผู้บริโภคจากสินค้าที่ไม่ปลอดภัยและการประกอบธุรกิจที่ไม่เป็นธรรม กำกับการโฆษณา การแสดงฉลาก และข้อสัญญา และจัดให้มีช่องทางร้องเรียนและการเยียวยาสำหรับผู้บริโภค
+obligations:
+  - en: Businesses provide accurate information about goods and services and avoid misleading advertising.
+    th: ผู้ประกอบธุรกิจให้ข้อมูลที่ถูกต้องเกี่ยวกับสินค้าและบริการ และหลีกเลี่ยงการโฆษณาที่ทำให้เข้าใจผิด
+  - en: Businesses handle consumer complaints through the process set by the Act.
+    th: ผู้ประกอบธุรกิจจัดการข้อร้องเรียนของผู้บริโภคผ่านกระบวนการที่พระราชบัญญัติกำหนด
+  - en: Consumer contracts do not unfairly limit consumer rights.
+    th: ข้อสัญญากับผู้บริโภคไม่จำกัดสิทธิของผู้บริโภคอย่างไม่เป็นธรรม
+mapped_requirements:
+  - SRAS-GOV-008
+  - SRAS-PRV-006
+  - SRAS-OPS-010
+  - SRAS-INC-003
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles: [business-operator, consumer]
+  data_types: [consumer-data, product-information]
+notes:
+  en: This entry does not decide whether a specific advertisement or contract term is unlawful. Sector-specific consumer rules also apply.
+  th: รายการนี้ไม่วินิจฉัยว่าโฆษณาหรือข้อสัญญาใดไม่ชอบด้วยกฎหมาย และกฎเกณฑ์เฉพาะภาคส่วนด้านผู้บริโภคยังใช้บังคับ
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified

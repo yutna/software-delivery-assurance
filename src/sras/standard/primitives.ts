@@ -4,15 +4,18 @@ import { err, ok, type Result } from "../foundation/result.js";
 export type Version = Brand<string, "Version">;
 export type IsoDate = Brand<string, "IsoDate">;
 export type VersionRange = Brand<string, "VersionRange">;
+export type Revision = Brand<string, "Revision">;
 
 export type PrimitiveError =
   | { readonly tag: "InvalidVersion"; readonly value: string }
   | { readonly tag: "InvalidDate"; readonly value: string }
-  | { readonly tag: "InvalidVersionRange"; readonly value: string };
+  | { readonly tag: "InvalidVersionRange"; readonly value: string }
+  | { readonly tag: "InvalidRevision"; readonly value: string };
 
 const VERSION = /^\d+\.\d+\.\d+$/;
 const RANGE =
   /^(?:(?:>=|<=|>|<|=)?\d+\.\d+\.\d+)(?: (?:>=|<=|>|<|=)?\d+\.\d+\.\d+)*$/;
+const REVISION = /^\d{4}-\d{2}-\d{2}\.r[1-9]\d*$/;
 
 export const version = (value: string): Result<Version, PrimitiveError> => {
   if (!VERSION.test(value)) return err({ tag: "InvalidVersion", value });
@@ -47,6 +50,12 @@ export const versionRange = (
 ): Result<VersionRange, PrimitiveError> => {
   if (!RANGE.test(value)) return err({ tag: "InvalidVersionRange", value });
   const branded = value as VersionRange; // fds-allow-as: checked brand cast
+  return ok(branded);
+};
+
+export const revision = (value: string): Result<Revision, PrimitiveError> => {
+  if (!REVISION.test(value)) return err({ tag: "InvalidRevision", value });
+  const branded = value as Revision; // fds-allow-as: checked brand cast
   return ok(branded);
 };
 

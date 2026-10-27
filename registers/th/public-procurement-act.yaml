@@ -1,0 +1,38 @@
+id: TH-PROC-001
+jurisdiction: TH
+instrument: Public Procurement Act B.E. 2560 (2017)
+instrument_type: law
+regulator: Comptroller General's Department, Ministry of Finance
+source_url: https://law.go.th/DetailLawPage?table_of_law_id=8828
+effective_date: "2017-08-23"
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: amended
+summary:
+  en: The Act sets procurement principles and procedures for government agencies, including planning, procurement methods, contract management, and integrity measures. It applies to state agencies and to suppliers participating in public procurement.
+  th: พระราชบัญญัติกำหนดหลักการและขั้นตอนการจัดซื้อจัดจ้างสำหรับหน่วยงานของรัฐ รวมถึงการวางแผน วิธีการจัดซื้อจัดจ้าง การบริหารสัญญา และมาตรการด้านความโปร่งใส โดยใช้บังคับกับหน่วยงานของรัฐและผู้ค้าที่เข้าร่วมการจัดซื้อจัดจ้างภาครัฐ
+obligations:
+  - en: Procuring agencies follow the methods, thresholds, and approval steps set by the Act and its regulations.
+    th: หน่วยงานจัดซื้อจัดจ้างปฏิบัติตามวิธีการ วงเงิน และขั้นตอนการอนุมัติที่พระราชบัญญัติและกฎระเบียบกำหนด
+  - en: Procurement records and contract evidence are retained and available for audit.
+    th: บันทึกการจัดซื้อจัดจ้างและหลักฐานสัญญาได้รับการเก็บรักษาและพร้อมสำหรับการตรวจสอบ
+  - en: Suppliers meet qualification and integrity requirements and perform according to the contract.
+    th: ผู้ค้าผ่านคุณสมบัติและข้อกำหนดด้านความโปร่งใส และปฏิบัติตามสัญญา
+mapped_requirements:
+  - SRAS-GOV-001
+  - SRAS-GOV-008
+  - SRAS-CHG-002
+  - SRAS-SCM-004
+  - SRAS-SCM-009
+applies_to:
+  sectors: [public-sector]
+  roles: [procuring-agency, supplier]
+  data_types: [procurement-records, contract-records]
+notes:
+  en: This entry does not decide which procurement method applies or whether a bid is valid. Thresholds and detailed procedures are in subordinate regulations.
+  th: รายการนี้ไม่วินิจฉัยว่าวิธีการจัดซื้อจัดจ้างใดใช้บังคับหรือข้อเสนอใดสมบูรณ์ วงเงินและขั้นตอนโดยละเอียดอยู่ในกฎระเบียบลำดับรอง
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified

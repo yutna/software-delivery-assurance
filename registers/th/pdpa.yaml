@@ -1,0 +1,42 @@
+id: TH-PDPA-001
+jurisdiction: TH
+instrument: Personal Data Protection Act B.E. 2562 (2019)
+instrument_type: law
+regulator: Personal Data Protection Committee
+source_url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+effective_date: "2019-05-28"
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: in_force
+summary:
+  en: The Act establishes the framework for personal data protection in Thailand. It assigns duties to data controllers and data processors, sets conditions for lawful processing and notice, and provides rights for data subjects. It also covers cross-border transfers, processor arrangements, and personal data breach notification.
+  th: พระราชบัญญัติกำหนดกรอบการคุ้มครองข้อมูลส่วนบุคคลในประเทศไทย กำหนดหน้าที่ให้ผู้ควบคุมข้อมูลส่วนบุคคลและผู้ประมวลผลข้อมูลส่วนบุคคล เงื่อนไขของการประมวลผลโดยชอบด้วยกฎหมายและการแจ้งข้อมูล และสิทธิของเจ้าของข้อมูลส่วนบุคคล รวมถึงการโอนข้อมูลไปต่างประเทศ ข้อตกลงกับผู้ประมวลผลข้อมูล และการแจ้งเหตุละเมิดข้อมูลส่วนบุคคล
+obligations:
+  - en: A data controller records a lawful basis for each processing purpose and provides a privacy notice.
+    th: ผู้ควบคุมข้อมูลส่วนบุคคลบันทึกฐานทางกฎหมายสำหรับแต่ละวัตถุประสงค์ในการประมวลผล และจัดให้มีประกาศความเป็นส่วนตัว
+  - en: Data subjects can exercise their rights through a process the organisation operates.
+    th: เจ้าของข้อมูลส่วนบุคคลสามารถใช้สิทธิผ่านกระบวนการที่องค์กรดำเนินการ
+  - en: Cross-border transfers and processor arrangements meet the conditions set by the Act.
+    th: การโอนข้อมูลไปต่างประเทศและข้อตกลงกับผู้ประมวลผลข้อมูลเป็นไปตามเงื่อนไขที่พระราชบัญญัติกำหนด
+  - en: A personal data breach is assessed and notified within the timeframe set by the Act.
+    th: เหตุละเมิดข้อมูลส่วนบุคคลได้รับการประเมินและแจ้งภายในกรอบเวลาที่พระราชบัญญัติกำหนด
+mapped_requirements:
+  - SRAS-PRV-001
+  - SRAS-PRV-004
+  - SRAS-PRV-006
+  - SRAS-PRV-007
+  - SRAS-PRV-008
+  - SRAS-PRV-009
+  - SRAS-PRV-010
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles: [data-controller, data-processor]
+  data_types: [personal-data]
+notes:
+  en: This entry does not decide whether a processing activity has a lawful basis or which exemption applies. Key provisions took effect on 1 June 2022 under a separate postponement decree.
+  th: รายการนี้ไม่วินิจฉัยว่ากิจกรรมการประมวลผลมีฐานทางกฎหมายหรือข้อยกเว้นใดใช้บังคับ และบทบัญญัติสำคัญมีผลใช้บังคับเมื่อวันที่ 1 มิถุนายน 2565 ตามพระราชกฤษฎีกาเลื่อนการบังคับใช้ฉบับแยกต่างหาก
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified
