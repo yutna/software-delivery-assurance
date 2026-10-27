@@ -44,6 +44,7 @@ machine_translated: true
 
 ## ทะเบียนอาเซียน
 
+- `ASEAN-MCC-001` — ASEAN Model Contractual Clauses for Cross Border Data Flows (2021), ASEAN, framework, `unverified`
 - `ID-PDP-001` — Law No. 27 of 2022 on Personal Data Protection, Indonesia, law, `unverified`
 - `MY-PDPA-001` — Personal Data Protection Act 2010 (Act 709), Malaysia, law, `unverified`
 - `PH-DPA-001` — Republic Act No. 10173 (Data Privacy Act of 2012), Philippines, law, `unverified`
@@ -53,6 +54,7 @@ machine_translated: true
 รายการอาเซียนแต่ละรายการเชื่อมไปยังแหล่งอ้างอิงทางการและหน้า reference ที่
 generate ไว้
 
+- [ASEAN-MCC-001](../../en/reference/registers/ASEAN-MCC-001.md)
 - [ID-PDP-001](../../en/reference/registers/ID-PDP-001.md)
 - [MY-PDPA-001](../../en/reference/registers/MY-PDPA-001.md)
 - [PH-DPA-001](../../en/reference/registers/PH-DPA-001.md)
