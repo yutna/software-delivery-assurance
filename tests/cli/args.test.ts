@@ -123,6 +123,42 @@ describe("parseArgs", () => {
     });
   });
 
+  test("guard defaults to text output", () => {
+    expect(parseArgs(["guard"])).toEqual({
+      ok: true,
+      value: { tag: "Guard", format: "text", annotations: false },
+    });
+  });
+
+  test("guard accepts JSON and annotation output", () => {
+    expect(parseArgs(["guard", "--format", "json"])).toEqual({
+      ok: true,
+      value: { tag: "Guard", format: "json", annotations: false },
+    });
+    expect(parseArgs(["guard", "--format=json"])).toEqual({
+      ok: true,
+      value: { tag: "Guard", format: "json", annotations: false },
+    });
+    expect(parseArgs(["guard", "--annotations"])).toEqual({
+      ok: true,
+      value: { tag: "Guard", format: "text", annotations: true },
+    });
+  });
+
+  test("guard rejects conflicting or invalid output flags", () => {
+    expect(parseArgs(["guard", "--format", "json", "--annotations"])).toEqual({
+      ok: false,
+      error: {
+        tag: "ConflictingFlags",
+        values: ["--format json", "--annotations"],
+      },
+    });
+    expect(parseArgs(["guard", "--format", "yaml"])).toEqual({
+      ok: false,
+      error: { tag: "InvalidFormat", value: "yaml" },
+    });
+  });
+
   test("render defaults to writing and accepts --check", () => {
     expect(parseArgs(["render"])).toEqual({
       ok: true,

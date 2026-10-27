@@ -81,6 +81,63 @@ describe("sras guard", () => {
     expect(stderr.join("")).not.toContain("hospital");
   });
 
+  test("emits a stable JSON report", async () => {
+    const root = await makeRoot(true);
+    await write(root, "core/bad.yaml", "description: a hospital\n");
+    const { io, stdout, stderr } = makeIo();
+
+    expect(await run(["guard", "--format", "json"], io, root)).toBe(1);
+
+    const parsed: unknown = JSON.parse(stdout.join(""));
+    expect(parsed).toMatchObject({
+      version: 1,
+      tool: "sras-guard",
+      ok: false,
+      scanned: 2,
+      excluded: 0,
+    });
+    expect(stdout.join("")).not.toContain("hospital");
+    expect(stderr).toEqual([]);
+  });
+
+  test("a clean JSON scan exits 0", async () => {
+    const root = await makeRoot(true);
+    const { io, stdout } = makeIo();
+
+    expect(await run(["guard", "--format=json"], io, root)).toBe(0);
+
+    const parsed: unknown = JSON.parse(stdout.join(""));
+    expect(parsed).toMatchObject({ version: 1, ok: true, findings: [] });
+  });
+
+  test("emits file and line annotations", async () => {
+    const root = await makeRoot(true);
+    await write(root, "core/bad.yaml", "description: a hospital\n");
+    const { io, stdout } = makeIo();
+
+    expect(await run(["guard", "--annotations"], io, root)).toBe(1);
+    expect(stdout.join("")).toContain("::error file=core/bad.yaml,line=1");
+    expect(stdout.join("")).not.toContain("hospital");
+  });
+
+  test("rejects conflicting output flags", async () => {
+    const root = await makeRoot(true);
+    const { io, stderr } = makeIo();
+
+    expect(
+      await run(["guard", "--format", "json", "--annotations"], io, root),
+    ).toBe(2);
+    expect(stderr.join("")).toContain("conflicting flags");
+  });
+
+  test("rejects an invalid format", async () => {
+    const root = await makeRoot(true);
+    const { io, stderr } = makeIo();
+
+    expect(await run(["guard", "--format", "yaml"], io, root)).toBe(2);
+    expect(stderr.join("")).toContain("invalid format");
+  });
+
   test("rejects extra arguments", async () => {
     const root = await makeRoot(true);
     const { io, stderr } = makeIo();

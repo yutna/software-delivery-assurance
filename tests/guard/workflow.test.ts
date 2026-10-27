@@ -88,6 +88,64 @@ describe("scanContent", () => {
     if (result.ok) expect(result.value.findings.length).toBeGreaterThan(0);
   });
 
+  test("finds secrets without leaking the secret", async () => {
+    const root = await makeRoot();
+    await write(
+      root,
+      "core/bad.yaml",
+      "token: ghp_abcdefghijklmnopqrstuvwxyz0123456789\n",
+    );
+
+    const result = await scanContent(
+      root,
+      join(root, "guard", "denylist.yaml"),
+    );
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value.findings[0]?.category).toBe("secrets");
+      expect(result.value.findings[0]?.preview).not.toContain("ghp_");
+    }
+  });
+
+  test("finds an out-of-scope sector term", async () => {
+    const root = await makeRoot();
+    await write(
+      root,
+      "core/bad.yaml",
+      "description: a pharmaceutical service\n",
+    );
+
+    const result = await scanContent(
+      root,
+      join(root, "guard", "denylist.yaml"),
+    );
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value.findings[0]?.category).toBe("out_of_scope_sector");
+    }
+  });
+
+  test("finds an unsafe claim", async () => {
+    const root = await makeRoot();
+    await write(
+      root,
+      "core/bad.yaml",
+      "claim: the product is fully compliant\n",
+    );
+
+    const result = await scanContent(
+      root,
+      join(root, "guard", "denylist.yaml"),
+    );
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value.findings[0]?.category).toBe("unsafe_claims");
+    }
+  });
+
   test("skips the FDS pack, vendor, tests, and the temporary internal seed", async () => {
     const root = await makeRoot();
     await write(root, ".claude/skills/a.md", "hospital\n");
