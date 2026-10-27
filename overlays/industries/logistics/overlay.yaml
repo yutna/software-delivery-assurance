@@ -1,0 +1,561 @@
+id: TH-LOG
+type: industry
+jurisdiction: TH
+industry: logistics
+title:
+  en: Thailand logistics overlay
+  th: overlay ภาคโลจิสติกส์ประเทศไทย
+description:
+  en: Assurance deltas for transport management, warehouse management, tracking, customs integration, and delivery platforms operating in Thailand.
+  th: ส่วนเพิ่ม assurance สำหรับระบบบริหารการขนส่ง คลังสินค้า การติดตาม การเชื่อมต่อศุลกากร และแพลตฟอร์มจัดส่งที่ดำเนินงานในประเทศไทย
+version: 0.4.0
+extends: ">=0.3.0 <1.0.0"
+requires:
+  - SRAS-INT
+  - SRAS-RGD
+  - SRAS-CLD
+adds:
+  - id: TH-LOG-001
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Shipment status events are timestamped, ordered, and reconciled
+      th: เหตุการณ์สถานะการจัดส่งมีเวลา เรียงลำดับ และกระทบยอดกัน
+    description:
+      en: Shipment status events carry a source, actor, location, and timestamp. Events are ordered, conflicts across systems are detected, and the tracking view shows the reconciled state rather than the last write.
+      th: เหตุการณ์สถานะการจัดส่งต้องระบุแหล่งที่มา ผู้ดำเนินการ สถานที่ และเวลา เหตุการณ์ต้องเรียงลำดับ ความขัดแย้งระหว่างระบบต้องถูกตรวจจับ และหน้าติดตามต้องแสดงสถานะที่กระทบยอดแล้ว ไม่ใช่ข้อมูลที่เขียนล่าสุด
+    rationale:
+      en: A tracking view that trusts the last write hides lost or duplicated scan events.
+      th: หน้าติดตามที่เชื่อข้อมูลที่เขียนล่าสุดจะซ่อนเหตุการณ์สแกนที่หายไปหรือซ้ำกัน
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Shipment event model, ordering rules, and reconciliation logic
+        max_age_days: 365
+      - type: log
+        description: Conflict and out-of-order event report for the last period
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Events have the required fields and conflicts are reconciled.
+        partial: Events are recorded but ordering or reconciliation is manual.
+      full:
+        l2: Reconciliation covers every carrier and scan source.
+        l3: Event quality is measured with conflict and latency metrics.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+    tags: [shipment-integrity, tracking, event-ordering]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-002
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Chain-of-custody handoffs record actor, location, and time
+      th: การส่งมอบในห่วงโซ่การครอบครองบันทึกผู้ดำเนินการ สถานที่ และเวลา
+    description:
+      en: Every custody handoff records the receiving party, the handing party, the location, the time, and the condition of the shipment. Handoff records are protected against later change and are retrievable for dispute handling.
+      th: การส่งมอบการครอบครองทุกรายการต้องบันทึกผู้รับ ผู้ส่ง สถานที่ เวลา และสภาพสินค้า บันทึกการส่งมอบต้องได้รับการปกป้องจากการแก้ไขภายหลังและเรียกดูได้เพื่อจัดการข้อพิพาท
+    rationale:
+      en: Without an attributable handoff record, a missing or damaged shipment has no recoverable chain.
+      th: หากไม่มีบันทึกการส่งมอบที่ระบุผู้รับผิดชอบ สินค้าที่หายหรือเสียหายจะไม่มีห่วงโซ่ที่กู้คืนได้
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Chain-of-custody model and handoff procedure
+        max_age_days: 365
+      - type: log
+        description: Handoff record sample with actor, location, time, and condition
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Every handoff is recorded and protected from later change.
+        partial: Some handoffs are recorded without condition or location.
+      full:
+        l2: Handoffs are complete for every carrier, depot, and return path.
+        l3: Custody gaps are measured and investigated as incidents.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+    tags: [chain-of-custody, handoff, audit-trail]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-003
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: EDI and API failures are detected and reconciled within the window
+      th: ความล้มเหลวของ EDI และ API ถูกตรวจจับและกระทบยอดภายในกรอบเวลา
+    description:
+      en: EDI and partner API messages are acknowledged, retried idempotently, and routed to a dead-letter path when they fail. Reconciliation runs within the stated window, and unresolved messages have an owner and an escalation path.
+      th: ข้อความ EDI และ API ของพาร์ทเนอร์ต้องได้รับการตอบรับ ลองใหม่แบบ idempotent และส่งไปยังเส้นทาง dead-letter เมื่อล้มเหลว การกระทบยอดต้องทำงานภายในกรอบเวลาที่กำหนด และข้อความที่ยังไม่แก้ไขต้องมีเจ้าของและเส้นทางส่งต่อ
+    rationale:
+      en: An unacknowledged shipment message becomes a missing shipment in the physical world.
+      th: ข้อความการจัดส่งที่ไม่ได้รับการตอบรับจะกลายเป็นสินค้าที่หายไปในโลกจริง
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Acknowledgement, retry, idempotency, and dead-letter configuration
+        max_age_days: 180
+      - type: log
+        description: Reconciliation report with unresolved messages and owners
+        max_age_days: 90
+      - type: test_result
+        description: Failure injection for EDI and partner API paths
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Failures are detected and reconciled within the window.
+        partial: Retries exist but reconciliation or ownership is incomplete.
+      full:
+        l2: Every partner path has acknowledgement and reconciliation evidence.
+        l3: Message latency and unresolved rates are measured.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+    tags: [edi, api-reliability, reconciliation]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-004
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Warehouse and depot access is scoped and monitored
+      th: การเข้าถึงคลังสินค้าและ depot ถูกจำกัดขอบเขตและติดตาม
+    description:
+      en: Warehouse and depot access is granted by role, logged on entry and exit, reviewed on a cadence, and revoked when a person leaves or changes role. Visitor access is recorded and accompanied.
+      th: การเข้าถึงคลังสินค้าและ depot ต้องให้ตามบทบาท บันทึกเข้าและออก ทบทวนตามรอบ และเพิกถอนเมื่อบุคคลออกหรือเปลี่ยนบทบาท การเข้าถึงของผู้มาเยือนต้องบันทึกและมีผู้ดูแล
+    rationale:
+      en: Physical access is the first control for theft, tampering, and unauthorised removal.
+      th: การเข้าถึงทางกายภาพเป็น کنترلแรกสำหรับการโจรกรรม การแก้ไขสินค้า และการนำออกโดยไม่ได้รับอนุญาต
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Access role model, visitor procedure, and review schedule
+        max_age_days: 365
+      - type: log
+        description: Entry and exit log sample with role and review record
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Access is role-based, logged, and reviewed.
+        partial: Logging exists but reviews or visitor records are incomplete.
+      full:
+        l2: Access is reviewed and revoked through the HR and contractor process.
+        l3: Access anomalies and review outcomes are measured.
+    references:
+      - title: Cybersecurity Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=1594
+        type: regulation
+    tags: [physical-access, warehouse, access-review]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-005
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Carrier and subcontractor access is scoped and revocable
+      th: การเข้าถึงของผู้ขนส่งและผู้รับเหมาช่วงถูกจำกัดและเพิกถอนได้
+    description:
+      en: Every carrier and subcontractor is onboarded with due diligence, given scoped access, monitored against agreed service and security terms, and revoked within the defined window when the relationship ends.
+      th: ผู้ขนส่งและผู้รับเหมาช่วงทุกรายต้องผ่านการตรวจสอบก่อนรับงาน ได้รับสิทธิ์ตามขอบเขต ติดตามตามเงื่อนไขบริการและความมั่นคงปลอดภัยที่ตกลง และเพิกถอนสิทธิ์ภายในกรอบเวลาที่กำหนดเมื่อสิ้นสุดความสัมพันธ์
+    rationale:
+      en: A subcontractor chain that is invisible cannot be assessed, limited, or exited.
+      th: ห่วงโซ่ผู้รับเหมาช่วงที่มองไม่เห็นไม่สามารถประเมิน จำกัด หรือออกได้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Carrier and subcontractor register with due diligence and terms
+        max_age_days: 365
+      - type: ticket
+        description: Revocation record for a completed or terminated relationship
+        max_age_days: 180
+      - type: log
+        description: Partner access monitoring sample
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Partners are registered, scoped, monitored, and revocable.
+        partial: Registration exists but revocation or monitoring is incomplete.
+      full:
+        l2: Every partner follows onboarding, monitoring, and exit evidence.
+        l3: Partner performance and security outcomes are measured.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [subcontractor, carrier, third-party]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-006
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Peak-season capacity is tested against the agreed forecast
+      th: ขีดความสามารถช่วงพีคถูกทดสอบเทียบกับประมาณการที่ตกลง
+    description:
+      en: The peak-season demand forecast is agreed with the business, load-tested against the order and tracking paths, and paired with a scaling, degradation, and communication plan. The test is repeated before each peak.
+      th: ประมาณการความต้องการช่วงพีคต้องตกลงกับธุรกิจ ทดสอบโหลดกับเส้นทางคำสั่งซื้อและการติดตาม และมีแผนขยายขีดความสามารถ ลดระดับบริการ และสื่อสาร ต้องทดสอบซ้ำก่อนทุกช่วงพีค
+    rationale:
+      en: Peak failure is predictable, and a forecast without a test does not reserve capacity.
+      th: ความล้มเหลวช่วงพีคคาดการณ์ได้ และประมาณการที่ไม่ผ่านการทดสอบไม่ได้จองขีดความสามารถไว้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-CLD]
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Peak forecast, scaling plan, and degradation plan
+        max_age_days: 365
+      - type: test_result
+        description: Load test result against the agreed forecast
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: The forecast and load test are current before peak.
+        partial: A forecast exists but the test is stale or partial.
+      full:
+        l2: Every critical path is load-tested before the peak.
+        l3: Peak performance is measured against the forecast and reviewed.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [capacity, peak-season, load-test]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-007
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Routing and delivery continuity is planned and exercised
+      th: ความต่อเนื่องของการจัดเส้นทางและการส่งมอบมีแผนและผ่านการฝึกซ้อม
+    description:
+      en: Routing and delivery have an alternate-carrier and alternate-depot plan, a manual fallback for tracking or dispatch failure, and an exercise within the last 12 months. The plan names the decision owner and the customer communication path.
+      th: การจัดเส้นทางและการส่งมอบต้องมีแผนผู้ขนส่งสำรองและ depot สำรอง มีแนวทาง manual เมื่อระบบติดตามหรือ dispatch ล้มเหลว และมีการฝึกซ้อมภายใน 12 เดือนที่ผ่านมา แผนต้องระบุเจ้าของการตัดสินใจและเส้นทางสื่อสารกับลูกค้า
+    rationale:
+      en: A single routing or depot dependency turns a local disruption into a regional stop.
+      th: การพึ่งพาเส้นทางหรือ depot เดียวทำให้เหตุขัดข้องเฉพาะที่กลายเป็นการหยุดให้บริการระดับภูมิภาค
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Continuity plan with alternate carrier, depot, and manual fallback
+        max_age_days: 365
+      - type: test_result
+        description: Continuity exercise result within the last 12 months
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The plan and exercise cover the critical routing and delivery paths.
+        partial: A plan exists but the exercise or fallback is incomplete.
+      full:
+        l2: The plan is exercised with carriers and depots and actions are tracked.
+        l3: Continuity performance is measured against real disruptions.
+    references:
+      - title: Cybersecurity Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=1594
+        type: regulation
+    tags: [business-continuity, routing, delivery]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-008
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Partner data sharing is minimised and governed by agreement
+      th: การแบ่งปันข้อมูลกับพาร์ทเนอร์ถูกจำกัดและกำกับด้วยข้อตกลง
+    description:
+      en: A data-sharing inventory records what is shared with each carrier, depot, or platform partner, why, and for how long. Sharing is limited to the agreed fields, protected in transit, and covered by a contract with security, privacy, and exit terms.
+      th: ทะเบียนการแบ่งปันข้อมูลต้องบันทึกว่าแบ่งปันอะไรกับผู้ขนส่ง depot หรือแพลตฟอร์มพาร์ทเนอร์แต่ละราย เพราะเหตุใด และนานเท่าใด การแบ่งปันจำกัดเฉพาะฟิลด์ที่ตกลง ปกป้องระหว่างส่ง และมีสัญญาที่ครอบคลุมความมั่นคงปลอดภัย ความเป็นส่วนตัว และการออก
+    rationale:
+      en: Shipment data contains personal and commercial information that grows with every partner hop.
+      th: ข้อมูลการจัดส่งมีข้อมูลส่วนบุคคลและข้อมูลเชิงพาณิชย์ที่เพิ่มขึ้นในทุกจุดที่ส่งต่อให้พาร์ทเนอร์
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Data-sharing inventory and partner agreement register
+        max_age_days: 365
+      - type: contract
+        description: Partner agreement with security, privacy, and exit terms
+        max_age_days: 365
+      - type: log
+        description: Shared-field access log sample
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Sharing is inventoried, minimised, contracted, and logged.
+        partial: An inventory exists but contracts or field limits are incomplete.
+      full:
+        l2: Every partner share is covered by the inventory and agreement.
+        l3: Sharing volume and access anomalies are measured.
+    references:
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+    tags: [data-sharing, partner, privacy]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-009
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Customs and trade data is accurate and traceable
+      th: ข้อมูลศุลกากรและการค้ามีความถูกต้องและตรวจสอบย้อนหลังได้
+    description:
+      en: Customs and trade data has a defined source of truth, validation rules, a correction path with approval, and an audit trail from the order to the declaration. Data shared with a customs broker or authority is logged.
+      th: ข้อมูลศุลกากรและการค้าต้องมีแหล่งข้อมูลหลักที่กำหนด กฎการตรวจสอบ เส้นทางการแก้ไขที่ต้องอนุมัติ และ audit trail ตั้งแต่คำสั่งซื้อถึงใบขน ข้อมูลที่แบ่งปันกับตัวแทนศุลกากรหรือหน่วยงานต้องบันทึก
+    rationale:
+      en: A declaration built from unverified order data creates delays and disputes that are hard to unwind.
+      th: ใบขนที่สร้างจากข้อมูลคำสั่งซื้อที่ไม่ได้ตรวจสอบทำให้เกิดความล่าช้าและข้อโต้แย้งที่แก้ไขได้ยาก
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Customs data model, validation rules, and correction procedure
+        max_age_days: 365
+      - type: log
+        description: Declaration audit trail and broker sharing log sample
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Customs data has validation, correction, and an audit trail.
+        partial: Data is captured but validation or correction approval is missing.
+      full:
+        l2: The audit trail covers every declaration and broker exchange.
+        l3: Declaration error and correction rates are measured.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+    tags: [customs-data, trade-data, data-quality]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-010
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Lost, delayed, or misrouted shipments have a tested response
+      th: สินค้าที่หาย ล่าช้า หรือส่งผิดเส้นทางมีแนวตอบสนองที่ทดสอบแล้ว
+    description:
+      en: Lost, delayed, and misrouted shipments have detection signals, an escalation owner, carrier coordination, customer communication, and a root-cause review. A simulation or tabletop within the last 12 months exercises the response.
+      th: สินค้าที่หาย ล่าช้า และส่งผิดเส้นทางต้องมีสัญญาณตรวจจับ เจ้าของการส่งต่อ การประสานกับผู้ขนส่ง การสื่อสารกับลูกค้า และการทบทวนสาเหตุราก และต้องมีการจำลองหรือ tabletop ภายใน 12 เดือนที่ผ่านมา
+    rationale:
+      en: A shipment exception that is handled ad hoc produces inconsistent customer outcomes.
+      th: ข้อยกเว้นการจัดส่งที่จัดการแบบเฉพาะหน้าให้ผลลัพธ์ต่อลูกค้าที่ไม่สม่ำเสมอ
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: document
+        description: Exception response plan with owner and communication template
+        max_age_days: 365
+      - type: test_result
+        description: Simulation or tabletop result for shipment exceptions
+        max_age_days: 365
+      - type: ticket
+        description: Root-cause review record for a recent exception
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: The response is documented and exercised in the last 12 months.
+        partial: A plan exists but the exercise or root-cause review is missing.
+      full:
+        l2: The response is exercised with carriers and customer support.
+        l3: Exception rates and resolution times are measured.
+    references:
+      - title: Consumer Protection Act B.E. 2522
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+        type: regulation
+    tags: [shipment-exception, incident-response, customer-communication]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-LOG-011
+    version: 0.4.0
+    overlay: TH-LOG
+    title:
+      en: Proof-of-delivery records are tamper-evident and retained
+      th: บันทึกหลักฐานการส่งมอบปลอมแปลงได้ยากและถูกเก็บรักษา
+    description:
+      en: Proof-of-delivery records include the recipient confirmation, time, location, and delivery actor. The record is tamper-evident, retained for the defined period, and retrievable for dispute handling within the service target.
+      th: บันทึกหลักฐานการส่งมอบต้องมีการยืนยันจากผู้รับ เวลา สถานที่ และผู้ส่งมอบ บันทึกต้องปลอมแปลงได้ยาก เก็บรักษาตามระยะเวลาที่กำหนด และเรียกดูได้เพื่อจัดการข้อพิพาทภายในเป้าหมายการให้บริการ
+    rationale:
+      en: Proof of delivery is the evidence that ends most delivery disputes.
+      th: หลักฐานการส่งมอบเป็นพยานหลักฐานที่ยุติข้อพิพาทการจัดส่งส่วนใหญ่
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-LOG]
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Proof-of-delivery capture, integrity, and retention configuration
+        max_age_days: 180
+      - type: log
+        description: Retrieval test result for a proof-of-delivery record
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Records are complete, tamper-evident, retained, and retrievable.
+        partial: Records exist but integrity or retrieval has gaps.
+      full:
+        l2: Every delivery path captures and retains a valid record.
+        l3: Retrieval timeliness and dispute outcomes are measured.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+      - title: Consumer Protection Act B.E. 2522
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+        type: regulation
+    tags: [proof-of-delivery, integrity, retention]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+overrides: []
+waives: []
+sources:
+  - TH-PDPA-001
+  - TH-ETA-001
+  - TH-CCA-001
+  - TH-CYBER-001
+  - TH-TECH-001
+  - TH-DPS-001
+not_covered:
+  en: Customs and trade law advice, transport licensing, carrier liability, trade compliance advice, and legal interpretation.
+  th: คำแนะนำด้านกฎหมายศุลกากรและการค้า การออกใบอนุญาตขนส่ง ความรับผิดของผู้ขนส่ง คำแนะนำด้านการปฏิบัติตามกฎการค้า และการตีความกฎหมาย
+review_checklist: review-checklist.md
+status: active
+deprecated_in: null
+translation_status: partial
+machine_translated: true
+review_status: draft
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
