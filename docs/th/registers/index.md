@@ -72,14 +72,18 @@ generate ไว้
 
 ## ทะเบียนสหภาพยุโรป
 
+- `EU-CRA-001` — Regulation (EU) 2024/2847 (Cyber Resilience Act), regulation, `unverified`
 - `EU-EIDAS-001` — Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS), regulation, `unverified`
 - `EU-GDPR-001` — Regulation (EU) 2016/679 (General Data Protection Regulation), regulation, `unverified`
+- `EU-NIS-001` — Directive (EU) 2022/2555 (NIS 2 Directive), regulation, `unverified`
 
 รายการ EU แต่ละรายการเชื่อมไปยังแหล่งอ้างอิงทางการและหน้า reference ที่
 generate ไว้
 
+- [EU-CRA-001](../../en/reference/registers/EU-CRA-001.md)
 - [EU-EIDAS-001](../../en/reference/registers/EU-EIDAS-001.md)
 - [EU-GDPR-001](../../en/reference/registers/EU-GDPR-001.md)
+- [EU-NIS-001](../../en/reference/registers/EU-NIS-001.md)
 
 รายการ EU เป็นเพียงทะเบียน ไม่ใช่ EU overlay และไม่ได้สร้างข้อกำหนดระดับ
 ภูมิภาค
