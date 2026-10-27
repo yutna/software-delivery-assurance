@@ -77,16 +77,20 @@ page](asean-comparison.md) summarises the six entries without ranking them.
 | ID             | Instrument                                                                          | Type       | Review status |
 | -------------- | ----------------------------------------------------------------------------------- | ---------- | ------------- |
 | `EU-CRA-001`   | Regulation (EU) 2024/2847 (Cyber Resilience Act)                                    | Regulation | `unverified`  |
+| `EU-DORA-001`  | Regulation (EU) 2022/2554 (Digital Operational Resilience Act)                      | Regulation | `unverified`  |
 | `EU-EIDAS-001` | Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS) | Regulation | `unverified`  |
 | `EU-GDPR-001`  | Regulation (EU) 2016/679 (General Data Protection Regulation)                       | Regulation | `unverified`  |
 | `EU-NIS-001`   | Directive (EU) 2022/2555 (NIS 2 Directive)                                          | Regulation | `unverified`  |
+| `EU-PSD-001`   | Directive (EU) 2015/2366 (Payment Services Directive 2)                             | Regulation | `unverified`  |
 
 Each EU entry links to its official source and its generated reference page:
 
 - [EU-CRA-001](../reference/registers/EU-CRA-001.md)
+- [EU-DORA-001](../reference/registers/EU-DORA-001.md)
 - [EU-EIDAS-001](../reference/registers/EU-EIDAS-001.md)
 - [EU-GDPR-001](../reference/registers/EU-GDPR-001.md)
 - [EU-NIS-001](../reference/registers/EU-NIS-001.md)
+- [EU-PSD-001](../reference/registers/EU-PSD-001.md)
 
 EU entries are register-only. They are not an EU overlay, and they do not create
 region-level requirements.

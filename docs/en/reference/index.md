@@ -139,9 +139,11 @@ run `npm run sras -- render`.
 
 - [ASEAN-MCC-001 — ASEAN Model Contractual Clauses for Cross Border Data Flows (2021)](registers/ASEAN-MCC-001.md)
 - [EU-CRA-001 — Regulation (EU) 2024/2847 (Cyber Resilience Act)](registers/EU-CRA-001.md)
+- [EU-DORA-001 — Regulation (EU) 2022/2554 (Digital Operational Resilience Act)](registers/EU-DORA-001.md)
 - [EU-EIDAS-001 — Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS)](registers/EU-EIDAS-001.md)
 - [EU-GDPR-001 — Regulation (EU) 2016/679 (General Data Protection Regulation)](registers/EU-GDPR-001.md)
 - [EU-NIS-001 — Directive (EU) 2022/2555 (NIS 2 Directive)](registers/EU-NIS-001.md)
+- [EU-PSD-001 — Directive (EU) 2015/2366 (Payment Services Directive 2)](registers/EU-PSD-001.md)
 - [ID-PDP-001 — Law No. 27 of 2022 on Personal Data Protection](registers/ID-PDP-001.md)
 - [MY-PDPA-001 — Personal Data Protection Act 2010 (Act 709)](registers/MY-PDPA-001.md)
 - [PH-DPA-001 — Republic Act No. 10173 (Data Privacy Act of 2012)](registers/PH-DPA-001.md)
