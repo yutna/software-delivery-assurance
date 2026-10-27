@@ -1,0 +1,205 @@
+- id: SRAS-SEC-001
+  version: 0.1.0
+  title:
+    en: Authentication is required for every human and machine access path
+    th: ต้องมี authentication สำหรับทุกช่องทางเข้าถึงของมนุษย์และเครื่อง
+  description:
+    en: Every user, service, and administrative access path to production systems must require authentication. Shared accounts are prohibited for administrative access.
+    th: ผู้ใช้ บริการ และช่องทางผู้ดูแลทุกรายการที่เข้าถึงระบบ production ต้องมี authentication และห้ามใช้บัญชีร่วมสำหรับผู้ดูแล
+  rationale:
+    en: Unauthenticated access cannot be attributed, revoked, or audited.
+    th: การเข้าถึงที่ไม่มีการยืนยันตัวตนไม่สามารถระบุตัวตน เพิกถอน หรือตรวจสอบย้อนหลังได้
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Identity provider or access policy configuration
+      max_age_days: 180
+    - type: test_result
+      description: Access-control test for user, service, and admin paths
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: All production access paths require authentication.
+      partial: Some paths require authentication, and the gaps are documented.
+    full:
+      l2: Documented and implemented for all in-scope paths.
+      l3: Measured with access-review metrics.
+  references:
+    - title: NIST CSF 2.0 PR.AA
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: OWASP ASVS V2 Authentication
+      url: https://owasp.org/www-project-application-security-verification-standard/
+      type: standard
+  tags: [identity, access-control, authentication]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-002
+  version: 0.1.0
+  title:
+    en: Authorization enforces least privilege for every role
+    th: authorization บังคับใช้ least privilege สำหรับทุก role
+  description:
+    en: Every role must have documented permissions limited to its duties, and access must be denied by default. A role with unused administrative permissions fails this requirement.
+    th: ทุก role ต้องมีสิทธิ์ที่จัดทำเอกสารและจำกัดตามหน้าที่ และต้องปฏิเสธการเข้าถึงโดยค่าเริ่มต้น role ที่มีสิทธิ์ผู้ดูแลเกินความจำเป็นถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Excessive permissions widen the impact of a compromised account.
+    th: สิทธิ์ที่เกินความจำเป็นขยายผลกระทบเมื่อบัญชีถูก compromise
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Role and permission matrix mapped to duties
+      max_age_days: 180
+    - type: configuration
+      description: Authorization policy configuration
+      max_age_days: 180
+    - type: ticket
+      description: Access review record with approver and date
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Roles and permissions are documented and least privilege is applied.
+      partial: Roles are documented but some permissions are excessive.
+    full:
+      l2: Implemented and reviewed for the current release.
+      l3: Measured with access-review findings and remediation trends.
+  references:
+    - title: NIST CSF 2.0 PR.AA
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.2 and 8.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [authorization, least-privilege, access-control]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-003
+  version: 0.1.0
+  title:
+    en: Secrets are stored in an approved secret store
+    th: secrets ถูกเก็บใน secret store ที่ได้รับอนุมัติ
+  description:
+    en: Passwords, tokens, private keys, and connection strings must be stored in an approved secret store and must not appear in source code, images, logs, tickets, or build artifacts. A secret found in a repository fails this requirement.
+    th: รหัสผ่าน token private key และ connection string ต้องถูกเก็บใน secret store ที่ได้รับอนุมัติ และต้องไม่ปรากฏใน source code images logs tickets หรือ build artifacts การพบ secret ใน repository ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A secret in a repository or log is a credential leak, even if the repository is private.
+    th: secret ใน repository หรือ log คือการรั่วของ credential แม้ repository จะเป็น private
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Secret-store configuration and access policy
+      max_age_days: 180
+    - type: report
+      description: Secret-scan result for the current release
+      max_age_days: 90
+    - type: ticket
+      description: Secret rotation record with owner and date
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Secrets are in the approved store and no secret is found in the repository.
+      partial: The store is used but a rotation or scan gap remains.
+    full:
+      l2: Implemented for all in-scope secrets and verified by scanning.
+      l3: Measured with rotation compliance and scan trend metrics.
+  references:
+    - title: OWASP ASVS V6 Stored Cryptography
+      url: https://owasp.org/www-project-application-security-verification-standard/
+      type: standard
+    - title: NIST CSF 2.0 PR.AA
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [secrets, key-management, security]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-004
+  version: 0.1.0
+  title:
+    en: Sensitive data is encrypted in transit and at rest
+    th: ข้อมูลที่ละเอียดอ่อนถูกเข้ารหัสระหว่างส่งและขณะจัดเก็บ
+  description:
+    en: Sensitive data must be encrypted in transit and at rest using approved algorithms, and keys must have an owner and a rotation procedure. A production data store with unencrypted sensitive data fails this requirement.
+    th: ข้อมูลที่ละเอียดอ่อนต้องถูกเข้ารหัสระหว่างส่งและขณะจัดเก็บด้วยอัลกอริทึมที่ได้รับอนุมัติ และ key ต้องมี owner และขั้นตอนการ rotate data store ใน production ที่มีข้อมูลละเอียดอ่อนไม่เข้ารหัสถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Encryption limits the impact of intercepted traffic and lost storage.
+    th: การเข้ารหัสจำกัดผลกระทบจากการดักจับข้อมูลและ storage ที่สูญหาย
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: TLS and encryption-at-rest configuration
+      max_age_days: 180
+    - type: document
+      description: Key ownership and rotation procedure
+      max_age_days: 365
+    - type: test_result
+      description: Encryption verification for production data stores
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Sensitive data is encrypted in transit and at rest.
+      partial: One path or store is not yet covered.
+    full:
+      l2: Implemented for all in-scope data and verified.
+      l3: Measured with coverage, key age, and rotation compliance metrics.
+  references:
+    - title: NIST CSF 2.0 PR.DS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.24
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [encryption, cryptography, data-protection]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"

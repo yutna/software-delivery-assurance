@@ -1,0 +1,153 @@
+- id: SRAS-PRV-001
+  version: 0.1.0
+  title:
+    en: A data inventory records types, owners, locations, and classification
+    th: data inventory บันทึกประเภทข้อมูล owner สถานที่จัดเก็บ และการจำแนกชั้นข้อมูล
+  description:
+    en: A data inventory must identify each data type, its source, owner, storage location, classification, and permitted use. A system with production personal data outside the inventory fails this requirement.
+    th: data inventory ต้องระบุประเภทข้อมูล แหล่งที่มา owner สถานที่จัดเก็บ การจำแนกชั้นข้อมูล และการใช้ที่ได้รับอนุญาต ระบบที่มีข้อมูลส่วนบุคคลใน production นอก inventory ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Data that is not inventoried cannot be protected, retained, or deleted correctly.
+    th: ข้อมูลที่ไม่ได้อยู่ใน inventory ไม่สามารถถูกปกป้อง เก็บรักษา หรือลบได้อย่างถูกต้อง
+  domain: privacy
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Current data inventory with classification and owners
+      max_age_days: 180
+    - type: ticket
+      description: Data inventory review record with owner and date
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: All in-scope data types are inventoried and classified.
+      partial: The inventory exists but some systems or fields are missing.
+    full:
+      l2: Maintained and reviewed for the current release.
+      l3: Measured with inventory coverage and stale-entry metrics.
+  references:
+    - title: NIST CSF 2.0 PR.DS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27701:2019 7.2.8
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+  tags: [data-inventory, classification, privacy]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-002
+  version: 0.1.0
+  title:
+    en: Retention and deletion rules are implemented and evidenced
+    th: กฎการเก็บรักษาและการลบข้อมูลถูกนำไปใช้และมีหลักฐาน
+  description:
+    en: Personal data must have a defined retention period and an implemented deletion or anonymization process; deletion must be evidenced. A retention schedule without execution evidence is not sufficient.
+    th: ข้อมูลส่วนบุคคลต้องมีระยะเวลาจัดเก็บที่กำหนดและกระบวนการลบหรือทำให้ไม่สามารถระบุตัวตนได้ที่นำไปใช้จริง โดยต้องมีหลักฐานการลบ ตารางการจัดเก็บที่ไม่มีการดำเนินการไม่ถือว่าเพียงพอ
+  rationale:
+    en: Retaining data beyond its purpose increases privacy and legal risk.
+    th: การเก็บข้อมูลเกินวัตถุประสงค์เพิ่มความเสี่ยงด้าน privacy และกฎหมาย
+  domain: privacy
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Approved retention schedule mapped to data types
+      max_age_days: 365
+    - type: log
+      description: Deletion or anonymization job evidence for the current period
+      max_age_days: 180
+    - type: report
+      description: Exception report for data past its retention period
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Retention periods are defined and deletion is evidenced.
+      partial: The schedule exists but deletion evidence is incomplete.
+    full:
+      l2: Implemented for all in-scope data types.
+      l3: Measured with deletion completion and overdue-retention metrics.
+  references:
+    - title: Thailand Personal Data Protection Act
+      url: https://www.pdpc.or.th
+      type: regulation
+    - title: ISO/IEC 27701:2019 7.4
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+  tags: [retention, deletion, privacy]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-003
+  version: 0.1.0
+  title:
+    en: A data-subject request process is defined and measured
+    th: กระบวนการรับและตอบสนองคำขอของเจ้าของข้อมูลถูกกำหนดและวัดผล
+  description:
+    en: The product must provide a documented process to receive, verify, and respond to data-subject access, correction, deletion, and portability requests within the applicable timeline. A request log without an owner or response date is not sufficient.
+    th: ผลิตภัณฑ์ต้องมีกระบวนการที่จัดทำเอกสารสำหรับรับ ตรวจสอบ และตอบสนองคำขอเข้าถึง แก้ไข ลบ และพกพาข้อมูลของเจ้าของข้อมูลภายในระยะเวลาที่กำหนด  log คำขอที่ไม่มี owner หรือวันที่ตอบสนองไม่ถือว่าเพียงพอ
+  rationale:
+    en: A data-subject request that is not tracked cannot be answered or improved.
+    th: คำขอของเจ้าของข้อมูลที่ไม่ถูกติดตามไม่สามารถตอบสนองหรือปรับปรุงได้
+  domain: privacy
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Data-subject request procedure with roles and timeline
+      max_age_days: 365
+    - type: log
+      description: Request log with owner, received date, and response date
+      max_age_days: 180
+    - type: report
+      description: Sample response and SLA performance report
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: The process and a current request log exist.
+      partial: The process exists but requests are not consistently tracked.
+    full:
+      l2: Implemented for all in-scope request types.
+      l3: Measured with response-time and completion metrics.
+  references:
+    - title: Thailand Personal Data Protection Act
+      url: https://www.pdpc.or.th
+      type: regulation
+    - title: ISO/IEC 27701:2019 7.3
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+  tags: [data-subject-rights, dsar, privacy]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
