@@ -10,9 +10,19 @@ const readBase = (value: string | undefined): string => {
 };
 
 const enNav: DefaultTheme.NavItem[] = [
-  { text: "Guide", link: "/en/quick-start" },
+  {
+    text: "Guide",
+    items: [
+      { text: "Overview", link: "/en/overview" },
+      { text: "Quick start", link: "/en/quick-start" },
+      { text: "Glossary", link: "/en/glossary" },
+    ],
+  },
+  { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
+  { text: "Sectors", link: "/en/sectors/", activeMatch: "/en/sectors/" },
+  { text: "Registers", link: "/en/registers/", activeMatch: "/en/registers/" },
   { text: "Reference", link: "/en/reference/" },
-  { text: "Project template", link: "/en/templates/project" },
+  { text: "Templates", link: "/en/templates/", activeMatch: "/en/templates/" },
 ];
 
 const thNav: DefaultTheme.NavItem[] = [
@@ -25,7 +35,51 @@ const enSidebar: DefaultTheme.Sidebar = [
   {
     text: "Guide",
     items: [
+      { text: "Overview", link: "/en/overview" },
       { text: "Quick start", link: "/en/quick-start" },
+      { text: "Glossary", link: "/en/glossary" },
+    ],
+  },
+  {
+    text: "Concepts",
+    items: [
+      { text: "Concepts overview", link: "/en/concepts/" },
+      {
+        text: "Requirements and criticality",
+        link: "/en/concepts/requirements",
+      },
+      { text: "Profiles and maturity", link: "/en/concepts/profiles" },
+      {
+        text: "Modules and overlays",
+        link: "/en/concepts/modules-and-overlays",
+      },
+      { text: "Resolution", link: "/en/concepts/resolution" },
+      { text: "Project instances", link: "/en/concepts/project-instance" },
+      {
+        text: "Claims and evidence",
+        link: "/en/concepts/claims-and-evidence",
+      },
+      { text: "Tools and checks", link: "/en/concepts/tools" },
+    ],
+  },
+  {
+    text: "Sectors",
+    items: [
+      { text: "Sector overview", link: "/en/sectors/" },
+      { text: "Finance", link: "/en/sectors/finance" },
+      { text: "E-commerce", link: "/en/sectors/e-commerce" },
+      { text: "Logistics", link: "/en/sectors/logistics" },
+      { text: "Public sector", link: "/en/sectors/public-sector" },
+    ],
+  },
+  {
+    text: "Registers",
+    items: [{ text: "Register index", link: "/en/registers/" }],
+  },
+  {
+    text: "Templates",
+    items: [
+      { text: "Templates overview", link: "/en/templates/" },
       { text: "Project template", link: "/en/templates/project" },
     ],
   },
