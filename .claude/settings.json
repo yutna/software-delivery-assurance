@@ -1,0 +1,13 @@
+{
+  "skillListingBudgetFraction": 0.02,
+  "skillOverrides": {
+    "functional-elixir": "name-only",
+    "functional-elixir-phoenix": "name-only",
+    "functional-javascript": "name-only",
+    "functional-typescript-effect": "name-only",
+    "functional-typescript-react": "name-only",
+    "functional-typescript-react-nextjs": "name-only",
+    "functional-typescript-ts-pattern": "name-only",
+    "functional-typescript-xstate": "name-only"
+  }
+}

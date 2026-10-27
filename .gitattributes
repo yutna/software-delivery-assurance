@@ -2,3 +2,6 @@
 # Windows scripts (gradlew.bat, mvnw.cmd) must keep CRLF.
 *.bat text eol=crlf
 *.cmd text eol=crlf
+# Keep the vendored third-party bytes exactly as upstream wrote them.
+.claude/skills/** -text
+vendor/functional-design-skills/** -text
