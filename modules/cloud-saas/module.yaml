@@ -1,0 +1,520 @@
+id: SRAS-CLD
+title:
+  en: Cloud and SaaS
+  th: Cloud และ SaaS
+description:
+  en: Assurance requirements for products delivered as cloud or SaaS services or hosted on shared infrastructure.
+  th: ข้อกำหนด assurance สำหรับผลิตภัณฑ์ที่ให้บริการเป็น cloud หรือ SaaS หรือโฮสต์บนโครงสร้างพื้นฐานที่ใช้ร่วมกัน
+version: 0.1.0
+applies_to:
+  - SaaS services
+  - products hosted on public or private cloud infrastructure
+requires: []
+requirements:
+  - id: SRAS-CLD-001
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: The shared responsibility model is documented and assigned
+      th: shared responsibility model ถูกจัดทำเอกสารและมอบหมาย
+    description:
+      en: For every cloud or SaaS service in use, the provider and the product must have a documented division of responsibility for identity, configuration, data, encryption, logging, patching, and incident response. A control without an assigned owner is not covered.
+      th: สำหรับ cloud หรือ SaaS ทุกบริการที่ใช้งาน ผู้ให้บริการและผลิตภัณฑ์ต้องมีเอกสารแบ่งความรับผิดชอบด้าน identity configuration ข้อมูล การเข้ารหัส logging การแพตช์ และการตอบสนองเหตุการณ์ ควบคุมที่ไม่มีการมอบหมาย owner ไม่ถือว่าอยู่ในขอบเขต
+    rationale:
+      en: A control that both sides assume the other owns is owned by neither.
+      th: ควบคุมที่ทั้งสองฝ่ายคิดว่าอีกฝ่ายรับผิดชอบจะไม่มีใครรับผิดชอบจริง
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Shared responsibility matrix with named owners
+        max_age_days: 365
+      - type: contract
+        description: Provider terms covering security and incident duties
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Responsibilities are documented and assigned for every service.
+        partial: A matrix exists but some controls have no owner.
+      full:
+        l2: The matrix is current and matches the deployed services.
+        l3: Responsibilities are reviewed when services or terms change.
+    references:
+      - title: ISO/IEC 27017:2015
+        url: https://www.iso.org/standard/43757.html
+        type: standard
+      - title: NIST SP 800-144
+        url: https://csrc.nist.gov/pubs/sp/800/144/final
+        type: standard
+    tags: [shared-responsibility, cloud-governance, ownership]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-002
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Tenant isolation is enforced and tested
+      th: การแยก tenant ถูกบังคับใช้และทดสอบ
+    description:
+      en: A multi-tenant service must isolate tenant data and configuration at the application, storage, and network layers, and must test that a tenant cannot read or change another tenant's data or metadata. Isolation must not depend on a single check.
+      th: บริการ multi-tenant ต้องแยกข้อมูลและ configuration ของ tenant ที่ชั้น application storage และ network และต้องทดสอบว่า tenant หนึ่งไม่สามารถอ่านหรือแก้ไขข้อมูลหรือ metadata ของ tenant อื่นได้ การแยกต้องไม่พึ่งพาการตรวจสอบเพียงจุดเดียว
+    rationale:
+      en: A single missing filter exposes every tenant to every other tenant.
+      th: การขาด filter เพียงจุดเดียวทำให้ tenant ทุกรายเข้าถึงข้อมูลของกันและกันได้
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: test_result
+        description: Cross-tenant access tests for data and metadata
+        max_age_days: 180
+      - type: configuration
+        description: Tenant isolation controls at application and storage layers
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Tenant isolation is enforced and tested with negative cases.
+        partial: Isolation is designed but tests or storage controls are incomplete.
+      full:
+        l2: Isolation is tested across application, storage, and network paths.
+        l3: Isolation tests run on every release and after schema change.
+    references:
+      - title: ISO/IEC 27017:2015
+        url: https://www.iso.org/standard/43757.html
+        type: standard
+      - title: CSA Cloud Controls Matrix
+        url: https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4
+        type: guidance
+    tags: [tenant-isolation, multi-tenancy, data-separation]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-003
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Data residency commitments are met and evidenced
+      th: ข้อผูกพันด้านสถานที่เก็บข้อมูลถูกปฏิบัติตามและมีหลักฐาน
+    description:
+      en: Where a residency commitment is made, the product must record the permitted locations for storage, processing, backup, and support access, and must evidence that production data stays within them. A location that is not recorded is not covered by the commitment.
+      th: เมื่อมีข้อผูกพันด้านสถานที่เก็บข้อมูล ผลิตภัณฑ์ต้องบันทึกสถานที่ที่อนุญาตสำหรับการจัดเก็บ การประมวลผล การสำรองข้อมูล และการเข้าถึงเพื่อสนับสนุน และต้องมีหลักฐานว่าข้อมูล production อยู่ในสถานที่เหล่านั้น สถานที่ที่ไม่ได้บันทึกไว้ไม่อยู่ในข้อผูกพัน
+    rationale:
+      en: A residency promise cannot be supported by architecture diagrams alone.
+      th: คำมั่นด้านสถานที่เก็บข้อมูลไม่สามารถยืนยันได้ด้วยแผนภาพสถาปัตยกรรมเพียงอย่างเดียว
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Residency commitment with permitted locations and scope
+        max_age_days: 365
+      - type: configuration
+        description: Region, backup, and support access configuration
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Locations are recorded and production data stays within them.
+        partial: Locations are recorded but backup or support access is unverified.
+      full:
+        l2: Residency is evidenced for storage, processing, backup, and support.
+        l3: Location changes trigger a recorded commitment review.
+    references:
+      - title: ISO/IEC 27018:2019
+        url: https://www.iso.org/standard/76559.html
+        type: standard
+      - title: CSA Cloud Controls Matrix
+        url: https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4
+        type: guidance
+    tags: [data-residency, location, cloud]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-004
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Subprocessors are disclosed and governed
+      th: Subprocessor ถูกเปิดเผยและกำกับ
+    description:
+      en: The product must maintain a current list of subprocessors that can access regulated data, notify customers of material changes as agreed, and hold each subprocessor to the same obligations as the primary provider. An undisclosed subprocessor is not covered.
+      th: ผลิตภัณฑ์ต้องมีรายการ subprocessor ที่เป็นปัจจุบันซึ่งสามารถเข้าถึงข้อมูลที่มีข้อกำหนดกำกับ แจ้งลูกค้าเมื่อมีการเปลี่ยนแปลงที่มีนัยสำคัญตามที่ตกลง และผูกพัน subprocessor แต่ละรายด้วยหน้าที่เดียวกันกับผู้ให้บริการหลัก subprocessor ที่ไม่ถูกเปิดเผยไม่อยู่ในขอบเขต
+    rationale:
+      en: A subprocessor added without notice changes the customer's risk without their knowledge.
+      th: subprocessor ที่เพิ่มโดยไม่แจ้งเปลี่ยนความเสี่ยงของลูกค้าโดยที่ลูกค้าไม่รู้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Current subprocessor list with purpose and location
+        max_age_days: 180
+      - type: ticket
+        description: Change notification record for a material subprocessor change
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Subprocessors are listed and changes are notified.
+        partial: A list exists but notification or flow-down terms are incomplete.
+      full:
+        l2: The list is current and flow-down obligations are enforced.
+        l3: Subprocessor changes are reviewed against customer commitments.
+    references:
+      - title: ISO/IEC 27018:2019
+        url: https://www.iso.org/standard/76559.html
+        type: standard
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+    tags: [subprocessor, transparency, third-party]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-005
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Exit and data return are planned and tested
+      th: การออกจากบริการและการคืนข้อมูลถูกวางแผนและทดสอบ
+    description:
+      en: The product must define how a customer exits the service, including data export, deletion, key destruction, transition support, and the maximum period for each step. An exit plan that has never been tested is not complete.
+      th: ผลิตภัณฑ์ต้องกำหนดวิธีการที่ลูกค้าออกจากบริการ รวมถึงการส่งออกข้อมูล การลบ การทำลาย key การสนับสนุนการย้าย และระยะเวลาสูงสุดของแต่ละขั้นตอน แผนออกที่ยังไม่เคยทดสอบไม่ถือว่าเสร็จสมบูรณ์
+    rationale:
+      en: Exit terms discovered during an exit are constraints, not options.
+      th: เงื่อนไขการออกที่เพิ่งทราบตอนออกจากบริการเป็นข้อจำกัด ไม่ใช่ทางเลือก
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Exit plan with export, deletion, and transition steps
+        max_age_days: 365
+      - type: test_result
+        description: Exit or restoration test result
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Exit steps, owners, and periods are documented.
+        partial: An exit plan exists but has not been tested.
+      full:
+        l2: The exit plan is tested and its results are recorded.
+        l3: The test covers data return, deletion, and key destruction.
+    references:
+      - title: ISO/IEC 27018:2019
+        url: https://www.iso.org/standard/76559.html
+        type: standard
+      - title: ISO/IEC 27017:2015
+        url: https://www.iso.org/standard/43757.html
+        type: standard
+    tags: [exit, data-return, continuity]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-006
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Data portability uses a documented and usable format
+      th: การพกพาข้อมูลใช้รูปแบบที่จัดทำเอกสารและใช้งานได้
+    description:
+      en: Exported customer data must use a documented format with a published schema, must preserve the agreed scope and relationships, and must be usable without the exporting service. A proprietary format with no published schema does not meet the requirement.
+      th: ข้อมูลลูกค้าที่ส่งออกต้องใช้รูปแบบที่จัดทำเอกสารพร้อม schema ที่เผยแพร่ ต้องรักษาขอบเขตและความสัมพันธ์ตามที่ตกลง และต้องใช้งานได้โดยไม่ต้องพึ่งบริการที่ส่งออก รูปแบบเฉพาะของผลิตภัณฑ์ที่ไม่มี schema เผยแพร่ไม่เป็นไปตามข้อกำหนด
+    rationale:
+      en: An export that only the original service can read is not portability.
+      th: การส่งออกที่อ่านได้เฉพาะบริการเดิมไม่ใช่การพกพาข้อมูล
+    criticality: medium
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Export format specification and schema
+        max_age_days: 365
+      - type: test_result
+        description: Import of an export into a separate environment
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The export format and schema are documented and usable.
+        partial: An export exists but the schema or completeness is unverified.
+      full:
+        l2: The export is tested outside the exporting service.
+        l3: The export covers relationships and is versioned.
+    references:
+      - title: ISO/IEC 27018:2019
+        url: https://www.iso.org/standard/76559.html
+        type: standard
+      - title: CSA Cloud Controls Matrix
+        url: https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4
+        type: guidance
+    tags: [portability, export, data-return]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-007
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: A secure configuration baseline is defined and monitored
+      th: baseline configuration ที่ปลอดภัยถูกกำหนดและ monitor
+    description:
+      en: The cloud or SaaS configuration must be defined as a versioned baseline covering network exposure, identity, encryption, logging, backup, and public access. Drift from the baseline must be detected and corrected within a defined period.
+      th: configuration ของ cloud หรือ SaaS ต้องถูกกำหนดเป็น baseline ที่มี version ครอบคลุม network exposure identity การเข้ารหัส logging backup และการเข้าถึงจากสาธารณะ ต้องตรวจจับการเบี่ยงเบนจาก baseline และแก้ไขภายในระยะเวลาที่กำหนด
+    rationale:
+      en: A secure default degrades silently when drift is not detected.
+      th: ค่าเริ่มต้นที่ปลอดภัยจะเสื่อมลงอย่างเงียบ ๆ หากไม่ตรวจจับการเบี่ยงเบน
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Versioned secure baseline and drift detection rules
+        max_age_days: 180
+      - type: ticket
+        description: Drift finding and correction record
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: A baseline exists and drift is detected.
+        partial: A baseline exists but detection or correction is manual.
+      full:
+        l2: Drift is detected and corrected within the defined period.
+        l3: Baseline changes are reviewed and applied through change control.
+    references:
+      - title: CIS Benchmarks
+        url: https://www.cisecurity.org/cis-benchmarks
+        type: guidance
+      - title: ISO/IEC 27017:2015
+        url: https://www.iso.org/standard/43757.html
+        type: standard
+    tags: [configuration-baseline, drift, cloud-security]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-008
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Cloud audit logs are complete, protected, and retained
+      th: Audit log ของ cloud ครบถ้วน ป้องกันการแก้ไข และถูกเก็บรักษา
+    description:
+      en: Administrative, authentication, and data-access events must be logged with actor, time, source, and target, protected from modification by the logged account, and retained for the defined period. A log that can be edited by the actor it records is not trustworthy.
+      th: เหตุการณ์ด้าน administration authentication และการเข้าถึงข้อมูลต้องถูกบันทึกพร้อม actor เวลา แหล่งที่มา และเป้าหมาย ป้องกันการแก้ไขโดยบัญชีที่ถูกบันทึก และเก็บรักษาตามระยะเวลาที่กำหนด log ที่ผู้ถูกบันทึกสามารถแก้ไขได้ไม่น่าเชื่อถือ
+    rationale:
+      en: An editable audit trail cannot support an investigation or a dispute.
+      th: audit trail ที่แก้ไขได้ไม่สามารถสนับสนุนการสืบสวนหรือข้อโต้แย้งได้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Audit log destination, immutability, and retention configuration
+        max_age_days: 180
+      - type: log
+        description: Sample audit events with actor, time, source, and target
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Audit events are logged, protected, and retained.
+        partial: Logging exists but immutability or retention is incomplete.
+      full:
+        l2: Logs are immutable, retained, and reviewed for coverage.
+        l3: Log coverage is tested against the event catalogue.
+    references:
+      - title: ISO/IEC 27017:2015
+        url: https://www.iso.org/standard/43757.html
+        type: standard
+      - title: NIST SP 800-144
+        url: https://csrc.nist.gov/pubs/sp/800/144/final
+        type: standard
+    tags: [logging, audit-trail, retention]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-009
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Cloud identities and encryption keys are controlled
+      th: Identity และ encryption key ของ cloud ถูกควบคุม
+    description:
+      en: Privileged cloud identities must use strong authentication, least privilege, and a reviewed access list. Encryption keys must have a named custodian, a rotation rule, and a documented recovery and revocation path.
+      th: identity ของ cloud ที่มีสิทธิ์สูงต้องใช้การยืนยันตัวตนที่แข็งแรง หลักการสิทธิ์น้อยที่สุด และรายการสิทธิ์การเข้าถึงที่ทบทวนแล้ว encryption key ต้องมีผู้ดูแลที่ระบุชื่อ กฎการหมุน และเส้นทาง recovery และ revocation ที่จัดทำเอกสาร
+    rationale:
+      en: A privileged identity or an unmanaged key bypasses every other control.
+      th: identity ที่มีสิทธิ์สูงหรือ key ที่ไม่มีการจัดการสามารถข้ามการควบคุมอื่นทั้งหมดได้
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Privileged identity, key rotation, and revocation configuration
+        max_age_days: 180
+      - type: log
+        description: Privileged access review and key rotation records
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Privileged access and keys have owners and rotation rules.
+        partial: Controls exist but review or recovery is undocumented.
+      full:
+        l2: Access is reviewed and keys are rotated and recoverable.
+        l3: Access and key events are monitored and anomalies are investigated.
+    references:
+      - title: ISO/IEC 27017:2015
+        url: https://www.iso.org/standard/43757.html
+        type: standard
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+    tags: [identity, key-management, least-privilege]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-CLD-010
+    version: 0.1.0
+    module: SRAS-CLD
+    title:
+      en: Cloud availability and service limits are designed and tested
+      th: Availability และ service limit ของ cloud ถูกออกแบบและทดสอบ
+    description:
+      en: The product must record its dependence on cloud regions, zones, and service quotas, and must test that a zone or quota failure does not exceed the approved service objective. A dependency with no tested fallback is a single point of failure.
+      th: ผลิตภัณฑ์ต้องบันทึกการพึ่งพา region zone และ quota ของบริการ cloud และต้องทดสอบว่าความล้มเหลวของ zone หรือ quota ไม่เกิน service objective ที่อนุมัติ dependency ที่ไม่มี fallback ที่ทดสอบแล้วถือเป็น single point of failure
+    rationale:
+      en: Cloud redundancy is not automatic; it exists only where it is designed and tested.
+      th: ความซ้ำซ้อนของ cloud ไม่ได้เกิดขึ้นเอง แต่มีเฉพาะจุดที่ถูกออกแบบและทดสอบแล้ว
+    criticality: medium
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-CLD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: diagram
+        description: Region, zone, and quota dependency map
+        max_age_days: 365
+      - type: test_result
+        description: Failover or quota exhaustion test result
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Dependencies and fallbacks are documented and tested.
+        partial: Dependencies are documented but failover is untested.
+      full:
+        l2: Failover and quota limits are tested against the service objective.
+        l3: Tests are repeated after architecture or provider change.
+    references:
+      - title: NIST SP 800-144
+        url: https://csrc.nist.gov/pubs/sp/800/144/final
+        type: standard
+      - title: CSA Cloud Controls Matrix
+        url: https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4
+        type: guidance
+    tags: [availability, failover, service-limits]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+status: active
+deprecated_in: null
+replaced_by: null
+translation_status: partial
+machine_translated: true
+review_status: unverified
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
