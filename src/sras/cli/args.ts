@@ -11,16 +11,26 @@ export type CliCommand =
       readonly directory: string;
       readonly profile: ProfileId;
     }
-  | { readonly tag: "Guard" };
+  | {
+      readonly tag: "Guard";
+      readonly format: GuardFormat;
+      readonly annotations: boolean;
+    };
+
+export type GuardFormat = "text" | "json";
 
 export type ArgsError =
   | { readonly tag: "UnknownArgument"; readonly value: string }
   | { readonly tag: "TooManyArguments"; readonly values: readonly string[] }
   | { readonly tag: "MissingFlag"; readonly value: string }
   | { readonly tag: "MissingArgument"; readonly value: string }
-  | { readonly tag: "InvalidProfile"; readonly value: string };
+  | { readonly tag: "InvalidProfile"; readonly value: string }
+  | { readonly tag: "InvalidFormat"; readonly value: string }
+  | { readonly tag: "ConflictingFlags"; readonly values: readonly string[] };
 
 const PROFILES = ["lite", "full"] as const satisfies readonly ProfileId[];
+
+const FORMATS = ["text", "json"] as const satisfies readonly GuardFormat[];
 
 const parseProfile = (value: string): Result<ProfileId, ArgsError> => {
   const profile = PROFILES.find((candidate) => candidate === value);
@@ -113,8 +123,80 @@ export const parseArgs = (
   }
 
   if (first === "guard") {
-    if (rest.length > 0) return err({ tag: "TooManyArguments", values: argv });
-    return ok({ tag: "Guard" });
+    let format: GuardFormat = "text";
+    let formatSet = false;
+    let annotations = false;
+    let index = 0;
+
+    while (index < rest.length) {
+      const value = rest[index];
+
+      if (value === "--format") {
+        const next = rest[index + 1];
+
+        if (next === undefined) {
+          return err({ tag: "MissingFlag", value: "--format" });
+        }
+
+        if (formatSet) return err({ tag: "TooManyArguments", values: argv });
+
+        const parsed = FORMATS.find((candidate) => candidate === next);
+
+        if (parsed === undefined) {
+          return err({ tag: "InvalidFormat", value: next });
+        }
+
+        format = parsed;
+        formatSet = true;
+        index += 2;
+        continue;
+      }
+
+      if (value?.startsWith("--format=") === true) {
+        if (formatSet) return err({ tag: "TooManyArguments", values: argv });
+
+        const parsed = FORMATS.find(
+          (candidate) => candidate === value.slice("--format=".length),
+        );
+
+        if (parsed === undefined) {
+          return err({
+            tag: "InvalidFormat",
+            value: value.slice("--format=".length),
+          });
+        }
+
+        format = parsed;
+        formatSet = true;
+        index += 1;
+        continue;
+      }
+
+      if (value === "--annotations") {
+        if (annotations) {
+          return err({ tag: "TooManyArguments", values: argv });
+        }
+
+        annotations = true;
+        index += 1;
+        continue;
+      }
+
+      if (value?.startsWith("--") === false) {
+        return err({ tag: "TooManyArguments", values: argv });
+      }
+
+      return err({ tag: "UnknownArgument", value: value ?? "" });
+    }
+
+    if (annotations && format === "json") {
+      return err({
+        tag: "ConflictingFlags",
+        values: ["--format json", "--annotations"],
+      });
+    }
+
+    return ok({ tag: "Guard", format, annotations });
   }
 
   if (first === "init") {

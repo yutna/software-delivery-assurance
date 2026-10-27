@@ -3,6 +3,12 @@ import type { ReadError } from "../adapters/fs.js";
 import type { SchemaLoadError } from "../adapters/json-schema.js";
 import type { Output } from "../adapters/output.js";
 import { assertNever } from "../foundation/assert-never.js";
+import {
+  renderGuardAnnotations,
+  renderGuardJson,
+  renderGuardSummary,
+  toGuardReport,
+} from "../guard/report.js";
 import type { GuardError, GuardFinding } from "../guard/types.js";
 import { scanContent } from "../guard/workflow.js";
 import type { InitIssue } from "../project/init.js";
@@ -24,7 +30,7 @@ const HELP = [
   "  sras validate --all",
   "  sras init <dir> --profile lite|full",
   "  sras render [--check]",
-  "  sras guard",
+  "  sras guard [--format text|json] [--annotations]",
   "",
 ].join("\n");
 
@@ -261,7 +267,11 @@ const runInit = async (
   return 0;
 };
 
-const runGuard = async (root: string, io: Output): Promise<number> => {
+const runGuard = async (
+  root: string,
+  command: Extract<CliCommand, { readonly tag: "Guard" }>,
+  io: Output,
+): Promise<number> => {
   const override = process.env["SRAS_DENYLIST_PATH"];
   const result = await scanContent(
     root,
@@ -274,10 +284,20 @@ const runGuard = async (root: string, io: Output): Promise<number> => {
     return 1;
   }
 
-  if (result.value.findings.length === 0) {
-    io.stdout(
-      `guard passed: scanned ${String(result.value.scanned)} files; excluded ${String(result.value.skipped.length)}\n`,
-    );
+  const report = toGuardReport(result.value);
+
+  if (command.format === "json") {
+    io.stdout(renderGuardJson(report));
+    return report.ok ? 0 : 1;
+  }
+
+  if (command.annotations) {
+    io.stdout(renderGuardAnnotations(report));
+    return report.ok ? 0 : 1;
+  }
+
+  if (report.ok) {
+    io.stdout(renderGuardSummary(report));
     return 0;
   }
 
@@ -285,6 +305,7 @@ const runGuard = async (root: string, io: Output): Promise<number> => {
     io.stderr(`${renderGuardFinding(finding)}\n`);
   }
 
+  io.stderr(renderGuardSummary(report));
   return 1;
 };
 
@@ -339,7 +360,7 @@ export const runCommand = async (
     case "Render":
       return runRender(context.root, command.check, context.io);
     case "Guard":
-      return runGuard(context.root, context.io);
+      return runGuard(context.root, command, context.io);
     default:
       return assertNever(command);
   }

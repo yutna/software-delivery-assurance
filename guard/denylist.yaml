@@ -36,6 +36,20 @@ categories:
   customer_data:
     - customer-name-placeholder
     - project-name-placeholder
+  out_of_scope_sector:
+    - pharmaceutical
+    - education sector
+    - energy sector
+    - hospitality sector
+    - agriculture sector
+  unsafe_claims:
+    - fully compliant
+    - 100% compliant
+    - guaranteed compliant
+    - certified compliant
+    - certification achieved
+    - audit passed
+    - guaranteed to pass
   secrets:
     - "ghp_"
     - "github_pat_"

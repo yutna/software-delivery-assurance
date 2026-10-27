@@ -15,6 +15,10 @@ const renderArgsError = (error: ArgsError): string => {
       return `missing required argument: ${error.value}\n`;
     case "InvalidProfile":
       return `invalid profile: ${error.value}; expected lite or full\n`;
+    case "InvalidFormat":
+      return `invalid format: ${error.value}; expected text or json\n`;
+    case "ConflictingFlags":
+      return `conflicting flags: ${error.values.join(" ")}\n`;
     default:
       return assertNever(error);
   }

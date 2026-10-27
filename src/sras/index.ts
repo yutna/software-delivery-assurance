@@ -53,6 +53,14 @@ export {
   type InitShellError,
 } from "./project/workflow.js";
 export { validateProject } from "./project/validate.js";
+export {
+  renderGuardAnnotations,
+  renderGuardJson,
+  renderGuardSummary,
+  toGuardReport,
+  type GuardReport,
+  type GuardReportFinding,
+} from "./guard/report.js";
 export type {
   Assessment,
   Claim,
