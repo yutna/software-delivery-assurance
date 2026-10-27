@@ -5,8 +5,6 @@ machine_translated: true
 
 # เริ่มต้นอย่างรวดเร็ว
 
-> สถานะคำแปล: ฉบับร่างแปลด้วยเครื่อง (`translation_status: partial`) ยังไม่ผ่านการตรวจโดยมนุษย์ ฉบับภาษาอังกฤษเป็นฉบับหลัก: [Quick start](../en/quick-start.md)
-
 คู่มือนี้พาผู้ใช้ใหม่จาก checkout ที่สะอาดไปจนถึง project instance ที่สร้างแล้วและ library gate ที่ผ่านภายในเวลาประมาณ 15 นาที ให้รันทุกคำสั่งจาก repository root
 
 ## ก่อนเริ่ม
