@@ -47,6 +47,7 @@ machine_translated: true
 - `ID-PDP-001` — Law No. 27 of 2022 on Personal Data Protection, Indonesia, law, `unverified`
 - `MY-PDPA-001` — Personal Data Protection Act 2010 (Act 709), Malaysia, law, `unverified`
 - `SG-PDPA-001` — Personal Data Protection Act 2012, Singapore, law, `unverified`
+- `VN-PDPD-001` — Decree No. 13/2023/ND-CP on Personal Data Protection, Viet Nam, regulation, `unverified`
 
 รายการอาเซียนแต่ละรายการเชื่อมไปยังแหล่งอ้างอิงทางการและหน้า reference ที่
 generate ไว้
@@ -54,6 +55,12 @@ generate ไว้
 - [ID-PDP-001](../../en/reference/registers/ID-PDP-001.md)
 - [MY-PDPA-001](../../en/reference/registers/MY-PDPA-001.md)
 - [SG-PDPA-001](../../en/reference/registers/SG-PDPA-001.md)
+- [VN-PDPD-001](../../en/reference/registers/VN-PDPD-001.md)
+
+`VN-PDPD-001` บันทึกสถานะ `repealed` พระราชกฤษฎีกาสิ้นผลใช้บังคับเมื่อวันที่
+1 มกราคม 2569 และถูกแทนที่ด้วยกฎหมายคุ้มครองข้อมูลส่วนบุคคลเลขที่
+91/2025/QH15 และพระราชกฤษฎีกาเลขที่ 356/2025/ND-CP รายการนี้คงไว้เพื่ออ้างอิง
+และไม่ได้นำเสนอว่าเป็นกฎหมายที่ใช้บังคับอยู่ในปัจจุบัน
 
 รายการอาเซียนเป็นเพียงทะเบียน ไม่ใช่ overlay ของอาเซียน และไม่ได้สร้าง
 ข้อกำหนดระดับภูมิภาค
