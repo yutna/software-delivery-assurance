@@ -1,5 +1,5 @@
 - id: SRAS-GOV-001
-  version: 0.1.0
+  version: 0.2.0
   title:
     en: A named product owner and an approved assurance scope exist
     th: มี product owner ที่ระบุชื่อและ assurance scope ที่ได้รับอนุมัติ
@@ -10,7 +10,7 @@
     en: Accountability and scope cannot be reconstructed after an assessment starts.
     th: ไม่สามารถสร้าง accountability และ scope ย้อนหลังได้เมื่อการประเมินเริ่มแล้ว
   domain: governance
-  criticality: high
+  criticality: gate
   applicability:
     tiers: [1, 2, 3]
     modules: []
@@ -48,7 +48,7 @@
   created_at: "2026-10-27"
   updated_at: "2026-10-27"
 - id: SRAS-GOV-002
-  version: 0.1.0
+  version: 0.2.0
   title:
     en: A risk register records owners, ratings, and review dates
     th: risk register บันทึก owner ระดับความเสี่ยง และวันทบทวน
@@ -59,7 +59,7 @@
     en: An unowned risk has no one to accept, treat, or review it.
     th: ความเสี่ยงที่ไม่มี owner ไม่มีผู้รับผิดชอบในการยอมรับ จัดการ หรือทบทวน
   domain: governance
-  criticality: high
+  criticality: gate
   applicability:
     tiers: [2, 3]
     modules: []
@@ -97,7 +97,7 @@
   created_at: "2026-10-27"
   updated_at: "2026-10-27"
 - id: SRAS-GOV-003
-  version: 0.1.0
+  version: 0.2.0
   title:
     en: Assurance is reviewed on a cadence and after material change
     th: มีการทบทวน assurance ตามรอบและหลังการเปลี่ยนแปลงที่มีนัยสำคัญ
@@ -108,7 +108,7 @@
     en: A one-time assessment goes stale when the product or its dependencies change.
     th: การประเมินครั้งเดียวจะล้าสมัยเมื่อผลิตภัณฑ์หรือ dependency เปลี่ยน
   domain: governance
-  criticality: medium
+  criticality: high
   applicability:
     tiers: [1, 2, 3]
     modules: []
@@ -138,6 +138,352 @@
   tags: [assurance, management-review, governance]
   status: active
   introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-004
+  version: 0.2.0
+  title:
+    en: An approved assurance policy defines objectives and review rules
+    th: มีนโยบาย assurance ที่ได้รับอนุมัติซึ่งกำหนดวัตถุประสงค์และกฎการทบทวน
+  description:
+    en: The product must operate under an approved assurance policy that states its objectives, the obligations it follows, the roles that enforce it, and the review cycle. A policy that is unapproved, undated, or disconnected from the current scope does not satisfy this requirement.
+    th: ผลิตภัณฑ์ต้องดำเนินงานภายใต้นโยบาย assurance ที่ได้รับอนุมัติ ซึ่งระบุวัตถุประสงค์ ข้อผูกพันที่ต้องปฏิบัติ บทบาทผู้บังคับใช้ และรอบการทบทวน นโยบายที่ยังไม่อนุมัติ ไม่มีวันที่ หรือไม่สอดคล้องกับ scope ปัจจุบันไม่ถือว่าผ่านข้อกำหนดนี้
+  rationale:
+    en: Without an approved policy, assurance decisions depend on individual judgment and cannot be audited consistently.
+    th: หากไม่มีนโยบายที่ได้รับอนุมัติ การตัดสินใจด้าน assurance จะขึ้นอยู่กับดุลยพินิจของแต่ละบุคคลและไม่สามารถตรวจสอบได้อย่างสม่ำเสมอ
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Approved assurance policy with version, owner, and approval date
+      max_age_days: 365
+    - type: ticket
+      description: Policy approval and communication record
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: The policy is approved, current, and accessible to the team.
+      partial: A policy exists but is unapproved, stale, or not communicated.
+    full:
+      l2: Approved, scoped to the product, and reviewed within the last year.
+      l3: Reviewed on a defined cycle with communication and exception evidence.
+  references:
+    - title: ISO/IEC 27001:2022 5.2
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 GV.PO
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [governance, policy, assurance]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-005
+  version: 0.2.0
+  title:
+    en: Assurance roles and decision rights are assigned to named people
+    th: บทบาทด้าน assurance และสิทธิในการตัดสินใจถูกมอบหมายให้ผู้ที่ระบุชื่อ
+  description:
+    en: The product must name the people accountable for scope, risk, evidence, assessment, and claim approval, and must define their decision rights and escalation path. A role that is unnamed or has no decision authority is not assigned.
+    th: ผลิตภัณฑ์ต้องระบุชื่อผู้รับผิดชอบด้าน scope ความเสี่ยง หลักฐาน การประเมิน และการอนุมัติ claim พร้อมกำหนดสิทธิในการตัดสินใจและเส้นทางการส่งต่อปัญหา บทบาทที่ไม่มีชื่อผู้รับผิดชอบหรือไม่มีอำนาจตัดสินใจถือว่ายังไม่ได้รับมอบหมาย
+  rationale:
+    en: Unassigned decision rights create gaps between finding a problem and acting on it.
+    th: สิทธิในการตัดสินใจที่ยังไม่ถูกมอบหมายทำให้เกิดช่องว่างระหว่างการพบปัญหากับการลงมือแก้ไข
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Role assignment or RACI covering assurance roles and decision rights
+      max_age_days: 365
+    - type: attestation
+      description: Owner acknowledgement of assigned responsibilities
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Every assurance role has a named owner and a documented escalation path.
+      partial: Some roles are unnamed or have no decision authority.
+    full:
+      l2: Documented, acknowledged, and current for the assessment scope.
+      l3: Reviewed each cycle and after organisational change, with deputies named.
+  references:
+    - title: ISO/IEC 27001:2022 5.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 GV.RR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [governance, roles, accountability]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-006
+  version: 0.2.0
+  title:
+    en: Risk appetite and tolerance are defined for material risk categories
+    th: มีการกำหนด risk appetite และ tolerance สำหรับหมวดความเสี่ยงที่มีนัยสำคัญ
+  description:
+    en: The product must define risk appetite and measurable tolerance for each material risk category, and must show how the thresholds are applied to the risk register. A register without approved thresholds cannot be assessed consistently.
+    th: ผลิตภัณฑ์ต้องกำหนด risk appetite และ tolerance ที่วัดได้สำหรับหมวดความเสี่ยงที่มีนัยสำคัญแต่ละหมวด และต้องแสดงว่ามีการนำเกณฑ์ไปใช้กับ risk register อย่างไร risk register ที่ไม่มีเกณฑ์ที่ได้รับอนุมัติไม่สามารถประเมินได้อย่างสม่ำเสมอ
+  rationale:
+    en: Without agreed thresholds, teams cannot tell an accepted risk from an unmanaged one.
+    th: หากไม่มีเกณฑ์ที่ตกลงร่วมกัน ทีมจะแยกความเสี่ยงที่ยอมรับแล้วออกจากความเสี่ยงที่ยังไม่ได้รับการจัดการไม่ได้
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Approved risk appetite and tolerance statement by risk category
+      max_age_days: 365
+    - type: ticket
+      description: Approval record with owner and date
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Approved thresholds exist for each material risk category and are referenced by the register.
+      partial: Thresholds exist for some categories or are not applied.
+    full:
+      l2: Approved and applied to the current register.
+      l3: Reviewed annually and after strategy change; breaches are escalated with decisions recorded.
+  references:
+    - title: ISO 31000:2018
+      url: https://www.iso.org/standard/65694.html
+      type: standard
+    - title: NIST CSF 2.0 GV.RM
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [risk-management, risk-appetite, governance]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-007
+  version: 0.2.0
+  title:
+    en: Risk treatment and acceptance decisions have an owner and expiry
+    th: การตัดสินใจจัดการหรือยอมรับความเสี่ยงมี owner และวันหมดอายุ
+  description:
+    en: Each material risk must have a recorded treatment or acceptance decision with an owner, rationale, residual rating, and expiry date. An open risk without a decision or expiry is treated as unmanaged.
+    th: ความเสี่ยงที่มีนัยสำคัญแต่ละรายการต้องมีบันทึกการตัดสินใจจัดการหรือยอมรับ พร้อม owner เหตุผล ระดับความเสี่ยงคงเหลือ และวันหมดอายุ ความเสี่ยงที่เปิดอยู่โดยไม่มีการตัดสินใจหรือวันหมดอายุถือว่ายังไม่ได้รับการจัดการ
+  rationale:
+    en: Acceptance without an expiry becomes permanent by accident.
+    th: การยอมรับความเสี่ยงที่ไม่มีวันหมดอายุจะกลายเป็นถาวรโดยไม่ตั้งใจ
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Risk treatment plan and acceptance register with owners and expiry dates
+      max_age_days: 180
+    - type: ticket
+      description: Treatment or acceptance approval record
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Every material risk has a treatment or time-bound acceptance decision.
+      partial: Some risks are open without a decision, owner, or expiry.
+    full:
+      l2: Decisions recorded and linked to the current register.
+      l3: Tracked to closure, residual risk re-rated, and expiries reviewed before they lapse.
+  references:
+    - title: ISO/IEC 27001:2022 6.1.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: ISO 31000:2018
+      url: https://www.iso.org/standard/65694.html
+      type: standard
+  tags: [risk-management, risk-treatment, governance]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-008
+  version: 0.2.0
+  title:
+    en: External assurance and compliance claims are approved and evidence-backed
+    th: claim ด้าน assurance และ compliance ที่เผยแพร่ภายนอกได้รับการอนุมัติและมีหลักฐานรองรับ
+  description:
+    en: Every external claim about assurance, compliance, certification, or control effectiveness must be listed in a claim register with approved wording, scope, evidence, owner, and expiry. A claim that is unapproved, out of scope, or unsupported by current evidence must not be published.
+    th: claim ภายนอกทั้งหมดเกี่ยวกับ assurance compliance การรับรอง หรือประสิทธิผลของการควบคุม ต้องอยู่ใน claim register พร้อมถ้อยคำที่อนุมัติ ขอบเขต หลักฐาน owner และวันหมดอายุ ห้ามเผยแพร่ claim ที่ยังไม่อนุมัติ อยู่นอกขอบเขต หรือไม่มีหลักฐานปัจจุบันรองรับ
+  rationale:
+    en: An unsupported claim creates legal, commercial, and reputational exposure that evidence cannot repair after publication.
+    th: claim ที่ไม่มีหลักฐานรองรับก่อให้เกิดความเสี่ยงทางกฎหมาย เชิงพาณิชย์ และชื่อเสียง ซึ่งหลักฐานไม่สามารถแก้ไขได้หลังการเผยแพร่
+  domain: governance
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Claim register with approved wording, scope, evidence links, owners, and expiry dates
+      max_age_days: 90
+    - type: ticket
+      description: Claim approval record for current external material
+      max_age_days: 90
+    - type: report
+      description: Evidence referenced by each active claim
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Every active external claim is approved and linked to current evidence.
+      partial: Some claims lack approval, scope, or current evidence.
+    full:
+      l2: Register maintained and reconciled with current sales and assurance material.
+      l3: Reviewed before each external publication and when evidence expires; withdrawn claims are removed.
+  references:
+    - title: ISO/IEC 27001:2022 7.4
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 GV.OC
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [claims, assurance, governance]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-009
+  version: 0.2.0
+  title:
+    en: Management reviews assurance results, risks, and open decisions
+    th: ผู้บริหารทบทวนผล assurance ความเสี่ยง และการตัดสินใจที่ค้างอยู่
+  description:
+    en: Top management must review assurance results, material risks, open exceptions, and claim status at a defined cadence, and must record decisions with owners and due dates. A review without recorded decisions or follow-up is not effective.
+    th: ผู้บริหารระดับสูงต้องทบทวนผล assurance ความเสี่ยงที่มีนัยสำคัญ ข้อยกเว้นที่ค้างอยู่ และสถานะ claim ตามรอบที่กำหนด และต้องบันทึกการตัดสินใจพร้อม owner และกำหนดส่งมอบ การทบทวนที่ไม่มีบันทึกการตัดสินใจหรือการติดตามผลไม่ถือว่ามีประสิทธิผล
+  rationale:
+    en: Assurance findings only change outcomes when management decides and follows up.
+    th: ผลการประเมิน assurance จะเปลี่ยนผลลัพธ์ได้ก็ต่อเมื่อผู้บริหารตัดสินใจและติดตามผล
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Management review minutes with attendees, inputs, decisions, owners, and due dates
+      max_age_days: 180
+    - type: ticket
+      description: Action tracker showing closure or escalation
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: The latest review is recorded with decisions and assigned actions.
+      partial: A review occurred but decisions or actions are missing.
+    full:
+      l2: Held on the defined cadence with required inputs and outputs.
+      l3: Actions tracked to closure and effectiveness reviewed with trend evidence.
+  references:
+    - title: ISO/IEC 27001:2022 9.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 GV.OV
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [management-review, governance, assurance]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-010
+  version: 0.2.0
+  title:
+    en: Assurance exceptions are approved, time-bound, and owned
+    th: ข้อยกเว้นด้าน assurance ได้รับอนุมัติ มีกำหนดเวลา และมี owner
+  description:
+    en: An exception to an assurance requirement must record the requirement, justification, risk owner, compensating control, approval, and expiry date. An exception without an owner or expiry is a gap, not an approved exception.
+    th: ข้อยกเว้นต่อข้อกำหนด assurance ต้องบันทึกข้อกำหนด เหตุผล risk owner การควบคุมชดเชย การอนุมัติ และวันหมดอายุ ข้อยกเว้นที่ไม่มี owner หรือวันหมดอายุถือเป็นช่องว่าง ไม่ใช่ข้อยกเว้นที่ได้รับอนุมัติ
+  rationale:
+    en: Permanent exceptions hide risk and defeat the gate they bypass.
+    th: ข้อยกเว้นแบบถาวรปกปิดความเสี่ยงและทำให้ gate ที่ถูกข้ามไร้ผล
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Exception register with justification, compensating control, approver, and expiry
+      max_age_days: 90
+    - type: ticket
+      description: Exception approval and closure record
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Every open exception has an owner, approver, compensating control, and expiry.
+      partial: Some exceptions lack an owner, approval, or expiry.
+    full:
+      l2: Register maintained and reconciled with assessment status.
+      l3: Reviewed each cycle, expiring exceptions re-assessed, and repeat exceptions analysed for root cause.
+  references:
+    - title: ISO/IEC 27001:2022 7.5.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 GV.RM
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [exceptions, waivers, governance]
+  status: active
+  introduced_in: 0.2.0
   deprecated_in: null
   replaced_by: null
   translation_status: partial
