@@ -1,0 +1,490 @@
+- id: SRAS-OPS-001
+  version: 0.2.0
+  title:
+    en: Production telemetry covers logs, metrics, and traces
+    th: telemetry ของ production ครอบคลุม logs metrics และ traces
+  description:
+    en: Production systems must emit logs, metrics, and traces with correlation identifiers, defined retention, and coverage of critical journeys and dependencies. A critical component with no telemetry fails the requirement.
+    th: ระบบ production ต้องส่ง logs metrics และ traces พร้อม correlation identifier ระยะเวลาจัดเก็บที่กำหนด และครอบคลุม critical journeys และ dependencies องค์ประกอบสำคัญที่ไม่มี telemetry ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Without telemetry, operators cannot see failure or reconstruct what happened.
+    th: หากไม่มี telemetry ผู้ปฏิบัติงานไม่สามารถมองเห็นความล้มเหลวหรือสร้างลำดับเหตุการณ์ย้อนหลังได้
+  domain: operations
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Telemetry collection and retention configuration
+      max_age_days: 180
+    - type: report
+      description: Coverage report for critical journeys and dependencies
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Critical components emit correlated logs, metrics, and traces with retention.
+      partial: Telemetry exists but some critical components or retention gaps remain.
+    full:
+      l2: Covered for all critical journeys and dependencies.
+      l3: Measured with coverage, retention compliance, and query readiness.
+  references:
+    - title: NIST CSF 2.0 DE.CM
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.16
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [monitoring, observability, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-002
+  version: 0.2.0
+  title:
+    en: Actionable alerts have an owner and a linked runbook
+    th: การแจ้งเตือนที่นำไปปฏิบัติได้มี owner และ runbook ที่เชื่อมโยง
+  description:
+    en: Alerts for critical journeys must be actionable, routed to a named owner, linked to a runbook, and tested to show detection and notification. An alert with no owner or no test record fails the requirement.
+    th: การแจ้งเตือนสำหรับ critical journeys ต้องนำไปปฏิบัติได้ ส่งถึง owner ที่ระบุชื่อ เชื่อมโยงกับ runbook และผ่านการทดสอบเพื่อแสดงการตรวจจับและการแจ้ง การแจ้งเตือนที่ไม่มี owner หรือไม่มีบันทึกการทดสอบถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: An alert that nobody owns or acts on is noise, not detection.
+    th: การแจ้งเตือนที่ไม่มีใครรับผิดชอบหรือลงมือทำเป็นเพียงเสียงรบกวน ไม่ใช่การตรวจจับ
+  domain: operations
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Alert rules and routing configuration
+      max_age_days: 180
+    - type: test_result
+      description: Alert test showing detection, routing, and acknowledgement
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Critical alerts are owned, runbook-linked, and tested.
+      partial: Alerts exist but some lack an owner, runbook, or test.
+    full:
+      l2: Covered for all critical journeys.
+      l3: Measured with alert precision, time-to-acknowledge, and false-positive trends.
+  references:
+    - title: NIST CSF 2.0 DE.CM
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.16
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [alerting, monitoring, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-003
+  version: 0.2.0
+  title:
+    en: Service-level objectives are defined and reviewed for critical journeys
+    th: service-level objectives ถูกกำหนดและทบทวนสำหรับ critical journeys
+  description:
+    en: Each critical journey must have service-level indicators, objectives, and an error budget, with a recorded review of performance against them. An SLO with no measured indicator or review fails the requirement.
+    th: critical journey แต่ละรายการต้องมี service-level indicators objectives และ error budget พร้อมบันทึกการทบทวนผลการทำงานเทียบกับเป้าหมาย SLO ที่ไม่มีตัวชี้วัดที่วัดได้หรือไม่มีการทบทวนถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Reliability targets without measurement become opinions.
+    th: เป้าหมายความน่าเชื่อถือที่ไม่มีการวัดผลกลายเป็นเพียงความคิดเห็น
+  domain: operations
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: SLO definitions mapped to critical journeys
+      max_age_days: 365
+    - type: report
+      description: Latest SLO performance and error-budget review
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Critical journeys have SLOs and a current performance review.
+      partial: SLOs exist but some indicators or reviews are missing.
+    full:
+      l2: Defined and reviewed for the current release.
+      l3: Error-budget policy applied to release and investment decisions.
+  references:
+    - title: ISO/IEC 20000-1:2018
+      url: https://www.iso.org/standard/70636.html
+      type: standard
+    - title: NIST CSF 2.0 PR.IR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [slo, reliability, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-004
+  version: 0.2.0
+  title:
+    en: Capacity and load limits are planned and tested
+    th: capacity และขีดจำกัดโหลดถูกวางแผนและทดสอบ
+  description:
+    en: Critical journeys must have a capacity model, expected peak load, and a load test or equivalent evidence showing headroom. A production system with unknown limits or no peak test fails the requirement.
+    th: critical journeys ต้องมี capacity model โหลดสูงสุดที่คาดไว้ และการทดสอบโหลดหรือหลักฐานเทียบเท่าที่แสดง headroom ระบบ production ที่ไม่ทราบขีดจำกัดหรือไม่มีการทดสอบโหลดสูงสุดถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Capacity failures appear at the worst time and are expensive to fix under pressure.
+    th: ความล้มเหลวด้าน capacity เกิดขึ้นในเวลาที่แย่ที่สุดและมีค่าใช้จ่ายสูงในการแก้ไขภายใต้แรงกดดัน
+  domain: operations
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Capacity model with expected peak and scaling limits
+      max_age_days: 365
+    - type: test_result
+      description: Load test or capacity exercise result
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Critical journeys have a capacity model and peak-load evidence.
+      partial: A model exists but peak load or headroom is untested.
+    full:
+      l2: Reviewed for the current release and expected peak.
+      l3: Measured with saturation, headroom, and cost trends.
+  references:
+    - title: ISO/IEC 27001:2022 8.6
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 PR.IR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [capacity, reliability, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-005
+  version: 0.2.0
+  title:
+    en: Backups are configured, encrypted, and monitored
+    th: backup ถูกกำหนดค่า เข้ารหัส และเฝ้าระวัง
+  description:
+    en: In-scope data and configuration must have scheduled backups with defined frequency, retention, encryption, and monitoring, and backup failures must alert an owner. A data store without a current successful backup fails the requirement.
+    th: ข้อมูลและ configuration ที่อยู่ในขอบเขตต้องมี backup ตามกำหนดการพร้อมความถี่ ระยะเวลาจัดเก็บ การเข้ารหัส และการเฝ้าระวังที่กำหนด และความล้มเหลวของ backup ต้องแจ้ง owner data store ที่ไม่มี backup ที่สำเร็จล่าสุดถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A backup that silently fails is worse than no backup because it creates false confidence.
+    th: backup ที่ล้มเหลวอย่างเงียบ ๆ แย่กว่าไม่มี backup เพราะสร้างความเชื่อมั่นที่ผิด
+  domain: operations
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Backup schedule, retention, encryption, and monitoring configuration
+      max_age_days: 180
+    - type: report
+      description: Latest backup success and coverage report
+      max_age_days: 30
+  assessment:
+    lite:
+      pass: In-scope data has monitored, encrypted backups within retention.
+      partial: Backups exist but coverage, encryption, or monitoring is incomplete.
+    full:
+      l2: Covered for all in-scope data and configuration.
+      l3: Measured with success rate, coverage, and restore readiness.
+  references:
+    - title: ISO/IEC 27001:2022 8.13
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST SP 800-34 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final
+      type: standard
+  tags: [backup, resilience, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-006
+  version: 0.2.0
+  title:
+    en: Restores are tested and meet the recovery objective
+    th: การกู้คืนข้อมูลถูกทดสอบและเป็นไปตามเป้าหมายการกู้คืน
+  description:
+    en: Backups must be restored in a test at a defined cadence, and the restore must meet the documented recovery time and recovery point objectives. A backup that has never been restored or misses its objective fails the requirement.
+    th: backup ต้องถูกกู้คืนในการทดสอบตามรอบที่กำหนด และการกู้คืนต้องเป็นไปตาม recovery time และ recovery point objectives ที่จัดทำเอกสาร backup ที่ไม่เคยถูกกู้คืนหรือไม่เป็นไปตามเป้าหมายถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Only a successful restore proves that a backup is usable.
+    th: การกู้คืนที่สำเร็จเท่านั้นที่พิสูจน์ว่า backup ใช้งานได้
+  domain: operations
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: report
+      description: Restore test record with scope, date, duration, and data point
+      max_age_days: 180
+    - type: document
+      description: Documented recovery time and recovery point objectives
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: A restore test was completed within the cadence and met the objective.
+      partial: A restore was tested but missed the objective or covers only part of the scope.
+    full:
+      l2: Tested at the defined cadence for all in-scope data.
+      l3: Measured with restore success, duration, and gap findings.
+  references:
+    - title: ISO/IEC 27001:2022 8.13
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST SP 800-34 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final
+      type: standard
+  tags: [restore, backup, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-007
+  version: 0.2.0
+  title:
+    en: Runbooks exist for common failures and are exercised
+    th: runbook มีสำหรับความล้มเหลวที่พบบ่อยและผ่านการซ้อม
+  description:
+    en: Common failure modes for critical journeys must have current runbooks with detection, decision criteria, steps, and escalation, and the runbooks must be exercised or reviewed. A critical failure mode with no runbook fails the requirement.
+    th: รูปแบบความล้มเหลวที่พบบ่อยของ critical journeys ต้องมี runbook ที่เป็นปัจจุบันพร้อมการตรวจจับ เกณฑ์การตัดสินใจ ขั้นตอน และการส่งต่อ และ runbook ต้องผ่านการซ้อมหรือทบทวน รูปแบบความล้มเหลวที่สำคัญซึ่งไม่มี runbook ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A runbook turns a rare, high-pressure failure into a practiced response.
+    th: runbook เปลี่ยนความล้มเหลวที่พบได้ยากและมีแรงกดดันสูงให้เป็นการตอบสนองที่ฝึกฝนแล้ว
+  domain: operations
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Runbook index mapped to failure modes
+      max_age_days: 365
+    - type: ticket
+      description: Exercise or review record for runbooks in the current period
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Common failure modes have current, exercised runbooks.
+      partial: Some runbooks exist but coverage or exercise is incomplete.
+    full:
+      l2: Covered for critical journeys and reviewed for the current release.
+      l3: Measured with runbook coverage, exercise completion, and time-to-recover.
+  references:
+    - title: ISO/IEC 20000-1:2018
+      url: https://www.iso.org/standard/70636.html
+      type: standard
+    - title: NIST CSF 2.0 PR.IR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [runbook, operations, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-008
+  version: 0.2.0
+  title:
+    en: On-call and escalation arrangements are defined and current
+    th: การจัดเวร on-call และการส่งต่อปัญหาถูกกำหนดและเป็นปัจจุบัน
+  description:
+    en: Critical services must have a current on-call schedule, escalation path, contact method, and acknowledgement target. An unstaffed on-call rotation or a stale escalation list fails the requirement.
+    th: บริการที่สำคัญต้องมีตาราง on-call ที่เป็นปัจจุบัน เส้นทางการส่งต่อ วิธีติดต่อ และเป้าหมายการตอบรับ การหมุนเวียน on-call ที่ไม่มีผู้รับผิดชอบหรือรายชื่อส่งต่อที่ล้าสมัยถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Detection without a reachable responder does not restore service.
+    th: การตรวจจับที่ไม่มีการติดต่อผู้ตอบสนองได้ไม่สามารถกู้คืนบริการได้
+  domain: operations
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: On-call schedule and escalation matrix with acknowledgement targets
+      max_age_days: 30
+    - type: ticket
+      description: Latest escalation or paging test record
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Critical services have current on-call and escalation contacts.
+      partial: Arrangements exist but schedules or contacts are stale.
+    full:
+      l2: Current for all critical services.
+      l3: Measured with acknowledgement time and escalation-path success.
+  references:
+    - title: ISO/IEC 20000-1:2018
+      url: https://www.iso.org/standard/70636.html
+      type: standard
+    - title: NIST CSF 2.0 PR.IR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [on-call, escalation, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-009
+  version: 0.2.0
+  title:
+    en: Recurring incidents are investigated through problem management
+    th: เหตุการณ์ที่เกิดซ้ำได้รับการสืบสวนผ่าน problem management
+  description:
+    en: Recurring or high-impact incidents must be recorded as problems with root-cause analysis, corrective actions, owners, and due dates, and the actions must be tracked to closure. A repeat incident with no problem record fails the requirement.
+    th: เหตุการณ์ที่เกิดซ้ำหรือมีผลกระทบสูงต้องถูกบันทึกเป็นปัญหา พร้อมการวิเคราะห์สาเหตุราก corrective actions owner และกำหนดส่งมอบ และต้องติดตามการดำเนินการจนปิด เหตุการณ์ที่เกิดซ้ำโดยไม่มีบันทึกปัญหาถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Fixing the symptom without the cause guarantees the incident returns.
+    th: การแก้ไขอาการโดยไม่แก้สาเหตุทำให้เหตุการณ์กลับมาเกิดซ้ำอย่างแน่นอน
+  domain: operations
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Problem register with root cause, corrective actions, owners, and due dates
+      max_age_days: 180
+    - type: ticket
+      description: Closure or effectiveness review for corrective actions
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Recurring incidents have problem records and tracked actions.
+      partial: Some recurring incidents have no root cause or open actions are untracked.
+    full:
+      l2: Applied to recurring and high-impact incidents.
+      l3: Measured with repeat-incident rate and corrective-action effectiveness.
+  references:
+    - title: ISO/IEC 20000-1:2018
+      url: https://www.iso.org/standard/70636.html
+      type: standard
+    - title: NIST CSF 2.0 PR.IR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [problem-management, root-cause, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-OPS-010
+  version: 0.2.0
+  title:
+    en: Maintenance and service status are communicated to users
+    th: การบำรุงรักษาและสถานะบริการถูกสื่อสารให้ผู้ใช้ทราบ
+  description:
+    en: Planned maintenance, degraded service, and customer-impacting outages must have an approved communication path, status channel, and owner, with messages issued within a defined target. An unannounced maintenance window or silent outage fails the requirement.
+    th: การบำรุงรักษาตามแผน บริการที่เสื่อมคุณภาพ และ outage ที่กระทบลูกค้า ต้องมีช่องทางสื่อสารที่ได้รับอนุมัติ ช่องทางสถานะ และ owner โดยส่งข้อความภายในเป้าหมายที่กำหนด การบำรุงรักษาที่ไม่ประกาศหรือ outage ที่เงียบถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Users plan around known maintenance and trust a status channel that is used.
+    th: ผู้ใช้สามารถวางแผนได้เมื่อทราบการบำรุงรักษาและไว้วางใจช่องทางสถานะที่มีการใช้งานจริง
+  domain: operations
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Maintenance and status communication procedure with templates and owner
+      max_age_days: 365
+    - type: report
+      description: Status communications issued for the current period
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Maintenance and outages have an owned communication path and current examples.
+      partial: A procedure exists but some maintenance or outages are not communicated.
+    full:
+      l2: Applied to all planned maintenance and customer-impacting outages.
+      l3: Measured with notice time, status accuracy, and user-report trends.
+  references:
+    - title: ISO/IEC 20000-1:2018
+      url: https://www.iso.org/standard/70636.html
+      type: standard
+    - title: NIST CSF 2.0 PR.IR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [maintenance, communication, operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
