@@ -10,7 +10,7 @@ for software delivery assurance. It provides the SRAS Core, optional technical
 modules, Thailand sector overlays, regulatory registers, project-instance
 templates, and TypeScript tools that validate, render, and guard the content.
 
-This site documents SRAS v0.7.0.
+This site documents SRAS v0.8.0.
 
 ## The four questions
 
@@ -87,14 +87,15 @@ The supported sectors are finance, e-commerce, logistics, and public sector.
 
 Thailand has full sector overlays and a maintained regulatory register. ASEAN
 has six [register-only entries](registers/index.md) and a
-[comparison page](registers/asean-comparison.md); the EU register is planned
-for v0.8.0. They are register-only references, not compliance overlays.
+[comparison page](registers/asean-comparison.md); the EU has nine register-only
+entries and its own [comparison page](registers/eu-comparison.md). They are
+register-only references, not compliance overlays.
 
 ## Review and translation status
 
 Content is marked `draft`, `unverified`, or `reviewed`. `reviewed` requires a
 named reviewer, a review date, and a scope. Legal content stays `unverified`
-until a qualified legal reviewer signs off. The v0.7.0 standard content is
+until a qualified legal reviewer signs off. The v0.8.0 standard content is
 draft or unverified; no external reviewer has signed it off.
 
 English is canonical for identifiers, schema keys, and file names. Thai is a

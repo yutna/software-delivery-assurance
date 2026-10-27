@@ -1,9 +1,9 @@
 project:
   name: End-to-end synthetic project
-  description: Synthetic Core plus AI plus Thailand finance overlay project used for the v0.7.0 end-to-end test.
+  description: Synthetic Core plus AI plus Thailand finance overlay project used for the v0.8.0 end-to-end test.
   owner: Example team
   confidentiality: synthetic
-sras_version: 0.7.0
+sras_version: 0.8.0
 profile: full
 tier: 2
 scope:

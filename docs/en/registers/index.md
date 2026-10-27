@@ -99,7 +99,8 @@ Each EU entry links to its official source and its generated reference page:
 - [EU-PSD-001](../reference/registers/EU-PSD-001.md)
 
 EU entries are register-only. They are not an EU overlay, and they do not create
-region-level requirements.
+region-level requirements. The [EU comparison and applicability
+page](eu-comparison.md) summarises the nine entries without ranking them.
 
 ## Review limitation
 
@@ -123,12 +124,13 @@ A register records facts. An overlay adds requirements. The two are separate:
 
 ## Other jurisdictions
 
-Thailand and ASEAN have maintained registers in v0.7.0. EU register entries
-are planned for v0.8.0. Every non-Thai entry remains register-only until a
-qualified reviewer is named and the review is recorded.
+Thailand, ASEAN, and the EU have maintained registers in v0.8.0. Every non-Thai
+entry remains register-only until a qualified reviewer is named and the review
+is recorded.
 
 ## Related pages
 
+- [EU comparison and applicability page](eu-comparison.md)
 - [Sectors](../sectors/index.md)
 - [Modules and overlays](../concepts/modules-and-overlays.md)
 - [Reference](../reference/index.md)
