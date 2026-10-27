@@ -26,14 +26,18 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**v0.3.0 — modules and crosswalks.** The seven core domains are complete with
+**v0.4.0 — Thailand sector overlays.** The seven core domains are complete with
 70 active requirements, and both the `lite` and `full` profiles are available.
 Five technical modules add 52 requirements for AI/GenAI, integration and API,
-regulated data, cloud/SaaS, and on-premises. Seven informative crosswalks link
-SRAS to ISO/IEC 27001:2022, NIST CSF 2.0, OWASP ASVS 5.0, PCI DSS 4.0.1,
-WCAG 2.2 AA, ISO/IEC 42001:2023, and NIST AI RMF 1.0. The CLI supports
-`sras --version`, `sras validate --all`, and `sras guard`; project init and
-rendering arrive in later milestones.
+regulated data, cloud/SaaS, and on-premises. Four Thailand sector overlays —
+finance, e-commerce, logistics, and public sector — add sector-specific
+requirements. Twelve Thailand register entries index official sources, and a
+pure resolver applies Core, modules, jurisdiction and industry overlays, and
+project additions with stricter-wins conflict reporting. Seven informative
+crosswalks link SRAS to ISO/IEC 27001:2022, NIST CSF 2.0, OWASP ASVS 5.0,
+PCI DSS 4.0.1, WCAG 2.2 AA, ISO/IEC 42001:2023, and NIST AI RMF 1.0. The CLI
+supports `sras --version`, `sras validate --all`, and `sras guard`; project init
+and rendering arrive in later milestones.
 
 ## Who it is for
 

@@ -1,0 +1,66 @@
+entries:
+  - id: EV-ECM-001
+    requirement_ids: [SRAS-GOV-001, SRAS-PRV-006]
+    type: document
+    description: Synthetic scope, ownership, notice, and consent record.
+    location: evidence/synthetic-policy.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real record is included.
+  - id: EV-ECM-002
+    requirement_ids: [SRAS-SEC-004, TH-ECM-001]
+    type: configuration
+    description: Synthetic encryption and card-data scope configuration excerpt.
+    location: evidence/synthetic-configuration.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real configuration is included.
+  - id: EV-ECM-003
+    requirement_ids: [TH-ECM-003]
+    type: test_result
+    description: Synthetic checkout retry and duplicate-charge test result.
+    location: evidence/synthetic-test-result.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real system was tested.
+  - id: EV-ECM-004
+    requirement_ids: [TH-ECM-007]
+    type: log
+    description: Synthetic account takeover monitoring and recovery log sample.
+    location: evidence/synthetic-log.md
+    owner: Example security owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-01-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the recovery test is incomplete.
+  - id: EV-ECM-005
+    requirement_ids: [TH-ECM-010]
+    type: report
+    description: Synthetic accessibility review with open actions.
+    location: evidence/synthetic-review.md
+    owner: Example product owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the review is not about a real product.

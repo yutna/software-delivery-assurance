@@ -1,0 +1,66 @@
+entries:
+  - id: EV-LOG-001
+    requirement_ids: [SRAS-GOV-002]
+    type: document
+    description: Synthetic risk register and ownership record.
+    location: evidence/synthetic-policy.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real risk register is included.
+  - id: EV-LOG-002
+    requirement_ids: [SRAS-OPS-001, TH-LOG-001, TH-LOG-011]
+    type: configuration
+    description: Synthetic telemetry, shipment event, and proof-of-delivery configuration excerpt.
+    location: evidence/synthetic-configuration.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real configuration is included.
+  - id: EV-LOG-003
+    requirement_ids: [SRAS-INC-005]
+    type: document
+    description: Synthetic continuity and recovery plan excerpt.
+    location: evidence/synthetic-policy.md
+    owner: Example operations owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the exercise is not complete.
+  - id: EV-LOG-004
+    requirement_ids: [TH-LOG-003]
+    type: test_result
+    description: Synthetic EDI and API reconciliation test result.
+    location: evidence/synthetic-test-result.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real partner system was tested.
+  - id: EV-LOG-005
+    requirement_ids: [TH-LOG-005]
+    type: log
+    description: Synthetic carrier access monitoring sample.
+    location: evidence/synthetic-log.md
+    owner: Example carrier owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-01-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the revocation record is incomplete.

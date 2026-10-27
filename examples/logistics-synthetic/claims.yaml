@@ -1,0 +1,23 @@
+claims:
+  - id: CLM-LOG-001
+    claim: The synthetic example records an EDI and API reconciliation test.
+    evidence_ids: [EV-LOG-004]
+    status: verified
+    allowed_wording: The synthetic logistics example shows an EDI and API reconciliation test path.
+    prohibited_wording: Any statement that a real carrier integration is free of message loss.
+    owner: Example team
+    approved_by: Synthetic reviewer
+    approved_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    notes: Synthetic example only; the claim is not about a real product.
+  - id: CLM-LOG-002
+    claim: The synthetic example records a partial continuity position with an open exercise action.
+    evidence_ids: [EV-LOG-003]
+    status: partial
+    allowed_wording: The synthetic logistics example documents continuity objectives and an open exercise action.
+    prohibited_wording: Any statement that a real logistics service is continuously available.
+    owner: Example operations owner
+    approved_by: Synthetic reviewer
+    approved_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    notes: Synthetic example only; the limitation is part of the example.
