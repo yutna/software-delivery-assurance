@@ -1,0 +1,517 @@
+id: SRAS-INT
+title:
+  en: Integration and API
+  th: Integration และ API
+description:
+  en: Assurance requirements for products that expose or consume APIs and partner integrations.
+  th: ข้อกำหนด assurance สำหรับผลิตภัณฑ์ที่เปิดให้บริการหรือใช้งาน API และ integration กับ partner
+version: 0.1.0
+applies_to:
+  - products with partner-facing APIs
+  - products with service-to-service integrations
+requires: []
+requirements:
+  - id: SRAS-INT-001
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: APIs and integrations are inventoried with an owner
+      th: API และ integration ถูกขึ้นทะเบียนพร้อม owner
+    description:
+      en: Every externally exposed or partner-facing API must be recorded in an inventory with its purpose, consumers, data classification, owner, authentication method, and lifecycle stage. An API that is absent from the inventory is not covered by the assessment.
+      th: API ที่เปิดให้ภายนอกหรือให้ partner ทุกรายการต้องถูกบันทึกในทะเบียนพร้อมวัตถุประสงค์ ผู้ใช้บริการ การจำแนกข้อมูล owner วิธีการยืนยันตัวตน และขั้นตอน lifecycle API ที่ไม่อยู่ในทะเบียนไม่ถือว่าอยู่ในขอบเขตการประเมิน
+    rationale:
+      en: An API that nobody owns cannot be secured, versioned, or retired.
+      th: API ที่ไม่มี owner ไม่สามารถถูกป้องกัน version หรือยกเลิกได้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: API and integration inventory with owners and consumers
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Every external or partner API is inventoried with an owner.
+        partial: An inventory exists but ownership or consumers are incomplete.
+      full:
+        l2: Inventoried and reviewed for the current release.
+        l3: Reconciled with gateway and production traffic.
+    references:
+      - title: OWASP API Security Top 10
+        url: https://owasp.org/API-Security/editions/2023/en/0x00-header/
+        type: guidance
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+    tags: [api-inventory, ownership, integration]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-002
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: Every API request is authenticated with a managed credential
+      th: API request ทุกครั้งต้องยืนยันตัวตนด้วยข้อมูลรับรองที่จัดการได้
+    description:
+      en: Every API must require authentication, including internal service-to-service calls. Credentials must be unique per consumer, rotatable, scoped, and stored outside source code. An endpoint without authentication must be explicitly classified as public and approved.
+      th: API ทุกตัวต้องบังคับใช้การยืนยันตัวตน รวมถึงการเรียกระหว่าง service ภายใน ข้อมูลรับรองต้องไม่ซ้ำกันต่อผู้ใช้บริการ หมุนเวียนได้ มีขอบเขต และไม่ได้เก็บใน source code endpoint ที่ไม่ต้องยืนยันตัวตนต้องถูกจำแนกเป็น public และอนุมัติอย่างชัดเจน
+    rationale:
+      en: A shared or embedded credential turns one leak into access for every consumer.
+      th: ข้อมูลรับรองที่ใช้ร่วมกันหรือฝังในโค้ดทำให้การรั่วไหลครั้งเดียวกลายเป็นการเข้าถึงของผู้ใช้บริการทุกราย
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Authentication policy and credential scope per consumer
+        max_age_days: 180
+      - type: log
+        description: Authentication failure and credential rotation records
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Every non-public endpoint requires authentication.
+        partial: Authentication exists but credentials are shared or not rotatable.
+      full:
+        l2: Credentials are unique, scoped, rotatable, and stored securely.
+        l3: Rotation and failure patterns are monitored and reviewed.
+    references:
+      - title: OWASP ASVS
+        url: https://owasp.org/www-project-application-security-verification-standard/
+        type: standard
+      - title: NIST SP 800-53 Rev. 5
+        url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+        type: standard
+    tags: [authentication, credentials, api-security]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-003
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: Authorization is enforced on every request and object
+      th: การตรวจสอบสิทธิ์บังคับใช้ทุก request และทุก object
+    description:
+      en: Each API request must be authorized against the caller's role, tenant, and target object, not only its route. Object-level access must be checked so that a caller cannot read or change another tenant's or another user's data.
+      th: API request ทุกครั้งต้องถูกตรวจสอบสิทธิ์ตาม role tenant และ object ปลายทาง ไม่ใช่เพียง route ต้องตรวจสอบสิทธิ์ระดับ object เพื่อไม่ให้ผู้เรียกอ่านหรือแก้ไขข้อมูลของ tenant หรือผู้ใช้อื่นได้
+    rationale:
+      en: Route-level checks leave direct object access as the easiest path to another party's data.
+      th: การตรวจสอบระดับ route ทำให้การเข้าถึง object โดยตรงเป็นช่องทางที่ง่ายที่สุดในการเข้าถึงข้อมูลของผู้อื่น
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: test_result
+        description: Authorization tests for role, tenant, and object boundaries
+        max_age_days: 180
+      - type: document
+        description: Authorization model and tenant isolation design
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Role and object-level authorization is enforced and tested.
+        partial: Route-level checks exist but object-level checks are incomplete.
+      full:
+        l2: Role, tenant, and object checks are tested for every sensitive route.
+        l3: Authorization tests run on every release and cover negative cases.
+    references:
+      - title: OWASP API Security Top 10
+        url: https://owasp.org/API-Security/editions/2023/en/0x00-header/
+        type: guidance
+      - title: OWASP ASVS
+        url: https://owasp.org/www-project-application-security-verification-standard/
+        type: standard
+    tags: [authorization, tenant-isolation, api-security]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-004
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: Rate limits and abuse controls protect shared capacity
+      th: Rate limit และการควบคุมการใช้งานผิดวิธีปกป้อง capacity ที่ใช้ร่วมกัน
+    description:
+      en: Public and partner APIs must enforce documented rate limits, burst controls, and payload limits, and return a clear retry signal when a limit is exceeded. Repeated authentication failures and enumeration attempts must be throttled and recorded.
+      th: API สำหรับสาธารณะและ partner ต้องบังคับใช้ rate limit การควบคุม burst และขีดจำกัดขนาด payload ตามเอกสาร และส่งสัญญาณให้ลองใหม่ที่ชัดเจนเมื่อเกินขีดจำกัด การยืนยันตัวตนที่ล้มเหลวซ้ำและการพยายาม enumerate ต้องถูกจำกัดความเร็วและบันทึกไว้
+    rationale:
+      en: One unthrottled consumer can exhaust capacity for every other consumer.
+      th: ผู้ใช้บริการรายเดียวที่ไม่ถูกจำกัดความเร็วสามารถใช้ capacity จนหมดสำหรับผู้ใช้บริการรายอื่นได้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Rate limit, burst, and payload limit configuration
+        max_age_days: 180
+      - type: metric
+        description: Throttling and rejection metrics for the review period
+        max_age_days: 30
+    assessment:
+      lite:
+        pass: Limits are documented and enforced with a retry signal.
+        partial: Limits exist but throttling or retry behaviour is undocumented.
+      full:
+        l2: Limits, throttling, and alerts are enforced per consumer class.
+        l3: Limits are reviewed against traffic and abuse findings.
+    references:
+      - title: OWASP API Security Top 10
+        url: https://owasp.org/API-Security/editions/2023/en/0x00-header/
+        type: guidance
+      - title: OWASP ASVS
+        url: https://owasp.org/www-project-application-security-verification-standard/
+        type: standard
+    tags: [rate-limit, abuse-protection, availability]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-005
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: State-changing operations are idempotent under retry
+      th: การดำเนินการที่เปลี่ยนสถานะต้อง idempotent เมื่อ retry
+    description:
+      en: A state-changing API operation that a consumer may retry must accept an idempotency key or an equivalent deduplication mechanism and return the original result for a repeated request. A retry must not create a duplicate transaction, message, or record.
+      th: การดำเนินการผ่าน API ที่เปลี่ยนสถานะและผู้ใช้บริการอาจ retry ต้องรองรับ idempotency key หรือกลไกป้องกันข้อมูลซ้ำที่เทียบเท่า และคืนผลลัพธ์เดิมสำหรับ request ที่ซ้ำ การ retry ต้องไม่สร้าง transaction message หรือ record ซ้ำ
+    rationale:
+      en: Network retries are normal, so a non-idempotent operation turns an uncertain response into duplicate business events.
+      th: การ retry ผ่านเครือข่ายเป็นเรื่องปกติ การดำเนินการที่ไม่ idempotent จึงทำให้ response ที่ไม่แน่นอนกลายเป็นเหตุการณ์ทางธุรกิจซ้ำ
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: test_result
+        description: Duplicate-request and retry tests for state-changing operations
+        max_age_days: 180
+      - type: document
+        description: Idempotency and deduplication design for each operation
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Retryable operations are idempotent and tested.
+        partial: Idempotency is implemented for some but not all retryable operations.
+      full:
+        l2: Every retryable state change has a tested deduplication mechanism.
+        l3: Duplicate attempts are monitored and reconciled.
+    references:
+      - title: IETF RFC 9110 HTTP Semantics
+        url: https://www.rfc-editor.org/rfc/rfc9110.html
+        type: standard
+      - title: OpenAPI Specification
+        url: https://spec.openapis.org/oas/latest.html
+        type: standard
+    tags: [idempotency, retry, data-integrity]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-006
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: API contracts are versioned and compatibility is stated
+      th: สัญญา API ถูก version และระบุความเข้ากันได้
+    description:
+      en: Every partner-facing API must have a published machine-readable contract and an explicit version. A breaking change requires a new version and a migration path; an additive change must be reviewed against the compatibility policy.
+      th: API สำหรับ partner ทุกรายการต้องมี contract ที่อ่านได้ด้วยเครื่องและเผยแพร่แล้ว พร้อม version ที่ชัดเจน การเปลี่ยนแปลงที่ทำลายความเข้ากันได้ต้องมี version ใหม่และเส้นทาง migration ส่วนการเปลี่ยนแปลงแบบเพิ่มเติมต้องถูกทบทวนเทียบกับนโยบายความเข้ากันได้
+    rationale:
+      en: A contract that changes silently breaks consumers without warning.
+      th: contract ที่เปลี่ยนโดยไม่แจ้งทำให้ผู้ใช้บริการเสียหายโดยไม่มีการเตือน
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Published API contract with version and compatibility policy
+        max_age_days: 180
+      - type: ticket
+        description: Compatibility review for the current release
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: A versioned contract is published and matches production.
+        partial: A contract exists but versioning or compatibility policy is incomplete.
+      full:
+        l2: Contract, version, and compatibility review are current.
+        l3: Contract differences are checked automatically before release.
+    references:
+      - title: OpenAPI Specification
+        url: https://spec.openapis.org/oas/latest.html
+        type: standard
+      - title: IETF RFC 9110 HTTP Semantics
+        url: https://www.rfc-editor.org/rfc/rfc9110.html
+        type: standard
+    tags: [api-contract, versioning, compatibility]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-007
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: API errors are safe, stable, and actionable
+      th: Error ของ API ปลอดภัย คงที่ และนำไปใช้ได้
+    description:
+      en: An API error must return a stable code, a safe message, and a correlation identifier, and must not expose stack traces, internal hostnames, credentials, or another consumer's data. Documented error codes must match the published contract.
+      th: Error ของ API ต้องคืน code ที่คงที่ ข้อความที่ปลอดภัย และ correlation identifier และต้องไม่เปิดเผย stack trace hostname ภายใน ข้อมูลรับรอง หรือข้อมูลของผู้ใช้บริการรายอื่น code ของ error ที่จัดทำเอกสารต้องตรงกับ contract ที่เผยแพร่
+    rationale:
+      en: Verbose errors leak system detail and leave consumers unable to handle failures deterministically.
+      th: error ที่ละเอียดเกินไปรั่วไหลรายละเอียดระบบ และทำให้ผู้ใช้บริการจัดการความล้มเหลวได้ไม่แน่นอน
+    criticality: medium
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Error code catalogue and safe error format
+        max_age_days: 365
+      - type: test_result
+        description: Negative tests for error content and correlation identifiers
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Errors use stable codes and do not expose internal detail.
+        partial: Errors are safe but codes or documentation are inconsistent.
+      full:
+        l2: Error behaviour is documented, tested, and matches the contract.
+        l3: Error rates and codes are reviewed for consumer impact.
+    references:
+      - title: IETF RFC 9457 Problem Details for HTTP APIs
+        url: https://www.rfc-editor.org/rfc/rfc9457.html
+        type: standard
+      - title: OWASP ASVS
+        url: https://owasp.org/www-project-application-security-verification-standard/
+        type: standard
+    tags: [error-handling, api-contract, information-disclosure]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-008
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: Integration traffic is observable end to end
+      th: ทราฟฟิกของ integration ถูกสังเกตได้ตลอดเส้นทาง
+    description:
+      en: Requests must be traceable across the integration path with a correlation identifier, latency and error metrics, and logs that exclude secrets and sensitive payloads. A defined alert must fire when error or latency thresholds are breached.
+      th: request ต้องถูกติดตามได้ตลอดเส้นทาง integration ด้วย correlation identifier metric ของ latency และ error และ log ที่ไม่รวม secret หรือ payload ที่ละเอียดอ่อน ต้องมี alert ที่กำหนดไว้เมื่อ error หรือ latency เกินเกณฑ์
+    rationale:
+      en: Without a shared identifier, a failing integration cannot be attributed to a hop or a consumer.
+      th: หากไม่มี identifier ที่ใช้ร่วมกัน integration ที่ล้มเหลวไม่สามารถระบุจุดที่ผิดหรือผู้ใช้บริการได้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: metric
+        description: Integration latency, error, and saturation metrics
+        max_age_days: 30
+      - type: configuration
+        description: Logging, tracing, and alerting configuration
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Requests carry a correlation identifier and errors are alerted.
+        partial: Metrics exist but tracing or alerting is incomplete.
+      full:
+        l2: Tracing, metrics, logs, and alerts cover the integration path.
+        l3: Alerts are tuned and reviewed against real incidents.
+    references:
+      - title: OWASP ASVS
+        url: https://owasp.org/www-project-application-security-verification-standard/
+        type: standard
+      - title: NIST CSF 2.0
+        url: https://www.nist.gov/cyberframework
+        type: standard
+    tags: [observability, tracing, alerting]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-009
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: Partners are onboarded with due diligence and a test path
+      th: Partner ถูก onboard พร้อม due diligence และเส้นทางทดสอบ
+    description:
+      en: A partner integration must record due diligence, agreed data use, credentials issued to the partner, a sandbox or test path, support contacts, and the responsibilities of each side before production access is granted.
+      th: integration กับ partner ต้องบันทึก due diligence การใช้ข้อมูลที่ตกลง ข้อมูลรับรองที่ออกให้ partner sandbox หรือเส้นทางทดสอบ ช่องทางติดต่อสนับสนุน และความรับผิดชอบของแต่ละฝ่าย ก่อนอนุญาตให้เข้าถึง production
+    rationale:
+      en: Production access granted before responsibilities are agreed leaves failures unowned.
+      th: การให้สิทธิ์ production ก่อนตกลงความรับผิดชอบทำให้ความล้มเหลวไม่มีผู้รับผิดชอบ
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Partner onboarding record with responsibilities and contacts
+        max_age_days: 365
+      - type: ticket
+        description: Production access approval for the partner
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Onboarding, data use, and contacts are recorded before access.
+        partial: Access was granted but responsibilities or test evidence is incomplete.
+      full:
+        l2: Due diligence, responsibilities, and a test path are recorded.
+        l3: Partner access and data use are reviewed periodically.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: OWASP ASVS
+        url: https://owasp.org/www-project-application-security-verification-standard/
+        type: standard
+    tags: [partner-onboarding, due-diligence, access]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-INT-010
+    version: 0.1.0
+    module: SRAS-INT
+    title:
+      en: API versions are deprecated with notice and a migration path
+      th: API version ถูก deprecate พร้อมแจ้งล่วงหน้าและเส้นทาง migration
+    description:
+      en: A deprecated API version must have a published sunset date, a notice period defined in the contract, a documented migration path, and usage monitoring. A version must not be withdrawn while an active consumer has no reviewed migration plan.
+      th: API version ที่ถูก deprecate ต้องมีวัน sunset ที่เผยแพร่ ระยะเวลาแจ้งล่วงหน้าที่กำหนดใน contract เส้นทาง migration ที่จัดทำเอกสาร และการ monitor การใช้งาน ต้องไม่ถอน version ขณะที่ผู้ใช้บริการที่ยังใช้งานอยู่ไม่มีแผน migration ที่ทบทวนแล้ว
+    rationale:
+      en: An unannounced removal breaks consumers and turns a planned change into an incident.
+      th: การถอนโดยไม่แจ้งทำให้ผู้ใช้บริการเสียหายและเปลี่ยนการเปลี่ยนแปลงที่วางแผนไว้เป็นเหตุการณ์ผิดปกติ
+    criticality: medium
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Deprecation policy, sunset date, and migration path
+        max_age_days: 365
+      - type: metric
+        description: Active usage of the deprecated version
+        max_age_days: 30
+    assessment:
+      lite:
+        pass: The sunset date and notice period are published.
+        partial: A deprecation exists but notice or migration evidence is incomplete.
+      full:
+        l2: Notice, migration, and usage monitoring are in place.
+        l3: Withdrawal is blocked until every active consumer has a reviewed plan.
+    references:
+      - title: IETF RFC 8594 Sunset HTTP Header
+        url: https://www.rfc-editor.org/rfc/rfc8594.html
+        type: standard
+      - title: OpenAPI Specification
+        url: https://spec.openapis.org/oas/latest.html
+        type: standard
+    tags: [deprecation, sunset, migration]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+status: active
+deprecated_in: null
+replaced_by: null
+translation_status: partial
+machine_translated: true
+review_status: unverified
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
