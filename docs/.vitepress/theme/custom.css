@@ -15,3 +15,23 @@
 :lang(th) {
   line-height: 1.75;
 }
+
+.translation-banner {
+  margin: 16px 0 24px;
+  padding: 12px 16px;
+  border: 1px solid var(--vp-c-warning-1);
+  border-radius: 8px;
+  background: var(--vp-c-warning-soft);
+  color: var(--vp-c-text-1);
+  font-size: 14px;
+}
+
+.translation-banner p {
+  margin: 0;
+}
+
+.translation-banner p + a {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 600;
+}
