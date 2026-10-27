@@ -6,13 +6,15 @@ export type ModuleId = Brand<string, "ModuleId">;
 export type OverlayId = Brand<string, "OverlayId">;
 export type OverlayRequirementId = Brand<string, "OverlayRequirementId">;
 export type RegisterEntryId = Brand<string, "RegisterEntryId">;
+export type CrosswalkId = Brand<string, "CrosswalkId">;
 
 export type IdFamily =
   | "RequirementId"
   | "ModuleId"
   | "OverlayId"
   | "OverlayRequirementId"
-  | "RegisterEntryId";
+  | "RegisterEntryId"
+  | "CrosswalkId";
 
 export type IdError = {
   readonly tag: "InvalidId";
@@ -25,6 +27,7 @@ const MODULE = /^SRAS-(AI|INT|RGD|CLD|ONP)$/;
 const OVERLAY = /^[A-Z]{2,5}-[A-Z]{3}$/;
 const OVERLAY_REQUIREMENT = /^[A-Z]{2,5}-[A-Z]{3}-\d{3}$/;
 const REGISTER_ENTRY = /^[A-Z]{2,5}-[A-Z]+-\d{3}$/;
+const CROSSWALK = /^MAP-[A-Z0-9]+(?:-[A-Z0-9]+)*$/;
 
 const parseId = <B extends string>(
   value: string,
@@ -54,3 +57,6 @@ export const registerEntryId = (
   value: string,
 ): Result<RegisterEntryId, IdError> =>
   parseId(value, REGISTER_ENTRY, "RegisterEntryId");
+
+export const crosswalkId = (value: string): Result<CrosswalkId, IdError> =>
+  parseId(value, CROSSWALK, "CrosswalkId");

@@ -1,0 +1,21 @@
+id: MAP-BADREL
+title:
+  en: Crosswalk with an invalid relationship
+  th: crosswalk ที่มี relationship ไม่ถูกต้อง
+description:
+  en: A negative fixture.
+  th: fixture สำหรับทดสอบกรณีผิดพลาด
+version: 0.1.0
+source_standard: ISO/IEC 27001:2022
+source_url: https://www.iso.org/standard/27001
+mappings:
+  - requirement: SRAS-SEC-001
+    external: A.8.5
+    relationship: equivalent
+    notes: This value is not in the domain.
+status: draft
+review_status: unverified
+translation_status: partial
+machine_translated: true
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

@@ -18,6 +18,7 @@ const schemaNames = [
   "overlay",
   "profile",
   "standard",
+  "crosswalk",
 ] as const;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -76,6 +77,7 @@ const validFixtures = [
   ["overlay", "valid/overlay-finance.yaml"],
   ["profile", "valid/profile-lite.yaml"],
   ["standard", "valid/standard.yaml"],
+  ["crosswalk", "valid/crosswalk.yaml"],
 ] as const;
 
 const invalidFixtures = [
@@ -85,6 +87,11 @@ const invalidFixtures = [
   ["module", "invalid/module-bad-id.yaml", "/requirements/0/id"],
   ["overlay", "invalid/overlay-bad-extends.yaml", "/extends"],
   ["standard", "invalid/standard-bad-domain.yaml", "/domains"],
+  [
+    "crosswalk",
+    "invalid/crosswalk-bad-relationship.yaml",
+    "/mappings/0/relationship",
+  ],
 ] as const;
 
 describe("JSON Schema 2020-12 contracts", () => {

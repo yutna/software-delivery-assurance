@@ -9,6 +9,7 @@ import { assertNever } from "../foundation/assert-never.js";
 import { err, type Result } from "../foundation/result.js";
 import type { SourceFile } from "./dto.js";
 import {
+  parseCrosswalkFile,
   parseManifestFile,
   parseModuleFile,
   parseOverlayFile,
@@ -18,6 +19,7 @@ import {
 import { validateStandard } from "./validate.js";
 import type {
   CoreRequirement,
+  Crosswalk,
   Module,
   Overlay,
   Profile,
@@ -101,8 +103,9 @@ const schemaNameFor = (kind: FileKind): SchemaName | undefined => {
       return "overlay";
     case "profile":
       return "profile";
-    case "register":
     case "mapping":
+      return "crosswalk";
+    case "register":
     case "unknown":
       return undefined;
     default:
@@ -118,6 +121,7 @@ export const validateStandardFiles = (
   const requirements: CoreRequirement[] = [];
   const modules: Module[] = [];
   const overlays: Overlay[] = [];
+  const crosswalks: Crosswalk[] = [];
   const profiles: Profile[] = [];
   let manifest: StandardManifest | undefined;
 
@@ -138,7 +142,7 @@ export const validateStandardFiles = (
         file: file.path,
         path: "",
         message:
-          kind === "register" || kind === "mapping"
+          kind === "register"
             ? "this content type is added in a later milestone"
             : "unsupported content path",
       });
@@ -198,8 +202,16 @@ export const validateStandardFiles = (
         }
         break;
       }
+      case "mapping": {
+        const result = parseCrosswalkFile(parsed.value, file.path);
+        if (!result.ok) {
+          issues.push(...result.error);
+        } else {
+          crosswalks.push(result.value);
+        }
+        break;
+      }
       case "register":
-      case "mapping":
       case "unknown":
         break;
       default:
@@ -225,6 +237,7 @@ export const validateStandardFiles = (
     modules,
     overlays,
     registers: [],
+    crosswalks,
     profiles,
   };
 

@@ -1,0 +1,297 @@
+id: MAP-ISO27001
+title:
+  en: SRAS Core to ISO/IEC 27001:2022
+  th: SRAS Core ไปยัง ISO/IEC 27001:2022
+description:
+  en: Informative crosswalk from SRAS Core requirements to ISO/IEC 27001:2022 clauses and Annex A controls. It is not an equivalence or certification claim.
+  th: crosswalk เชิงข้อมูลจากข้อกำหนด SRAS Core ไปยังข้อกำหนดและ Annex A controls ของ ISO/IEC 27001:2022 ไม่ใช่การอ้างความเท่าเทียมหรือการรับรอง
+version: 0.1.0
+source_standard: ISO/IEC 27001:2022
+source_url: https://www.iso.org/standard/27001
+mappings:
+  - requirement: SRAS-GOV-001
+    external: "4.3, 5.3"
+    relationship: supports
+    notes: Scope of the management system and assigned roles.
+  - requirement: SRAS-GOV-002
+    external: "6.1.2, 6.1.3"
+    relationship: supports
+    notes: Risk assessment and risk treatment process.
+  - requirement: SRAS-GOV-003
+    external: "9.1, 9.3"
+    relationship: supports
+    notes: Performance evaluation and management review.
+  - requirement: SRAS-GOV-004
+    external: "5.2"
+    relationship: supports
+    notes: Information security policy.
+  - requirement: SRAS-GOV-005
+    external: "5.3, A.5.2"
+    relationship: supports
+    notes: Roles, responsibilities, and segregation of duties.
+  - requirement: SRAS-GOV-006
+    external: "6.1.1, 6.1.2"
+    relationship: partial
+    notes: Risk criteria are required; appetite and tolerance are SRAS additions.
+  - requirement: SRAS-GOV-007
+    external: "6.1.3, 6.1.2"
+    relationship: partial
+    notes: Treatment plans are required; expiry and acceptance ownership are SRAS additions.
+  - requirement: SRAS-GOV-008
+    external: "9.2, A.5.35"
+    relationship: partial
+    notes: Independent review supports evidence; claim approval is an SRAS addition.
+  - requirement: SRAS-GOV-009
+    external: "9.3"
+    relationship: supports
+    notes: Management review.
+  - requirement: SRAS-GOV-010
+    external: "10.1, A.5.36"
+    relationship: partial
+    notes: Corrective action and compliance review support exceptions; time bounds are SRAS additions.
+  - requirement: SRAS-SEC-001
+    external: "A.5.15, A.8.5"
+    relationship: supports
+    notes: Access control and secure authentication.
+  - requirement: SRAS-SEC-002
+    external: "A.5.18, A.8.2, A.8.3"
+    relationship: supports
+    notes: Access rights, privileged access, and access restriction.
+  - requirement: SRAS-SEC-003
+    external: "A.5.17"
+    relationship: supports
+    notes: Authentication information.
+  - requirement: SRAS-SEC-004
+    external: "A.8.24"
+    relationship: supports
+    notes: Use of cryptography.
+  - requirement: SRAS-SEC-005
+    external: "A.8.5, A.8.2"
+    relationship: partial
+    notes: Secure authentication is required; MFA specificity is an SRAS addition.
+  - requirement: SRAS-SEC-006
+    external: "A.5.18, A.8.2"
+    relationship: supports
+    notes: Access provisioning, review, and privileged access.
+  - requirement: SRAS-SEC-007
+    external: "A.8.25, A.8.26, A.8.27"
+    relationship: supports
+    notes: Secure development, application requirements, and architecture.
+  - requirement: SRAS-SEC-008
+    external: "A.8.28, A.8.29"
+    relationship: partial
+    notes: Secure coding and testing are required; change gating is an SRAS addition.
+  - requirement: SRAS-SEC-009
+    external: "A.8.8"
+    relationship: supports
+    notes: Technical vulnerability management.
+  - requirement: SRAS-SEC-010
+    external: "A.8.15, A.8.16"
+    relationship: supports
+    notes: Logging and monitoring.
+  - requirement: SRAS-SEC-011
+    external: "A.8.20, A.8.22"
+    relationship: supports
+    notes: Network security and segregation.
+  - requirement: SRAS-SEC-012
+    external: "A.8.29, A.8.34"
+    relationship: partial
+    notes: Security testing and audit protection are covered; independence is an SRAS addition.
+  - requirement: SRAS-PRV-001
+    external: "A.5.9, A.5.12, A.5.34"
+    relationship: supports
+    notes: Asset inventory, classification, and PII protection.
+  - requirement: SRAS-PRV-002
+    external: "A.5.33, A.8.10"
+    relationship: supports
+    notes: Records protection and information deletion.
+  - requirement: SRAS-PRV-003
+    external: "A.5.34"
+    relationship: partial
+    notes: PII protection is required; request timelines are an SRAS addition.
+  - requirement: SRAS-PRV-004
+    external: "A.5.34, A.5.31"
+    relationship: partial
+    notes: PII and legal requirements are covered; lawful basis recording is an SRAS addition.
+  - requirement: SRAS-PRV-005
+    external: "A.5.34"
+    relationship: partial
+    notes: PII protection is required; field-level need is an SRAS addition.
+  - requirement: SRAS-PRV-006
+    external: "A.5.34"
+    relationship: partial
+    notes: PII protection is required; notice and consent matching are SRAS additions.
+  - requirement: SRAS-PRV-007
+    external: "A.5.14, A.5.34"
+    relationship: partial
+    notes: Transfer and PII controls are covered; transfer mechanisms are jurisdiction-specific.
+  - requirement: SRAS-PRV-008
+    external: "A.5.24, A.5.25, A.5.26"
+    relationship: supports
+    notes: Incident preparation, assessment, and response.
+  - requirement: SRAS-PRV-009
+    external: "A.5.19, A.5.20, A.5.22"
+    relationship: supports
+    notes: Supplier relationships, agreements, and monitoring.
+  - requirement: SRAS-PRV-010
+    external: "A.5.34, A.8.25"
+    relationship: partial
+    notes: Privacy and secure development are covered; a separate assessment is an SRAS addition.
+  - requirement: SRAS-CHG-001
+    external: "A.8.32, A.8.4"
+    relationship: supports
+    notes: Change management and source code access.
+  - requirement: SRAS-CHG-002
+    external: "A.8.32"
+    relationship: partial
+    notes: Change management is required; peer review is an SRAS addition.
+  - requirement: SRAS-CHG-003
+    external: "A.8.25, A.8.29"
+    relationship: partial
+    notes: Secure development and testing are covered; CI gating is an SRAS addition.
+  - requirement: SRAS-CHG-004
+    external: "A.8.29"
+    relationship: partial
+    notes: Security testing is required; journey coverage is an SRAS addition.
+  - requirement: SRAS-CHG-005
+    external: "A.8.31"
+    relationship: supports
+    notes: Separation of development, test, and production.
+  - requirement: SRAS-CHG-006
+    external: "A.8.32"
+    relationship: supports
+    notes: Change management.
+  - requirement: SRAS-CHG-007
+    external: "A.8.32"
+    relationship: partial
+    notes: Change management is required; tested rollback is an SRAS addition.
+  - requirement: SRAS-CHG-008
+    external: "7.5, A.8.32"
+    relationship: partial
+    notes: Documented information and change records support release evidence.
+  - requirement: SRAS-CHG-009
+    external: "A.8.9"
+    relationship: supports
+    notes: Configuration management.
+  - requirement: SRAS-CHG-010
+    external: "A.8.32, A.8.13"
+    relationship: partial
+    notes: Change and backup controls support recovery; database reversibility is an SRAS addition.
+  - requirement: SRAS-OPS-001
+    external: "A.8.15, A.8.16"
+    relationship: supports
+    notes: Logging and monitoring.
+  - requirement: SRAS-OPS-002
+    external: "A.8.16, A.5.37"
+    relationship: partial
+    notes: Monitoring and procedures are covered; alert ownership is an SRAS addition.
+  - requirement: SRAS-OPS-003
+    external: "9.1, A.8.6"
+    relationship: partial
+    notes: Monitoring and capacity are covered; service objectives are an SRAS addition.
+  - requirement: SRAS-OPS-004
+    external: "A.8.6"
+    relationship: supports
+    notes: Capacity management.
+  - requirement: SRAS-OPS-005
+    external: "A.8.13"
+    relationship: supports
+    notes: Information backup.
+  - requirement: SRAS-OPS-006
+    external: "A.8.13"
+    relationship: partial
+    notes: Backup is required; restore testing and objectives are SRAS additions.
+  - requirement: SRAS-OPS-007
+    external: "A.5.37"
+    relationship: partial
+    notes: Operating procedures are required; exercising them is an SRAS addition.
+  - requirement: SRAS-OPS-008
+    external: "A.5.24, A.5.29"
+    relationship: partial
+    notes: Incident and continuity controls support escalation; on-call rosters are SRAS additions.
+  - requirement: SRAS-OPS-009
+    external: "A.5.27, 10.1"
+    relationship: supports
+    notes: Learning from incidents and improvement.
+  - requirement: SRAS-OPS-010
+    external: "7.4, A.5.37"
+    relationship: partial
+    notes: Communication and procedures support status updates; user-facing status is an SRAS addition.
+  - requirement: SRAS-INC-001
+    external: "A.5.24, A.5.26"
+    relationship: supports
+    notes: Incident planning and response.
+  - requirement: SRAS-INC-002
+    external: "A.5.24, A.5.25"
+    relationship: partial
+    notes: Incident preparation and assessment are covered; severity taxonomy is an SRAS addition.
+  - requirement: SRAS-INC-003
+    external: "7.4, A.5.24"
+    relationship: partial
+    notes: Communication and incident planning support external messaging.
+  - requirement: SRAS-INC-004
+    external: "A.5.27, 10.1"
+    relationship: supports
+    notes: Incident learning and improvement.
+  - requirement: SRAS-INC-005
+    external: "A.5.29, A.5.30"
+    relationship: supports
+    notes: Continuity during disruption and ICT readiness.
+  - requirement: SRAS-INC-006
+    external: "A.5.30, A.8.14"
+    relationship: supports
+    notes: ICT readiness and processing redundancy.
+  - requirement: SRAS-INC-007
+    external: "A.5.24, A.5.29"
+    relationship: partial
+    notes: Incident and continuity controls support crisis response; command structure is an SRAS addition.
+  - requirement: SRAS-INC-008
+    external: "A.5.5, A.5.31"
+    relationship: partial
+    notes: Authority contact and legal requirements are covered; notification readiness is an SRAS addition.
+  - requirement: SRAS-SCM-001
+    external: "A.5.9, A.8.1"
+    relationship: supports
+    notes: Asset inventory and endpoint devices.
+  - requirement: SRAS-SCM-002
+    external: "A.5.21, A.8.19"
+    relationship: partial
+    notes: Supply chain and software installation controls support component visibility; SBOM is an SRAS addition.
+  - requirement: SRAS-SCM-003
+    external: "A.5.21, A.8.19, A.8.7"
+    relationship: supports
+    notes: Supply chain, software installation, and malware protection.
+  - requirement: SRAS-SCM-004
+    external: "A.5.19, A.5.22"
+    relationship: supports
+    notes: Supplier relationships and monitoring.
+  - requirement: SRAS-SCM-005
+    external: "A.5.32"
+    relationship: supports
+    notes: Intellectual property rights.
+  - requirement: SRAS-SCM-006
+    external: "A.5.22, A.8.8"
+    relationship: partial
+    notes: Supplier monitoring and vulnerability management support end-of-life tracking.
+  - requirement: SRAS-SCM-007
+    external: "A.5.21, A.5.22"
+    relationship: supports
+    notes: ICT supply chain and supplier monitoring.
+  - requirement: SRAS-SCM-008
+    external: "A.5.22, A.5.30"
+    relationship: partial
+    notes: Supplier monitoring and continuity support exit planning; concentration risk is an SRAS addition.
+  - requirement: SRAS-SCM-009
+    external: "A.5.20, A.5.31"
+    relationship: supports
+    notes: Supplier agreements and legal requirements.
+  - requirement: SRAS-SCM-010
+    external: "A.5.7, A.5.22, A.5.24"
+    relationship: supports
+    notes: Threat intelligence, supplier monitoring, and incident planning.
+status: draft
+review_status: unverified
+translation_status: partial
+machine_translated: true
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

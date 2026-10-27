@@ -12,7 +12,8 @@ export type SchemaName =
   | "module"
   | "overlay"
   | "profile"
-  | "standard";
+  | "standard"
+  | "crosswalk";
 
 export type SchemaIssue = {
   readonly path: string;
@@ -36,6 +37,7 @@ const SCHEMA_NAMES = [
   "overlay",
   "profile",
   "standard",
+  "crosswalk",
 ] as const satisfies readonly SchemaName[];
 
 const isAddFormats = (value: unknown): value is (ajv: Ajv2020) => Ajv2020 =>

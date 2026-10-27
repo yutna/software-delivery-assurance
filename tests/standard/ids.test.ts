@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import {
+  crosswalkId,
   moduleId,
   overlayId,
   overlayRequirementId,
@@ -23,6 +24,10 @@ describe("IDs", () => {
     expect(registerEntryId("TH-PDPA-001")).toEqual({
       ok: true,
       value: "TH-PDPA-001",
+    });
+    expect(crosswalkId("MAP-ISO27001")).toEqual({
+      ok: true,
+      value: "MAP-ISO27001",
     });
   });
 
@@ -57,6 +62,14 @@ describe("IDs", () => {
         tag: "InvalidId",
         family: "RegisterEntryId",
         value: "TH-PDPA",
+      },
+    });
+    expect(crosswalkId("ISO27001")).toEqual({
+      ok: false,
+      error: {
+        tag: "InvalidId",
+        family: "CrosswalkId",
+        value: "ISO27001",
       },
     });
   });

@@ -4,6 +4,7 @@ import { parse } from "yaml";
 import { describe, expect, test } from "vitest";
 import type { Result } from "../../src/sras/foundation/result.js";
 import {
+  crosswalkId,
   moduleId,
   overlayId,
   registerEntryId,
@@ -24,6 +25,7 @@ import {
 import { validateStandard } from "../../src/sras/standard/validate.js";
 import type {
   CoreRequirement,
+  Crosswalk,
   Overlay,
   Profile,
   RegisterEntry,
@@ -102,6 +104,7 @@ const base: Standard = {
   modules: [module],
   overlays: [overlay],
   registers: [],
+  crosswalks: [],
   profiles: [profileLite, profileFull],
 };
 
@@ -138,6 +141,38 @@ const makeRegister = (
   lastVerified: must(isoDate("2026-10-27")),
   reviewDue: must(isoDate("2027-04-27")),
   registerStatus: "in_force",
+});
+
+const makeCrosswalk = (mapped: CoreRequirement["id"]): Crosswalk => ({
+  tag: "Crosswalk",
+  sourceFile: "mappings/test.yaml",
+  version: must(version("0.1.0")),
+  status: "draft",
+  createdAt: must(isoDate("2026-10-27")),
+  updatedAt: must(isoDate("2026-10-27")),
+  reviewStatus: "unverified",
+  reviewedBy: null,
+  reviewedAt: null,
+  reviewScope: null,
+  translationStatus: "partial",
+  machineTranslated: true,
+  translationReviewedBy: null,
+  translationReviewedAt: null,
+  id: must(crosswalkId("MAP-TEST")),
+  title: { en: "Test crosswalk", th: "crosswalk สำหรับทดสอบ" },
+  description: { en: "Test mapping.", th: "การจับคู่สำหรับทดสอบ" },
+  sourceStandard: "ISO/IEC 27001:2022",
+  sourceUrl: "https://www.iso.org/standard/27001",
+  mappings: [
+    {
+      requirement: mapped,
+      external: "A.8.5",
+      relationship: "supports",
+      notes: null,
+    },
+  ],
+  deprecatedIn: null,
+  replacedBy: null,
 });
 
 describe("validateStandard", () => {
@@ -370,6 +405,61 @@ describe("validateStandard", () => {
     });
 
     expect(tags(issues)).toContain("Review");
+  });
+
+  test("accepts a crosswalk that maps an existing requirement", () => {
+    const result = validateStandard({
+      ...base,
+      crosswalks: [makeCrosswalk(core.id)],
+    });
+
+    expect(result.ok).toBe(true);
+  });
+
+  test("rejects a crosswalk mapping to a missing requirement", () => {
+    const issues = run({
+      ...base,
+      crosswalks: [makeCrosswalk(must(requirementId("SRAS-SEC-999")))],
+    });
+
+    expect(tags(issues)).toContain("MissingReference");
+  });
+
+  test("rejects a reviewed crosswalk without reviewer fields", () => {
+    const issues = run({
+      ...base,
+      crosswalks: [
+        {
+          ...makeCrosswalk(core.id),
+          reviewStatus: "reviewed",
+        },
+      ],
+    });
+
+    expect(tags(issues)).toContain("Review");
+  });
+
+  test("rejects a complete crosswalk translation without a reviewer", () => {
+    const issues = run({
+      ...base,
+      crosswalks: [
+        {
+          ...makeCrosswalk(core.id),
+          translationStatus: "complete",
+        },
+      ],
+    });
+
+    expect(tags(issues)).toContain("Translation");
+  });
+
+  test("rejects duplicate crosswalk IDs", () => {
+    const issues = run({
+      ...base,
+      crosswalks: [makeCrosswalk(core.id), makeCrosswalk(core.id)],
+    });
+
+    expect(tags(issues)).toContain("DuplicateId");
   });
 
   test("rejects duplicate overlay requirement IDs", () => {
