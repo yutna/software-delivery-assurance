@@ -106,7 +106,7 @@ npm run sras -- render --check
 `render --check` คำนวณใหม่และรายงานหน้าที่หายไป เปลี่ยน หรือเกิน โดยไม่เขียนไฟล์ ผลลัพธ์ที่คาดหวัง:
 
 ```text
-render check passed: 139 pages; 139 files
+render check passed: 140 pages; 140 files
 ```
 
 คำสั่งนี้ deterministic: ลำดับหน้า ลำดับรายการ และเนื้อหาไม่มี timestamp หรือข้อมูล environment
