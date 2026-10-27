@@ -10,7 +10,14 @@ include_fragments = "anchor-only"
 
 # example.com is the placeholder domain in schema fixtures and synthetic
 # examples. It is reserved for documentation and is never a real endpoint.
-exclude = ["https://example.com"]
+#
+# The Philippine Official Gazette serves the canonical text of Republic Act
+# No. 10173 but returns HTTP 403 to automated clients. The page is reachable in
+# a browser and is the official source cited by the PH-DPA-001 register entry.
+exclude = [
+  "https://example.com",
+  "^https://www\\.officialgazette\\.gov\\.ph/",
+]
 
 # Generated output, vendored material, caches, and the temporary internal seed
 # are not authored content. Their links are checked through the source instead,

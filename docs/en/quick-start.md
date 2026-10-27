@@ -125,7 +125,7 @@ npm run sras -- render --check
 without writing. Expected output:
 
 ```text
-render check passed: 143 pages; 143 files
+render check passed: 144 pages; 144 files
 ```
 
 The command is deterministic: page order, list order, and content contain no
