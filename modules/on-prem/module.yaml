@@ -1,0 +1,523 @@
+id: SRAS-ONP
+title:
+  en: On-premises
+  th: On-premises
+description:
+  en: Assurance requirements for products operated on infrastructure the customer or the provider controls directly.
+  th: ข้อกำหนด assurance สำหรับผลิตภัณฑ์ที่ใช้งานบนโครงสร้างพื้นฐานที่ลูกค้าหรือผู้ให้บริการควบคุมโดยตรง
+version: 0.1.0
+applies_to:
+  - products deployed on customer-controlled infrastructure
+  - products operated in a private data centre
+requires: []
+requirements:
+  - id: SRAS-ONP-001
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: On-premises assets are inventoried with an owner
+      th: Asset ใน on-premises ถูกขึ้นทะเบียนพร้อม owner
+    description:
+      en: Every server, appliance, endpoint, and network device that supports the product must be recorded with its purpose, location, owner, operating system or firmware version, network zone, and support status. An asset that is absent from the inventory is not covered.
+      th: server appliance endpoint และอุปกรณ์เครือข่ายทุกชิ้นที่สนับสนุนผลิตภัณฑ์ต้องถูกบันทึกพร้อมวัตถุประสงค์ สถานที่ owner ระบบปฏิบัติการหรือ firmware version network zone และสถานะการสนับสนุน asset ที่ไม่อยู่ในทะเบียนไม่ถือว่าอยู่ในขอบเขต
+    rationale:
+      en: An asset that is not inventoried is not patched, backed up, or decommissioned.
+      th: asset ที่ไม่อยู่ในทะเบียนจะไม่ถูกแพตช์ สำรองข้อมูล หรือปลดระวาง
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Asset inventory with owner, location, version, and network zone
+        max_age_days: 180
+      - type: report
+        description: Inventory reconciliation with discovered assets
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Every on-premises asset is inventoried with an owner.
+        partial: An inventory exists but ownership or network zone is incomplete.
+      full:
+        l2: The inventory is current and reconciled with discovery.
+        l3: Inventory changes are reviewed with change records.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: NIST SP 800-53 Rev. 5
+        url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+        type: standard
+    tags: [asset-inventory, ownership, on-premises]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-002
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: A hardening baseline is defined and verified
+      th: hardening baseline ถูกกำหนดและตรวจสอบ
+    description:
+      en: Each on-premises asset type must have a versioned hardening baseline covering services, accounts, protocols, permissions, and logging. The deployed configuration must be verified against the baseline, and a deviation must be approved and recorded.
+      th: asset แต่ละประเภทใน on-premises ต้องมี hardening baseline ที่มี version ครอบคลุม services accounts protocols permissions และ logging ต้องตรวจสอบ configuration ที่ติดตั้งเทียบกับ baseline และการเบี่ยงเบนต้องได้รับอนุมัติและบันทึกไว้
+    rationale:
+      en: A default installation exposes services that nobody intended to run.
+      th: การติดตั้งตามค่าเริ่มต้นเปิดบริการที่ไม่มีใครตั้งใจให้ทำงาน
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Versioned hardening baseline per asset type
+        max_age_days: 180
+      - type: test_result
+        description: Configuration verification against the baseline
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: A baseline exists and deployed assets are verified against it.
+        partial: A baseline exists but verification or deviation records are incomplete.
+      full:
+        l2: Verification covers every asset type and deviations are approved.
+        l3: Baseline changes are reviewed and applied through change control.
+    references:
+      - title: CIS Benchmarks
+        url: https://www.cisecurity.org/cis-benchmarks
+        type: guidance
+      - title: NIST SP 800-128
+        url: https://csrc.nist.gov/pubs/sp/800/128/final
+        type: standard
+    tags: [hardening, configuration-baseline, on-premises]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-003
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Vulnerabilities and patches are remediated within a defined timeframe
+      th: ช่องโหว่และการแพตช์ถูกแก้ไขภายในระยะเวลาที่กำหนด
+    description:
+      en: The product must maintain a vulnerability and patch process with severity-based remediation timeframes, an owner, and an exception path. A critical vulnerability without a recorded decision is not managed.
+      th: ผลิตภัณฑ์ต้องมีกระบวนการจัดการช่องโหว่และการแพตช์พร้อมระยะเวลาแก้ไขตามความรุนแรง owner และเส้นทางยกเว้น ช่องโหว่ระดับวิกฤตที่ไม่มีบันทึกการตัดสินใจไม่ถือว่าถูกจัดการ
+    rationale:
+      en: An unpatched asset is a known way into the environment.
+      th: asset ที่ยังไม่แพตช์เป็นช่องทางที่รู้อยู่แล้วในการเข้าสู่สภาพแวดล้อม
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: report
+        description: Vulnerability scan results with severity and remediation status
+        max_age_days: 90
+      - type: ticket
+        description: Patch exception or risk acceptance record
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Critical vulnerabilities have owners and remediation decisions.
+        partial: Scanning exists but timeframes or exceptions are unrecorded.
+      full:
+        l2: Remediation meets the severity timeframes and exceptions are approved.
+        l3: Trends and repeat findings are reviewed.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: NIST SP 800-53 Rev. 5
+        url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+        type: standard
+    tags: [patching, vulnerability-management, remediation]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-004
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Physical and environmental controls are documented and evidenced
+      th: การควบคุมทางกายภาพและสภาพแวดล้อมถูกจัดทำเอกสารและมีหลักฐาน
+    description:
+      en: Where the product operates equipment in a facility it controls, access, power, cooling, fire suppression, and environmental monitoring must be documented and evidenced. A facility control without current evidence is not assured.
+      th: เมื่อผลิตภัณฑ์ใช้งานอุปกรณ์ในสถานที่ที่ควบคุมเอง การเข้าถึง ไฟฟ้า การระบายความร้อน ระบบดับเพลิง และการ monitor สภาพแวดล้อมต้องถูกจัดทำเอกสารและมีหลักฐาน การควบคุมสถานที่ที่ไม่มีหลักฐานปัจจุบันไม่ถือว่ามี assurance
+    rationale:
+      en: Physical access defeats logical controls that assume the hardware is protected.
+      th: การเข้าถึงทางกายภาพทำให้การควบคุมเชิงตรรกะที่ถือว่าฮาร์ดแวร์ได้รับการป้องกันล้มเหลว
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Facility access, power, cooling, and fire control description
+        max_age_days: 365
+      - type: attestation
+        description: Current facility or data centre attestation
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Facility controls are documented with current evidence.
+        partial: Controls are described but evidence is stale.
+      full:
+        l2: Controls are evidenced and reviewed for the current period.
+        l3: Incidents and environmental events are reviewed.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: NIST SP 800-53 Rev. 5
+        url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+        type: standard
+    tags: [physical-security, environmental-controls, facility]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-005
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Network segmentation limits lateral movement
+      th: การแบ่งส่วนเครือข่ายจำกัดการเคลื่อนที่ในวง
+    description:
+      en: The on-premises network must define zones for management, application, data, and external access, with documented rules between them. A flat network or an undocumented rule set does not meet the requirement.
+      th: เครือข่าย on-premises ต้องกำหนด zone สำหรับ management application data และ external access พร้อมกฎที่จัดทำเอกสารระหว่างกัน เครือข่ายแบนหรือชุดกฎที่ไม่มีเอกสารไม่เป็นไปตามข้อกำหนด
+    rationale:
+      en: Without segmentation, one compromised host reaches every other host.
+      th: หากไม่มีการแบ่งส่วน host ที่ถูกยึดหนึ่งเครื่องจะเข้าถึง host อื่นทุกเครื่องได้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: diagram
+        description: Network zone diagram with allowed flows
+        max_age_days: 365
+      - type: configuration
+        description: Firewall and routing rules between zones
+        max_age_days: 180
+      - type: test_result
+        description: Segmentation test for a denied flow
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Zones and rules are documented and a denied flow is tested.
+        partial: Zones exist but rules or tests are incomplete.
+      full:
+        l2: Segmentation is enforced and tested for sensitive zones.
+        l3: Rule changes are reviewed and tested after change.
+    references:
+      - title: NIST SP 800-53 Rev. 5
+        url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+        type: standard
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+    tags: [network-segmentation, lateral-movement, on-premises]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-006
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Backup is complete, isolated, and restore-tested
+      th: Backup ครบถ้วน แยกออกจากระบบหลัก และทดสอบการกู้คืน
+    description:
+      en: Product data and configuration must be backed up on a defined schedule, protected from deletion by the primary environment, encrypted, and restore-tested. A backup that has never been restored is not a verified backup.
+      th: ข้อมูลและ configuration ของผลิตภัณฑ์ต้องถูกสำรองตามกำหนด ป้องกันการลบจากสภาพแวดล้อมหลัก เข้ารหัส และทดสอบการกู้คืน backup ที่ไม่เคยถูกกู้คืนไม่ใช่ backup ที่ตรวจสอบแล้ว
+    rationale:
+      en: An untested backup is a hope, not a recovery capability.
+      th: backup ที่ไม่เคยทดสอบเป็นเพียงความหวัง ไม่ใช่ความสามารถในการกู้คืน
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Backup schedule, isolation, encryption, and retention
+        max_age_days: 180
+      - type: test_result
+        description: Restore test with measured result
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Backups run, are isolated, and a restore has been tested.
+        partial: Backups run but isolation or restore evidence is incomplete.
+      full:
+        l2: Backups are isolated, encrypted, and restore-tested on cadence.
+        l3: Restore results are reviewed against recovery objectives.
+    references:
+      - title: ISO 22301:2019
+        url: https://www.iso.org/standard/75106.html
+        type: standard
+      - title: NIST SP 800-34 Rev. 1
+        url: https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final
+        type: standard
+    tags: [backup, restore, data-protection]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-007
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Disaster recovery is planned and exercised
+      th: Disaster recovery ถูกวางแผนและซ้อม
+    description:
+      en: The product must define recovery objectives for on-premises failure scenarios, a recovery procedure, and a test cadence. A disaster recovery plan that has not been exercised within its stated cadence is not current.
+      th: ผลิตภัณฑ์ต้องกำหนด recovery objective สำหรับสถานการณ์ล้มเหลวของ on-premises ขั้นตอนการกู้คืน และรอบการทดสอบ แผน disaster recovery ที่ไม่ได้ซ้อมภายในรอบที่กำหนดไม่ถือว่าเป็นปัจจุบัน
+    rationale:
+      en: A recovery procedure that only exists on paper fails when the facility does.
+      th: ขั้นตอนกู้คืนที่มีเพียงบนกระดาษจะล้มเหลวเมื่อสถานที่ใช้งานไม่ได้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Recovery objectives and procedure per failure scenario
+        max_age_days: 365
+      - type: report
+        description: Disaster recovery exercise result
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Objectives, procedure, and a test cadence are defined.
+        partial: A plan exists but it has not been exercised.
+      full:
+        l2: The plan is exercised and results are recorded.
+        l3: Gaps are tracked to closure and objectives are met.
+    references:
+      - title: ISO 22301:2019
+        url: https://www.iso.org/standard/75106.html
+        type: standard
+      - title: NIST SP 800-34 Rev. 1
+        url: https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final
+        type: standard
+    tags: [disaster-recovery, continuity, exercise]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-008
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Deployment artefacts are verified before installation
+      th: Deployment artefact ถูกตรวจสอบก่อนติดตั้ง
+    description:
+      en: Every deployment artefact must be traceable to a reviewed source, integrity-checked before installation, and installed from a controlled repository. An artefact with no verified provenance must not be deployed.
+      th: deployment artefact ทุกชิ้นต้องตรวจสอบย้อนกลับไปยัง source ที่ทบทวนแล้ว ตรวจสอบความสมบูรณ์ก่อนติดตั้ง และติดตั้งจาก repository ที่ควบคุมไว้ artefact ที่ไม่มี provenance ที่ตรวจสอบได้ต้องไม่ถูกติดตั้ง
+    rationale:
+      en: An unsigned or untraceable artefact can carry code that no review ever saw.
+      th: artefact ที่ไม่มีการลงนามหรือตรวจสอบย้อนกลับไม่ได้อาจมีโค้ดที่ไม่เคยผ่านการทบทวน
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Artefact provenance and build source record
+        max_age_days: 180
+      - type: test_result
+        description: Signature or checksum verification at installation
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Artefacts are traceable and verified before installation.
+        partial: Provenance exists but verification is manual or incomplete.
+      full:
+        l2: Verification is enforced and failures block installation.
+        l3: Provenance is checked against the build system of record.
+    references:
+      - title: NIST SP 800-161 Rev. 1
+        url: https://csrc.nist.gov/pubs/sp/800/161/r1/upd1/final
+        type: standard
+      - title: SLSA specification
+        url: https://slsa.dev/spec/v1.0/
+        type: guidance
+    tags: [artifact-supply-chain, provenance, integrity]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-009
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Remote and privileged access is controlled and logged
+      th: การเข้าถึงระยะไกลและสิทธิ์สูงถูกควบคุมและบันทึก
+    description:
+      en: Remote administrative access to on-premises assets must require strong authentication, be limited to named individuals, be logged, and be reviewed on a defined cadence. Shared administrative accounts must not be used.
+      th: การเข้าถึงเพื่อดูแลระบบจากระยะไกลไปยัง asset ใน on-premises ต้องใช้การยืนยันตัวตนที่แข็งแรง จำกัดเฉพาะบุคคลที่ระบุชื่อ บันทึก และทบทวนตามรอบที่กำหนด ต้องไม่ใช้บัญชีผู้ดูแลระบบที่ใช้ร่วมกัน
+    rationale:
+      en: A shared administrative account makes every action unattributable.
+      th: บัญชีผู้ดูแลระบบที่ใช้ร่วมกันทำให้ทุกการกระทำไม่สามารถระบุผู้รับผิดชอบได้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Remote access, authentication, and session logging configuration
+        max_age_days: 180
+      - type: log
+        description: Privileged session records and access review
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Remote access is named, authenticated, and logged.
+        partial: Access is authenticated but logging or review is incomplete.
+      full:
+        l2: Access is named, logged, and reviewed on cadence.
+        l3: Sessions are monitored and anomalous access is investigated.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: NIST SP 800-53 Rev. 5
+        url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+        type: standard
+    tags: [privileged-access, remote-access, logging]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-ONP-010
+    version: 0.1.0
+    module: SRAS-ONP
+    title:
+      en: Decommissioning removes data and access
+      th: การปลดระวางลบข้อมูลและตัดสิทธิ์การเข้าถึง
+    description:
+      en: An asset removed from service must have its data securely erased or destroyed, its credentials and network access revoked, and its inventory record closed with evidence. An asset that is powered off but still credentialed is not decommissioned.
+      th: asset ที่ถูกถอดออกจากบริการต้องมีข้อมูลถูกลบอย่างปลอดภัยหรือทำลาย ข้อมูลรับรองและสิทธิ์การเข้าถึงเครือข่ายถูกเพิกถอน และบันทึกในทะเบียนถูกปิดพร้อมหลักฐาน asset ที่ปิดเครื่องแต่ยังมีข้อมูลรับรองไม่ถือว่าปลดระวางแล้ว
+    rationale:
+      en: A forgotten asset keeps its credentials and its data.
+      th: asset ที่ถูกลืมยังคงมีข้อมูลรับรองและข้อมูลของตน
+    criticality: medium
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-ONP]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: ticket
+        description: Decommissioning record with data erasure and access revocation
+        max_age_days: 365
+      - type: attestation
+        description: Destruction or secure erasure attestation
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Decommissioned assets have data erased and access revoked.
+        partial: The record exists but erasure or revocation is unverified.
+      full:
+        l2: Erasure, revocation, and inventory closure are evidenced.
+        l3: Decommissioning is sampled and reconciled with the inventory.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: NIST SP 800-53 Rev. 5
+        url: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+        type: standard
+    tags: [decommissioning, data-erasure, access-revocation]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+status: active
+deprecated_in: null
+replaced_by: null
+translation_status: partial
+machine_translated: true
+review_status: unverified
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
