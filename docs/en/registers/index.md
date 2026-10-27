@@ -49,6 +49,7 @@ Each generated reference page carries the official source, the
 | ------------- | ---------------------------------------------------- | ------------ | ---------- | ------------- |
 | `ID-PDP-001`  | Law No. 27 of 2022 on Personal Data Protection       | Indonesia    | Law        | `unverified`  |
 | `MY-PDPA-001` | Personal Data Protection Act 2010 (Act 709)          | Malaysia     | Law        | `unverified`  |
+| `PH-DPA-001`  | Republic Act No. 10173 (Data Privacy Act of 2012)    | Philippines  | Law        | `unverified`  |
 | `SG-PDPA-001` | Personal Data Protection Act 2012                    | Singapore    | Law        | `unverified`  |
 | `VN-PDPD-001` | Decree No. 13/2023/ND-CP on Personal Data Protection | Viet Nam     | Regulation | `unverified`  |
 
@@ -56,6 +57,7 @@ Each ASEAN entry links to its official source and its generated reference page:
 
 - [ID-PDP-001](../reference/registers/ID-PDP-001.md)
 - [MY-PDPA-001](../reference/registers/MY-PDPA-001.md)
+- [PH-DPA-001](../reference/registers/PH-DPA-001.md)
 - [SG-PDPA-001](../reference/registers/SG-PDPA-001.md)
 - [VN-PDPD-001](../reference/registers/VN-PDPD-001.md)
 

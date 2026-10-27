@@ -46,6 +46,7 @@ machine_translated: true
 
 - `ID-PDP-001` — Law No. 27 of 2022 on Personal Data Protection, Indonesia, law, `unverified`
 - `MY-PDPA-001` — Personal Data Protection Act 2010 (Act 709), Malaysia, law, `unverified`
+- `PH-DPA-001` — Republic Act No. 10173 (Data Privacy Act of 2012), Philippines, law, `unverified`
 - `SG-PDPA-001` — Personal Data Protection Act 2012, Singapore, law, `unverified`
 - `VN-PDPD-001` — Decree No. 13/2023/ND-CP on Personal Data Protection, Viet Nam, regulation, `unverified`
 
@@ -54,6 +55,7 @@ generate ไว้
 
 - [ID-PDP-001](../../en/reference/registers/ID-PDP-001.md)
 - [MY-PDPA-001](../../en/reference/registers/MY-PDPA-001.md)
+- [PH-DPA-001](../../en/reference/registers/PH-DPA-001.md)
 - [SG-PDPA-001](../../en/reference/registers/SG-PDPA-001.md)
 - [VN-PDPD-001](../../en/reference/registers/VN-PDPD-001.md)
 
