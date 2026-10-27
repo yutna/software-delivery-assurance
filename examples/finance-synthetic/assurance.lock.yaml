@@ -1,17 +1,17 @@
 sras:
-  version: 0.7.0
+  version: 0.8.0
   checksum: null
 modules:
   - id: SRAS-AI
-    version: 0.7.0
+    version: 0.8.0
   - id: SRAS-INT
-    version: 0.7.0
+    version: 0.8.0
   - id: SRAS-RGD
-    version: 0.7.0
+    version: 0.8.0
   - id: SRAS-CLD
-    version: 0.7.0
+    version: 0.8.0
 overlays:
   - id: TH-FIN
-    version: 0.7.0
+    version: 0.8.0
 generated_at: "2026-10-27T00:00:00Z"
 notes: Synthetic example only; the lockfile pins versions and makes no integrity claim.

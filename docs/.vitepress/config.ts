@@ -90,6 +90,10 @@ const enSidebar: DefaultTheme.Sidebar = [
         text: "ASEAN comparison",
         link: "/en/registers/asean-comparison",
       },
+      {
+        text: "EU comparison",
+        link: "/en/registers/eu-comparison",
+      },
     ],
   },
   {
@@ -154,6 +158,10 @@ const thSidebar: DefaultTheme.Sidebar = [
         text: "การเปรียบเทียบอาเซียน",
         link: "/th/registers/asean-comparison",
       },
+      {
+        text: "การเปรียบเทียบสหภาพยุโรป",
+        link: "/th/registers/eu-comparison",
+      },
     ],
   },
   {
@@ -175,7 +183,7 @@ const thSidebar: DefaultTheme.Sidebar = [
  * literal on its own line; the version checker reads it from this file.
  */
 const config = {
-  version: "0.7.0",
+  version: "0.8.0",
   title: "Software Delivery Assurance",
   description:
     "Open, evidence-based assurance for software delivery: SRAS standards, registers, and tools.",
