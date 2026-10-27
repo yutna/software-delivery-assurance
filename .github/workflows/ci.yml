@@ -58,6 +58,18 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+  fds-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: npm
+      - run: npm ci
+      - run: npm run check:fds
   dependency-audit:
     runs-on: ubuntu-latest
     steps:
@@ -73,7 +85,8 @@ jobs:
   # ci-ok is the one required check: add every job above to its needs.
   ci-ok:
     if: always()
-    needs: [actionlint, typecheck, ts-lint, ts-test, dependency-audit]
+    needs:
+      [actionlint, typecheck, ts-lint, ts-test, fds-check, dependency-audit]
     runs-on: ubuntu-latest
     steps:
       - name: All required jobs passed
