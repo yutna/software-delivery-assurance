@@ -39,6 +39,7 @@ const expectedModules = new Map<string, ModuleExpectation>([
     "SRAS-RGD",
     { path: "modules/regulated-data/module.yaml", requirements: 10 },
   ],
+  ["SRAS-CLD", { path: "modules/cloud-saas/module.yaml", requirements: 10 }],
 ]);
 
 const moduleById = (standard: ValidatedStandard, id: string): Module => {
