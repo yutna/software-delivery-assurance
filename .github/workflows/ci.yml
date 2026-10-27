@@ -112,7 +112,16 @@ jobs:
   ci-ok:
     if: always()
     needs:
-      [actionlint, typecheck, ts-lint, ts-test, fds-check, dependency-audit]
+      [
+        actionlint,
+        typecheck,
+        ts-lint,
+        ts-test,
+        fds-check,
+        schema-validate,
+        content-guard,
+        dependency-audit,
+      ]
     runs-on: ubuntu-latest
     steps:
       - name: All required jobs passed
