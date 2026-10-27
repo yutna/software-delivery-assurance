@@ -78,7 +78,9 @@ page](asean-comparison.md) summarises the six entries without ranking them.
 | -------------- | ----------------------------------------------------------------------------------- | ---------- | ------------- |
 | `EU-AIACT-001` | Regulation (EU) 2024/1689 (Artificial Intelligence Act)                             | Regulation | `unverified`  |
 | `EU-CRA-001`   | Regulation (EU) 2024/2847 (Cyber Resilience Act)                                    | Regulation | `unverified`  |
+| `EU-DATA-001`  | Regulation (EU) 2023/2854 (Data Act)                                                | Regulation | `unverified`  |
 | `EU-DORA-001`  | Regulation (EU) 2022/2554 (Digital Operational Resilience Act)                      | Regulation | `unverified`  |
+| `EU-EAA-001`   | Directive (EU) 2019/882 (European Accessibility Act)                                | Regulation | `unverified`  |
 | `EU-EIDAS-001` | Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS) | Regulation | `unverified`  |
 | `EU-GDPR-001`  | Regulation (EU) 2016/679 (General Data Protection Regulation)                       | Regulation | `unverified`  |
 | `EU-NIS-001`   | Directive (EU) 2022/2555 (NIS 2 Directive)                                          | Regulation | `unverified`  |
@@ -88,7 +90,9 @@ Each EU entry links to its official source and its generated reference page:
 
 - [EU-AIACT-001](../reference/registers/EU-AIACT-001.md)
 - [EU-CRA-001](../reference/registers/EU-CRA-001.md)
+- [EU-DATA-001](../reference/registers/EU-DATA-001.md)
 - [EU-DORA-001](../reference/registers/EU-DORA-001.md)
+- [EU-EAA-001](../reference/registers/EU-EAA-001.md)
 - [EU-EIDAS-001](../reference/registers/EU-EIDAS-001.md)
 - [EU-GDPR-001](../reference/registers/EU-GDPR-001.md)
 - [EU-NIS-001](../reference/registers/EU-NIS-001.md)

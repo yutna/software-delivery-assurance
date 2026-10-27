@@ -74,7 +74,9 @@ generate ไว้
 
 - `EU-AIACT-001` — Regulation (EU) 2024/1689 (Artificial Intelligence Act), regulation, `unverified`
 - `EU-CRA-001` — Regulation (EU) 2024/2847 (Cyber Resilience Act), regulation, `unverified`
+- `EU-DATA-001` — Regulation (EU) 2023/2854 (Data Act), regulation, `unverified`
 - `EU-DORA-001` — Regulation (EU) 2022/2554 (Digital Operational Resilience Act), regulation, `unverified`
+- `EU-EAA-001` — Directive (EU) 2019/882 (European Accessibility Act), regulation, `unverified`
 - `EU-EIDAS-001` — Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS), regulation, `unverified`
 - `EU-GDPR-001` — Regulation (EU) 2016/679 (General Data Protection Regulation), regulation, `unverified`
 - `EU-NIS-001` — Directive (EU) 2022/2555 (NIS 2 Directive), regulation, `unverified`
@@ -85,7 +87,9 @@ generate ไว้
 
 - [EU-AIACT-001](../../en/reference/registers/EU-AIACT-001.md)
 - [EU-CRA-001](../../en/reference/registers/EU-CRA-001.md)
+- [EU-DATA-001](../../en/reference/registers/EU-DATA-001.md)
 - [EU-DORA-001](../../en/reference/registers/EU-DORA-001.md)
+- [EU-EAA-001](../../en/reference/registers/EU-EAA-001.md)
 - [EU-EIDAS-001](../../en/reference/registers/EU-EIDAS-001.md)
 - [EU-GDPR-001](../../en/reference/registers/EU-GDPR-001.md)
 - [EU-NIS-001](../../en/reference/registers/EU-NIS-001.md)
