@@ -32,15 +32,15 @@ features:
 
 ## เริ่มต้นที่นี่
 
-- [เริ่มต้นอย่างรวดเร็ว](/th/quick-start) — จาก clone ที่สะอาดไปจนถึง project
+- [เริ่มต้นอย่างรวดเร็ว](quick-start.md) — จาก clone ที่สะอาดไปจนถึง project
   instance ที่สร้างแล้วและ library gate ที่ผ่าน
-- [ภาพรวม](/th/overview) — คลังนี้มีอะไรและไม่มีอะไร
-- [แนวคิด](/th/concepts/) — ข้อกำหนด profile module overlay การ resolve
+- [ภาพรวม](overview.md) — คลังนี้มีอะไรและไม่มีอะไร
+- [แนวคิด](concepts/index.md) — ข้อกำหนด profile module overlay การ resolve
   project instance claim และเครื่องมือ
-- [ภาคธุรกิจ](/th/sectors/) — overlay สี่ชุดของประเทศไทย
-- [ทะเบียน](/th/registers/) — ดัชนีข้อเท็จจริงของกฎหมายและกฎระเบียบไทย
-- [Reference](/th/reference/) — หน้าที่ generate จากข้อกำหนด overlay และทะเบียน
-- [อภิธานศัพท์](/th/glossary) — คำศัพท์ที่ใช้ร่วมกันทั้งไซต์
+- [ภาคธุรกิจ](sectors/index.md) — overlay สี่ชุดของประเทศไทย
+- [ทะเบียน](registers/index.md) — ดัชนีข้อเท็จจริงของกฎหมายและกฎระเบียบไทย
+- [Reference](reference/index.md) — หน้าที่ generate จากข้อกำหนด overlay และทะเบียน
+- [อภิธานศัพท์](glossary.md) — คำศัพท์ที่ใช้ร่วมกันทั้งไซต์
 
 หน้าภาษาอังกฤษเป็นฉบับหลักสำหรับ identifier, schema key และชื่อไฟล์
 คำแปลภาษาไทยดูได้จาก language switcher

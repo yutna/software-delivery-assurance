@@ -26,18 +26,26 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**v0.5.0 — project template and CLI.** The seven core domains are complete with
-70 active requirements, and both the `lite` and `full` profiles are available.
-Five technical modules add 52 requirements for AI/GenAI, integration and API,
-regulated data, cloud/SaaS, and on-premises. Four Thailand sector overlays —
-finance, e-commerce, logistics, and public sector — add 45 sector-specific
-requirements. Twelve Thailand register entries index official sources, and a
-pure resolver applies Core, modules, jurisdiction and industry overlays, and
-project additions with stricter-wins conflict reporting. Seven informative
-crosswalks link SRAS to ISO/IEC 27001:2022, NIST CSF 2.0, OWASP ASVS 5.0,
-PCI DSS 4.0.1, WCAG 2.2 AA, ISO/IEC 42001:2023, and NIST AI RMF 1.0.
+**v0.6.0 — bilingual documentation site.** The library now publishes an English
+and Thai VitePress site at
+[yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
+English pages are canonical for identifiers, schema keys, and file names. Thai
+pages are machine-assisted drafts marked `translation_status: partial` until a
+human reviewer confirms them. CI builds the site on every pull request and
+checks links with lychee; a merge to `main` deploys `docs/.vitepress/dist` to
+GitHub Pages.
 
-The v0.5.0 tools add project JSON Schemas and domain types, a copyable project
+The standard itself is unchanged: seven core domains with 70 active
+requirements, both the `lite` and `full` profiles, five technical modules with
+52 requirements for AI/GenAI, integration and API, regulated data, cloud/SaaS,
+and on-premises, and four Thailand sector overlays with 45 requirements for
+finance, e-commerce, logistics, and public sector. Twelve Thailand register
+entries index official sources, seven informative crosswalks link SRAS to
+ISO/IEC 27001:2022, NIST CSF 2.0, OWASP ASVS 5.0, PCI DSS 4.0.1, WCAG 2.2 AA,
+ISO/IEC 42001:2023, and NIST AI RMF 1.0, and a pure resolver applies Core,
+modules, overlays, and project additions with stricter-wins conflict reporting.
+
+The tools provide project JSON Schemas and domain types, a copyable project
 template, `sras init`, deterministic Markdown rendering with `sras render
 --check`, and content-guard reports with GitHub Actions annotations. The
 synthetic end-to-end project under `examples/e2e-project/` exercises Core, the
@@ -69,6 +77,7 @@ npm run sras -- validate --all
 npm run sras -- render --check
 npm run sras -- guard
 npm run docs:build
+npm run check:docs
 ```
 
 Create a project instance with:
@@ -78,8 +87,9 @@ npm run sras -- init ~/sras-demo --profile lite
 ```
 
 Read [SCOPE.md](SCOPE.md), then the [quick start](docs/en/quick-start.md) and
-the [project template guide](docs/en/templates/project.md). Follow
-[ROADMAP.md](ROADMAP.md) for the planned milestones.
+the [project template guide](docs/en/templates/project.md). The published site
+is [yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
+Follow [ROADMAP.md](ROADMAP.md) for the planned milestones.
 
 ## Repository map (current and planned)
 
@@ -96,7 +106,7 @@ the [project template guide](docs/en/templates/project.md). Follow
 | `src/sras/`  | TypeScript domain core, adapters, and CLI                   |
 | `tools/`     | Repository checks and the FDS sync/verify tools             |
 | `tests/`     | Unit, integration, golden, and content tests                |
-| `docs/`      | Quick start, guides, and generated reference pages          |
+| `docs/`      | Bilingual docs site, guides, and generated reference pages  |
 | `internal/`  | Temporary bootstrap seed; deleted in the final v1.0.0 issue |
 
 ## Contributing

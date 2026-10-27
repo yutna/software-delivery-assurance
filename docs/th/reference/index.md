@@ -9,12 +9,12 @@ machine_translated: true
 เขียนเป็นภาษาอังกฤษ ปัจจุบัน `render` สร้างเฉพาะ `docs/en/reference/`
 จึงไม่มีการแปลหน้าอ้างอิงเป็นภาษาไทยในรุ่นนี้
 
-- [ดัชนี reference ภาษาอังกฤษ](/en/reference/) — ทุกข้อกำหนด overlay และทะเบียน
-- [ข้อกำหนด Core และ module](/en/reference/#requirements) — 70 ข้อกำหนด Core
+- [ดัชนี reference ภาษาอังกฤษ](../../en/reference/index.md) — ทุกข้อกำหนด overlay และทะเบียน
+- [ข้อกำหนด Core และ module](../../en/reference/index.md#requirements) — 70 ข้อกำหนด Core
   และ 52 ข้อกำหนดใน module
-- [Overlay ภาคธุรกิจ](/en/reference/#overlays) — `TH-FIN`, `TH-ECM`, `TH-LOG`,
+- [Overlay ภาคธุรกิจ](../../en/reference/index.md#overlays) — `TH-FIN`, `TH-ECM`, `TH-LOG`,
   `TH-PUB`
-- [ทะเบียนประเทศไทย](/en/reference/#registers) — 12 รายการ
+- [ทะเบียนประเทศไทย](../../en/reference/index.md#registers) — 12 รายการ
 
 หน้า reference เป็นเอาต์พุตที่ generate ห้ามแก้ด้วยมือ หากต้องการเปลี่ยนเนื้อหา
 ให้แก้ YAML ต้นทางแล้วรัน `npm run sras -- render` และ commit ทั้งต้นทางและ

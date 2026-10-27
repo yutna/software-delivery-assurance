@@ -124,6 +124,28 @@ jobs:
       - run: npm run docs:build
         env:
           DOCS_BASE: /software-delivery-assurance/
+  docs-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: npm
+      - run: npm ci
+      - run: npm run check:docs
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          lycheeVersion: v0.24.2
+          args: --config .lychee.toml --no-progress docs README.md
   dependency-audit:
     runs-on: ubuntu-latest
     steps:
@@ -150,6 +172,8 @@ jobs:
         content-guard,
         render-check,
         docs-build,
+        docs-qa,
+        link-check,
         dependency-audit,
       ]
     runs-on: ubuntu-latest

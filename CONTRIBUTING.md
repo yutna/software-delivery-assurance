@@ -49,6 +49,7 @@ npm run sras -- validate --all
 npm run sras -- render --check
 npm run sras -- guard
 npm run docs:build
+npm run check:docs
 ```
 
 Only run the commands that exist in the current milestone. A release also runs
@@ -71,6 +72,34 @@ npm run docs:preview   # serve the production build locally
 pages under `docs/en/reference/` are produced by `npm run sras -- render`;
 never edit them by hand. Change the source YAML, run the renderer, and commit
 the regenerated pages. The build output and cache are ignored by Git.
+
+## Documentation QA
+
+Every documentation pull request runs this checklist:
+
+```bash
+npm run docs:build
+npm run check:docs
+lychee --config .lychee.toml docs README.md
+```
+
+- [ ] The English navigation entry exists and resolves to a page.
+- [ ] The Thai counterpart exists, or the page states that generated reference
+      content is English-only.
+- [ ] Every Thai page keeps `translation_status: partial` and
+      `machine_translated: true` until a named human reviewer signs off.
+- [ ] The translation banner appears on a partial page, and no banner appears
+      on a complete page.
+- [ ] The language switcher and the page-level language links resolve.
+- [ ] The glossary has the same terms in English and Thai.
+- [ ] The quick start commands still match the CLI.
+- [ ] `docs/en/reference/` is unchanged unless `npm run sras -- render` was
+      run.
+
+`npm run check:docs` enforces the page parity, frontmatter, navigation,
+glossary, and quick-start checks. The `link-check` CI job runs lychee with
+`.lychee.toml`. An external link is excluded only in that file, with a written
+reason; do not disable the docs build's dead-link check.
 
 ## Content rules
 

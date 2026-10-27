@@ -32,16 +32,16 @@ features:
 
 ## Start here
 
-- [Quick start](/en/quick-start) — from a clean clone to a created project
+- [Quick start](quick-start.md) — from a clean clone to a created project
   instance and a passing library gate.
-- [Overview](/en/overview) — what the library contains and what it does not do.
-- [Concepts](/en/concepts/) — requirements, profiles, modules, overlays,
+- [Overview](overview.md) — what the library contains and what it does not do.
+- [Concepts](concepts/index.md) — requirements, profiles, modules, overlays,
   resolution, project instances, claims, and tools.
-- [Sectors](/en/sectors/) — the four Thailand sector overlays.
-- [Registers](/en/registers/) — the factual index of Thailand instruments.
-- [Reference](/en/reference/) — generated requirement, overlay, and register
+- [Sectors](sectors/index.md) — the four Thailand sector overlays.
+- [Registers](registers/index.md) — the factual index of Thailand instruments.
+- [Reference](reference/index.md) — generated requirement, overlay, and register
   pages.
-- [Glossary](/en/glossary) — the shared vocabulary used across the site.
+- [Glossary](glossary.md) — the shared vocabulary used across the site.
 
 The English pages are canonical for identifiers, schema keys, and file names.
 The Thai translation is available from the language switcher.

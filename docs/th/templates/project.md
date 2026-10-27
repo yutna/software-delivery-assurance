@@ -49,7 +49,7 @@ project:
   description: SRAS project instance for Example project.
   owner: Project owner
   confidentiality: internal
-sras_version: 0.5.0
+sras_version: 0.6.0
 profile: lite
 tier: 2
 modules: []
@@ -173,7 +173,7 @@ lockfile pin standard input ที่ resolve แล้วและ checksum ห
 ```yaml
 lockfile_version: 1
 sras:
-  version: 0.5.0
+  version: 0.6.0
   checksum: sha256:...
 modules: []
 overlays: []
