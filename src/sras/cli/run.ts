@@ -11,6 +11,10 @@ const renderArgsError = (error: ArgsError): string => {
       return `too many arguments: ${error.values.join(" ")}\n`;
     case "MissingFlag":
       return `missing required flag: ${error.value}\n`;
+    case "MissingArgument":
+      return `missing required argument: ${error.value}\n`;
+    case "InvalidProfile":
+      return `invalid profile: ${error.value}; expected lite or full\n`;
     default:
       return assertNever(error);
   }
