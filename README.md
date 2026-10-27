@@ -26,9 +26,11 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**v0.1.0 — foundation.** The repository is built in small, reviewed milestones.
-The CLI supports `sras --version`, `sras validate --all`, and `sras guard`;
-project init, rendering, and the full content set arrive in later milestones.
+**v0.2.0 — core SRAS.** The repository is built in small, reviewed milestones.
+The seven core domains are complete with 70 active requirements and both the
+`lite` and `full` profiles. The CLI supports `sras --version`,
+`sras validate --all`, and `sras guard`; project init and rendering arrive in
+later milestones.
 
 ## Who it is for
 
