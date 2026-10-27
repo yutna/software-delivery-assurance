@@ -1,0 +1,79 @@
+entries:
+  - id: EV-FIN-001
+    requirement_ids: [SRAS-GOV-001]
+    type: document
+    description: Synthetic scope and ownership record.
+    location: evidence/synthetic-policy.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real record is included.
+  - id: EV-FIN-002
+    requirement_ids: [SRAS-SEC-001, TH-FIN-006]
+    type: configuration
+    description: Synthetic access-control and privileged-access configuration excerpt.
+    location: evidence/synthetic-policy.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real configuration is included.
+  - id: EV-FIN-003
+    requirement_ids: [SRAS-SEC-009]
+    type: test_result
+    description: Synthetic vulnerability management test summary.
+    location: evidence/synthetic-test-result.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real system was tested.
+  - id: EV-FIN-004
+    requirement_ids: [SRAS-INC-005, TH-FIN-001]
+    type: document
+    description: Synthetic continuity, availability, and recovery plan excerpt.
+    location: evidence/synthetic-policy.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the exercise is not complete.
+  - id: EV-FIN-005
+    requirement_ids: [TH-FIN-003]
+    type: document
+    description: Synthetic outsourcing exit plan excerpt.
+    location: evidence/synthetic-policy.md
+    owner: Example vendor owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real vendor is named.
+  - id: EV-FIN-006
+    requirement_ids: [TH-FIN-010]
+    type: report
+    description: Synthetic model risk review note.
+    location: evidence/synthetic-review.md
+    owner: Example model owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the model is not real.

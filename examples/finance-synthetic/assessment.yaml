@@ -1,0 +1,93 @@
+project:
+  name: Finance synthetic example
+  description: Synthetic example for the Thailand finance overlay.
+  owner: Example team
+  confidentiality: synthetic
+sras_version: 0.4.0
+profile: full
+tier: 2
+scope:
+  systems: [example-payments-service]
+  data: [synthetic-customer-records]
+  users: [synthetic-operations-team]
+  jurisdictions: [TH]
+modules: [SRAS-AI, SRAS-INT, SRAS-RGD, SRAS-CLD]
+overlays: [TH-FIN]
+assessed_at: "2026-10-27"
+assessor: Synthetic example
+requirements:
+  - id: SRAS-GOV-001
+    status: implemented
+    maturity: L3
+    evidence_refs: [EV-FIN-001]
+    notes: Synthetic scope and ownership record.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-SEC-001
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-FIN-002]
+    notes: Synthetic access-control configuration and test.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-SEC-009
+    status: implemented
+    maturity: L2
+    evidence_refs: [EV-FIN-003]
+    notes: Synthetic vulnerability management summary.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-INC-005
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-FIN-004]
+    notes: Synthetic continuity plan is documented; the exercise is incomplete.
+    gap_owner: Example risk owner
+    due_date: "2027-03-31"
+  - id: TH-FIN-001
+    status: implemented
+    maturity: L2
+    evidence_refs: [EV-FIN-004]
+    notes: Synthetic availability objectives and recovery exercise outline.
+    gap_owner: null
+    due_date: null
+  - id: TH-FIN-003
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-FIN-005]
+    notes: Synthetic exit plan exists; the transition test is not scheduled.
+    gap_owner: Example vendor owner
+    due_date: "2027-06-30"
+  - id: TH-FIN-006
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-FIN-002]
+    notes: Synthetic privileged-access approval and review record.
+    gap_owner: null
+    due_date: null
+  - id: TH-FIN-010
+    status: gap
+    maturity: L1
+    evidence_refs: [EV-FIN-006]
+    notes: Synthetic model inventory exists; validation is not complete.
+    gap_owner: Example model owner
+    due_date: "2027-06-30"
+gates:
+  pass: 5
+  fail: 1
+summary:
+  counts:
+    verified: 2
+    implemented: 3
+    partial: 2
+    gap: 1
+    not_assessed: 0
+    not_applicable: 0
+  index: 0.72
+signoff:
+  name: Synthetic reviewer
+  role: Example reviewer
+  date: "2026-10-27"
+limitations:
+  - Synthetic example only; it is not an assessment of a real product.
+  - No real evidence, customer data, or production detail is included.

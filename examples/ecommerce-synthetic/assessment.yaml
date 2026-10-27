@@ -1,0 +1,86 @@
+project:
+  name: E-commerce synthetic example
+  description: Synthetic example for the Thailand e-commerce overlay.
+  owner: Example team
+  confidentiality: synthetic
+sras_version: 0.4.0
+profile: full
+tier: 2
+scope:
+  systems: [example-checkout-service]
+  data: [synthetic-order-records]
+  users: [synthetic-support-team]
+  jurisdictions: [TH]
+modules: [SRAS-INT, SRAS-RGD, SRAS-CLD]
+overlays: [TH-ECM]
+assessed_at: "2026-10-27"
+assessor: Synthetic example
+requirements:
+  - id: SRAS-GOV-001
+    status: implemented
+    maturity: L3
+    evidence_refs: [EV-ECM-001]
+    notes: Synthetic scope and ownership record.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-SEC-004
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-ECM-002]
+    notes: Synthetic encryption configuration and test.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-PRV-006
+    status: implemented
+    maturity: L2
+    evidence_refs: [EV-ECM-001]
+    notes: Synthetic notice and consent record.
+    gap_owner: null
+    due_date: null
+  - id: TH-ECM-001
+    status: implemented
+    maturity: L3
+    evidence_refs: [EV-ECM-002]
+    notes: Synthetic card-data scope diagram and storage rules.
+    gap_owner: null
+    due_date: null
+  - id: TH-ECM-003
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-ECM-003]
+    notes: Synthetic checkout retry and reconciliation test.
+    gap_owner: null
+    due_date: null
+  - id: TH-ECM-007
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-ECM-004]
+    notes: Synthetic account takeover controls exist; recovery testing is incomplete.
+    gap_owner: Example security owner
+    due_date: "2027-03-31"
+  - id: TH-ECM-010
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-ECM-005]
+    notes: Synthetic accessibility review found open remediation actions.
+    gap_owner: Example product owner
+    due_date: "2027-06-30"
+gates:
+  pass: 4
+  fail: 1
+summary:
+  counts:
+    verified: 2
+    implemented: 3
+    partial: 2
+    gap: 0
+    not_assessed: 0
+    not_applicable: 0
+  index: 0.81
+signoff:
+  name: Synthetic reviewer
+  role: Example reviewer
+  date: "2026-10-27"
+limitations:
+  - Synthetic example only; it is not an assessment of a real product.
+  - No real evidence, customer data, or production detail is included.

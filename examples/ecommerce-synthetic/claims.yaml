@@ -1,0 +1,23 @@
+claims:
+  - id: CLM-ECM-001
+    claim: The synthetic example records a checkout idempotency and duplicate-charge test.
+    evidence_ids: [EV-ECM-003]
+    status: verified
+    allowed_wording: The synthetic e-commerce example shows a checkout idempotency test path.
+    prohibited_wording: Any statement that a real checkout or payment flow is free of duplicate charges.
+    owner: Example team
+    approved_by: Synthetic reviewer
+    approved_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    notes: Synthetic example only; the claim is not about a real product.
+  - id: CLM-ECM-002
+    claim: The synthetic example records an accessibility review with open remediation actions.
+    evidence_ids: [EV-ECM-005]
+    status: partial
+    allowed_wording: The synthetic e-commerce example records an accessibility review and an open action list.
+    prohibited_wording: Any statement that a real customer journey meets an accessibility target.
+    owner: Example product owner
+    approved_by: Synthetic reviewer
+    approved_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    notes: Synthetic example only; the limitation is part of the example.

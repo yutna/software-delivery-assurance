@@ -1,0 +1,79 @@
+entries:
+  - id: EV-PUB-001
+    requirement_ids: [SRAS-GOV-001]
+    type: document
+    description: Synthetic scope, ownership, and procurement link.
+    location: evidence/synthetic-procurement.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real procurement record is included.
+  - id: EV-PUB-002
+    requirement_ids: [SRAS-PRV-010, TH-PUB-012]
+    type: document
+    description: Synthetic privacy impact assessment and public summary.
+    location: evidence/synthetic-pia.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the assessment is not about a real service.
+  - id: EV-PUB-003
+    requirement_ids: [SRAS-INC-005]
+    type: document
+    description: Synthetic continuity and recovery plan excerpt.
+    location: evidence/synthetic-policy.md
+    owner: Example operations owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the exercise is not complete.
+  - id: EV-PUB-004
+    requirement_ids: [TH-PUB-001]
+    type: document
+    description: Synthetic procurement, contract, and acceptance evidence set.
+    location: evidence/synthetic-procurement.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real supplier is named.
+  - id: EV-PUB-005
+    requirement_ids: [TH-PUB-003]
+    type: report
+    description: Synthetic accessibility review with open actions.
+    location: evidence/synthetic-review.md
+    owner: Example product owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the review is not about a real service.
+  - id: EV-PUB-006
+    requirement_ids: [TH-PUB-006]
+    type: configuration
+    description: Synthetic hosting location and residency configuration excerpt.
+    location: evidence/synthetic-configuration.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real region or provider is named.

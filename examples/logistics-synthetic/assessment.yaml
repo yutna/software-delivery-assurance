@@ -1,0 +1,86 @@
+project:
+  name: Logistics synthetic example
+  description: Synthetic example for the Thailand logistics overlay.
+  owner: Example team
+  confidentiality: synthetic
+sras_version: 0.4.0
+profile: full
+tier: 2
+scope:
+  systems: [example-tracking-service]
+  data: [synthetic-shipment-events]
+  users: [synthetic-dispatch-team]
+  jurisdictions: [TH]
+modules: [SRAS-INT, SRAS-RGD, SRAS-CLD]
+overlays: [TH-LOG]
+assessed_at: "2026-10-27"
+assessor: Synthetic example
+requirements:
+  - id: SRAS-GOV-002
+    status: implemented
+    maturity: L2
+    evidence_refs: [EV-LOG-001]
+    notes: Synthetic risk register with owners and review dates.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-OPS-001
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-LOG-002]
+    notes: Synthetic telemetry configuration for the tracking service.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-INC-005
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-LOG-003]
+    notes: Synthetic continuity plan exists; the exercise is incomplete.
+    gap_owner: Example operations owner
+    due_date: "2027-03-31"
+  - id: TH-LOG-001
+    status: implemented
+    maturity: L2
+    evidence_refs: [EV-LOG-002]
+    notes: Synthetic shipment event model and reconciliation rules.
+    gap_owner: null
+    due_date: null
+  - id: TH-LOG-003
+    status: implemented
+    maturity: L3
+    evidence_refs: [EV-LOG-004]
+    notes: Synthetic EDI and API reconciliation test.
+    gap_owner: null
+    due_date: null
+  - id: TH-LOG-005
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-LOG-005]
+    notes: Synthetic carrier access log exists; revocation evidence is incomplete.
+    gap_owner: Example carrier owner
+    due_date: "2027-06-30"
+  - id: TH-LOG-011
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-LOG-002]
+    notes: Synthetic proof-of-delivery integrity and retrieval test.
+    gap_owner: null
+    due_date: null
+gates:
+  pass: 4
+  fail: 1
+summary:
+  counts:
+    verified: 2
+    implemented: 3
+    partial: 2
+    gap: 0
+    not_assessed: 0
+    not_applicable: 0
+  index: 0.79
+signoff:
+  name: Synthetic reviewer
+  role: Example reviewer
+  date: "2026-10-27"
+limitations:
+  - Synthetic example only; it is not an assessment of a real product.
+  - No real evidence, customer data, or production detail is included.
