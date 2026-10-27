@@ -122,7 +122,7 @@ npm run sras -- guard
 ผลลัพธ์ที่คาดหวัง:
 
 ```text
-guard passed: scanned 243 files; excluded 0
+guard passed: scanned 254 files; excluded 0
 ```
 
 guard สแกน path เนื้อหาสาธารณะเพื่อหา คำที่อยู่นอกขอบเขตด้านสุขภาพและ sector, secret, private network identifier, personal data, ชื่อลูกค้าจาก private override และ unsafe claim ส่วน FDS pack, `vendor/`, `tests/` และ seed ชั่วคราว `internal/` ถูกยกเว้น

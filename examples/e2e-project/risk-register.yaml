@@ -1,0 +1,27 @@
+risks:
+  - id: RSK-E2E-001
+    requirement_ids: [SRAS-INC-005]
+    description: The synthetic continuity exercise is not complete.
+    severity: high
+    likelihood: medium
+    impact: high
+    remediation: Complete the exercise and record the result.
+    owner: Example risk owner
+    due_date: "2027-03-31"
+    status: open
+    acceptance_id: null
+    customer_disclosure: yes
+    notes: Synthetic example only; the gap is intentional.
+  - id: RSK-E2E-002
+    requirement_ids: [TH-FIN-010]
+    description: The synthetic model validation is not complete.
+    severity: medium
+    likelihood: medium
+    impact: medium
+    remediation: Validate the model and record the review.
+    owner: Example model owner
+    due_date: "2027-06-30"
+    status: accepted
+    acceptance_id: ACC-E2E-001
+    customer_disclosure: conditional
+    notes: Synthetic example only; the acceptance is not real.

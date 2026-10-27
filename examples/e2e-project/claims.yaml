@@ -1,0 +1,23 @@
+claims:
+  - id: CLM-E2E-001
+    claim: The synthetic project records access-control evidence for its example service.
+    evidence_ids: [EV-E2E-002]
+    status: verified
+    allowed_wording: The synthetic project shows an access-control evidence path.
+    prohibited_wording: Any statement that a real product meets a legal or third-party requirement.
+    owner: Example team
+    approved_by: Synthetic reviewer
+    approved_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    notes: Synthetic example only; the claim is not about a real product.
+  - id: CLM-E2E-002
+    claim: The synthetic project has a documented continuity position with an open exercise action.
+    evidence_ids: [EV-E2E-004]
+    status: partial
+    allowed_wording: The synthetic project documents continuity objectives and an open exercise action.
+    prohibited_wording: Any statement that continuity is fully demonstrated for a real product.
+    owner: Example risk owner
+    approved_by: Synthetic reviewer
+    approved_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    notes: Synthetic example only; the limitation is part of the example.

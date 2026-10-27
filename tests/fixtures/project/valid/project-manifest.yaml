@@ -3,7 +3,7 @@ project:
   description: Synthetic project instance for schema and parser tests.
   owner: Example team
   confidentiality: synthetic
-sras_version: 0.4.0
+sras_version: 0.5.0
 profile: full
 tier: 2
 modules: [SRAS-AI]

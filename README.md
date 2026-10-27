@@ -26,18 +26,22 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**v0.4.0 — Thailand sector overlays.** The seven core domains are complete with
+**v0.5.0 — project template and CLI.** The seven core domains are complete with
 70 active requirements, and both the `lite` and `full` profiles are available.
 Five technical modules add 52 requirements for AI/GenAI, integration and API,
 regulated data, cloud/SaaS, and on-premises. Four Thailand sector overlays —
-finance, e-commerce, logistics, and public sector — add sector-specific
+finance, e-commerce, logistics, and public sector — add 45 sector-specific
 requirements. Twelve Thailand register entries index official sources, and a
 pure resolver applies Core, modules, jurisdiction and industry overlays, and
 project additions with stricter-wins conflict reporting. Seven informative
 crosswalks link SRAS to ISO/IEC 27001:2022, NIST CSF 2.0, OWASP ASVS 5.0,
-PCI DSS 4.0.1, WCAG 2.2 AA, ISO/IEC 42001:2023, and NIST AI RMF 1.0. The CLI
-supports `sras --version`, `sras validate --all`, and `sras guard`; project init
-and rendering arrive in later milestones.
+PCI DSS 4.0.1, WCAG 2.2 AA, ISO/IEC 42001:2023, and NIST AI RMF 1.0.
+
+The v0.5.0 tools add project JSON Schemas and domain types, a copyable project
+template, `sras init`, deterministic Markdown rendering with `sras render
+--check`, and content-guard reports with GitHub Actions annotations. The
+synthetic end-to-end project under `examples/e2e-project/` exercises Core, the
+AI module, and the finance overlay.
 
 ## Who it is for
 
@@ -61,11 +65,20 @@ npm run typecheck
 npm test
 npm run check:fds
 npm run sras -- --version
+npm run sras -- validate --all
+npm run sras -- render --check
+npm run sras -- guard
 ```
 
-Read [SCOPE.md](SCOPE.md), then follow [ROADMAP.md](ROADMAP.md) for the planned
-milestones. The assessment workflow, project template, and full CLI are added
-in v0.5.0.
+Create a project instance with:
+
+```bash
+npm run sras -- init ~/sras-demo --profile lite
+```
+
+Read [SCOPE.md](SCOPE.md), then the [quick start](docs/en/quick-start.md) and
+the [project template guide](docs/en/templates/project.md). Follow
+[ROADMAP.md](ROADMAP.md) for the planned milestones.
 
 ## Repository map (current and planned)
 
@@ -82,7 +95,7 @@ in v0.5.0.
 | `src/sras/`  | TypeScript domain core, adapters, and CLI                   |
 | `tools/`     | Repository checks and the FDS sync/verify tools             |
 | `tests/`     | Unit, integration, golden, and content tests                |
-| `docs/`      | Bilingual documentation site from v0.6.0                    |
+| `docs/`      | Quick start, guides, and generated reference pages          |
 | `internal/`  | Temporary bootstrap seed; deleted in the final v1.0.0 issue |
 
 ## Contributing
