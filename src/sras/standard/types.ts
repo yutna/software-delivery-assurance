@@ -40,6 +40,27 @@ export type RegisterStatus =
 export type RegisterInstrumentType =
   "law" | "regulation" | "standard" | "guidance" | "framework";
 
+export type EvidenceType =
+  | "document"
+  | "diagram"
+  | "configuration"
+  | "screenshot"
+  | "test_result"
+  | "metric"
+  | "ticket"
+  | "log"
+  | "contract"
+  | "attestation"
+  | "benchmark"
+  | "interview"
+  | "report";
+
+export type EvidenceExpectation = {
+  readonly type: EvidenceType;
+  readonly description: string;
+  readonly maxAgeDays: number;
+};
+
 export type CrosswalkRelationship = "supports" | "partial" | "related";
 
 export type LocalizedText = {
@@ -83,6 +104,7 @@ export type CoreRequirement = StandardMetadata & {
   readonly domain: CoreDomain;
   readonly criticality: Criticality;
   readonly applicability: Applicability;
+  readonly evidence: NonEmpty<EvidenceExpectation>;
   readonly title: LocalizedText;
   readonly description: LocalizedText;
   readonly introducedIn: Version;
@@ -96,6 +118,7 @@ export type ModuleRequirement = StandardMetadata & {
   readonly module: ModuleId;
   readonly criticality: Criticality;
   readonly applicability: Applicability;
+  readonly evidence: NonEmpty<EvidenceExpectation>;
   readonly title: LocalizedText;
   readonly description: LocalizedText;
   readonly introducedIn: Version;
@@ -109,6 +132,7 @@ export type OverlayRequirement = StandardMetadata & {
   readonly overlay: OverlayId;
   readonly criticality: Criticality;
   readonly applicability: Applicability;
+  readonly evidence: NonEmpty<EvidenceExpectation>;
   readonly title: LocalizedText;
   readonly description: LocalizedText;
   readonly introducedIn: Version;
