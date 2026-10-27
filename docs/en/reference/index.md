@@ -152,3 +152,4 @@ run `npm run sras -- render`.
 - [TH-PDPA-001 — Personal Data Protection Act B.E. 2562 (2019)](registers/TH-PDPA-001.md)
 - [TH-PROC-001 — Public Procurement Act B.E. 2560 (2017)](registers/TH-PROC-001.md)
 - [TH-TECH-001 — Emergency Decree on Measures to Prevent and Suppress Technology Crimes B.E. 2566 (2023)](registers/TH-TECH-001.md)
+- [VN-PDPD-001 — Decree No. 13/2023/ND-CP on Personal Data Protection](registers/VN-PDPD-001.md)
