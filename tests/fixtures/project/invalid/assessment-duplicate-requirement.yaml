@@ -1,0 +1,50 @@
+project:
+  name: Synthetic project example
+  description: Synthetic project instance for schema and parser tests.
+  owner: Example team
+  confidentiality: synthetic
+sras_version: 0.4.0
+profile: full
+tier: 2
+scope:
+  systems: [example-service]
+  data: [synthetic-records]
+  users: [example-team]
+  jurisdictions: [TH]
+modules: [SRAS-AI]
+overlays: [TH-FIN]
+assessed_at: "2026-10-27"
+assessor: Synthetic assessor
+requirements:
+  - id: SRAS-GOV-001
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-SYN-001]
+    notes: Synthetic scope and ownership record.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-GOV-001
+    status: gap
+    maturity: L2
+    evidence_refs: []
+    notes: Duplicate synthetic requirement entry.
+    gap_owner: Example owner
+    due_date: "2027-04-27"
+gates:
+  pass: 1
+  fail: 0
+summary:
+  counts:
+    verified: 1
+    implemented: 0
+    partial: 0
+    gap: 0
+    not_assessed: 0
+    not_applicable: 0
+  index: 0.9
+signoff:
+  name: Synthetic reviewer
+  role: Example reviewer
+  date: "2026-10-27"
+limitations:
+  - Synthetic example only; it is not an assessment of a real product.

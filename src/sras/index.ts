@@ -24,4 +24,33 @@ export type {
   ValidatedStandard,
   ValidationIssue,
 } from "./standard/types.js";
+export {
+  parseAssessmentFile,
+  parseClaimRegisterFile,
+  parseEvidenceIndexFile,
+  parseProjectLockFile,
+  parseProjectManifestFile,
+  parseRiskRegisterFile,
+} from "./project/parse.js";
+export {
+  computeChecksum,
+  createProjectLock,
+  lockInputs,
+  verifyProjectLock,
+} from "./project/lockfile.js";
+export { validateProject } from "./project/validate.js";
+export type {
+  Assessment,
+  Claim,
+  ClaimRegister,
+  EvidenceEntry,
+  EvidenceIndex,
+  ProjectInstance,
+  ProjectIssue,
+  ProjectLock,
+  ProjectManifest,
+  Risk,
+  RiskRegister,
+  ValidatedProject,
+} from "./project/types.js";
 export { VERSION } from "./version.js";

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/project-lock.schema.json",
+  "title": "SRAS project lockfile",
+  "description": "Pins the resolved standard inputs for a project instance. The checksum is SHA-256 over the canonical JSON of the input list, sorted by path, with no timestamp. See src/sras/project/lockfile.ts for the exact canonical form.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lockfile_version", "sras", "modules", "overlays", "inputs"],
+  "properties": {
+    "lockfile_version": {
+      "const": 1
+    },
+    "sras": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "checksum"],
+      "properties": {
+        "version": {
+          "$ref": "requirement.schema.json#/$defs/semver"
+        },
+        "checksum": {
+          "$ref": "#/$defs/checksum"
+        }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/lockedModule"
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/lockedOverlay"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/lockedInput"
+      }
+    }
+  },
+  "$defs": {
+    "checksum": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "lockedModule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {
+          "$ref": "assurance.schema.json#/$defs/moduleId"
+        },
+        "version": {
+          "$ref": "requirement.schema.json#/$defs/semver"
+        }
+      }
+    },
+    "lockedOverlay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {
+          "$ref": "assurance.schema.json#/$defs/overlayId"
+        },
+        "version": {
+          "$ref": "requirement.schema.json#/$defs/semver"
+        }
+      }
+    },
+    "lockedInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[^\\u0000]+$"
+    }
+  }
+}

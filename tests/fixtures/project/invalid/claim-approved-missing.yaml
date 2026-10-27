@@ -1,0 +1,12 @@
+claims:
+  - id: CLM-SYN-001
+    claim: The synthetic example records a scope and ownership document.
+    evidence_ids: [EV-SYN-001]
+    status: verified
+    allowed_wording: The synthetic example shows a scope and ownership evidence path.
+    prohibited_wording: Any statement that a real product meets a legal or third-party requirement.
+    owner: Example team
+    approved_by: null
+    approved_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    notes: Synthetic example only; the claim is not about a real product.

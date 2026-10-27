@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/risk-register.schema.json",
+  "title": "SRAS project risk register",
+  "description": "Gaps and risks with an owner, a due date, and an explicit customer-disclosure decision. An accepted risk requires an acceptance identifier.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["risks"],
+  "properties": {
+    "risks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/risk"
+      }
+    }
+  },
+  "$defs": {
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "requirement_ids",
+        "description",
+        "severity",
+        "likelihood",
+        "impact",
+        "remediation",
+        "owner",
+        "due_date",
+        "status",
+        "acceptance_id",
+        "customer_disclosure",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/riskId"
+        },
+        "requirement_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/requirementRef"
+          }
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"]
+        },
+        "likelihood": {
+          "$ref": "#/$defs/riskLevel"
+        },
+        "impact": {
+          "$ref": "#/$defs/riskLevel"
+        },
+        "remediation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "due_date": {
+          "anyOf": [
+            {
+              "$ref": "requirement.schema.json#/$defs/date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["open", "in_progress", "closed", "accepted"]
+        },
+        "acceptance_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/acceptanceId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "customer_disclosure": {
+          "type": "string",
+          "enum": ["yes", "no", "conditional"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "accepted",
+                "type": "string"
+              }
+            },
+            "required": ["status"],
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "acceptance_id": {
+                "$ref": "#/$defs/acceptanceId"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "riskId": {
+      "type": "string",
+      "pattern": "^RSK(?:-[A-Z0-9]+)+-\\d{3}$"
+    },
+    "acceptanceId": {
+      "type": "string",
+      "pattern": "^ACC(?:-[A-Z0-9]+)+-\\d{3}$"
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "requirementRef": {
+      "anyOf": [
+        {
+          "$ref": "requirement.schema.json#/$defs/requirementId"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Z]{2,5}-[A-Z]{3}-\\d{3}$"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/assurance.schema.json",
+  "title": "SRAS project instance manifest",
+  "description": "Project identity and the SRAS selection pinned by a project instance. The manifest is intentionally free of evidence, customer data, and timestamps other than its own audit dates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project",
+    "sras_version",
+    "profile",
+    "tier",
+    "modules",
+    "overlays",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "project": {
+      "$ref": "#/$defs/projectIdentity"
+    },
+    "sras_version": {
+      "$ref": "requirement.schema.json#/$defs/semver"
+    },
+    "profile": {
+      "$ref": "#/$defs/profile"
+    },
+    "tier": {
+      "$ref": "#/$defs/tier"
+    },
+    "modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/moduleId"
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/overlayId"
+      }
+    },
+    "created_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    },
+    "updated_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    }
+  },
+  "$defs": {
+    "projectIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "description", "owner", "confidentiality"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "confidentiality": {
+          "type": "string",
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted",
+            "synthetic"
+          ]
+        }
+      }
+    },
+    "profile": {
+      "type": "string",
+      "enum": ["lite", "full"]
+    },
+    "tier": {
+      "type": "integer",
+      "enum": [1, 2, 3]
+    },
+    "moduleId": {
+      "type": "string",
+      "pattern": "^SRAS-(AI|INT|RGD|CLD|ONP)$"
+    },
+    "overlayId": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,5}-[A-Z]{3}$"
+    }
+  }
+}

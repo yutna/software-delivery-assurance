@@ -14,7 +14,13 @@ export type SchemaName =
   | "profile"
   | "standard"
   | "crosswalk"
-  | "register-entry";
+  | "register-entry"
+  | "assurance"
+  | "assessment"
+  | "evidence-index"
+  | "claim"
+  | "risk-register"
+  | "project-lock";
 
 export type SchemaIssue = {
   readonly path: string;
@@ -40,6 +46,12 @@ const SCHEMA_NAMES = [
   "standard",
   "crosswalk",
   "register-entry",
+  "assurance",
+  "assessment",
+  "evidence-index",
+  "claim",
+  "risk-register",
+  "project-lock",
 ] as const satisfies readonly SchemaName[];
 
 const isAddFormats = (value: unknown): value is (ajv: Ajv2020) => Ajv2020 =>
