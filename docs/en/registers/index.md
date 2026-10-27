@@ -76,6 +76,7 @@ page](asean-comparison.md) summarises the six entries without ranking them.
 
 | ID             | Instrument                                                                          | Type       | Review status |
 | -------------- | ----------------------------------------------------------------------------------- | ---------- | ------------- |
+| `EU-AIACT-001` | Regulation (EU) 2024/1689 (Artificial Intelligence Act)                             | Regulation | `unverified`  |
 | `EU-CRA-001`   | Regulation (EU) 2024/2847 (Cyber Resilience Act)                                    | Regulation | `unverified`  |
 | `EU-DORA-001`  | Regulation (EU) 2022/2554 (Digital Operational Resilience Act)                      | Regulation | `unverified`  |
 | `EU-EIDAS-001` | Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS) | Regulation | `unverified`  |
@@ -85,6 +86,7 @@ page](asean-comparison.md) summarises the six entries without ranking them.
 
 Each EU entry links to its official source and its generated reference page:
 
+- [EU-AIACT-001](../reference/registers/EU-AIACT-001.md)
 - [EU-CRA-001](../reference/registers/EU-CRA-001.md)
 - [EU-DORA-001](../reference/registers/EU-DORA-001.md)
 - [EU-EIDAS-001](../reference/registers/EU-EIDAS-001.md)

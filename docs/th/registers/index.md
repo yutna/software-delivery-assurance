@@ -72,6 +72,7 @@ generate ไว้
 
 ## ทะเบียนสหภาพยุโรป
 
+- `EU-AIACT-001` — Regulation (EU) 2024/1689 (Artificial Intelligence Act), regulation, `unverified`
 - `EU-CRA-001` — Regulation (EU) 2024/2847 (Cyber Resilience Act), regulation, `unverified`
 - `EU-DORA-001` — Regulation (EU) 2022/2554 (Digital Operational Resilience Act), regulation, `unverified`
 - `EU-EIDAS-001` — Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS), regulation, `unverified`
@@ -82,6 +83,7 @@ generate ไว้
 รายการ EU แต่ละรายการเชื่อมไปยังแหล่งอ้างอิงทางการและหน้า reference ที่
 generate ไว้
 
+- [EU-AIACT-001](../../en/reference/registers/EU-AIACT-001.md)
 - [EU-CRA-001](../../en/reference/registers/EU-CRA-001.md)
 - [EU-DORA-001](../../en/reference/registers/EU-DORA-001.md)
 - [EU-EIDAS-001](../../en/reference/registers/EU-EIDAS-001.md)

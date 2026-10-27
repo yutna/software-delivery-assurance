@@ -1,0 +1,57 @@
+id: EU-AIACT-001
+jurisdiction: EU
+instrument: Regulation (EU) 2024/1689 (Artificial Intelligence Act)
+instrument_type: regulation
+regulator: European Commission (AI Office) and national market surveillance authorities
+source_url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+effective_date: "2026-08-02"
+revision: "2026-10-28.r1"
+last_verified: "2026-10-28"
+review_due: "2027-10-28"
+status: in_force
+summary:
+  en: The Regulation lays down harmonised rules for artificial intelligence in the European Union. It covers prohibited practices, obligations for providers and deployers of high-risk AI systems, transparency obligations for certain AI systems, rules for general-purpose AI models, market surveillance, and governance. It amends several regulations and directives.
+  th: ระเบียบนี้กำหนดกฎที่สอดประสานกันสำหรับปัญญาประดิษฐ์ในสหภาพยุโรป ครอบคลุมแนวปฏิบัติที่ห้าม หน้าที่ของผู้ให้บริการ (provider) และผู้ใช้งาน (deployer) ของระบบ AI ที่มีความเสี่ยงสูง หน้าที่ด้านความโปร่งใสสำหรับระบบ AI บางประเภท กฎสำหรับ general-purpose AI model การกำกับดูแลตลาด และธรรมาภิบาล แก้ไขระเบียบและไดเรกทีฟหลายฉบับ
+obligations:
+  - en: A provider does not place on the market or put into service an AI system that uses a prohibited practice.
+    th: ผู้ให้บริการ (provider) ไม่วางตลาดหรือนำระบบ AI ที่ใช้แนวปฏิบัติที่ห้ามไปใช้งาน
+  - en: A provider of a high-risk AI system implements a risk management system, data governance, technical documentation, record-keeping, transparency, human oversight, accuracy, robustness, and cybersecurity.
+    th: ผู้ให้บริการระบบ AI ที่มีความเสี่ยงสูงจัดให้มีระบบบริหารความเสี่ยง ธรรมาภิบาลข้อมูล เอกสารทางเทคนิค การเก็บบันทึก ความโปร่งใส การกำกับดูแลโดยมนุษย์ ความถูกต้อง ความทนทาน และความมั่นคงทางไซเบอร์
+  - en: A provider of a high-risk AI system carries out a conformity assessment and draws up an EU declaration of conformity before placing the system on the market.
+    th: ผู้ให้บริการระบบ AI ที่มีความเสี่ยงสูงดำเนินการประเมินความสอดคล้องและจัดทำประกาศความสอดคล้องของสหภาพยุโรปก่อนวางระบบในตลาด
+  - en: A deployer of a high-risk AI system uses the system according to the instructions, monitors its operation, and informs the provider and the authorities of serious incidents.
+    th: ผู้ใช้งาน (deployer) ระบบ AI ที่มีความเสี่ยงสูงใช้ระบบตามคำแนะนำ ติดตามการทำงาน และแจ้งผู้ให้บริการและหน่วยงานเมื่อเกิดเหตุการณ์ร้ายแรง
+  - en: A provider or deployer of certain AI systems discloses that the user is interacting with an AI system and labels synthetic content as required.
+    th: ผู้ให้บริการหรือผู้ใช้งานระบบ AI บางประเภทเปิดเผยว่าผู้ใช้กำลังโต้ตอบกับระบบ AI และติดป้ายเนื้อหาสังเคราะห์ตามที่กำหนด
+  - en: A provider of a general-purpose AI model provides technical documentation and information for downstream providers, adopts a copyright policy, and publishes a summary of the training content.
+    th: ผู้ให้บริการ general-purpose AI model จัดทำเอกสารทางเทคนิคและให้ข้อมูลแก่ผู้ให้บริการที่นำไปใช้ต่อ กำหนดนโยบายลิขสิทธิ์ และเผยแพร่สรุปเนื้อหาที่ใช้ฝึก
+  - en: A provider of a general-purpose AI model with systemic risk performs model evaluation, adversarial testing, incident reporting, and cybersecurity protection.
+    th: ผู้ให้บริการ general-purpose AI model ที่มีความเสี่ยงเชิงระบบดำเนินการประเมินโมเดล การทดสอบแบบ adversarial การรายงานเหตุการณ์ และการป้องกันความมั่นคงทางไซเบอร์
+  - en: An importer or distributor verifies that the provider has met the applicable obligations before placing a high-risk AI system on the market.
+    th: ผู้นำเข้าหรือผู้จัดจำหน่ายตรวจสอบว่าผู้ให้บริการปฏิบัติตามหน้าที่ที่ใช้บังคับก่อนวางระบบ AI ที่มีความเสี่ยงสูงในตลาด
+  - en: A provider or deployer of an AI system in the areas listed in Annex III performs a fundamental rights impact assessment when the Regulation requires it.
+    th: ผู้ให้บริการหรือผู้ใช้งานระบบ AI ในพื้นที่ตาม Annex III ดำเนินการประเมินผลกระทบต่อสิทธิขั้นพื้นฐานเมื่อระเบียบกำหนด
+mapped_requirements:
+  - SRAS-AI-001
+  - SRAS-AI-002
+  - SRAS-AI-003
+  - SRAS-AI-004
+  - SRAS-AI-005
+  - SRAS-AI-006
+  - SRAS-AI-007
+  - SRAS-AI-008
+  - SRAS-AI-009
+  - SRAS-AI-010
+  - SRAS-AI-011
+  - SRAS-AI-012
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles: [provider, deployer, importer, distributor]
+  data_types: [ai-training-data, personal-data]
+notes:
+  en: The Regulation entered into force on 1 August 2024 and applies from 2 August 2026. Chapters I and II apply from 2 February 2025; Chapter III Section 4, Chapter V, Chapter VII, Chapter XII, and Article 78 apply from 2 August 2025, except Article 101; Article 6(1) applies from 2 August 2027. This entry does not decide whether the Regulation applies to a particular AI system or organisation, and it does not state that any system meets it.
+  th: ระเบียบมีผลใช้บังคับเมื่อวันที่ 1 สิงหาคม 2567 และเริ่มใช้เมื่อวันที่ 2 สิงหาคม 2569 Chapter I และ II มีผลตั้งแต่ 2 กุมภาพันธ์ 2568 Chapter III Section 4, Chapter V, Chapter VII, Chapter XII และ Article 78 มีผลตั้งแต่ 2 สิงหาคม 2568 ยกเว้น Article 101 และ Article 6(1) มีผลตั้งแต่ 2 สิงหาคม 2570 รายการนี้ไม่วินิจฉัยว่าระเบียบใช้กับระบบ AI หรือองค์กรใดโดยเฉพาะ และไม่ได้ระบุว่าระบบใดปฏิบัติตามระเบียบ
+source_language: en
+translation_status: partial
+machine_translated: true
+review_status: unverified
