@@ -10,4 +10,5 @@ export type ModuleFileDto = DtoObject;
 export type OverlayFileDto = DtoObject;
 export type ProfileFileDto = DtoObject;
 export type CrosswalkFileDto = DtoObject;
+export type RegisterFileDto = DtoObject;
 export type StandardManifestDto = DtoObject;

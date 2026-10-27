@@ -19,6 +19,7 @@ import {
 } from "../../src/sras/standard/parse.js";
 import {
   isoDate,
+  revision,
   version,
   versionRange,
 } from "../../src/sras/standard/primitives.js";
@@ -119,29 +120,43 @@ const run = (standard: Standard): readonly ValidationIssue[] => {
 
 const makeRegister = (
   mapped: readonly CoreRequirement["id"][],
-): RegisterEntry => ({
-  tag: "RegisterEntry",
-  sourceFile: "registers/th/pdpa.yaml",
-  version: must(version("0.1.0")),
-  status: "active",
-  createdAt: must(isoDate("2026-10-27")),
-  updatedAt: must(isoDate("2026-10-27")),
-  reviewStatus: "unverified",
-  reviewedBy: null,
-  reviewedAt: null,
-  reviewScope: null,
-  translationStatus: "partial",
-  machineTranslated: true,
-  translationReviewedBy: null,
-  translationReviewedAt: null,
-  id: must(registerEntryId("TH-PDPA-001")),
-  jurisdiction: "TH",
-  mappedRequirements: mapped,
-  sourceUrl: "https://example.com",
-  lastVerified: must(isoDate("2026-10-27")),
-  reviewDue: must(isoDate("2027-04-27")),
-  registerStatus: "in_force",
-});
+): RegisterEntry => {
+  const [firstRequirement, ...restRequirements] = mapped;
+
+  return {
+    tag: "RegisterEntry",
+    sourceFile: "registers/th/pdpa.yaml",
+    id: must(registerEntryId("TH-PDPA-001")),
+    jurisdiction: "TH",
+    instrument: "Test instrument",
+    instrumentType: "law",
+    regulator: "Test regulator",
+    sourceUrl: "https://example.com",
+    effectiveDate: must(isoDate("2019-05-28")),
+    revision: must(revision("2026-10-27.r1")),
+    lastVerified: must(isoDate("2026-10-27")),
+    reviewDue: must(isoDate("2027-04-27")),
+    registerStatus: "in_force",
+    summary: { en: "Test summary.", th: "สรุปสำหรับทดสอบ" },
+    obligations: [{ en: "Test obligation.", th: "ข้อกำหนดสำหรับทดสอบ" }],
+    mappedRequirements: [firstRequirement ?? core.id, ...restRequirements],
+    appliesTo: {
+      sectors: ["finance"],
+      roles: ["test-role"],
+      dataTypes: ["test-data"],
+    },
+    notes: { en: "Test note.", th: "หมายเหตุสำหรับทดสอบ" },
+    sourceLanguage: "th",
+    reviewStatus: "unverified",
+    reviewedBy: null,
+    reviewedAt: null,
+    reviewScope: null,
+    translationStatus: "partial",
+    machineTranslated: true,
+    translationReviewedBy: null,
+    translationReviewedAt: null,
+  };
+};
 
 const makeCrosswalk = (mapped: CoreRequirement["id"]): Crosswalk => ({
   tag: "Crosswalk",

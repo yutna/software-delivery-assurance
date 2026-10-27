@@ -6,7 +6,7 @@ import type {
   RegisterEntryId,
   RequirementId,
 } from "./ids.js";
-import type { IsoDate, Version, VersionRange } from "./primitives.js";
+import type { IsoDate, Revision, Version, VersionRange } from "./primitives.js";
 
 export type NonEmpty<T> = readonly [T, ...T[]];
 
@@ -36,6 +36,9 @@ export type Industry = "finance" | "ecommerce" | "logistics" | "public-sector";
 export type Tier = 1 | 2 | 3;
 export type RegisterStatus =
   "in_force" | "amended" | "repealed" | "draft" | "unknown";
+
+export type RegisterInstrumentType =
+  "law" | "regulation" | "standard" | "guidance" | "framework";
 
 export type CrosswalkRelationship = "supports" | "partial" | "related";
 
@@ -168,16 +171,39 @@ export type Overlay = StandardMetadata & {
   readonly replacedBy: OverlayId | null;
 };
 
-export type RegisterEntry = StandardMetadata & {
+export type RegisterObligation = {
+  readonly en: string;
+  readonly th: string;
+};
+
+export type RegisterAppliesTo = {
+  readonly sectors: NonEmpty<Industry>;
+  readonly roles: NonEmpty<string>;
+  readonly dataTypes: NonEmpty<string>;
+};
+
+export type RegisterEntry = {
   readonly tag: "RegisterEntry";
+  readonly sourceFile: string;
   readonly id: RegisterEntryId;
   readonly jurisdiction: string;
-  readonly mappedRequirements: readonly RequirementId[];
+  readonly instrument: string;
+  readonly instrumentType: RegisterInstrumentType;
+  readonly regulator: string;
   readonly sourceUrl: string;
+  readonly effectiveDate: IsoDate | null;
+  readonly revision: Revision;
   readonly lastVerified: IsoDate;
   readonly reviewDue: IsoDate;
   readonly registerStatus: RegisterStatus;
-};
+  readonly summary: LocalizedText;
+  readonly obligations: NonEmpty<RegisterObligation>;
+  readonly mappedRequirements: NonEmpty<RequirementId>;
+  readonly appliesTo: RegisterAppliesTo;
+  readonly notes: LocalizedText;
+  readonly sourceLanguage: string;
+} & ReviewMetadata &
+  TranslationMetadata;
 
 export type CrosswalkMapping = {
   readonly requirement: RequirementId;

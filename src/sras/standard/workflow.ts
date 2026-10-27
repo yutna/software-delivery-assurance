@@ -14,6 +14,7 @@ import {
   parseModuleFile,
   parseOverlayFile,
   parseProfileFile,
+  parseRegisterFile,
   parseRequirementsFile,
 } from "./parse.js";
 import { validateStandard } from "./validate.js";
@@ -23,6 +24,7 @@ import type {
   Module,
   Overlay,
   Profile,
+  RegisterEntry,
   Standard,
   StandardManifest,
   ValidatedStandard,
@@ -56,7 +58,9 @@ const classify = (path: string): FileKind => {
   ) {
     return "overlay";
   }
-  if (path.startsWith("registers/")) return "register";
+  if (path.startsWith("registers/") && path.endsWith(".yaml")) {
+    return "register";
+  }
   if (path.startsWith("mappings/")) return "mapping";
   return "unknown";
 };
@@ -106,6 +110,7 @@ const schemaNameFor = (kind: FileKind): SchemaName | undefined => {
     case "mapping":
       return "crosswalk";
     case "register":
+      return "register-entry";
     case "unknown":
       return undefined;
     default:
@@ -121,6 +126,7 @@ export const validateStandardFiles = (
   const requirements: CoreRequirement[] = [];
   const modules: Module[] = [];
   const overlays: Overlay[] = [];
+  const registers: RegisterEntry[] = [];
   const crosswalks: Crosswalk[] = [];
   const profiles: Profile[] = [];
   let manifest: StandardManifest | undefined;
@@ -141,10 +147,7 @@ export const validateStandardFiles = (
         tag: "Schema",
         file: file.path,
         path: "",
-        message:
-          kind === "register"
-            ? "this content type is added in a later milestone"
-            : "unsupported content path",
+        message: "unsupported content path",
       });
       continue;
     }
@@ -211,7 +214,15 @@ export const validateStandardFiles = (
         }
         break;
       }
-      case "register":
+      case "register": {
+        const result = parseRegisterFile(parsed.value, file.path);
+        if (!result.ok) {
+          issues.push(...result.error);
+        } else {
+          registers.push(result.value);
+        }
+        break;
+      }
       case "unknown":
         break;
       default:
@@ -236,7 +247,7 @@ export const validateStandardFiles = (
     requirements,
     modules,
     overlays,
-    registers: [],
+    registers,
     crosswalks,
     profiles,
   };
