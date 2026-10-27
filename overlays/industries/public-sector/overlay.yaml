@@ -1,0 +1,612 @@
+id: TH-PUB
+type: industry
+jurisdiction: TH
+industry: public-sector
+title:
+  en: Thailand public sector overlay
+  th: overlay ภาครัฐประเทศไทย
+description:
+  en: Assurance deltas for government agencies, state enterprises, and vendors delivering digital public services in Thailand.
+  th: ส่วนเพิ่ม assurance สำหรับหน่วยงานของรัฐ รัฐวิสาหกิจ และผู้ขายที่ให้บริการภาครัฐดิจิทัลในประเทศไทย
+version: 0.4.0
+extends: ">=0.3.0 <1.0.0"
+requires:
+  - SRAS-INT
+  - SRAS-RGD
+  - SRAS-CLD
+adds:
+  - id: TH-PUB-001
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Procurement and contract evidence is retained for each service
+      th: หลักฐานการจัดซื้อจัดจ้างและสัญญาถูกเก็บรักษาสำหรับแต่ละบริการ
+    description:
+      en: Each public service links to its procurement record, contract, acceptance evidence, change orders, and vendor performance record. The set is retained for the period set by policy and is available to an authorised auditor.
+      th: บริการภาครัฐแต่ละรายการต้องเชื่อมโยงกับบันทึกการจัดซื้อจัดจ้าง สัญญา หลักฐานการส่งมอบ ใบสั่งเปลี่ยนแปลง และบันทึกผลการดำเนินงานของผู้ขาย ชุดหลักฐานต้องเก็บรักษาตามระยะเวลาที่นโยบายกำหนดและพร้อมให้ผู้ตรวจสอบที่มีอำนาจเข้าถึง
+    rationale:
+      en: A service without a traceable procurement and contract record cannot be audited or defended.
+      th: บริการที่ไม่มีบันทึกการจัดซื้อจัดจ้างและสัญญาที่ตรวจสอบได้ไม่สามารถตรวจสอบหรือชี้แจงได้
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Procurement, contract, acceptance, and change-order evidence set
+        max_age_days: 365
+      - type: contract
+        description: Current contract with security, data, and exit terms
+        max_age_days: 365
+      - type: report
+        description: Vendor performance review record
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The evidence set exists and is linked to the service.
+        partial: Some records exist but the set is incomplete.
+      full:
+        l2: Every service has a complete evidence set for the current contract.
+        l3: Evidence is indexed and retrievable within the audit service target.
+    references:
+      - title: Public Procurement Act B.E. 2560
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8828
+        type: regulation
+    tags: [procurement, contract-evidence, auditability]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-002
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Records retention follows an approved schedule
+      th: การเก็บรักษาบันทึกเป็นไปตามตารางที่ได้รับอนุมัติ
+    description:
+      en: A records inventory covers service records, case records, audit records, and public communications. A retention schedule is approved by the owning agency, disposal is evidenced, and archival formats remain readable.
+      th: ทะเบียนบันทึกต้องครอบคลุมบันทึกบริการ บันทึกกรณี บันทึกการตรวจสอบ และการสื่อสารสาธารณะ ตารางการเก็บรักษาต้องได้รับอนุมัติจากหน่วยงานเจ้าของ การทำลายต้องมีหลักฐาน และรูปแบบการเก็บถาวรต้องยังอ่านได้
+    rationale:
+      en: Retention that is assumed but not scheduled produces both premature deletion and indefinite hoarding.
+      th: การเก็บรักษาที่ตั้งสมมติฐานแต่ไม่มีตารางจะทำให้เกิดทั้งการลบก่อนกำหนดและการเก็บไว้อย่างไม่มีที่สิ้นสุด
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Records inventory and agency-approved retention schedule
+        max_age_days: 365
+      - type: log
+        description: Disposal evidence for records at the end of retention
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: The inventory and schedule are approved and disposal is evidenced.
+        partial: A schedule exists but some record types are unclassified.
+      full:
+        l2: Every record type has a retention rule and a disposal path.
+        l3: Retention and archival readability are measured on a cadence.
+    references:
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+    tags: [records-retention, archival, disposal]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-003
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Public-facing services meet the agreed accessibility target
+      th: บริการที่เปิดให้ประชาชนใช้เป็นไปตามเป้าหมาย accessibility ที่ตกลง
+    description:
+      en: Critical public journeys meet the agreed accessibility target for the named WCAG version. Automated and manual checks cover information, forms, payments, authentication, and complaint paths, and findings are remediated on a tracked plan.
+      th: เส้นทางบริการสาธารณะที่สำคัญต้องเป็นไปตามเป้าหมาย accessibility ที่ตกลงสำหรับเวอร์ชัน WCAG ที่ระบุ การตรวจสอบอัตโนมัติและด้วยมนุษย์ครอบคลุมข้อมูล แบบฟอร์ม การชำระเงิน การยืนยันตัวตน และช่องทางร้องเรียน และข้อบกพร่องต้องได้รับการแก้ไขตามแผนที่ติดตามได้
+    rationale:
+      en: A public service that excludes people with disabilities fails its public purpose.
+      th: บริการสาธารณะที่กีดกันผู้พิการไม่บรรลุวัตถุประสงค์สาธารณะ
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: test_result
+        description: Automated and manual accessibility results for critical public journeys
+        max_age_days: 180
+      - type: report
+        description: Accessibility remediation plan with owners and dates
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Critical public journeys meet the target and findings have a plan.
+        partial: Some journeys are untested or defects remain open.
+      full:
+        l2: Every critical public journey is tested against the named WCAG version.
+        l3: Accessibility regressions are prevented in the release pipeline.
+    references:
+      - title: WCAG 2.2
+        url: https://www.w3.org/TR/WCAG22/
+        type: standard
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+    tags: [accessibility, wcag, public-service]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-004
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Thai-language service content is reviewed by a native speaker
+      th: เนื้อหาบริการภาษาไทยได้รับการตรวจทานโดยเจ้าของภาษา
+    description:
+      en: Thai content for critical public journeys is reviewed by a native Thai speaker before publication. A glossary keeps terms consistent, the review is recorded with name and date, and English content carries the same meaning.
+      th: เนื้อหาภาษาไทยสำหรับเส้นทางบริการสาธารณะที่สำคัญต้องได้รับการตรวจทานโดยเจ้าของภาษาก่อนเผยแพร่ มีอภิธานศัพท์เพื่อความสม่ำเสมอของคำ บันทึกการตรวจทานพร้อมชื่อและวันที่ และเนื้อหาภาษาอังกฤษต้องมีความหมายเดียวกัน
+    rationale:
+      en: Machine translation can make a legal or procedural step unclear in the language most citizens use.
+      th: การแปลด้วยเครื่องอาจทำให้ขั้นตอนทางกฎหมายหรือขั้นตอนปฏิบัติไม่ชัดเจนในภาษาที่ประชาชนส่วนใหญ่ใช้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Thai review record with reviewer name, date, and scope
+        max_age_days: 365
+      - type: document
+        description: Glossary and content style guide
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Critical Thai content is reviewed and recorded.
+        partial: Review exists for some pages but not critical journeys.
+      full:
+        l2: Every critical journey has a recorded native-speaker review.
+        l3: Content quality is measured with citizen feedback and corrections.
+    references:
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+    tags: [thai-language, content-quality, translation]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-005
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Open data is published with quality, licence, and privacy controls
+      th: ข้อมูลเปิดเผยแพร่พร้อมการควบคุมคุณภาพ สิทธิ์การใช้ และความเป็นส่วนตัว
+    description:
+      en: Open datasets have a named owner, a documented purpose, quality checks, a licence, and a personal-data review before publication. Updates follow a stated cadence, and a withdrawal path exists for errors or sensitive fields.
+      th: ชุดข้อมูลเปิดต้องมีเจ้าของที่ระบุชื่อ วัตถุประสงค์ที่จัดทำเป็นเอกสาร การตรวจสอบคุณภาพ สิทธิ์การใช้ และการทบทวนข้อมูลส่วนบุคคลก่อนเผยแพร่ การอัปเดตเป็นไปตามรอบที่กำหนด และมีเส้นทางถอนข้อมูลเมื่อพบข้อผิดพลาดหรือฟิลด์ที่ละเอียดอ่อน
+    rationale:
+      en: Open data without quality and privacy checks publishes errors and personal data at scale.
+      th: ข้อมูลเปิดที่ไม่มีการตรวจคุณภาพและความเป็นส่วนตัวจะเผยแพร่ข้อผิดพลาดและข้อมูลส่วนบุคคลในวงกว้าง
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Dataset inventory with owner, purpose, licence, and privacy review
+        max_age_days: 365
+      - type: test_result
+        description: Data quality and personal-data scan result for a published dataset
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Datasets have an owner, licence, quality check, and privacy review.
+        partial: Some datasets are published without a review or licence.
+      full:
+        l2: Every dataset follows the publication and withdrawal path.
+        l3: Dataset quality and reuse are measured with feedback.
+    references:
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+    tags: [open-data, transparency, data-quality]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-006
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Hosting location and data residency are documented and approved
+      th: สถานที่โฮสต์และถิ่นที่อยู่ของข้อมูลจัดทำเอกสารและได้รับอนุมัติ
+    description:
+      en: The hosting location for each data category is documented, approved by the owning agency, and monitored for change. Cross-border access or transfer is identified with its mechanism and approval before it is used.
+      th: สถานที่โฮสต์ของข้อมูลแต่ละประเภทต้องจัดทำเอกสาร ได้รับอนุมัติจากหน่วยงานเจ้าของ และติดตามการเปลี่ยนแปลง การเข้าถึงหรือการโอนข้ามพรมแดนต้องระบุกลไกและการอนุมัติก่อนใช้งาน
+    rationale:
+      en: A residency commitment that is not monitored becomes false after the next deployment or provider change.
+      th: ข้อผูกพันเรื่องถิ่นที่อยู่ของข้อมูลที่ไม่ถูกติดตามจะกลายเป็นเท็จหลังการปรับใช้หรือเปลี่ยนผู้ให้บริการครั้งถัดไป
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-CLD]
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Data residency inventory with hosting location and approval
+        max_age_days: 365
+      - type: configuration
+        description: Hosting region and access-control configuration evidence
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Residency is documented, approved, and monitored.
+        partial: The location is known but approval or monitoring is missing.
+      full:
+        l2: Every data category has a current residency record.
+        l3: Residency drift is detected and reviewed after each change.
+    references:
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+    tags: [data-residency, hosting, sovereignty]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-007
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Personnel screening matches the role's access and sensitivity
+      th: การตรวจสอบบุคลากรสอดคล้องกับสิทธิ์และความอ่อนไหวของบทบาท
+    description:
+      en: Roles with access to citizen data, production systems, or high-value decisions have defined screening requirements. Screening is completed before access, re-run on a cadence, recorded, and applied to contractors and vendor staff.
+      th: บทบาทที่เข้าถึงข้อมูลประชาชน ระบบ production หรือการตัดสินใจที่มีมูลค่าสูงต้องมีข้อกำหนดการตรวจสอบที่ชัดเจน ต้องตรวจสอบก่อนให้สิทธิ์ ตรวจซ้ำตามรอบ บันทึกไว้ และใช้กับผู้รับเหมาและพนักงานของผู้ขาย
+    rationale:
+      en: Access without screening shifts trust from a verified person to an unverified account.
+      th: การเข้าถึงโดยไม่มีการตรวจสอบบุคคลจะเปลี่ยนความเชื่อมั่นจากบุคคลที่ตรวจสอบแล้วเป็นบัญชีที่ยังไม่ตรวจสอบ
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Role screening matrix and screening record
+        max_age_days: 365
+      - type: ticket
+        description: Screening completion before access grant for a sample of roles
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Screening is defined, completed before access, and recorded.
+        partial: Screening exists for staff but not contractors or re-screening.
+      full:
+        l2: Every in-scope role is screened and re-screened on schedule.
+        l3: Screening coverage is measured and exceptions are reviewed.
+    references:
+      - title: Cybersecurity Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=1594
+        type: regulation
+    tags: [personnel-screening, access-control, contractor]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-008
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Essential public service continuity is tested at least annually
+      th: ความต่อเนื่องของบริการสาธารณะที่จำเป็นต้องทดสอบอย่างน้อยปีละครั้ง
+    description:
+      en: Essential public services are listed with their maximum tolerable downtime and recovery objectives. Alternate arrangements are documented, an exercise is completed at least annually, and citizen communication is included in the exercise.
+      th: บริการสาธารณะที่จำเป็นต้องระบุรายการพร้อม maximum tolerable downtime และวัตถุประสงค์การกู้คืน จัดทำแนวทางสำรอง ทดสอบอย่างน้อยปีละครั้ง และรวมการสื่อสารกับประชาชนไว้ในการทดสอบ
+    rationale:
+      en: An essential service without a tested continuity path becomes a public emergency on the first outage.
+      th: บริการสาธารณะที่จำเป็นซึ่งไม่มีแนวทางความต่อเนื่องที่ทดสอบแล้วจะกลายเป็นเหตุฉุกเฉินสาธารณะเมื่อเกิดเหตุขัดข้องครั้งแรก
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Essential service list, tolerances, recovery objectives, and alternate arrangements
+        max_age_days: 365
+      - type: test_result
+        description: Annual continuity exercise result including citizen communication
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Essential services are listed and exercised at least annually.
+        partial: The plan exists but the exercise or communication is incomplete.
+      full:
+        l2: Every essential service is exercised with its dependency owners.
+        l3: Recovery performance is measured against the stated objectives.
+    references:
+      - title: Cybersecurity Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=1594
+        type: regulation
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+    tags: [continuity, essential-service, recovery]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-009
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Administrative actions are auditable and attributable
+      th: การดำเนินการทางปกครองตรวจสอบย้อนหลังและระบุผู้รับผิดชอบได้
+    description:
+      en: Administrative and privileged actions on public services record the actor, time, object, and outcome. Logs are protected from change, retained, and reviewed for anomalies, and a citizen-requested action can be reconstructed.
+      th: การดำเนินการทางปกครองและสิทธิ์ระดับสูงบนบริการสาธารณะต้องบันทึกผู้ดำเนินการ เวลา วัตถุ และผลลัพธ์ บันทึกต้องได้รับการปกป้องจากการเปลี่ยนแปลง เก็บรักษา ตรวจหาความผิดปกติ และสามารถสร้างการดำเนินการที่ประชาชนร้องขอขึ้นใหม่ได้
+    rationale:
+      en: Public accountability depends on being able to show who did what, when, and with what effect.
+      th: ความรับผิดชอบต่อสาธารณะขึ้นอยู่กับความสามารถในการแสดงว่าใครทำอะไร เมื่อใด และเกิดผลอย่างไร
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: log
+        description: Administrative action log with actor, time, object, and outcome
+        max_age_days: 90
+      - type: configuration
+        description: Log integrity and retention configuration
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Actions are logged, protected, and reconstructable.
+        partial: Logging exists but integrity or review is incomplete.
+      full:
+        l2: Every administrative action is attributable and reviewed.
+        l3: Anomaly detection and reconstruction tests are measured.
+    references:
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+      - title: Computer Crime Act B.E. 2550
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9000
+        type: regulation
+    tags: [auditability, accountability, administrative-action]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-010
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Cross-agency and vendor changes use a shared change record
+      th: การเปลี่ยนแปลงข้ามหน่วยงานและผู้ขายใช้บันทึกการเปลี่ยนแปลงร่วมกัน
+    description:
+      en: Changes that affect another agency or a vendor use one shared change record with impact, approvals from each party, a rollback plan, and a communication path. A change freeze applies to critical public periods.
+      th: การเปลี่ยนแปลงที่กระทบหน่วยงานอื่นหรือผู้ขายต้องใช้บันทึกการเปลี่ยนแปลงร่วมฉบับเดียว ซึ่งระบุผลกระทบ การอนุมัติจากแต่ละฝ่าย แผน rollback และเส้นทางสื่อสาร และมี change freeze สำหรับช่วงเวลาสาธารณะที่สำคัญ
+    rationale:
+      en: A change approved on one side of an agency boundary can break the other side without warning.
+      th: การเปลี่ยนแปลงที่อนุมัติฝ่ายเดียวของขอบเขตหน่วยงานสามารถทำให้อีกฝ่ายเสียหายโดยไม่มีการแจ้งเตือน
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: ticket
+        description: Shared change record with multi-party approval and rollback
+        max_age_days: 180
+      - type: test_result
+        description: Cross-agency integration test result for the change
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Cross-party changes use a shared record and rollback plan.
+        partial: A record exists but one party or the rollback is missing.
+      full:
+        l2: Every cross-party change has joint approval and test evidence.
+        l3: Change failure and coordination time are measured.
+    references:
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+    tags: [change-management, cross-agency, coordination]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-011
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: Citizen-facing incident communication has an approved template and owner
+      th: การสื่อสารเหตุการณ์ต่อประชาชนมีแม่แบบและเจ้าของที่อนุมัติแล้ว
+    description:
+      en: Citizen-facing incident communication has an approved template, a named owner, Thai and English versions, and accessible channels. The path is exercised within the last 12 months and covers service status, impact, workaround, and next update.
+      th: การสื่อสารเหตุการณ์ต่อประชาชนต้องมีแม่แบบที่อนุมัติแล้ว เจ้าของที่ระบุชื่อ ฉบับภาษาไทยและอังกฤษ และช่องทางที่เข้าถึงได้ ต้องมีการฝึกซ้อมภายใน 12 เดือนที่ผ่านมา และครอบคลุมสถานะบริการ ผลกระทบ แนวทางชั่วคราว และการอัปเดตครั้งถัดไป
+    rationale:
+      en: A service outage without citizen communication becomes a trust and accessibility failure.
+      th: เหตุขัดข้องของบริการที่ไม่มีการสื่อสารต่อประชาชนจะกลายเป็นความล้มเหลวด้านความเชื่อมั่นและการเข้าถึง
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Approved citizen communication template and owner record
+        max_age_days: 365
+      - type: test_result
+        description: Communication exercise result within the last 12 months
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The template, owner, channels, and exercise are current.
+        partial: A template exists but the owner or exercise is missing.
+      full:
+        l2: The path is exercised with service, communications, and accessibility teams.
+        l3: Communication timeliness and citizen feedback are measured.
+    references:
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+      - title: Cybersecurity Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=1594
+        type: regulation
+    tags: [citizen-communication, incident-response, accessibility]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-PUB-012
+    version: 0.4.0
+    overlay: TH-PUB
+    title:
+      en: A privacy impact assessment is approved before public launch
+      th: การประเมินผลกระทบด้านความเป็นส่วนตัวได้รับอนุมัติก่อนเปิดบริการ
+    description:
+      en: A privacy impact assessment for a public service that processes personal data is completed before launch, approved by the owning agency, and reviewed when the processing or data sharing changes. A public summary records the outcome and any conditions.
+      th: การประเมินผลกระทบด้านความเป็นส่วนตัวสำหรับบริการสาธารณะที่ประมวลผลข้อมูลส่วนบุคคลต้องเสร็จก่อนเปิดบริการ ได้รับอนุมัติจากหน่วยงานเจ้าของ และทบทวนเมื่อการประมวลผลหรือการแบ่งปันข้อมูลเปลี่ยนแปลง สรุปสาธารณะต้องบันทึกผลและเงื่อนไข
+    rationale:
+      en: A public service that starts processing before the privacy assessment cannot show that the design was considered.
+      th: บริการสาธารณะที่เริ่มประมวลผลก่อนการประเมินความเป็นส่วนตัวไม่สามารถแสดงได้ว่าการออกแบบได้รับการพิจารณา
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: [TH-PUB]
+      excludes: []
+    evidence:
+      - type: document
+        description: Approved privacy impact assessment with scope and conditions
+        max_age_days: 365
+      - type: document
+        description: Public summary of the assessment outcome
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The assessment is approved before launch and its conditions are tracked.
+        partial: The assessment exists but approval or the public summary is missing.
+      full:
+        l2: The assessment covers every personal-data flow and sharing partner.
+        l3: Conditions are tested and the assessment is reviewed on change.
+    references:
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+      - title: Digital Government Administration and Services Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9216
+        type: regulation
+    tags: [privacy-impact-assessment, public-service, approval]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+overrides: []
+waives: []
+sources:
+  - TH-PROC-001
+  - TH-DGA-001
+  - TH-PDPA-001
+  - TH-CYBER-001
+  - TH-ETA-001
+not_covered:
+  en: Procurement law advice, bid protest advice, information classification advice, government-cloud procurement, and legal interpretation.
+  th: คำแนะนำด้านกฎหมายจัดซื้อจัดจ้าง คำแนะนำด้านการโต้แย้งผลการประกวดราคา คำแนะนำด้านการจำแนกชั้นข้อมูล การจัดซื้อคลาวด์ภาครัฐ และการตีความกฎหมาย
+review_checklist: review-checklist.md
+status: active
+deprecated_in: null
+translation_status: partial
+machine_translated: true
+review_status: draft
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
