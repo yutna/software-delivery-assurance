@@ -1,12 +1,19 @@
-import { basename } from "node:path";
-import type {
-  SchemaIssue,
-  SchemaName,
-  SchemaValidator,
+import { basename, join } from "node:path";
+import {
+  discoverContentFiles,
+  readSourceFiles,
+  type ReadError,
+} from "../adapters/fs.js";
+import {
+  createSchemaValidator,
+  type SchemaIssue,
+  type SchemaLoadError,
+  type SchemaName,
+  type SchemaValidator,
 } from "../adapters/json-schema.js";
 import { parseYaml, type YamlError } from "../adapters/yaml.js";
 import { assertNever } from "../foundation/assert-never.js";
-import { err, type Result } from "../foundation/result.js";
+import { err, ok, type Result } from "../foundation/result.js";
 import type { SourceFile } from "./dto.js";
 import {
   parseCrosswalkFile,
@@ -253,4 +260,38 @@ export const validateStandardFiles = (
   };
 
   return validateStandard(standard);
+};
+
+export type StandardLoadError =
+  | { readonly tag: "Read"; readonly error: ReadError }
+  | { readonly tag: "Schema"; readonly error: SchemaLoadError }
+  | { readonly tag: "Invalid"; readonly issues: readonly ValidationIssue[] }
+  | { readonly tag: "NoContent" };
+
+export type LoadedStandard = {
+  readonly standard: ValidatedStandard;
+  readonly fileCount: number;
+};
+
+export const loadStandardFromRoot = async (
+  root: string,
+): Promise<Result<LoadedStandard, StandardLoadError>> => {
+  const discovered = await discoverContentFiles(root);
+
+  if (!discovered.ok) return err({ tag: "Read", error: discovered.error });
+  if (discovered.value.length === 0) return err({ tag: "NoContent" });
+
+  const sources = await readSourceFiles(root, discovered.value);
+
+  if (!sources.ok) return err({ tag: "Read", error: sources.error });
+
+  const schemas = await createSchemaValidator(join(root, "schemas"));
+
+  if (!schemas.ok) return err({ tag: "Schema", error: schemas.error });
+
+  const validated = validateStandardFiles(sources.value, schemas.value);
+
+  if (!validated.ok) return err({ tag: "Invalid", issues: validated.error });
+
+  return ok({ standard: validated.value, fileCount: discovered.value.length });
 };
