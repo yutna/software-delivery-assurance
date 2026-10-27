@@ -1,0 +1,153 @@
+id: MAP-NISTCSF
+title:
+  en: SRAS Core to NIST CSF 2.0
+  th: SRAS Core ไปยัง NIST CSF 2.0
+description:
+  en: Informative crosswalk from SRAS Core requirements to NIST Cybersecurity Framework 2.0 functions and categories. It is not an equivalence or certification claim.
+  th: crosswalk เชิงข้อมูลจากข้อกำหนด SRAS Core ไปยังฟังก์ชันและหมวดของ NIST Cybersecurity Framework 2.0 ไม่ใช่การอ้างความเท่าเทียมหรือการรับรอง
+version: 0.1.0
+source_standard: NIST Cybersecurity Framework 2.0
+source_url: https://www.nist.gov/cyberframework
+mappings:
+  - requirement: SRAS-GOV-001
+    external: GV.OC-01, GV.RR-01
+    relationship: supports
+    notes: Organizational context and leadership accountability.
+  - requirement: SRAS-GOV-002
+    external: GV.RM-01, GV.RM-02
+    relationship: partial
+    notes: Risk management objectives and risk appetite support the register; owner and review dates are SRAS additions.
+  - requirement: SRAS-GOV-003
+    external: GV.OV-01, GV.OV-02
+    relationship: supports
+    notes: Risk management strategy outcomes and performance measurement.
+  - requirement: SRAS-GOV-004
+    external: GV.PO-01
+    relationship: supports
+    notes: Policy for managing cybersecurity risks.
+  - requirement: SRAS-GOV-005
+    external: GV.RR-02
+    relationship: supports
+    notes: Roles and responsibilities for cybersecurity risk management.
+  - requirement: SRAS-GOV-008
+    external: GV.OV-03
+    relationship: related
+    notes: Oversight supports evidence review; claim approval is an SRAS addition.
+  - requirement: SRAS-SEC-001
+    external: PR.AA-01, PR.AA-03
+    relationship: supports
+    notes: Identity management, authentication, and access control.
+  - requirement: SRAS-SEC-002
+    external: PR.AA-05
+    relationship: supports
+    notes: Least privilege and access permissions.
+  - requirement: SRAS-SEC-003
+    external: PR.AA-05, PR.PS-01
+    relationship: partial
+    notes: Access permissions and configuration management support secret handling; a dedicated secret store is an SRAS addition.
+  - requirement: SRAS-SEC-004
+    external: PR.DS-01, PR.DS-02
+    relationship: supports
+    notes: Data-at-rest and data-in-transit protection.
+  - requirement: SRAS-SEC-006
+    external: PR.AA-04
+    relationship: supports
+    notes: Access permissions are managed, reviewed, and revoked.
+  - requirement: SRAS-SEC-009
+    external: ID.RA-01, PR.PS-02
+    relationship: supports
+    notes: Vulnerability identification and remediation.
+  - requirement: SRAS-SEC-010
+    external: DE.CM-01, DE.AE-02
+    relationship: supports
+    notes: Continuous monitoring and adverse event analysis.
+  - requirement: SRAS-PRV-001
+    external: ID.AM-05, PR.DS-01
+    relationship: supports
+    notes: Data inventory and data-at-rest protection.
+  - requirement: SRAS-PRV-004
+    external: GV.OC-03
+    relationship: partial
+    notes: Legal and regulatory requirements are covered; lawful-basis recording is an SRAS addition.
+  - requirement: SRAS-PRV-007
+    external: PR.DS-03, GV.OC-03
+    relationship: partial
+    notes: Data transfer protection and legal requirements are covered; transfer mechanisms are jurisdiction-specific.
+  - requirement: SRAS-PRV-009
+    external: GV.SC-05, GV.SC-07
+    relationship: supports
+    notes: Supplier requirements and supplier risk monitoring.
+  - requirement: SRAS-CHG-001
+    external: PR.PS-01
+    relationship: supports
+    notes: Configuration management.
+  - requirement: SRAS-CHG-002
+    external: PR.PS-06
+    relationship: partial
+    notes: Secure software development practices support review; peer review is an SRAS addition.
+  - requirement: SRAS-CHG-005
+    external: PR.PS-06
+    relationship: partial
+    notes: Secure development practices support environment separation; the separation control is an SRAS addition.
+  - requirement: SRAS-CHG-007
+    external: PR.PS-01
+    relationship: partial
+    notes: Configuration management supports rollback; a tested rollback plan is an SRAS addition.
+  - requirement: SRAS-OPS-001
+    external: DE.CM-01, DE.CM-03
+    relationship: supports
+    notes: Network and computing resource monitoring.
+  - requirement: SRAS-OPS-002
+    external: DE.AE-02, DE.AE-06
+    relationship: supports
+    notes: Adverse event analysis and alerting.
+  - requirement: SRAS-OPS-005
+    external: PR.DS-11
+    relationship: supports
+    notes: Data backups.
+  - requirement: SRAS-OPS-006
+    external: PR.DS-11
+    relationship: partial
+    notes: Backups are covered; restore testing and recovery objectives are SRAS additions.
+  - requirement: SRAS-INC-001
+    external: RS.MA-01, RS.MA-02
+    relationship: supports
+    notes: Incident response plan and incident triage.
+  - requirement: SRAS-INC-002
+    external: RS.MA-02, RS.MA-03
+    relationship: supports
+    notes: Incident triage and categorization.
+  - requirement: SRAS-INC-005
+    external: RC.RP-01
+    relationship: supports
+    notes: Recovery plan execution.
+  - requirement: SRAS-INC-006
+    external: RC.RP-01, RC.RP-02
+    relationship: supports
+    notes: Recovery plan execution and restoration activities.
+  - requirement: SRAS-SCM-001
+    external: ID.AM-01, ID.AM-02
+    relationship: supports
+    notes: Hardware and software asset inventories.
+  - requirement: SRAS-SCM-002
+    external: ID.AM-02, GV.SC-04
+    relationship: partial
+    notes: Software inventory and supplier requirements support component visibility; an SBOM is an SRAS addition.
+  - requirement: SRAS-SCM-003
+    external: GV.SC-04, PR.PS-06
+    relationship: partial
+    notes: Supplier requirements and secure development support trusted sources; integrity verification is an SRAS addition.
+  - requirement: SRAS-SCM-004
+    external: GV.SC-01, GV.SC-02
+    relationship: supports
+    notes: Supply chain risk management program and requirements.
+  - requirement: SRAS-SCM-007
+    external: GV.SC-06
+    relationship: supports
+    notes: Supplier and subprocessor chain visibility.
+status: draft
+review_status: unverified
+translation_status: partial
+machine_translated: true
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

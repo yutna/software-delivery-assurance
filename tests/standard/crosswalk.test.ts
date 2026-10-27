@@ -3,12 +3,12 @@ import { join } from "node:path";
 import { parse } from "yaml";
 import { describe, expect, test } from "vitest";
 import type { Result } from "../../src/sras/foundation/result.js";
+import { parseCrosswalkFile } from "../../src/sras/standard/parse.js";
 import type {
   Crosswalk,
   CrosswalkMapping,
   CrosswalkRelationship,
 } from "../../src/sras/standard/types.js";
-import { parseCrosswalkFile } from "../../src/sras/standard/parse.js";
 import { fixture } from "../helpers/content.js";
 
 const root = process.cwd();
@@ -18,13 +18,29 @@ const must = <T, E>(result: Result<T, E>): T => {
   return result.value;
 };
 
-const realCrosswalk = (): Crosswalk =>
-  must(
-    parseCrosswalkFile(
-      parse(readFileSync(join(root, "mappings", "iso-27001.yaml"), "utf8")),
-      "mappings/iso-27001.yaml",
-    ),
+type MappingExpectation = {
+  readonly file: string;
+  readonly id: string;
+  readonly mappings: number;
+};
+
+const mappingFiles: readonly MappingExpectation[] = [
+  { file: "iso-27001.yaml", id: "MAP-ISO27001", mappings: 70 },
+  { file: "nist-csf.yaml", id: "MAP-NISTCSF", mappings: 34 },
+  { file: "owasp-asvs.yaml", id: "MAP-ASVS", mappings: 22 },
+  { file: "pci-dss.yaml", id: "MAP-PCIDSS", mappings: 20 },
+  { file: "wcag.yaml", id: "MAP-WCAG22", mappings: 8 },
+  { file: "iso-42001.yaml", id: "MAP-ISO42001", mappings: 12 },
+  { file: "nist-ai-rmf.yaml", id: "MAP-NISTAIRMF", mappings: 12 },
+];
+
+const loadCrosswalk = (file: string): Crosswalk => {
+  const raw: unknown = parse(
+    readFileSync(join(root, "mappings", file), "utf8"),
   );
+
+  return must(parseCrosswalkFile(raw, `mappings/${file}`));
+};
 
 const requirementIdsFrom = (value: unknown): readonly string[] => {
   if (!Array.isArray(value)) {
@@ -47,12 +63,38 @@ const requirementIdsFrom = (value: unknown): readonly string[] => {
   });
 };
 
+const moduleRequirementIdsFrom = (value: unknown): readonly string[] => {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    !("requirements" in value)
+  ) {
+    throw new Error("module file must contain requirements");
+  }
+
+  return requirementIdsFrom(value.requirements);
+};
+
 const coreRequirementIds = (): readonly string[] =>
   readdirSync(join(root, "core", "domains"))
     .filter((file) => file.endsWith(".yaml"))
     .flatMap((file) =>
       requirementIdsFrom(
         parse(readFileSync(join(root, "core", "domains", file), "utf8")),
+      ),
+    );
+
+const moduleRequirementIds = (): readonly string[] =>
+  readdirSync(join(root, "modules"), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .flatMap((entry) =>
+      moduleRequirementIdsFrom(
+        parse(
+          readFileSync(
+            join(root, "modules", entry.name, "module.yaml"),
+            "utf8",
+          ),
+        ),
       ),
     );
 
@@ -68,18 +110,40 @@ export const crosswalkDomainValueIsReadonly = (crosswalk: Crosswalk): void => {
 };
 
 describe("crosswalk parser", () => {
-  test("parses the ISO/IEC 27001 mapping into a readonly domain value", () => {
-    const crosswalk = realCrosswalk();
+  for (const expectation of mappingFiles) {
+    test(`${expectation.file} parses as ${expectation.id}`, () => {
+      const crosswalk = loadCrosswalk(expectation.file);
 
-    expect(crosswalk.tag).toBe("Crosswalk");
-    expect(crosswalk.id).toBe("MAP-ISO27001");
-    expect(crosswalk.sourceStandard).toBe("ISO/IEC 27001:2022");
-    expect(crosswalk.sourceUrl).toBe("https://www.iso.org/standard/27001");
-    expect(crosswalk.mappings).toHaveLength(70);
+      expect(crosswalk.tag).toBe("Crosswalk");
+      expect(crosswalk.id).toBe(expectation.id);
+      expect(crosswalk.mappings).toHaveLength(expectation.mappings);
+      expect(crosswalk.sourceStandard.trim()).not.toBe("");
+      expect(crosswalk.sourceUrl.startsWith("https://")).toBe(true);
+    });
+  }
+
+  test("every mapping is unverified and uses a relationship in the domain", () => {
+    const allowed: readonly CrosswalkRelationship[] = [
+      "supports",
+      "partial",
+      "related",
+    ];
+    const crosswalks = mappingFiles.map((expectation) =>
+      loadCrosswalk(expectation.file),
+    );
+
+    for (const crosswalk of crosswalks) {
+      expect(crosswalk.reviewStatus).toBe("unverified");
+
+      for (const mapping of crosswalk.mappings) {
+        expect(allowed).toContain(mapping.relationship);
+        expect(mapping.external.trim()).not.toBe("");
+      }
+    }
   });
 
-  test("every Core requirement has one mapping", () => {
-    const mapped = realCrosswalk().mappings.map(
+  test("the ISO mapping covers every Core requirement once", () => {
+    const mapped = loadCrosswalk("iso-27001.yaml").mappings.map(
       (mapping) => mapping.requirement,
     );
     const core = coreRequirementIds();
@@ -89,39 +153,21 @@ describe("crosswalk parser", () => {
     expect([...mapped].sort()).toEqual([...core].sort());
   });
 
-  test("relationship values stay inside the domain", () => {
-    const allowed: readonly CrosswalkRelationship[] = [
-      "supports",
-      "partial",
-      "related",
-    ];
+  test("every mapping target exists in Core or a module", () => {
+    const known = new Set([...coreRequirementIds(), ...moduleRequirementIds()]);
 
-    for (const mapping of realCrosswalk().mappings) {
-      expect(allowed).toContain(mapping.relationship);
-      expect(mapping.external.trim()).not.toBe("");
+    for (const expectation of mappingFiles) {
+      for (const mapping of loadCrosswalk(expectation.file).mappings) {
+        expect(known.has(mapping.requirement)).toBe(true);
+      }
     }
   });
 
-  test("the mapping is unverified", () => {
-    expect(realCrosswalk().reviewStatus).toBe("unverified");
-  });
-
   test("rejects a relationship outside the domain", () => {
-    const result = parseCrosswalkFile(
-      parse(
-        readFileSync(
-          join(
-            root,
-            "tests",
-            "fixtures",
-            "invalid",
-            "crosswalk-bad-relationship.yaml",
-          ),
-          "utf8",
-        ),
-      ),
-      "mappings/bad.yaml",
+    const raw: unknown = parse(
+      fixture("invalid/crosswalk-bad-relationship.yaml"),
     );
+    const result = parseCrosswalkFile(raw, "mappings/bad.yaml");
 
     expect(result.ok).toBe(false);
     if (!result.ok) {
@@ -130,11 +176,14 @@ describe("crosswalk parser", () => {
   });
 
   test("rejects an empty mapping list", () => {
+    const valid: unknown = parse(fixture("valid/crosswalk.yaml"));
+
+    if (typeof valid !== "object" || valid === null) {
+      throw new Error("crosswalk fixture must be an object");
+    }
+
     const result = parseCrosswalkFile(
-      {
-        ...parse(fixture("valid/crosswalk.yaml")),
-        mappings: [],
-      },
+      { ...valid, mappings: [] },
       "mappings/empty.yaml",
     );
 

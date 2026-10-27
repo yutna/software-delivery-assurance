@@ -1,0 +1,65 @@
+id: MAP-NISTAIRMF
+title:
+  en: SRAS AI to NIST AI RMF 1.0
+  th: SRAS AI ไปยัง NIST AI RMF 1.0
+description:
+  en: Informative crosswalk from SRAS AI module requirements to NIST AI Risk Management Framework 1.0 functions and subcategories. It is not an equivalence or certification claim.
+  th: crosswalk เชิงข้อมูลจากข้อกำหนด SRAS AI module ไปยังฟังก์ชันและหมวดย่อยของ NIST AI Risk Management Framework 1.0 ไม่ใช่การอ้างความเท่าเทียมหรือการรับรอง
+version: 0.1.0
+source_standard: NIST AI Risk Management Framework 1.0
+source_url: https://www.nist.gov/itl/ai-risk-management-framework
+mappings:
+  - requirement: SRAS-AI-001
+    external: GOVERN 1.1, GOVERN 2.1
+    relationship: supports
+    notes: Governance processes and accountability for AI risk.
+  - requirement: SRAS-AI-002
+    external: MAP 1.1, MAP 2.1
+    relationship: supports
+    notes: Context mapping and impact assessment.
+  - requirement: SRAS-AI-003
+    external: MEASURE 1.1, MEASURE 2.1
+    relationship: supports
+    notes: Measurement and evaluation of AI risk.
+  - requirement: SRAS-AI-004
+    external: GOVERN 3.1, MANAGE 2.1
+    relationship: supports
+    notes: Human oversight and risk treatment.
+  - requirement: SRAS-AI-005
+    external: MAP 2.1, GOVERN 6.1
+    relationship: partial
+    notes: Data mapping and third-party data governance are covered; permitted-use records are an SRAS addition.
+  - requirement: SRAS-AI-006
+    external: MEASURE 1.1, MANAGE 1.1
+    relationship: partial
+    notes: Measurement and response are covered; prompt and model versioning is an SRAS addition.
+  - requirement: SRAS-AI-007
+    external: MANAGE 1.1, MANAGE 2.1
+    relationship: supports
+    notes: Risk response and change control.
+  - requirement: SRAS-AI-008
+    external: MEASURE 2.1, MANAGE 3.1
+    relationship: supports
+    notes: Monitoring and risk response.
+  - requirement: SRAS-AI-009
+    external: MEASURE 2.1, MANAGE 3.1
+    relationship: supports
+    notes: Monitoring supports drift detection and response.
+  - requirement: SRAS-AI-010
+    external: MANAGE 2.1, MANAGE 3.1
+    relationship: supports
+    notes: Incident response and recovery.
+  - requirement: SRAS-AI-011
+    external: GOVERN 5.1, MAP 4.1
+    relationship: supports
+    notes: Third-party risk and supplier governance.
+  - requirement: SRAS-AI-012
+    external: GOVERN 4.1, MANAGE 3.1
+    relationship: partial
+    notes: Transparency and communication are covered; claim control is an SRAS addition.
+status: draft
+review_status: unverified
+translation_status: partial
+machine_translated: true
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
