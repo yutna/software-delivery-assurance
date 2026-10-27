@@ -44,12 +44,14 @@ machine_translated: true
 
 ## ทะเบียนอาเซียน
 
+- `ID-PDP-001` — Law No. 27 of 2022 on Personal Data Protection, Indonesia, law, `unverified`
 - `MY-PDPA-001` — Personal Data Protection Act 2010 (Act 709), Malaysia, law, `unverified`
 - `SG-PDPA-001` — Personal Data Protection Act 2012, Singapore, law, `unverified`
 
 รายการอาเซียนแต่ละรายการเชื่อมไปยังแหล่งอ้างอิงทางการและหน้า reference ที่
 generate ไว้
 
+- [ID-PDP-001](../../en/reference/registers/ID-PDP-001.md)
 - [MY-PDPA-001](../../en/reference/registers/MY-PDPA-001.md)
 - [SG-PDPA-001](../../en/reference/registers/SG-PDPA-001.md)
 
