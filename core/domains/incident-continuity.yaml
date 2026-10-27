@@ -1,0 +1,392 @@
+- id: SRAS-INC-001
+  version: 0.2.0
+  title:
+    en: An incident response plan covers roles, phases, and evidence
+    th: แผนตอบสนองเหตุการณ์ครอบคลุมบทบาท ขั้นตอน และหลักฐาน
+  description:
+    en: The product must have an approved incident response plan that defines roles, severity, detection, containment, eradication, recovery, and evidence handling. A plan without an owner or evidence-handling step fails the requirement.
+    th: ผลิตภัณฑ์ต้องมีแผนตอบสนองเหตุการณ์ที่ได้รับอนุมัติ ซึ่งกำหนดบทบาท severity การตรวจจับ การจำกัดวง การกำจัดต้นเหตุ การกู้คืน และการจัดการหลักฐาน แผนที่ไม่มี owner หรือไม่มีขั้นตอนจัดการหลักฐานถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A response improvised during an incident loses time and evidence.
+    th: การตอบสนองที่คิดขึ้นในระหว่างเหตุการณ์ทำให้สูญเสียเวลาและหลักฐาน
+  domain: incident-continuity
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Approved incident response plan with roles and phases
+      max_age_days: 365
+    - type: ticket
+      description: Plan review or exercise record
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: The plan is approved, owned, and covers response phases and evidence.
+      partial: A plan exists but roles, phases, or evidence handling are incomplete.
+    full:
+      l2: Approved and exercised for the current release.
+      l3: Reviewed after incidents and measured with response-time trends.
+  references:
+    - title: NIST SP 800-61 Rev. 3
+      url: https://csrc.nist.gov/pubs/sp/800/61/r3/final
+      type: standard
+    - title: ISO/IEC 27001:2022 5.24 and 5.26
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [incident-response, security-operations, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-INC-002
+  version: 0.2.0
+  title:
+    en: Incident severity and escalation paths are defined and current
+    th: ระดับความรุนแรงของเหตุการณ์และเส้นทางการส่งต่อถูกกำหนดและเป็นปัจจุบัน
+  description:
+    en: The product must define incident severity levels, decision criteria, escalation triggers, and named contacts, and the on-call path must reach a decision-maker. An incident with no severity rule or unreachable escalation contact fails the requirement.
+    th: ผลิตภัณฑ์ต้องกำหนดระดับความรุนแรงของเหตุการณ์ เกณฑ์การตัดสินใจ เงื่อนไขการส่งต่อ และผู้ติดต่อที่ระบุชื่อ และเส้นทาง on-call ต้องเข้าถึงผู้มีอำนาจตัดสินใจ เหตุการณ์ที่ไม่มีกฎระดับความรุนแรงหรือผู้ติดต่อส่งต่อที่ติดต่อไม่ได้ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Without agreed severity, response effort is allocated by whoever is loudest.
+    th: หากไม่มีระดับความรุนแรงที่ตกลงร่วมกัน ความพยายามในการตอบสนองจะขึ้นอยู่กับว่าใครเสียงดังที่สุด
+  domain: incident-continuity
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Severity matrix and escalation path with named contacts and targets
+      max_age_days: 90
+    - type: ticket
+      description: Latest escalation or paging test record
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Severity rules and escalation contacts are current and reachable.
+      partial: Rules exist but some contacts or triggers are stale.
+    full:
+      l2: Current for all critical services.
+      l3: Measured with escalation time and decision latency.
+  references:
+    - title: NIST CSF 2.0 RS.MA
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 5.25
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [incident-response, escalation, security-operations]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-INC-003
+  version: 0.2.0
+  title:
+    en: Incident communication is planned for internal and external audiences
+    th: การสื่อสารเหตุการณ์ถูกวางแผนสำหรับผู้รับภายในและภายนอก
+  description:
+    en: The product must define who communicates incident status to internal teams, customers, and regulators, with approved templates, cadence, and authority. An incident communication sent without an owner or approval path fails the requirement.
+    th: ผลิตภัณฑ์ต้องกำหนดผู้สื่อสารสถานะเหตุการณ์แก่ทีมภายใน ลูกค้า และหน่วยงานกำกับดูแล พร้อมแม่แบบ จังหวะเวลา และอำนาจอนุมัติที่ได้รับอนุมัติ การสื่อสารเหตุการณ์ที่ส่งโดยไม่มี owner หรือเส้นทางอนุมัติถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Conflicting or premature communication creates more harm than the outage itself.
+    th: การสื่อสารที่ขัดแย้งหรือเร็วเกินไปสร้างความเสียหายมากกว่า outage เอง
+  domain: incident-continuity
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Incident communication plan with audiences, templates, cadence, and approvers
+      max_age_days: 365
+    - type: report
+      description: Communication record from the latest exercise or incident
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Communication roles, templates, and approval paths are defined and current.
+      partial: A plan exists but audiences, templates, or approvals are incomplete.
+    full:
+      l2: Applied to the current release and exercised.
+      l3: Measured with notice time, message accuracy, and stakeholder feedback.
+  references:
+    - title: NIST CSF 2.0 RS.CO
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 5.26
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [incident-communication, stakeholders, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-INC-004
+  version: 0.2.0
+  title:
+    en: Incidents produce blameless postmortems with tracked actions
+    th: เหตุการณ์สำคัญมี postmortem แบบไม่ตำหนิบุคคลพร้อมการติดตามการแก้ไข
+  description:
+    en: Material incidents must have a postmortem that records timeline, impact, root causes, contributing factors, and corrective actions with owners and due dates, and the actions must be tracked to closure. A postmortem without tracked actions fails the requirement.
+    th: เหตุการณ์ที่มีนัยสำคัญต้องมี postmortem ที่บันทึกลำดับเหตุการณ์ ผลกระทบ สาเหตุราก ปัจจัยที่เกี่ยวข้อง และ corrective actions พร้อม owner และกำหนดส่งมอบ และต้องติดตามการดำเนินการจนปิด postmortem ที่ไม่มีการติดตามการแก้ไขถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: An incident that is closed without learning will recur.
+    th: เหตุการณ์ที่ถูกปิดโดยไม่เกิดการเรียนรู้จะเกิดขึ้นซ้ำ
+  domain: incident-continuity
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Postmortem with timeline, impact, causes, and actions
+      max_age_days: 180
+    - type: ticket
+      description: Corrective-action tracker with owners and closure evidence
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Material incidents have postmortems and tracked actions.
+      partial: Postmortems exist but some lack causes, owners, or closure.
+    full:
+      l2: Completed for all material incidents in the current period.
+      l3: Measured with action closure rate and repeat-incident trends.
+  references:
+    - title: NIST SP 800-61 Rev. 3
+      url: https://csrc.nist.gov/pubs/sp/800/61/r3/final
+      type: standard
+    - title: NIST CSF 2.0 RS.AN
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [postmortem, learning, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-INC-005
+  version: 0.2.0
+  title:
+    en: A business continuity plan covers critical products and dependencies
+    th: แผนความต่อเนื่องทางธุรกิจครอบคลุมผลิตภัณฑ์และ dependency ที่สำคัญ
+  description:
+    en: The product must have an approved business continuity plan that identifies critical functions, dependencies, recovery priorities, and alternate arrangements. A plan that omits a critical dependency or has no owner fails the requirement.
+    th: ผลิตภัณฑ์ต้องมีแผนความต่อเนื่องทางธุรกิจที่ได้รับอนุมัติ ซึ่งระบุฟังก์ชันที่สำคัญ dependencies ลำดับความสำคัญในการกู้คืน และแนวทางสำรอง แผนที่ละเว้น dependency ที่สำคัญหรือไม่มี owner ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Continuity depends on the weakest dependency, not the strongest system.
+    th: ความต่อเนื่องขึ้นอยู่กับ dependency ที่อ่อนแอที่สุด ไม่ใช่ระบบที่แข็งแรงที่สุด
+  domain: incident-continuity
+  criticality: gate
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Approved business continuity plan with critical functions and dependencies
+      max_age_days: 365
+    - type: ticket
+      description: Plan review or exercise record
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: The plan is approved, owned, and covers critical dependencies.
+      partial: A plan exists but dependencies, priorities, or ownership are incomplete.
+    full:
+      l2: Approved and exercised for the current scope.
+      l3: Reviewed after material change and measured with recovery capability.
+  references:
+    - title: ISO 22301:2019
+      url: https://www.iso.org/standard/75106.html
+      type: standard
+    - title: ISO/IEC 27001:2022 5.29 and 5.30
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [business-continuity, bcp, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-INC-006
+  version: 0.2.0
+  title:
+    en: Disaster recovery is planned, tested, and meets its objectives
+    th: การกู้คืนจากภัยพิบัติถูกวางแผน ทดสอบ และเป็นไปตามเป้าหมาย
+  description:
+    en: The product must have a disaster recovery plan with recovery time and recovery point objectives, and the plan must be exercised at a defined cadence with results recorded. An untested DR plan or a missed objective fails the requirement.
+    th: ผลิตภัณฑ์ต้องมีแผนกู้คืนจากภัยพิบัติพร้อม recovery time และ recovery point objectives และต้องมีการซ้อมแผนตามรอบที่กำหนดโดยบันทึกผลลัพธ์ แผน DR ที่ไม่เคยทดสอบหรือไม่เป็นไปตามเป้าหมายถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A DR plan that has never run is a hypothesis, not a capability.
+    th: แผน DR ที่ไม่เคยทำงานจริงเป็นเพียงสมมติฐาน ไม่ใช่ขีดความสามารถ
+  domain: incident-continuity
+  criticality: gate
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Disaster recovery plan with RTO, RPO, and roles
+      max_age_days: 365
+    - type: report
+      description: DR exercise result with duration and gaps
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: The DR plan is documented, owned, and exercised.
+      partial: A plan exists but is untested or misses its objective.
+    full:
+      l2: Exercised at the defined cadence for critical services.
+      l3: Measured with RTO/RPO attainment and gap closure.
+  references:
+    - title: ISO 22301:2019
+      url: https://www.iso.org/standard/75106.html
+      type: standard
+    - title: NIST SP 800-34 Rev. 1
+      url: https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final
+      type: standard
+  tags: [disaster-recovery, dr, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-INC-007
+  version: 0.2.0
+  title:
+    en: Crisis management has a command structure and decision log
+    th: การจัดการวิกฤตมีโครงสร้างการบัญชาการและบันทึกการตัดสินใจ
+  description:
+    en: A crisis that exceeds normal incident handling must activate a predefined command structure with named roles, decision authority, and a decision log. A crisis response with no commander or no decision record fails the requirement.
+    th: วิกฤตที่เกินกว่าการจัดการเหตุการณ์ปกติต้องเปิดใช้โครงสร้างการบัญชาการที่กำหนดไว้ล่วงหน้าพร้อมบทบาทที่ระบุชื่อ อำนาจตัดสินใจ และบันทึกการตัดสินใจ การตอบสนองวิกฤตที่ไม่มีผู้บัญชาการหรือไม่มีบันทึกการตัดสินใจถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Crisis decisions made without clear authority and records cannot be coordinated or reviewed.
+    th: การตัดสินใจในวิกฤตที่ไม่มีอำนาจชัดเจนและไม่มีบันทึกไม่สามารถประสานงานหรือทบทวนได้
+  domain: incident-continuity
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Crisis management plan with command roles and decision authority
+      max_age_days: 365
+    - type: report
+      description: Crisis exercise record with decision log
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: A crisis plan and decision log are defined and exercised.
+      partial: A plan exists but roles, authority, or the decision log are incomplete.
+    full:
+      l2: Exercised for the current scope.
+      l3: Measured with activation time and decision-cycle performance.
+  references:
+    - title: ISO 22301:2019
+      url: https://www.iso.org/standard/75106.html
+      type: standard
+    - title: NIST CSF 2.0 RS.CO
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [crisis-management, command, resilience]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-INC-008
+  version: 0.2.0
+  title:
+    en: Regulatory notification readiness is defined and reviewed
+    th: ความพร้อมในการแจ้งหน่วยงานกำกับดูแลถูกกำหนดและทบทวน
+  description:
+    en: The product must identify incident types that may require external notification, with decision owners, timelines, evidence requirements, and a qualified review of the obligation. An incident with no notification assessment or no named decision owner fails the requirement.
+    th: ผลิตภัณฑ์ต้องระบุประเภทเหตุการณ์ที่อาจต้องแจ้งภายนอก พร้อม owner ผู้ตัดสินใจ กำหนดเวลา ข้อกำหนดด้านหลักฐาน และการทบทวนข้อผูกพันโดยผู้มีคุณสมบัติ เหตุการณ์ที่ไม่มีประเมินการแจ้งหรือไม่มี owner ผู้ตัดสินใจที่ระบุชื่อถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Notification deadlines are short, and an unowned decision becomes a missed deadline.
+    th: กำหนดเวลาการแจ้งนั้นสั้น และการตัดสินใจที่ไม่มีผู้รับผิดชอบจะกลายเป็นกำหนดเวลาที่พลาด
+  domain: incident-continuity
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Notification matrix with incident types, owners, timelines, and evidence requirements
+      max_age_days: 365
+    - type: ticket
+      description: Qualified review record for the notification obligations
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Notification triggers, owners, and timelines are documented and reviewed.
+      partial: A matrix exists but some triggers, owners, or reviews are missing.
+    full:
+      l2: Reviewed by a qualified person for the current scope.
+      l3: Exercised in incident scenarios and measured with decision time.
+  references:
+    - title: ISO/IEC 27001:2022 5.24 and 5.26
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 RS.CO
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [regulatory-notification, incident-response, compliance-readiness]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
