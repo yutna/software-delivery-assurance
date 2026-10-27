@@ -1,0 +1,620 @@
+id: SRAS-AI
+title:
+  en: AI and GenAI
+  th: AI และ GenAI
+description:
+  en: Assurance requirements for products with material AI or generative AI behaviour.
+  th: ข้อกำหนด assurance สำหรับผลิตภัณฑ์ที่มีพฤติกรรม AI หรือ generative AI ที่มีนัยสำคัญ
+version: 0.1.0
+applies_to:
+  - products with AI or generative AI features
+  - AI-assisted or automated decisions
+requires: []
+requirements:
+  - id: SRAS-AI-001
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: AI systems are inventoried with an accountable owner
+      th: ระบบ AI ถูกขึ้นทะเบียนพร้อม owner ที่รับผิดชอบ
+    description:
+      en: Every AI or generative AI capability in scope must be recorded in an inventory with its purpose, model or service, data sources, accountable owner, lifecycle stage, and affected users. An AI capability that is absent from the inventory is not covered by the assessment.
+      th: ความสามารถ AI หรือ generative AI ทุกอย่างที่อยู่ในขอบเขตต้องถูกบันทึกในทะเบียนพร้อมวัตถุประสงค์ โมเดลหรือบริการ แหล่งข้อมูล owner ที่รับผิดชอบ ขั้นตอน lifecycle และผู้ใช้ที่ได้รับผลกระทบ ความสามารถ AI ที่ไม่อยู่ในทะเบียนไม่ถือว่าอยู่ในขอบเขตการประเมิน
+    rationale:
+      en: An unknown AI capability cannot be governed, evaluated, or retired.
+      th: ความสามารถ AI ที่ไม่รู้จักไม่สามารถถูกกำกับ ประเมิน หรือยกเลิกได้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: AI system inventory with owners and lifecycle stage
+        max_age_days: 180
+      - type: ticket
+        description: Inventory review record for the current period
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Every AI capability in scope is inventoried with a named owner.
+        partial: Some AI capabilities are missing an owner or a lifecycle stage.
+      full:
+        l2: Inventoried and reviewed for the current release.
+        l3: Reviewed on a defined cadence and reconciled with production usage.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+    tags: [ai-governance, ai-inventory, ownership]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-002
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: AI risk and impact are classified before release
+      th: ความเสี่ยงและผลกระทบของ AI ถูกจำแนกก่อน release
+    description:
+      en: Each inventoried AI capability must have a documented risk and impact classification covering affected people, decision consequence, level of autonomy, data sensitivity, and reversibility. A high-impact capability requires a named risk owner and an approved treatment plan.
+      th: ความสามารถ AI แต่ละรายการต้องมีเอกสารจำแนกความเสี่ยงและผลกระทบ ครอบคลุมบุคคลที่ได้รับผลกระทบ ผลของการตัดสินใจ ระดับความเป็นอิสระ ความอ่อนไหวของข้อมูล และความสามารถในการย้อนกลับ ความสามารถที่มีผลกระทบสูงต้องมี risk owner ที่ระบุชื่อและแผนจัดการที่อนุมัติแล้ว
+    rationale:
+      en: Treating every AI capability the same under-governs the ones with the highest impact.
+      th: การกำกับ AI ทุกระบบด้วยวิธีเดียวกันทำให้ระบบที่มีผลกระทบสูงถูกกำกับน้อยเกินไป
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: AI risk and impact classification with treatment plan
+        max_age_days: 365
+      - type: ticket
+        description: Risk acceptance or treatment approval
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Each AI capability has a classification and an owner.
+        partial: A classification exists but the treatment or owner is incomplete.
+      full:
+        l2: Classified and approved before the current release.
+        l3: Revisited after material change and reviewed with evidence.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: ISO/IEC 23894:2023
+        url: https://www.iso.org/standard/77304.html
+        type: standard
+    tags: [ai-risk, impact-assessment]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-003
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Release is gated by evaluation against approved thresholds
+      th: Release ต้องผ่าน evaluation ตามเกณฑ์ที่อนุมัติ
+    description:
+      en: An AI capability must pass a documented evaluation suite with defined metrics, acceptance thresholds, and negative cases before release. A release with no recorded evaluation result, or with results below the approved threshold, is not accepted.
+      th: ความสามารถ AI ต้องผ่านชุด evaluation ที่จัดทำเอกสารไว้ โดยมี metric เกณฑ์ผ่าน และ negative case ที่กำหนด ก่อน release การ release ที่ไม่มีผล evaluation หรือมีผลต่ำกว่าเกณฑ์ที่อนุมัติไม่ถือว่ายอมรับได้
+    rationale:
+      en: AI quality cannot be confirmed from a demonstration or an opinion.
+      th: คุณภาพของ AI ไม่สามารถยืนยันได้จาก demo หรือความคิดเห็น
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: test_result
+        description: Evaluation run against approved metrics and thresholds
+        max_age_days: 180
+      - type: report
+        description: Evaluation summary with approval for the current release
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: The evaluation suite and the result are recorded and pass.
+        partial: An evaluation exists but thresholds or negative cases are incomplete.
+      full:
+        l2: Evaluated against approved thresholds before the current release.
+        l3: Evaluation covers production-like data and regression against prior releases.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+    tags: [ai-evaluation, release-gate]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-004
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Consequential AI decisions have human oversight and override
+      th: การตัดสินใจ AI ที่มีผลสำคัญต้องมีมนุษย์กำกับและ override
+    description:
+      en: Where an AI capability affects a person's access, eligibility, safety, or legal position, a competent human must be able to review, override, and escalate the decision. The oversight role, response time, and override record must be defined and available.
+      th: เมื่อความสามารถ AI มีผลต่อการเข้าถึง คุณสมบัติ ความปลอดภัย หรือสถานะทางกฎหมายของบุคคล มนุษย์ที่มีความสามารถต้องสามารถตรวจทาน override และ escalate การตัดสินใจได้ ต้องกำหนดบทบาทผู้กำกับ เวลาตอบสนอง และบันทึกการ override ไว้
+    rationale:
+      en: Automation without a correction path turns an error into damage that cannot be stopped.
+      th: ระบบอัตโนมัติที่ไม่มีทางแก้ไขจะทำให้ข้อผิดพลาดกลายเป็นความเสียหายที่ไม่สามารถหยุดได้
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Human oversight, override, and escalation procedure
+        max_age_days: 365
+      - type: log
+        description: Override and escalation records for the review period
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: A named human role can review, override, and escalate decisions.
+        partial: Oversight exists but the override record or response time is undefined.
+      full:
+        l2: Oversight, override, and escalation are defined and operating.
+        l3: Override outcomes are reviewed and fed back into evaluation.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: OECD AI Principles
+        url: https://oecd.ai/en/ai-principles
+        type: guidance
+    tags: [human-oversight, override]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-005
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Training and retrieval data have documented provenance and permitted use
+      th: ข้อมูลสำหรับ train และ retrieval มีแหล่งที่มาและการใช้ที่ได้รับอนุญาต
+    description:
+      en: Data used for training, fine-tuning, retrieval, or evaluation must have a recorded source, permitted use, quality assessment, and retention rule. Data with unknown provenance or without a permitted use must not be used.
+      th: ข้อมูลที่ใช้สำหรับ training fine-tuning retrieval หรือ evaluation ต้องมีแหล่งที่มา การใช้ที่ได้รับอนุญาต ผลประเมินคุณภาพ และกฎการเก็บรักษาที่บันทึกไว้ ข้อมูลที่ไม่ทราบแหล่งที่มาหรือไม่มีการใช้ที่ได้รับอนุญาตต้องไม่ถูกนำมาใช้
+    rationale:
+      en: Data without a permitted use creates product and customer risk that no model quality can offset.
+      th: ข้อมูลที่ไม่มีสิทธิ์ใช้งานสร้างความเสี่ยงต่อผลิตภัณฑ์และลูกค้าที่คุณภาพโมเดลชดเชยไม่ได้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Data provenance and permitted-use register
+        max_age_days: 365
+      - type: contract
+        description: Data use terms for external or licensed sources
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Every data source has a recorded origin and permitted use.
+        partial: Some sources are recorded but quality or retention is missing.
+      full:
+        l2: Provenance, permitted use, quality, and retention are recorded.
+        l3: Data lineage is traceable to the model and evaluation version.
+    references:
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+    tags: [data-provenance, data-use, ai-training]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-006
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Prompts, models, and configuration are versioned
+      th: Prompt โมเดล และ configuration ถูก version ควบคุม
+    description:
+      en: Prompts, system instructions, model identifiers, parameters, retrieval indexes, and safety filters must be versioned and linked to the release that used them. A production change without a recorded version cannot be reproduced or rolled back.
+      th: Prompt system instruction ตัวระบุโมเดล พารามิเตอร์ retrieval index และ safety filter ต้องถูก version และเชื่อมโยงกับ release ที่ใช้งาน การเปลี่ยนแปลงใน production ที่ไม่มี version บันทึกไว้ไม่สามารถทำซ้ำหรือ rollback ได้
+    rationale:
+      en: An AI behaviour that cannot be reproduced cannot be investigated or rolled back.
+      th: พฤติกรรม AI ที่ทำซ้ำไม่ได้จะตรวจสอบและย้อนกลับไม่ได้เมื่อเกิดปัญหา
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Versioned prompt, model, and parameter manifest
+        max_age_days: 180
+      - type: document
+        description: Release-to-version mapping for the current deployment
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Prompts and model settings are versioned and linked to the release.
+        partial: Some settings are versioned but the release mapping is incomplete.
+      full:
+        l2: Every change is versioned and traceable to a release.
+        l3: Versions are reproducible from recorded artefacts and reviewed.
+    references:
+      - title: NIST SP 800-218A
+        url: https://csrc.nist.gov/pubs/sp/800/218/a/final
+        type: standard
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+    tags: [ai-versioning, configuration, reproducibility]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-007
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Model and prompt changes follow controlled release and rollback
+      th: การเปลี่ยนแปลงโมเดลและ prompt ผ่าน release และ rollback ที่ควบคุม
+    description:
+      en: A change to a model, prompt, retrieval source, or safety configuration must pass the evaluation gate, have a rollback path, and record the approver. An emergency change must be reviewed within a defined period.
+      th: การเปลี่ยนแปลงโมเดล prompt แหล่ง retrieval หรือ safety configuration ต้องผ่าน evaluation gate มีเส้นทาง rollback และบันทึกผู้อนุมัติ การเปลี่ยนแปลงฉุกเฉินต้องถูกทบทวนภายในระยะเวลาที่กำหนด
+    rationale:
+      en: Models and prompts change behaviour without a code change.
+      th: โมเดลและ prompt เปลี่ยนพฤติกรรมได้โดยไม่ต้องแก้โค้ด
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: ticket
+        description: Change approval with evaluation result and rollback plan
+        max_age_days: 180
+      - type: document
+        description: Rollback procedure and last rollback test
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Changes are approved, evaluated, and reversible.
+        partial: Approval exists but rollback or evaluation evidence is incomplete.
+      full:
+        l2: Every production change follows the controlled release path.
+        l3: Emergency changes are reviewed and rollback is tested.
+    references:
+      - title: NIST SP 800-218A
+        url: https://csrc.nist.gov/pubs/sp/800/218/a/final
+        type: standard
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+    tags: [change-management, rollback, ai-release]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-008
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Production AI behaviour is monitored against thresholds
+      th: พฤติกรรม AI ใน production ถูก monitor เทียบเกณฑ์
+    description:
+      en: An AI capability in production must be monitored for quality, safety signals, refusal and failure rates, latency, and cost against defined thresholds. A threshold breach must trigger a recorded response.
+      th: ความสามารถ AI ใน production ต้องถูก monitor ด้านคุณภาพ สัญญาณความปลอดภัย อัตราการปฏิเสธและความล้มเหลว latency และต้นทุน เทียบกับเกณฑ์ที่กำหนด การละเมิดเกณฑ์ต้องกระตุ้นการตอบสนองที่บันทึกไว้
+    rationale:
+      en: A pre-release evaluation does not confirm behaviour under real data.
+      th: ผล evaluation ก่อน release ไม่ได้ยืนยันพฤติกรรมภายใต้ข้อมูลจริง
+    criticality: medium
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: metric
+        description: Production quality, safety, latency, and cost monitoring
+        max_age_days: 30
+      - type: ticket
+        description: Threshold breach response record
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Key quality and safety signals are monitored with thresholds.
+        partial: Monitoring exists but thresholds or responses are undefined.
+      full:
+        l2: Monitored with defined thresholds and a response owner.
+        l3: Trends are reviewed and thresholds are recalibrated with evidence.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+    tags: [ai-monitoring, production, thresholds]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-009
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Drift is detected and triggers review
+      th: Drift ถูกตรวจจับและกระตุ้นการทบทวน
+    description:
+      en: The product must monitor input, output, and performance drift and define the conditions that trigger re-evaluation, retraining, or withdrawal. Drift without a response owner is not managed.
+      th: ผลิตภัณฑ์ต้อง monitor drift ของ input output และประสิทธิภาพ และกำหนดเงื่อนไขที่กระตุ้นการประเมินซ้ำ การ train ใหม่ หรือการถอนออก Drift ที่ไม่มี owner รับผิดชอบไม่ถือว่าถูกจัดการ
+    rationale:
+      en: Models and data change over time, so a prior evaluation goes stale.
+      th: โมเดลและข้อมูลเปลี่ยนแปลงตลอดเวลา ทำให้ผลประเมินเดิมล้าสมัย
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: metric
+        description: Drift indicators for input, output, and performance
+        max_age_days: 30
+      - type: report
+        description: Drift review and action record
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Drift is monitored and a trigger for review is defined.
+        partial: Drift is measured but no trigger or owner is defined.
+      full:
+        l2: Drift triggers a defined review with an accountable owner.
+        l3: Drift actions are measured against later evaluation results.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: ISO/IEC 23894:2023
+        url: https://www.iso.org/standard/77304.html
+        type: standard
+    tags: [drift, ai-monitoring, re-evaluation]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-010
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: AI incidents are contained, investigated, and learned from
+      th: เหตุการณ์ AI ถูกควบคุม สืบสวน และนำไปปรับปรุง
+    description:
+      en: An AI incident, including harmful output, unsafe recommendation, prompt injection, data leakage, or model unavailability, must have a defined containment path, an owner, a severity rule, and a post-incident review.
+      th: เหตุการณ์ AI เช่น output ที่เป็นอันตราย คำแนะนำที่ไม่ปลอดภัย prompt injection ข้อมูลรั่วไหล หรือโมเดลใช้งานไม่ได้ ต้องมีเส้นทางควบคุม owner กฎระดับความรุนแรง และการทบทวนหลังเหตุการณ์
+    rationale:
+      en: AI failures may not appear as conventional system errors.
+      th: ความล้มเหลวของ AI อาจไม่ปรากฏเป็น error ในระบบแบบเดิม
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: AI incident response procedure with severity rules
+        max_age_days: 365
+      - type: report
+        description: Post-incident review with corrective actions
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: AI incidents have a containment path, owner, and severity rule.
+        partial: A procedure exists but containment or ownership is unclear.
+      full:
+        l2: Incidents are contained and reviewed with corrective actions.
+        l3: Corrective actions are tracked to closure and feed evaluation.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: OWASP Top 10 for LLM Applications
+        url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+        type: guidance
+    tags: [ai-incident, incident-response, containment]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-011
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: Third-party models and model licences are assessed
+      th: โมเดลและ licence ของบุคคลที่สามถูกประเมิน
+    description:
+      en: A third-party model, API, or training dataset must have a recorded licence, permitted use, data-handling terms, change-notification terms, and an exit path. A dependency without licence clarity must not be released.
+      th: โมเดล API หรือชุดข้อมูลของบุคคลที่สามต้องมี licence การใช้ที่ได้รับอนุญาต ข้อกำหนดการจัดการข้อมูล ข้อกำหนดการแจ้งเปลี่ยนแปลง และเส้นทางออกที่บันทึกไว้ dependency ที่ licence ไม่ชัดเจนต้องไม่ถูก release
+    rationale:
+      en: Licence limits and supplier changes affect the product directly.
+      th: ข้อจำกัดของ licence และการเปลี่ยนแปลงจากผู้ให้บริการส่งผลต่อผลิตภัณฑ์โดยตรง
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: contract
+        description: Model or dataset licence and data-handling terms
+        max_age_days: 365
+      - type: document
+        description: Supplier change-notification and exit plan
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The licence and permitted use are recorded for each dependency.
+        partial: A licence is recorded but data terms or exit path is missing.
+      full:
+        l2: Licence, data terms, change notice, and exit path are recorded.
+        l3: Supplier changes are tracked and trigger a product review.
+    references:
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+    tags: [third-party, licence, ai-supplier]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-AI-012
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: AI claims are limited to evaluated evidence
+      th: คำกล่าวอ้างเกี่ยวกับ AI จำกัดอยู่ที่หลักฐานที่ประเมินแล้ว
+    description:
+      en: A public or customer-facing claim about AI accuracy, safety, fairness, or compliance must be traceable to a current evaluation result and must state the known limitations. A claim that exceeds the recorded evidence must not be published. Users must be told when they interact with an AI capability or when a decision is materially AI-assisted.
+      th: คำกล่าวอ้างต่อสาธารณะหรือต่อลูกค้าเกี่ยวกับความแม่นยำ ความปลอดภัย ความเป็นธรรม หรือ compliance ของ AI ต้องอ้างอิงผล evaluation ที่เป็นปัจจุบัน และต้องระบุข้อจำกัดที่ทราบ คำกล่าวอ้างที่เกินกว่าหลักฐานที่บันทึกไว้ต้องไม่ถูกเผยแพร่ ผู้ใช้ต้องได้รับแจ้งเมื่อมีปฏิสัมพันธ์กับ AI หรือเมื่อการตัดสินใจได้รับความช่วยเหลือจาก AI อย่างมีนัยสำคัญ
+    rationale:
+      en: A claim beyond the evidence creates expectations the product cannot prove.
+      th: คำกล่าวอ้างที่เกินหลักฐานสร้างความคาดหวังที่ผลิตภัณฑ์พิสูจน์ไม่ได้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Claim register linked to current evaluation evidence
+        max_age_days: 180
+      - type: report
+        description: Current evaluation report supporting published claims
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Every AI claim is traceable to current evidence and stated limits.
+        partial: Claims are recorded but evidence or limitations are incomplete.
+      full:
+        l2: Claims, evidence, and limitations are reviewed for the release.
+        l3: Published claims are rechecked when evaluation or drift changes.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+      - title: ISO/IEC 42001:2023
+        url: https://www.iso.org/standard/81230.html
+        type: standard
+    tags: [claims, transparency, evidence]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+status: active
+deprecated_in: null
+replaced_by: null
+translation_status: partial
+machine_translated: true
+review_status: unverified
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
