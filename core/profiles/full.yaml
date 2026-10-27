@@ -1,0 +1,31 @@
+id: full
+title:
+  en: Full assessment
+  th: การประเมินแบบ Full
+description:
+  en: A full assessment with L0-L4 maturity, criticality weights, a readiness index, evidence coverage, and gates.
+  th: การประเมินเต็มรูปแบบด้วย maturity ระดับ L0-L4 น้ำหนักตาม criticality readiness index evidence coverage และ gate
+version: 0.1.0
+statuses:
+  - not_assessed
+  - gap
+  - partial
+  - implemented
+  - verified
+  - not_applicable
+maturity_levels:
+  - L0
+  - L1
+  - L2
+  - L3
+  - L4
+weighted_index: true
+evidence_coverage: true
+gate_report: true
+status: active
+deprecated_in: null
+translation_status: partial
+machine_translated: true
+review_status: draft
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

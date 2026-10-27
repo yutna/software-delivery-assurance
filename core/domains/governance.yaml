@@ -1,0 +1,147 @@
+- id: SRAS-GOV-001
+  version: 0.1.0
+  title:
+    en: A named product owner and an approved assurance scope exist
+    th: มี product owner ที่ระบุชื่อและ assurance scope ที่ได้รับอนุมัติ
+  description:
+    en: Every product must have a named product owner and an approved assurance scope that states the systems, users, data, tier, modules, and overlays in scope. An assessment without an approved scope is not valid.
+    th: ผลิตภัณฑ์ทุกตัวต้องมี product owner ที่ระบุชื่อและ assurance scope ที่ได้รับอนุมัติ ซึ่งระบุระบบ ผู้ใช้ ข้อมูล tier modules และ overlays ที่อยู่ในขอบเขต การประเมินที่ไม่มี scope ที่อนุมัติแล้วไม่ถือว่าถูกต้อง
+  rationale:
+    en: Accountability and scope cannot be reconstructed after an assessment starts.
+    th: ไม่สามารถสร้าง accountability และ scope ย้อนหลังได้เมื่อการประเมินเริ่มแล้ว
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Approved product charter and assurance scope
+      max_age_days: 365
+    - type: ticket
+      description: Scope approval record with owner and date
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: The owner and approved scope are recorded for the current assessment.
+      partial: The owner is named but the scope is incomplete or unapproved.
+    full:
+      l2: Documented and approved before the assessment starts.
+      l3: Reviewed at each assessment cycle and after material change.
+  references:
+    - title: NIST CSF 2.0 GV.RR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 5.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [governance, accountability, scope]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-002
+  version: 0.1.0
+  title:
+    en: A risk register records owners, ratings, and review dates
+    th: risk register บันทึก owner ระดับความเสี่ยง และวันทบทวน
+  description:
+    en: A risk register must record each material risk with an owner, likelihood, impact, treatment, and review date. A risk without an owner or review date is not accepted as managed.
+    th: risk register ต้องบันทึกความเสี่ยงที่มีนัยสำคัญแต่ละรายการพร้อม owner likelihood impact treatment และวันทบทวน ความเสี่ยงที่ไม่มี owner หรือวันทบทวนไม่ถือว่าถูกจัดการ
+  rationale:
+    en: An unowned risk has no one to accept, treat, or review it.
+    th: ความเสี่ยงที่ไม่มี owner ไม่มีผู้รับผิดชอบในการยอมรับ จัดการ หรือทบทวน
+  domain: governance
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Current risk register with owners, ratings, treatment, and review dates
+      max_age_days: 180
+    - type: ticket
+      description: Risk review record for the current period
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Material risks have owners, ratings, and review dates.
+      partial: Some material risks are missing owners or review dates.
+    full:
+      l2: Maintained and reviewed for the current release.
+      l3: Reviewed on a defined cadence with trend and treatment evidence.
+  references:
+    - title: ISO 31000:2018
+      url: https://www.iso.org/standard/65694.html
+      type: standard
+    - title: NIST CSF 2.0 GV.RM
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [risk-management, risk-register, governance]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-GOV-003
+  version: 0.1.0
+  title:
+    en: Assurance is reviewed on a cadence and after material change
+    th: มีการทบทวน assurance ตามรอบและหลังการเปลี่ยนแปลงที่มีนัยสำคัญ
+  description:
+    en: The product must define an assurance review cadence and trigger a review after a material architecture, data, vendor, or model change. A review with no owner or date is not complete.
+    th: ผลิตภัณฑ์ต้องกำหนดรอบการทบทวน assurance และต้องทบทวนเมื่อเกิดการเปลี่ยนแปลงที่มีนัยสำคัญด้านสถาปัตยกรรม ข้อมูล ผู้ขาย หรือโมเดล การทบทวนที่ไม่มี owner หรือวันที่ไม่ถือว่าเสร็จสมบูรณ์
+  rationale:
+    en: A one-time assessment goes stale when the product or its dependencies change.
+    th: การประเมินครั้งเดียวจะล้าสมัยเมื่อผลิตภัณฑ์หรือ dependency เปลี่ยน
+  domain: governance
+  criticality: medium
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Documented assurance cadence and material-change triggers
+      max_age_days: 365
+    - type: ticket
+      description: Most recent assurance review record with owner and date
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: The cadence and the latest review are recorded.
+      partial: A cadence is documented but the latest review is missing.
+    full:
+      l2: Documented and followed for the current release.
+      l3: Measured with review completion and stale-assessment metrics.
+  references:
+    - title: ISO/IEC 27001:2022 9.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 GV.OC
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [assurance, management-review, governance]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
