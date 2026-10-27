@@ -35,6 +35,10 @@ type ModuleExpectation = {
 const expectedModules = new Map<string, ModuleExpectation>([
   ["SRAS-AI", { path: "modules/ai/module.yaml", requirements: 12 }],
   ["SRAS-INT", { path: "modules/integration/module.yaml", requirements: 10 }],
+  [
+    "SRAS-RGD",
+    { path: "modules/regulated-data/module.yaml", requirements: 10 },
+  ],
 ]);
 
 const moduleById = (standard: ValidatedStandard, id: string): Module => {
