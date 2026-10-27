@@ -371,9 +371,9 @@ const checkSource = async (): Promise<void> => {
 
   const pureFiles = tsFiles.filter(
     (file) =>
-      file.path !== "cli.ts" &&
-      !file.path.startsWith("cli/") &&
-      !file.path.startsWith("adapters/") &&
+      file.path !== "sras/cli.ts" &&
+      !file.path.startsWith("sras/cli/") &&
+      !file.path.startsWith("sras/adapters/") &&
       !file.path.endsWith("workflow.ts"),
   );
   const forbidden = [

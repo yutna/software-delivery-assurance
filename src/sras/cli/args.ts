@@ -3,7 +3,8 @@ import { err, ok, type Result } from "../foundation/result.js";
 export type CliCommand =
   | { readonly tag: "Version" }
   | { readonly tag: "Help" }
-  | { readonly tag: "Validate"; readonly all: true };
+  | { readonly tag: "Validate"; readonly all: true }
+  | { readonly tag: "Guard" };
 
 export type ArgsError =
   | { readonly tag: "UnknownArgument"; readonly value: string }
@@ -30,6 +31,11 @@ export const parseArgs = (
         ? { tag: "Version" }
         : { tag: "Help" },
     );
+  }
+
+  if (first === "guard") {
+    if (rest.length > 0) return err({ tag: "TooManyArguments", values: argv });
+    return ok({ tag: "Guard" });
   }
 
   if (first === "validate") {
