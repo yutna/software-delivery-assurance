@@ -1,0 +1,36 @@
+project:
+  name: __PROJECT_NAME__
+  description: __PROJECT_DESCRIPTION__
+  owner: __PROJECT_OWNER__
+  confidentiality: internal
+sras_version: 0.0.0
+profile: full
+tier: 2
+scope:
+  systems: []
+  data: []
+  users: []
+  jurisdictions: []
+modules: []
+overlays: []
+assessed_at: "1970-01-01"
+assessor: __ASSESSOR__
+requirements: []
+gates:
+  pass: 0
+  fail: 0
+summary:
+  counts:
+    verified: 0
+    implemented: 0
+    partial: 0
+    gap: 0
+    not_assessed: 0
+    not_applicable: 0
+  index: 0.0
+signoff:
+  name: __SIGNOFF_NAME__
+  role: __SIGNOFF_ROLE__
+  date: "1970-01-01"
+limitations:
+  - Template placeholder; replace with the project's limitations.
