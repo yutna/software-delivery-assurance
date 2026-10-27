@@ -138,6 +138,7 @@ run `npm run sras -- render`.
 ## Registers
 
 - [ASEAN-MCC-001 — ASEAN Model Contractual Clauses for Cross Border Data Flows (2021)](registers/ASEAN-MCC-001.md)
+- [EU-AIACT-001 — Regulation (EU) 2024/1689 (Artificial Intelligence Act)](registers/EU-AIACT-001.md)
 - [EU-CRA-001 — Regulation (EU) 2024/2847 (Cyber Resilience Act)](registers/EU-CRA-001.md)
 - [EU-DORA-001 — Regulation (EU) 2022/2554 (Digital Operational Resilience Act)](registers/EU-DORA-001.md)
 - [EU-EIDAS-001 — Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS)](registers/EU-EIDAS-001.md)
