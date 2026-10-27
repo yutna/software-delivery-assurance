@@ -1,0 +1,56 @@
+id: EU-NIS-001
+jurisdiction: EU
+instrument: Directive (EU) 2022/2555 (NIS 2 Directive)
+instrument_type: regulation
+regulator: European Commission, national competent authorities, and CSIRTs
+source_url: https://eur-lex.europa.eu/eli/dir/2022/2555/oj
+effective_date: "2024-10-18"
+revision: "2026-10-28.r1"
+last_verified: "2026-10-28"
+review_due: "2027-10-28"
+status: in_force
+summary:
+  en: The Directive sets measures for a high common level of cybersecurity across the European Union. It sets risk-management and incident-reporting obligations for essential and important entities, rules for cooperation between Member States, and supervision and enforcement duties. It amended Regulation (EU) No 910/2014 and Directive (EU) 2018/1972 and repealed Directive (EU) 2016/1148.
+  th: ไดเรกทีฟนี้กำหนดมาตรการเพื่อให้มีระดับความมั่นคงทางไซเบอร์ที่สูงร่วมกันทั่วสหภาพยุโรป กำหนดหน้าที่การบริหารความเสี่ยงและการรายงานเหตุการณ์สำหรับ essential entity และ important entity กำหนดกฎความร่วมมือระหว่างรัฐสมาชิก และหน้าที่ด้านการกำกับดูแลและการบังคับใช้ แก้ไขระเบียบ (EU) No 910/2014 และไดเรกทีฟ (EU) 2018/1972 และยกเลิกไดเรกทีฟ (EU) 2016/1148
+obligations:
+  - en: An essential entity or an important entity adopts cybersecurity risk-management measures for its network and information systems.
+    th: essential entity หรือ important entity ใช้มาตรการบริหารความเสี่ยงด้านความมั่นคงทางไซเบอร์สำหรับระบบเครือข่ายและระบบสารสนเทศของตน
+  - en: An entity reports a significant incident to its CSIRT or competent authority within the timeframes the Directive sets.
+    th: entity รายงานเหตุการณ์สำคัญต่อ CSIRT หรือหน่วยงานที่มีอำนาจภายในกรอบเวลาที่ไดเรกทีฟกำหนด
+  - en: The management body of an entity approves and oversees the cybersecurity risk-management measures.
+    th: คณะผู้บริหารของ entity อนุมัติและกำกับดูแลมาตรการบริหารความเสี่ยงด้านความมั่นคงทางไซเบอร์
+  - en: An entity registers with the competent authority and supplies the information the Directive requires.
+    th: entity ลงทะเบียนกับหน่วยงานที่มีอำนาจและส่งข้อมูลตามที่ไดเรกทีฟกำหนด
+  - en: An entity addresses supply chain security, including the vulnerabilities of its suppliers and service providers.
+    th: entity จัดการความมั่นคงปลอดภัยของห่วงโซ่อุปทาน รวมถึงช่องโหว่ของผู้จัดหาและผู้ให้บริการ
+  - en: A Member State adopts a national cybersecurity strategy and designates competent authorities, CSIRTs, and a single point of contact.
+    th: รัฐสมาชิกจัดทำยุทธศาสตร์ความมั่นคงทางไซเบอร์ระดับประเทศ และแต่งตั้งหน่วยงานที่มีอำนาจ CSIRT และ single point of contact
+  - en: An entity cooperates with the competent authority during supervision and enforcement.
+    th: entity ให้ความร่วมมือกับหน่วยงานที่มีอำนาจในระหว่างการกำกับดูแลและการบังคับใช้
+mapped_requirements:
+  - SRAS-SEC-001
+  - SRAS-SEC-004
+  - SRAS-SEC-006
+  - SRAS-SEC-008
+  - SRAS-SEC-009
+  - SRAS-SEC-010
+  - SRAS-SEC-011
+  - SRAS-SEC-012
+  - SRAS-INC-001
+  - SRAS-INC-002
+  - SRAS-INC-008
+  - SRAS-SCM-004
+  - SRAS-SCM-010
+  - SRAS-OPS-001
+  - SRAS-OPS-002
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles: [essential-entity, important-entity, competent-authority]
+  data_types: [network-data, security-event-data]
+notes:
+  en: The Directive entered into force on 16 January 2023. Member States had to adopt the transposition measures by 17 October 2024 and apply them from 18 October 2024. This entry does not decide whether the Directive applies to a particular organisation, and it does not state that any organisation meets it.
+  th: ไดเรกทีฟมีผลใช้บังคับเมื่อวันที่ 16 มกราคม 2566 รัฐสมาชิกต้องออกมาตรการแปลงเป็นกฎหมายภายในวันที่ 17 ตุลาคม 2567 และเริ่มใช้มาตรการเหล่านั้นตั้งแต่วันที่ 18 ตุลาคม 2567 รายการนี้ไม่วินิจฉัยว่าไดเรกทีฟใช้กับองค์กรใดโดยเฉพาะ และไม่ได้ระบุว่าองค์กรใดปฏิบัติตามไดเรกทีฟ
+source_language: en
+translation_status: partial
+machine_translated: true
+review_status: unverified
