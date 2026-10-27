@@ -1,0 +1,38 @@
+id: TH-ETA-001
+jurisdiction: TH
+instrument: Electronic Transactions Act B.E. 2544 (2001)
+instrument_type: law
+regulator: Electronic Transactions Development Agency
+source_url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+effective_date: "2001-12-04"
+revision: "2026-10-27.r1"
+last_verified: "2026-10-27"
+review_due: "2027-04-27"
+status: amended
+summary:
+  en: The Act provides the legal framework for electronic transactions, electronic data messages, and electronic signatures in Thailand. It establishes the Electronic Transactions Development Agency and was amended to cover digital platform services. It addresses the retention and evidential use of electronic records.
+  th: พระราชบัญญัติกำหนดกรอบกฎหมายสำหรับธุรกรรมทางอิเล็กทรอนิกส์ ข้อความอิเล็กทรอนิกส์ และลายมือชื่ออิเล็กทรอนิกส์ในประเทศไทย จัดตั้งสำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์ และได้รับการแก้ไขเพิ่มเติมให้ครอบคลุมบริการแพลตฟอร์มดิจิทัล รวมถึงการเก็บรักษาและการใช้พยานหลักฐานอิเล็กทรอนิกส์
+obligations:
+  - en: Electronic data messages and signatures have legal effect when the conditions in the Act are met.
+    th: ข้อความอิเล็กทรอนิกส์และลายมือชื่ออิเล็กทรอนิกส์มีผลทางกฎหมายเมื่อเป็นไปตามเงื่อนไขในพระราชบัญญัติ
+  - en: Business operators keep electronic transaction records retrievable for the required period.
+    th: ผู้ประกอบธุรกิจเก็บรักษาบันทึกธุรกรรมทางอิเล็กทรอนิกส์ให้เรียกดูได้ตามระยะเวลาที่กำหนด
+  - en: Digital platform service businesses that must be notified follow the registration and disclosure duties.
+    th: ธุรกิจบริการแพลตฟอร์มดิจิทัลที่ต้องแจ้งให้ทราบปฏิบัติตามหน้าที่ด้านการแจ้งและการเปิดเผยข้อมูล
+mapped_requirements:
+  - SRAS-SEC-004
+  - SRAS-INT-002
+  - SRAS-INT-006
+  - SRAS-CHG-008
+  - SRAS-PRV-002
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles: [business-operator, digital-platform-operator]
+  data_types: [electronic-transaction-data, electronic-records]
+notes:
+  en: This entry does not decide whether a specific electronic signature or record meets the Act. Detailed conditions are in subordinate regulations.
+  th: รายการนี้ไม่วินิจฉัยว่าลายมือชื่ออิเล็กทรอนิกส์หรือบันทึกใดเป็นไปตามพระราชบัญญัติ เงื่อนไขโดยละเอียดอยู่ในกฎระเบียบลำดับรอง
+source_language: th
+translation_status: partial
+machine_translated: true
+review_status: unverified
