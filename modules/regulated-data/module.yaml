@@ -1,0 +1,514 @@
+id: SRAS-RGD
+title:
+  en: Regulated data
+  th: ข้อมูลที่มีข้อกำหนดกำกับ
+description:
+  en: Assurance requirements for products that process personal, financial, or otherwise regulated data.
+  th: ข้อกำหนด assurance สำหรับผลิตภัณฑ์ที่ประมวลผลข้อมูลส่วนบุคคล ข้อมูลทางการเงิน หรือข้อมูลที่มีข้อกำหนดกำกับอื่น
+version: 0.1.0
+applies_to:
+  - products that process personal data
+  - products that process financial or otherwise regulated data
+requires: []
+requirements:
+  - id: SRAS-RGD-001
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Regulated data is inventoried and classified
+      th: ข้อมูลที่มีข้อกำหนดกำกับถูกขึ้นทะเบียนและจำแนก
+    description:
+      en: Every dataset that contains personal, financial, or otherwise regulated data must be recorded in an inventory with its purpose, categories, source, owner, storage location, retention rule, and classification. A dataset that is absent from the inventory is not covered by the assessment.
+      th: ชุดข้อมูลทุกชุดที่มีข้อมูลส่วนบุคคล ข้อมูลทางการเงิน หรือข้อมูลที่มีข้อกำหนดกำกับอื่น ต้องถูกบันทึกในทะเบียนพร้อมวัตถุประสงค์ ประเภท แหล่งที่มา owner สถานที่จัดเก็บ กฎการเก็บรักษา และการจำแนก ชุดข้อมูลที่ไม่อยู่ในทะเบียนไม่ถือว่าอยู่ในขอบเขตการประเมิน
+    rationale:
+      en: Data that is not inventoried cannot be classified, protected, or deleted.
+      th: ข้อมูลที่ไม่อยู่ในทะเบียนไม่สามารถถูกจำแนก ป้องกัน หรือลบได้
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Regulated data inventory with classification and owners
+        max_age_days: 180
+      - type: diagram
+        description: Data flow diagram from source to storage and recipient
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Every regulated dataset is inventoried, classified, and owned.
+        partial: An inventory exists but classification or ownership is incomplete.
+      full:
+        l2: Inventory and data flows are current for the release.
+        l3: Inventory is reconciled with storage and production usage.
+    references:
+      - title: ISO/IEC 27701:2019
+        url: https://www.iso.org/standard/71670.html
+        type: standard
+      - title: NIST Privacy Framework 1.0
+        url: https://www.nist.gov/privacy-framework
+        type: standard
+    tags: [data-inventory, data-classification, privacy]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-002
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Each processing purpose has a documented lawful basis
+      th: วัตถุประสงค์การประมวลผลแต่ละรายการมีฐานทางกฎหมายที่บันทึกไว้
+    description:
+      en: Each processing purpose for regulated data must record the lawful basis relied on, the categories of data subjects and data, and the accountable owner. A purpose without a recorded basis must not be processed. The applicable basis is determined by the responsible privacy function, not by this library.
+      th: วัตถุประสงค์การประมวลผลข้อมูลที่มีข้อกำหนดกำกับแต่ละรายการต้องบันทึกฐานทางกฎหมายที่ใช้อ้างอิง ประเภทของเจ้าของข้อมูลและข้อมูล และ owner ที่รับผิดชอบ วัตถุประสงค์ที่ไม่มีฐานที่บันทึกไว้ต้องไม่ถูกประมวลผล การเลือกฐานที่ใช้เป็นหน้าที่ของหน่วยงานด้าน privacy ที่รับผิดชอบ ไม่ใช่ของไลบรารีนี้
+    rationale:
+      en: Processing without a recorded basis cannot be explained, reviewed, or defended.
+      th: การประมวลผลที่ไม่มีฐานบันทึกไว้ไม่สามารถอธิบาย ทบทวน หรือปกป้องได้
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Processing register with purpose, basis, and owner
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Every purpose records a basis and an owner.
+        partial: Some purposes are recorded but the basis or owner is missing.
+      full:
+        l2: Purposes and bases are recorded and reviewed for the release.
+        l3: Changes in purpose trigger a recorded basis review.
+    references:
+      - title: ISO/IEC 29100:2011
+        url: https://www.iso.org/standard/45123.html
+        type: standard
+      - title: OECD Privacy Guidelines
+        url: https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188
+        type: guidance
+    tags: [lawful-basis, processing-purpose, privacy]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-003
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Processor agreements define data handling obligations
+      th: ข้อตกลงกับ processor กำหนดหน้าที่ในการจัดการข้อมูล
+    description:
+      en: A processor that handles regulated data must have a written agreement covering scope, instructions, confidentiality, security, subprocessors, breach notification, return or deletion, and audit rights. Processing must not start before the agreement is in force.
+      th: processor ที่จัดการข้อมูลที่มีข้อกำหนดกำกับต้องมีข้อตกลงเป็นลายลักษณ์อักษรครอบคลุมขอบเขต คำสั่ง การรักษาความลับ ความปลอดภัย subprocessor การแจ้งเหตุละเมิด การคืนหรือลบข้อมูล และสิทธิในการตรวจสอบ ต้องไม่เริ่มประมวลผลก่อนข้อตกลงมีผล
+    rationale:
+      en: A processor without agreed obligations leaves the product accountable for work it does not control.
+      th: processor ที่ไม่มีข้อตกลงหน้าที่ทำให้ผลิตภัณฑ์ต้องรับผิดชอบงานที่ตนเองไม่ได้ควบคุม
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: contract
+        description: Processor agreement with security and breach terms
+        max_age_days: 365
+      - type: document
+        description: Processor register with scope and subprocessors
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Every processor has a current written agreement.
+        partial: An agreement exists but required terms are incomplete.
+      full:
+        l2: Agreements cover scope, security, breach, and audit.
+        l3: Agreements are reviewed when the service or subprocessors change.
+    references:
+      - title: ISO/IEC 27701:2019
+        url: https://www.iso.org/standard/71670.html
+        type: standard
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+    tags: [processor, data-processing-agreement, third-party]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-004
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Retention and deletion rules are defined and enforced
+      th: กฎการเก็บรักษาและการลบถูกกำหนดและบังคับใช้
+    description:
+      en: Each regulated dataset must have a retention period, a deletion or anonymisation method, and a scheduled review. Data must not be kept beyond its retention rule without a recorded justification.
+      th: ชุดข้อมูลที่มีข้อกำหนดกำกับแต่ละชุดต้องมีระยะเวลาจัดเก็บ วิธีการลบหรือทำให้ไม่สามารถระบุตัวตนได้ และการทบทวนตามกำหนด ต้องไม่เก็บข้อมูลเกินกว่ากฎการเก็บรักษาโดยไม่มีเหตุผลที่บันทึกไว้
+    rationale:
+      en: Data kept without a rule becomes a liability with no owner.
+      th: ข้อมูลที่ถูกเก็บโดยไม่มีกฎกลายเป็นความเสี่ยงที่ไม่มี owner
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Retention schedule with deletion and anonymisation methods
+        max_age_days: 365
+      - type: test_result
+        description: Deletion or anonymisation verification for a sample
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Each dataset has a retention rule and a deletion path.
+        partial: Retention rules exist but deletion is manual or unverified.
+      full:
+        l2: Retention and deletion are enforced and verified.
+        l3: Exceptions are approved, recorded, and reviewed.
+    references:
+      - title: ISO/IEC 27701:2019
+        url: https://www.iso.org/standard/71670.html
+        type: standard
+      - title: NIST Privacy Framework 1.0
+        url: https://www.nist.gov/privacy-framework
+        type: standard
+    tags: [retention, deletion, data-minimisation]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-005
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Data subject requests are handled within a defined timeline
+      th: คำขอของเจ้าของข้อมูลถูกจัดการภายในระยะเวลาที่กำหนด
+    description:
+      en: The product must provide a documented path to receive, verify, fulfil, and record access, correction, deletion, and objection requests within a defined timeline. A request that is not tracked cannot be shown to be fulfilled.
+      th: ผลิตภัณฑ์ต้องมีเส้นทางที่จัดทำเอกสารสำหรับรับ ตรวจสอบ ดำเนินการ และบันทึกคำขอเข้าถึง แก้ไข ลบ และคัดค้าน ภายในระยะเวลาที่กำหนด คำขอที่ไม่ถูกติดตามไม่สามารถแสดงได้ว่าดำเนินการแล้ว
+    rationale:
+      en: An untracked request has no evidence that the person received an answer.
+      th: คำขอที่ไม่ถูกติดตามไม่มีหลักฐานว่าบุคคลนั้นได้รับการตอบกลับ
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Request handling procedure with roles and timeline
+        max_age_days: 365
+      - type: ticket
+        description: Request log with outcome and response date
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: A request path, owner, and timeline are defined and used.
+        partial: A path exists but the timeline or record is incomplete.
+      full:
+        l2: Requests are tracked, verified, and answered within the timeline.
+        l3: Request trends and failures are reviewed.
+    references:
+      - title: ISO/IEC 27701:2019
+        url: https://www.iso.org/standard/71670.html
+        type: standard
+      - title: OECD Privacy Guidelines
+        url: https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188
+        type: guidance
+    tags: [data-subject-request, privacy-rights, response-time]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-006
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Cross-border transfers have a documented mechanism
+      th: การโอนข้อมูลข้ามพรมแดนมีกลไกที่บันทึกไว้
+    description:
+      en: A transfer of regulated data across a border must record the destination, the transfer mechanism, the safeguards applied, and the owner. A transfer without a documented mechanism must not be enabled.
+      th: การโอนข้อมูลที่มีข้อกำหนดกำกับข้ามพรมแดนต้องบันทึกปลายทาง กลไกการโอน มาตรการป้องกันที่ใช้ และ owner ต้องไม่เปิดใช้การโอนที่ไม่มีกลไกบันทึกไว้
+    rationale:
+      en: A transfer that is not recorded cannot be assessed when the destination or the law changes.
+      th: การโอนที่ไม่ถูกบันทึกไม่สามารถประเมินได้เมื่อปลายทางหรือกฎหมายเปลี่ยน
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Transfer register with destination, mechanism, and safeguards
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Every transfer is recorded with a mechanism and owner.
+        partial: Transfers are known but the mechanism or safeguards are incomplete.
+      full:
+        l2: Transfers are recorded and reviewed for the release.
+        l3: Changes in destination or mechanism trigger a recorded review.
+    references:
+      - title: ISO/IEC 27701:2019
+        url: https://www.iso.org/standard/71670.html
+        type: standard
+      - title: OECD Privacy Guidelines
+        url: https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188
+        type: guidance
+    tags: [cross-border, data-transfer, privacy]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-007
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Breach detection and notification are ready
+      th: การตรวจจับและการแจ้งเหตุละเมิดข้อมูลพร้อมใช้งาน
+    description:
+      en: The product must define how a regulated-data breach is detected, assessed, contained, and notified to the responsible internal and external parties within a defined timeline. A contact and decision record must exist before an incident.
+      th: ผลิตภัณฑ์ต้องกำหนดวิธีตรวจจับ ประเมิน ควบคุม และแจ้งเหตุละเมิดข้อมูลที่มีข้อกำหนดกำกับต่อฝ่ายภายในและภายนอกที่รับผิดชอบ ภายในระยะเวลาที่กำหนด ต้องมีช่องทางติดต่อและบันทึกการตัดสินใจก่อนเกิดเหตุการณ์
+    rationale:
+      en: Notification decisions made for the first time during an incident are late and inconsistent.
+      th: การตัดสินใจแจ้งเหตุที่เพิ่งทำครั้งแรกระหว่างเกิดเหตุจะล่าช้าและไม่สม่ำเสมอ
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Breach response procedure with notification timeline
+        max_age_days: 365
+      - type: ticket
+        description: Breach drill or tabletop exercise record
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Detection, assessment, and notification paths are defined.
+        partial: A procedure exists but contacts or timelines are incomplete.
+      full:
+        l2: The procedure is exercised and decisions are recorded.
+        l3: Exercises are reviewed and corrective actions are tracked.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: NIST Privacy Framework 1.0
+        url: https://www.nist.gov/privacy-framework
+        type: standard
+    tags: [breach, notification, incident-readiness]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-008
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Processors are assessed and audited
+      th: Processor ถูกประเมินและตรวจสอบ
+    description:
+      en: A processor that handles regulated data must be assessed before onboarding and reviewed on a defined cadence, using security evidence, audit rights, and subprocessor disclosure. An assessment without current evidence is not complete.
+      th: processor ที่จัดการข้อมูลที่มีข้อกำหนดกำกับต้องถูกประเมินก่อน onboard และทบทวนตามรอบที่กำหนด โดยใช้หลักฐานด้านความปลอดภัย สิทธิในการตรวจสอบ และการเปิดเผย subprocessor การประเมินที่ไม่มีหลักฐานปัจจุบันไม่ถือว่าเสร็จสมบูรณ์
+    rationale:
+      en: A contract without evidence of practice is an assumption, not assurance.
+      th: สัญญาที่ไม่มีหลักฐานการปฏิบัติเป็นเพียงสมมติฐาน ไม่ใช่ assurance
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: report
+        description: Processor assessment with security evidence and gaps
+        max_age_days: 365
+      - type: attestation
+        description: Current independent attestation or audit report
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Each processor has a current assessment.
+        partial: An assessment exists but evidence is stale or incomplete.
+      full:
+        l2: Assessments and independent evidence are current.
+        l3: Findings are tracked to closure and re-assessed on change.
+    references:
+      - title: ISO/IEC 27701:2019
+        url: https://www.iso.org/standard/71670.html
+        type: standard
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+    tags: [processor-audit, supplier-assurance, privacy]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-009
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Sensitive data is minimised and access-controlled
+      th: ข้อมูลอ่อนไหวถูกจำกัดและควบคุมการเข้าถึง
+    description:
+      en: Sensitive data must be collected only when necessary, masked or tokenised where the purpose allows, encrypted at rest and in transit, and restricted to named roles with recorded access. Access must be reviewed on a defined cadence.
+      th: ข้อมูลอ่อนไหวต้องถูกเก็บเมื่อจำเป็นเท่านั้น ปกปิดหรือแทนที่ด้วย token เมื่อวัตถุประสงค์อนุญาต เข้ารหัสทั้งขณะจัดเก็บและระหว่างส่ง และจำกัดให้เฉพาะ role ที่ระบุพร้อมบันทึกการเข้าถึง ต้องทบทวนสิทธิการเข้าถึงตามรอบที่กำหนด
+    rationale:
+      en: Sensitive data exposed to every role turns one compromised account into a reportable event.
+      th: ข้อมูลอ่อนไหวที่ทุก role เข้าถึงได้ทำให้บัญชีที่ถูกยึดหนึ่งบัญชีกลายเป็นเหตุการณ์ที่ต้องรายงาน
+    criticality: gate
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Encryption, masking, and role-based access configuration
+        max_age_days: 180
+      - type: log
+        description: Sensitive data access records and review
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Sensitive data is minimised and restricted to named roles.
+        partial: Controls exist but masking or access review is incomplete.
+      full:
+        l2: Minimisation, encryption, and access review are operating.
+        l3: Access is reviewed with evidence and exceptions are approved.
+    references:
+      - title: ISO/IEC 27001:2022
+        url: https://www.iso.org/standard/27001
+        type: standard
+      - title: ISO/IEC 27018:2019
+        url: https://www.iso.org/standard/76559.html
+        type: standard
+    tags: [sensitive-data, access-control, encryption]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+
+  - id: SRAS-RGD-010
+    version: 0.1.0
+    module: SRAS-RGD
+    title:
+      en: Records of processing are current and reviewable
+      th: บันทึกกิจกรรมการประมวลผลเป็นปัจจุบันและตรวจทานได้
+    description:
+      en: A record of processing activities must describe each purpose, data category, data subject category, recipient, transfer, retention rule, and security measure, and must be reviewed when the processing changes.
+      th: บันทึกกิจกรรมการประมวลผลต้องอธิบายวัตถุประสงค์ ประเภทข้อมูล ประเภทเจ้าของข้อมูล ผู้รับข้อมูล การโอน กฎการเก็บรักษา และมาตรการความปลอดภัยของแต่ละรายการ และต้องถูกทบทวนเมื่อการประมวลผลเปลี่ยน
+    rationale:
+      en: A record assembled only for an audit is usually incomplete.
+      th: บันทึกที่รวบรวมเฉพาะเมื่อมีการตรวจสอบมักไม่ครบถ้วน
+    criticality: medium
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Record of processing activities with owners
+        max_age_days: 180
+      - type: ticket
+        description: Review record after a processing change
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: The record covers every processing purpose and is current.
+        partial: A record exists but recipients or transfers are incomplete.
+      full:
+        l2: The record is current and reviewed after material change.
+        l3: The record is reconciled with the data inventory and contracts.
+    references:
+      - title: ISO/IEC 27701:2019
+        url: https://www.iso.org/standard/71670.html
+        type: standard
+      - title: NIST Privacy Framework 1.0
+        url: https://www.nist.gov/privacy-framework
+        type: standard
+    tags: [processing-record, accountability, privacy]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+status: active
+deprecated_in: null
+replaced_by: null
+translation_status: partial
+machine_translated: true
+review_status: unverified
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
