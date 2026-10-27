@@ -1,8 +1,20 @@
+# Link check configuration for local runs and CI.
+#
+# The user agent is a normal browser string because some official Thai
+# government portals reject the default command-line user agent with HTTP 403.
+# This changes only the request header, not which links are checked.
 max_retries = 2
 timeout = 20
-exclude = [
-  "https://example.com",
-]
+user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
+include_fragments = "anchor-only"
+
+# example.com is the placeholder domain in schema fixtures and synthetic
+# examples. It is reserved for documentation and is never a real endpoint.
+exclude = ["https://example.com"]
+
+# Generated output, vendored material, caches, and the temporary internal seed
+# are not authored content. Their links are checked through the source instead,
+# or excluded from the public content boundary by design.
 exclude_path = [
   ".claude/skills",
   "vendor",

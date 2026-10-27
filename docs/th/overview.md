@@ -103,8 +103,8 @@ product owner, engineering lead, ทีม security และ privacy, ทีม
 
 ## ขั้นตอนถัดไป
 
-- เริ่มที่ [เริ่มต้นอย่างรวดเร็ว](/th/quick-start)
-- อ่าน [แนวคิด](/th/concepts/) ก่อนทำการประเมินจริง
-- เลือก [module และ overlay](/th/concepts/modules-and-overlays) ที่ตรงกับ
+- เริ่มที่ [เริ่มต้นอย่างรวดเร็ว](quick-start.md)
+- อ่าน [แนวคิด](concepts/index.md) ก่อนทำการประเมินจริง
+- เลือก [module และ overlay](concepts/modules-and-overlays.md) ที่ตรงกับ
   ผลิตภัณฑ์
-- ดู [reference](/th/reference/) ที่ generate ไว้
+- ดู [reference](reference/index.md) ที่ generate ไว้

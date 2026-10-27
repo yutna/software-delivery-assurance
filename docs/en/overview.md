@@ -110,8 +110,8 @@ customer.
 
 ## Next steps
 
-- Start with the [quick start](/en/quick-start).
-- Read the [concepts](/en/concepts/) before running a real assessment.
-- Pick the [modules and overlays](/en/concepts/modules-and-overlays) that match
+- Start with the [quick start](quick-start.md).
+- Read the [concepts](concepts/index.md) before running a real assessment.
+- Pick the [modules and overlays](concepts/modules-and-overlays.md) that match
   the product.
-- Browse the generated [reference](/en/reference/).
+- Browse the generated [reference](reference/index.md).

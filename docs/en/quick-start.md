@@ -108,10 +108,10 @@ This command validates the SRAS standard content in the library: requirements,
 modules, overlays, registers, and crosswalks. It runs the JSON Schema 2020-12
 contracts under `schemas/` and the domain rules in `src/sras/standard/`.
 
-> **Project instance validation:** v0.5.0 validates a project instance when
+> **Project instance validation:** v0.6.0 validates a project instance when
 > `init` creates it. The planned files are checked with the same schemas and
 > project parsers before anything is written. A standalone project validator is
-> not part of v0.5.0.
+> not part of v0.6.0.
 
 ## Step 4 — Render and check the reference pages
 
@@ -140,7 +140,7 @@ npm run sras -- guard
 Expected output:
 
 ```text
-guard passed: scanned 254 files; excluded 0
+guard passed: scanned 292 files; excluded 0
 ```
 
 The guard scans the public content paths for out-of-scope health and sector

@@ -1,13 +1,13 @@
 lockfile_version: 1
 sras:
-  version: 0.5.0
-  checksum: sha256:cc017ccffec7453241b61ceeba5415f1867c9b303eef348f163bd070a8153c7a
+  version: 0.6.0
+  checksum: sha256:8a276de72ae9540f46a3dd9561d26319f8fcbb2ba694943a3ed5cb0c42bc071d
 modules:
   - id: SRAS-AI
-    version: 0.5.0
+    version: 0.6.0
 overlays:
   - id: TH-FIN
-    version: 0.5.0
+    version: 0.6.0
 inputs:
   - path: core/domains/change-release.yaml
     sha256: 6ae249cad4969e7faef455e1766402f631c08f106d26fbec3c6105e442a7d179
@@ -26,7 +26,7 @@ inputs:
   - path: core/profiles/full.yaml
     sha256: 66158613036aefa83c83fa4714c39a06bf0f7312e24199daea675c83d1c24bbd
   - path: core/sras.yaml
-    sha256: c0b85623aa4da8473271e03b26f9e521d055bb8dc91f31af8c0d1d04dc090d38
+    sha256: 2996199e2e3f67fd271e7696ff94ee2310811c18b8a6d9d4d7e67d2f6f35570d
   - path: modules/ai/module.yaml
     sha256: 1d32d9442e0d519bb8eb7b12d19359daf721c5d2b321e6b9acd9659577722878
   - path: overlays/industries/finance/overlay.yaml
