@@ -35,3 +35,14 @@
   margin-top: 4px;
   font-weight: 600;
 }
+
+.language-links {
+  margin: 24px 0 0;
+  color: var(--vp-c-text-2);
+  font-size: 14px;
+}
+
+.language-links a {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}

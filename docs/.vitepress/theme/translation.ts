@@ -28,6 +28,16 @@ export const readMachineTranslated = (frontmatter: unknown): boolean => {
 };
 
 /**
+ * Reports whether a page declares its translation state. Generated reference
+ * pages have no frontmatter, so they are excluded from page-level language
+ * links even though their effective status is canonical.
+ */
+export const hasTranslationStatus = (frontmatter: unknown): boolean => {
+  if (!isRecord(frontmatter)) return false;
+  return isTranslationStatus(frontmatter["translation_status"]);
+};
+
+/**
  * Maps a source path to the same page in the other locale. The result is a
  * site path without a file extension or base prefix; the caller adds `.html`
  * when the site does not use clean URLs.

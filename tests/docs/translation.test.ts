@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import {
   counterpartPath,
+  hasTranslationStatus,
   readMachineTranslated,
   readTranslationStatus,
 } from "../../docs/.vitepress/theme/translation.js";
@@ -30,6 +31,17 @@ describe("readTranslationStatus", () => {
       "complete",
     );
     expect(readTranslationStatus({ translation_status: 1 })).toBe("complete");
+  });
+});
+
+describe("hasTranslationStatus", () => {
+  test("is true only when a valid status is declared", () => {
+    expect(hasTranslationStatus({ translation_status: "partial" })).toBe(true);
+    expect(hasTranslationStatus({ translation_status: "missing" })).toBe(true);
+    expect(hasTranslationStatus({ translation_status: "complete" })).toBe(true);
+    expect(hasTranslationStatus({})).toBe(false);
+    expect(hasTranslationStatus({ translation_status: "draft" })).toBe(false);
+    expect(hasTranslationStatus(undefined)).toBe(false);
   });
 });
 

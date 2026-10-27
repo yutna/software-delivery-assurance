@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
+import LanguageLinks from "./LanguageLinks.vue";
 import TranslationBanner from "./TranslationBanner.vue";
 </script>
 
@@ -7,6 +8,9 @@ import TranslationBanner from "./TranslationBanner.vue";
   <DefaultTheme.Layout>
     <template #doc-before>
       <TranslationBanner />
+    </template>
+    <template #doc-after>
+      <LanguageLinks />
     </template>
     <template #home-hero-before>
       <TranslationBanner />
