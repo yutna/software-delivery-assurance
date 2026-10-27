@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/claim.schema.json",
+  "title": "SRAS project claim register",
+  "description": "Claims with allowed and prohibited wording. Verified and partial claims require current evidence and an approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claims"],
+  "properties": {
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    }
+  },
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "claim",
+        "evidence_ids",
+        "status",
+        "allowed_wording",
+        "prohibited_wording",
+        "owner",
+        "approved_by",
+        "approved_at",
+        "expires_at",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/claimId"
+        },
+        "claim": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "evidence_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evidenceId"
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["verified", "partial", "not_claimed", "prohibited"]
+        },
+        "allowed_wording": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "prohibited_wording": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "approved_by": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "approved_at": {
+          "anyOf": [
+            {
+              "$ref": "requirement.schema.json#/$defs/date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expires_at": {
+          "anyOf": [
+            {
+              "$ref": "requirement.schema.json#/$defs/date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": ["verified", "partial"],
+                "type": "string"
+              }
+            },
+            "required": ["status"],
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "approved_by": {
+                "type": "string",
+                "minLength": 1
+              },
+              "approved_at": {
+                "$ref": "requirement.schema.json#/$defs/date"
+              },
+              "expires_at": {
+                "$ref": "requirement.schema.json#/$defs/date"
+              },
+              "evidence_ids": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "claimId": {
+      "type": "string",
+      "pattern": "^CLM(?:-[A-Z0-9]+)+-\\d{3}$"
+    },
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^EV(?:-[A-Z0-9]+)+-\\d{3}$"
+    }
+  }
+}

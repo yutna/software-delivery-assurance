@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/evidence-index.schema.json",
+  "title": "SRAS project evidence index",
+  "description": "An index of evidence held outside the public library. Locations are private references, never public URLs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["entries"],
+  "properties": {
+    "entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidenceEntry"
+      }
+    }
+  },
+  "$defs": {
+    "evidenceEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "requirement_ids",
+        "type",
+        "description",
+        "location",
+        "owner",
+        "collected_at",
+        "expires_at",
+        "freshness_status",
+        "redaction",
+        "hash",
+        "access",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/evidenceId"
+        },
+        "requirement_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/requirementRef"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "document",
+            "diagram",
+            "configuration",
+            "screenshot",
+            "test_result",
+            "metric",
+            "ticket",
+            "log",
+            "contract",
+            "attestation",
+            "benchmark",
+            "interview",
+            "report"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "not": {
+            "pattern": "^[A-Za-z][A-Za-z0-9+.-]*://"
+          }
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "collected_at": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        },
+        "expires_at": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        },
+        "freshness_status": {
+          "type": "string",
+          "enum": ["current", "expired", "unknown"]
+        },
+        "redaction": {
+          "type": "string",
+          "enum": ["none", "partial", "full"]
+        },
+        "hash": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "access": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^EV(?:-[A-Z0-9]+)+-\\d{3}$"
+    },
+    "requirementRef": {
+      "anyOf": [
+        {
+          "$ref": "requirement.schema.json#/$defs/requirementId"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Z]{2,5}-[A-Z]{3}-\\d{3}$"
+        }
+      ]
+    }
+  }
+}

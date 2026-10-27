@@ -1,0 +1,14 @@
+entries:
+  - id: EV-SYN-001
+    requirement_ids: [SRAS-GOV-001]
+    type: document
+    description: Synthetic scope and ownership record.
+    location: evidence/synthetic-policy.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real record is included.

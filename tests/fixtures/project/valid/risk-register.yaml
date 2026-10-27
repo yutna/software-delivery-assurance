@@ -1,0 +1,14 @@
+risks:
+  - id: RSK-SYN-001
+    requirement_ids: [SRAS-GOV-001]
+    description: Synthetic ownership record needs a scheduled review.
+    severity: medium
+    likelihood: low
+    impact: medium
+    remediation: Schedule the synthetic review and record the outcome.
+    owner: Example team
+    due_date: "2027-04-27"
+    status: accepted
+    acceptance_id: ACC-SYN-001
+    customer_disclosure: yes
+    notes: Synthetic example only; the acceptance is not real.

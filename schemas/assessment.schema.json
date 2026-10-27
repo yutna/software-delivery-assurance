@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/assessment.schema.json",
+  "title": "SRAS project assessment",
+  "description": "A point-in-time assessment of the selected SRAS requirements. The assessment is self-contained so it can be stored with the project instance and reviewed without reading the library.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project",
+    "sras_version",
+    "profile",
+    "tier",
+    "scope",
+    "modules",
+    "overlays",
+    "assessed_at",
+    "assessor",
+    "requirements",
+    "gates",
+    "summary",
+    "signoff",
+    "limitations"
+  ],
+  "properties": {
+    "project": {
+      "$ref": "assurance.schema.json#/$defs/projectIdentity"
+    },
+    "sras_version": {
+      "$ref": "requirement.schema.json#/$defs/semver"
+    },
+    "profile": {
+      "$ref": "assurance.schema.json#/$defs/profile"
+    },
+    "tier": {
+      "$ref": "assurance.schema.json#/$defs/tier"
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "assurance.schema.json#/$defs/moduleId"
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "assurance.schema.json#/$defs/overlayId"
+      }
+    },
+    "assessed_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    },
+    "assessor": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assessedRequirement"
+      }
+    },
+    "gates": {
+      "$ref": "#/$defs/gateSummary"
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "signoff": {
+      "$ref": "#/$defs/signoff"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "profile": {
+            "const": "full",
+            "type": "string"
+          }
+        },
+        "required": ["profile"],
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "maturity": {
+                  "type": "string",
+                  "enum": ["L0", "L1", "L2", "L3", "L4"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profile": {
+            "const": "lite",
+            "type": "string"
+          }
+        },
+        "required": ["profile"],
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "maturity": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "index": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["systems", "data", "users", "jurisdictions"],
+      "properties": {
+        "systems": {
+          "$ref": "#/$defs/stringList"
+        },
+        "data": {
+          "$ref": "#/$defs/stringList"
+        },
+        "users": {
+          "$ref": "#/$defs/stringList"
+        },
+        "jurisdictions": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      }
+    },
+    "assessmentStatus": {
+      "type": "string",
+      "enum": [
+        "not_assessed",
+        "gap",
+        "partial",
+        "implemented",
+        "verified",
+        "not_applicable"
+      ]
+    },
+    "assessedRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "maturity",
+        "evidence_refs",
+        "notes",
+        "gap_owner",
+        "due_date"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "$ref": "requirement.schema.json#/$defs/requirementId"
+            },
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2,5}-[A-Z]{3}-\\d{3}$"
+            }
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/assessmentStatus"
+        },
+        "maturity": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": ["L0", "L1", "L2", "L3", "L4"]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evidenceId"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "gap_owner": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "due_date": {
+          "anyOf": [
+            {
+              "$ref": "requirement.schema.json#/$defs/date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^EV(?:-[A-Z0-9]+)+-\\d{3}$"
+    },
+    "gateSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pass", "fail"],
+      "properties": {
+        "pass": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fail": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["counts", "index"],
+      "properties": {
+        "counts": {
+          "$ref": "#/$defs/counts"
+        },
+        "index": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verified",
+        "implemented",
+        "partial",
+        "gap",
+        "not_assessed",
+        "not_applicable"
+      ],
+      "properties": {
+        "verified": {
+          "$ref": "#/$defs/count"
+        },
+        "implemented": {
+          "$ref": "#/$defs/count"
+        },
+        "partial": {
+          "$ref": "#/$defs/count"
+        },
+        "gap": {
+          "$ref": "#/$defs/count"
+        },
+        "not_assessed": {
+          "$ref": "#/$defs/count"
+        },
+        "not_applicable": {
+          "$ref": "#/$defs/count"
+        }
+      }
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "signoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "role", "date"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "date": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        }
+      }
+    }
+  }
+}

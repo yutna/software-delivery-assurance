@@ -20,6 +20,12 @@ const schemaNames = [
   "standard",
   "crosswalk",
   "register-entry",
+  "assurance",
+  "assessment",
+  "evidence-index",
+  "claim",
+  "risk-register",
+  "project-lock",
 ] as const;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -80,6 +86,12 @@ const validFixtures = [
   ["standard", "valid/standard.yaml"],
   ["crosswalk", "valid/crosswalk.yaml"],
   ["register-entry", "valid/register-entry.yaml"],
+  ["assurance", "project/valid/project-manifest.yaml"],
+  ["assessment", "project/valid/assessment.yaml"],
+  ["evidence-index", "project/valid/evidence-index.yaml"],
+  ["claim", "project/valid/claims.yaml"],
+  ["risk-register", "project/valid/risk-register.yaml"],
+  ["project-lock", "project/valid/project-lock.yaml"],
 ] as const;
 
 const invalidFixtures = [
@@ -95,6 +107,32 @@ const invalidFixtures = [
     "/mappings/0/relationship",
   ],
   ["register-entry", "invalid/register-entry-bad-status.yaml", "/status"],
+  ["assurance", "project/invalid/project-manifest-bad-tier.yaml", "/tier"],
+  [
+    "assessment",
+    "project/invalid/assessment-maturity-null-full.yaml",
+    "/requirements/0/maturity",
+  ],
+  [
+    "evidence-index",
+    "project/invalid/evidence-url-location.yaml",
+    "/entries/0/location",
+  ],
+  [
+    "claim",
+    "project/invalid/claim-approved-missing.yaml",
+    "/claims/0/approved_by",
+  ],
+  [
+    "risk-register",
+    "project/invalid/risk-accepted-no-acceptance.yaml",
+    "/risks/0/acceptance_id",
+  ],
+  [
+    "project-lock",
+    "project/invalid/project-lock-bad-checksum.yaml",
+    "/sras/checksum",
+  ],
 ] as const;
 
 describe("JSON Schema 2020-12 contracts", () => {
