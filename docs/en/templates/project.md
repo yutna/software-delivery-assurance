@@ -59,7 +59,7 @@ project:
   description: SRAS project instance for Example project.
   owner: Project owner
   confidentiality: internal
-sras_version: 0.6.0
+sras_version: 0.7.0
 profile: lite
 tier: 2
 modules: []
@@ -192,7 +192,7 @@ inputs.
 ```yaml
 lockfile_version: 1
 sras:
-  version: 0.6.0
+  version: 0.7.0
   checksum: sha256:...
 modules: []
 overlays: []

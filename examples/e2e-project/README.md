@@ -1,10 +1,10 @@
 # End-to-end synthetic project
 
-Synthetic Core plus AI plus Thailand finance overlay project used for the v0.6.0 end-to-end test.
+Synthetic Core plus AI plus Thailand finance overlay project used for the v0.7.0 end-to-end test.
 
 - Owner: Example team
 - Confidentiality: `synthetic`
-- SRAS version: `0.6.0`
+- SRAS version: `0.7.0`
 - Profile: `full`
 - Tier: 2
 - Modules: SRAS-AI
@@ -20,7 +20,7 @@ Synthetic Core plus AI plus Thailand finance overlay project used for the v0.6.0
 
 ## Lockfile
 
-- Checksum: `sha256:8a276de72ae9540f46a3dd9561d26319f8fcbb2ba694943a3ed5cb0c42bc071d`
+- Checksum: `sha256:45cd45ccf620bd4bafcf81aabc6bb5aa9cb434bbd64a2a7662641efc7850f176`
 - Inputs: 11
 
 ## Files

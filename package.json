@@ -1,6 +1,6 @@
 {
   "name": "software-delivery-assurance",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Software Delivery Assurance Library: SRAS standards, schemas, and TypeScript tools",
   "private": true,
   "type": "module",
