@@ -181,7 +181,7 @@ const config = {
     },
   },
   locales: {
-    "/en/": {
+    en: {
       label: "English",
       lang: "en-US",
       link: "/en/",
@@ -190,7 +190,7 @@ const config = {
         sidebar: enSidebar,
       },
     },
-    "/th/": {
+    th: {
       label: "ไทย",
       lang: "th-TH",
       link: "/th/",
