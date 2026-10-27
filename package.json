@@ -35,7 +35,10 @@
     "test:watch": "vitest",
     "sras": "npm run build --silent && node dist/cli.js",
     "check:fds": "node tools/check-fds.ts",
-    "sync:fds": "node tools/sync-fds.ts"
+    "sync:fds": "node tools/sync-fds.ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "ajv": "^8.20.0",
@@ -52,6 +55,7 @@
     "prettier": "^3.9.10",
     "typescript": "5.9.3",
     "typescript-eslint": "^8.72.0",
+    "vitepress": "^1.6.4",
     "vitest": "^5.0.5"
   }
 }

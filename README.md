@@ -68,6 +68,7 @@ npm run sras -- --version
 npm run sras -- validate --all
 npm run sras -- render --check
 npm run sras -- guard
+npm run docs:build
 ```
 
 Create a project instance with:

@@ -54,6 +54,24 @@ npm run docs:build
 Only run the commands that exist in the current milestone. A release also runs
 `node tools/check-version.ts <version>` and `oss-kit doctor`.
 
+## Documentation site
+
+The bilingual documentation site is built with VitePress from `docs/en/` and
+`docs/th/`. VitePress is the only documentation framework; do not add MkDocs or
+a second site generator.
+
+```bash
+npm ci
+npm run docs:dev       # local preview with hot reload
+npm run docs:build     # production build in docs/.vitepress/dist
+npm run docs:preview   # serve the production build locally
+```
+
+`npm run docs:build` fails on a dead internal link. The generated reference
+pages under `docs/en/reference/` are produced by `npm run sras -- render`;
+never edit them by hand. Change the source YAML, run the renderer, and commit
+the regenerated pages. The build output and cache are ignored by Git.
+
 ## Content rules
 
 - A requirement must be testable and have a clear negative case.
