@@ -1,7 +1,7 @@
 standard: SRAS
 standard_version: 0.1.0
 status: draft
-released_at: null
+released_at: "2026-10-27"
 profiles:
   - lite
   - full

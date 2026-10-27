@@ -10,6 +10,8 @@ import {
 } from "../adapters/json-schema.js";
 import type { Output } from "../adapters/output.js";
 import { assertNever } from "../foundation/assert-never.js";
+import type { GuardError, GuardFinding } from "../guard/types.js";
+import { scanContent } from "../guard/workflow.js";
 import type { ValidationIssue } from "../standard/types.js";
 import { validateStandardFiles } from "../standard/workflow.js";
 import { VERSION } from "../version.js";
@@ -22,6 +24,7 @@ const HELP = [
   "  sras --version",
   "  sras --help",
   "  sras validate --all",
+  "  sras guard",
   "",
 ].join("\n");
 
@@ -85,6 +88,49 @@ const renderIssue = (issue: ValidationIssue): string => {
   }
 };
 
+const renderGuardError = (error: GuardError): string => {
+  switch (error.tag) {
+    case "Read":
+      return `guard read error: ${error.file}: ${error.message}\n`;
+    case "Denylist":
+      return `guard denylist error: ${error.file}: ${error.message}\n`;
+    case "Regex":
+      return `guard regex error: ${error.id}: ${error.message}\n`;
+    default:
+      return assertNever(error);
+  }
+};
+
+const renderGuardFinding = (finding: GuardFinding): string =>
+  `${finding.file}:${String(finding.line)} [${finding.category}/${finding.ruleId}] ${finding.preview} — ${finding.reason}`;
+
+const runGuard = async (root: string, io: Output): Promise<number> => {
+  const override = process.env["SRAS_DENYLIST_PATH"];
+  const result = await scanContent(
+    root,
+    join(root, "guard", "denylist.yaml"),
+    override === undefined || override === "" ? undefined : override,
+  );
+
+  if (!result.ok) {
+    io.stderr(renderGuardError(result.error));
+    return 1;
+  }
+
+  if (result.value.findings.length === 0) {
+    io.stdout(
+      `guard passed: scanned ${String(result.value.scanned)} files; excluded ${String(result.value.skipped.length)}\n`,
+    );
+    return 0;
+  }
+
+  for (const finding of result.value.findings) {
+    io.stderr(`${renderGuardFinding(finding)}\n`);
+  }
+
+  return 1;
+};
+
 const runValidate = async (root: string, io: Output): Promise<number> => {
   const discovered = await discoverContentFiles(root);
 
@@ -143,6 +189,8 @@ export const runCommand = async (
       return 0;
     case "Validate":
       return runValidate(context.root, context.io);
+    case "Guard":
+      return runGuard(context.root, context.io);
     default:
       return assertNever(command);
   }

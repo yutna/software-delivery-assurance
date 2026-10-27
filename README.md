@@ -26,9 +26,9 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**v0.1.0 draft — foundation.** The repository is being built in small, reviewed
-milestones. The CLI currently supports `sras --version`; content validation,
-project init, rendering, and the content guard arrive in later milestones.
+**v0.1.0 — foundation.** The repository is built in small, reviewed milestones.
+The CLI supports `sras --version`, `sras validate --all`, and `sras guard`;
+project init, rendering, and the full content set arrive in later milestones.
 
 ## Who it is for
 

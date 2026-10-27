@@ -1,0 +1,91 @@
+# Public content guard rules.
+#
+# The public file contains generic categories and patterns only. Customer,
+# project, and internal names belong in a private override file referenced by
+# SRAS_DENYLIST_PATH. That override is never committed. The override may add
+# categories or regexes; it cannot weaken the public exclusions or allowlist.
+exclude:
+  - path: .claude/skills/**
+    reason: pinned third-party FDS text; not SRAS content
+  - path: vendor/functional-design-skills/**
+    reason: upstream licence and provenance metadata
+  - path: tests/**
+    reason: negative fixtures and generated test data
+  - path: guard/denylist.yaml
+    reason: the denylist itself contains the patterns
+  - path: internal/**
+    reason: temporary bootstrap seed; deleted in the final v1.0.0 issue
+allow:
+  - path: SCOPE.md
+    text: "Healthcare is out of scope"
+    reason: the required boundary statement; only this exact phrase is allowed
+categories:
+  healthcare:
+    - healthcare
+    - hospital
+    - hospitals
+    - clinic
+    - clinics
+    - clinical
+    - patient
+    - patients
+    - medical record
+    - medical records
+    - diagnosis
+    - medical treatment
+  customer_data:
+    - customer-name-placeholder
+    - project-name-placeholder
+  secrets:
+    - "ghp_"
+    - "github_pat_"
+    - "-----BEGIN PRIVATE KEY-----"
+  network:
+    - localhost
+  personal_data: []
+regexes:
+  - id: aws-access-key
+    category: secrets
+    pattern: "\\bAKIA[0-9A-Z]{16}\\b"
+    flags: ""
+    reason: AWS access key identifiers are credentials
+  - id: openai-key
+    category: secrets
+    pattern: "\\bsk-[A-Za-z0-9_-]{16,}\\b"
+    flags: ""
+    reason: API key patterns are credentials
+  - id: private-ip-10
+    category: network
+    pattern: "\\b10\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b"
+    flags: ""
+    reason: private network identifiers do not belong in public content
+  - id: private-ip-192
+    category: network
+    pattern: "\\b192\\.168\\.\\d{1,3}\\.\\d{1,3}\\b"
+    flags: ""
+    reason: private network identifiers do not belong in public content
+  - id: private-ip-172
+    category: network
+    pattern: "\\b172\\.(1[6-9]|2[0-9]|3[01])\\.\\d{1,3}\\.\\d{1,3}\\b"
+    flags: ""
+    reason: private network identifiers do not belong in public content
+  - id: localhost-port
+    category: network
+    pattern: "\\blocalhost:\\d{2,5}\\b"
+    flags: ""
+    reason: local service endpoints do not belong in public content
+  - id: thai-national-id
+    category: personal_data
+    pattern: "\\b\\d{13}\\b"
+    flags: ""
+    reason: conservative Thai national ID pattern; replace examples with synthetic values
+  - id: email-not-example
+    category: personal_data
+    pattern: "\\b[A-Za-z0-9._%+-]+@(?!(?:[A-Za-z0-9-]+\\.)*example\\.com\\b)[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
+    flags: ""
+    reason: personal email addresses are not public content
+  - id: thai-mobile
+    category: personal_data
+    pattern: "\\b0[689]\\d{8}\\b"
+    flags: ""
+    reason: personal phone numbers are not public content
