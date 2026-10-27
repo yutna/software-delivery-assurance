@@ -167,3 +167,11 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# SRAS build and generated output
+dist/
+coverage/
+*.tsbuildinfo
+.claude/settings.local.json
+docs/.vitepress/dist/
+docs/.vitepress/cache/
