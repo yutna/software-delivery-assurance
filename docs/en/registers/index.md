@@ -45,13 +45,15 @@ Each generated reference page carries the official source, the
 
 ## ASEAN registers
 
-| ID            | Instrument                                  | Jurisdiction | Type | Review status |
-| ------------- | ------------------------------------------- | ------------ | ---- | ------------- |
-| `MY-PDPA-001` | Personal Data Protection Act 2010 (Act 709) | Malaysia     | Law  | `unverified`  |
-| `SG-PDPA-001` | Personal Data Protection Act 2012           | Singapore    | Law  | `unverified`  |
+| ID            | Instrument                                     | Jurisdiction | Type | Review status |
+| ------------- | ---------------------------------------------- | ------------ | ---- | ------------- |
+| `ID-PDP-001`  | Law No. 27 of 2022 on Personal Data Protection | Indonesia    | Law  | `unverified`  |
+| `MY-PDPA-001` | Personal Data Protection Act 2010 (Act 709)    | Malaysia     | Law  | `unverified`  |
+| `SG-PDPA-001` | Personal Data Protection Act 2012              | Singapore    | Law  | `unverified`  |
 
 Each ASEAN entry links to its official source and its generated reference page:
 
+- [ID-PDP-001](../reference/registers/ID-PDP-001.md)
 - [MY-PDPA-001](../reference/registers/MY-PDPA-001.md)
 - [SG-PDPA-001](../reference/registers/SG-PDPA-001.md)
 

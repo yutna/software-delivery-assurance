@@ -137,6 +137,7 @@ run `npm run sras -- render`.
 
 ## Registers
 
+- [ID-PDP-001 — Law No. 27 of 2022 on Personal Data Protection](registers/ID-PDP-001.md)
 - [MY-PDPA-001 — Personal Data Protection Act 2010 (Act 709)](registers/MY-PDPA-001.md)
 - [SG-PDPA-001 — Personal Data Protection Act 2012](registers/SG-PDPA-001.md)
 - [TH-BOT-001 — Bank of Thailand Notification No. สกช. 5/2566 on Information Technology Risk Management for Financial Institutions and Specialized Financial Institutions (2023)](registers/TH-BOT-001.md)
