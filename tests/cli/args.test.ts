@@ -123,6 +123,31 @@ describe("parseArgs", () => {
     });
   });
 
+  test("render defaults to writing and accepts --check", () => {
+    expect(parseArgs(["render"])).toEqual({
+      ok: true,
+      value: { tag: "Render", check: false },
+    });
+    expect(parseArgs(["render", "--check"])).toEqual({
+      ok: true,
+      value: { tag: "Render", check: true },
+    });
+  });
+
+  test("render rejects unknown or extra arguments", () => {
+    expect(parseArgs(["render", "--nope"])).toEqual({
+      ok: false,
+      error: { tag: "UnknownArgument", value: "--nope" },
+    });
+    expect(parseArgs(["render", "--check", "extra"])).toEqual({
+      ok: false,
+      error: {
+        tag: "TooManyArguments",
+        values: ["render", "--check", "extra"],
+      },
+    });
+  });
+
   test("an unknown command is rejected", () => {
     expect(parseArgs(["nope"])).toEqual({
       ok: false,

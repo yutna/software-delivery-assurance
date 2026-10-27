@@ -128,7 +128,9 @@ describe("planProjectInit", () => {
     expect(assessment).toContain("index: 0.0");
     expect(assessment).not.toContain("__PROJECT_NAME__");
     expect(assessment).not.toContain("1970-01-01");
-    expect(result.value.files.map((file) => file.path)).toContain("README.md");
+    expect(result.value.files.map((file) => file.path)).not.toContain(
+      "README.md",
+    );
     expect(
       verifyProjectLock(result.value.lock, await loadStandard("full")).ok,
     ).toBe(true);

@@ -89,45 +89,6 @@ const lockDocument = (
   })),
 });
 
-const projectReadme = (input: InitPlanInput, description: string): string => {
-  const modules = "none";
-  const overlays = "none";
-
-  return [
-    `# ${input.projectName}`,
-    "",
-    `Project instance created by \`sras init\` on ${input.date}.`,
-    "",
-    `- SRAS version: \`${input.srasVersion}\``,
-    `- Profile: \`${input.profile}\``,
-    "- Tier: 2",
-    `- Modules: ${modules}`,
-    `- Overlays: ${overlays}`,
-    "",
-    description,
-    "",
-    "## Next steps",
-    "",
-    ...NEXT_STEPS.map((step, index) => `${String(index + 1)}. ${step}`),
-    "",
-    "## Files",
-    "",
-    "| File | Purpose |",
-    "| --- | --- |",
-    "| `assurance.yaml` | Project identity and selection |",
-    "| `assessment.yaml` | Assessment of the selected requirements |",
-    "| `evidence-index.yaml` | Private evidence index |",
-    "| `claims.yaml` | Allowed and prohibited claim wording |",
-    "| `risk-register.yaml` | Gaps and risks with owners and due dates |",
-    "| `assurance.lock.yaml` | Pinned standard inputs and checksum |",
-    "",
-    "Evidence and customer data stay outside this repository. Do not put a real",
-    "customer name, secret, production hostname, or private address in a public",
-    "project instance.",
-    "",
-  ].join("\n");
-};
-
 const templateText = (
   file: SourceFile,
   input: InitPlanInput,
@@ -239,13 +200,10 @@ export const planProjectInit = (
     });
   }
 
-  const files: PlannedFile[] = [
-    { path: "README.md", text: projectReadme(input, description) },
-    ...textFiles,
-  ];
+  const files: PlannedFile[] = [...textFiles];
 
   for (const file of files) {
-    if (file.path !== "README.md") markerIssues(file, issues);
+    markerIssues(file, issues);
   }
 
   if (issues.length > 0) return err(issues);

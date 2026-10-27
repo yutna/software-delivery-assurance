@@ -1,13 +1,6 @@
 import { join } from "node:path";
-import {
-  discoverContentFiles,
-  readSourceFiles,
-  type ReadError,
-} from "../adapters/fs.js";
-import {
-  createSchemaValidator,
-  type SchemaLoadError,
-} from "../adapters/json-schema.js";
+import type { ReadError } from "../adapters/fs.js";
+import type { SchemaLoadError } from "../adapters/json-schema.js";
 import type { Output } from "../adapters/output.js";
 import { assertNever } from "../foundation/assert-never.js";
 import type { GuardError, GuardFinding } from "../guard/types.js";
@@ -15,8 +8,10 @@ import { scanContent } from "../guard/workflow.js";
 import type { InitIssue } from "../project/init.js";
 import type { ProjectIssue } from "../project/types.js";
 import { initProject, type InitShellError } from "../project/workflow.js";
+import { renderCheckFromRoot, renderToRoot } from "../render/workflow.js";
+import type { RenderDriftIssue, RenderError } from "../render/types.js";
 import type { ValidationIssue } from "../standard/types.js";
-import { validateStandardFiles } from "../standard/workflow.js";
+import { loadStandardFromRoot } from "../standard/workflow.js";
 import { VERSION } from "../version.js";
 import type { CliCommand } from "./args.js";
 
@@ -28,6 +23,7 @@ const HELP = [
   "  sras --help",
   "  sras validate --all",
   "  sras init <dir> --profile lite|full",
+  "  sras render [--check]",
   "  sras guard",
   "",
 ].join("\n");
@@ -107,6 +103,73 @@ const renderGuardError = (error: GuardError): string => {
 
 const renderGuardFinding = (finding: GuardFinding): string =>
   `${finding.file}:${String(finding.line)} [${finding.category}/${finding.ruleId}] ${finding.preview} — ${finding.reason}`;
+
+const renderRenderError = (error: RenderError): string => {
+  switch (error.tag) {
+    case "NoContent":
+      return "no standard content found; nothing to render\n";
+    case "Read":
+      return `render read error: ${error.file}: ${error.message}\n`;
+    case "Schema":
+      return `render schema error: ${error.message}\n`;
+    case "Validation":
+      return `${error.issues.map(renderIssue).join("\n")}\n`;
+    case "Write":
+      return `render write error: ${error.file}: ${error.message}\n`;
+    default:
+      return assertNever(error);
+  }
+};
+
+const renderDriftIssue = (issue: RenderDriftIssue): string => {
+  switch (issue.tag) {
+    case "Missing":
+      return `missing: ${issue.path}`;
+    case "Changed":
+      return `changed: ${issue.path}:${String(issue.line)}: expected ${JSON.stringify(issue.expected)}, found ${JSON.stringify(issue.actual)}`;
+    case "Extra":
+      return `extra: ${issue.path}`;
+    default:
+      return assertNever(issue);
+  }
+};
+
+const runRender = async (
+  root: string,
+  check: boolean,
+  io: Output,
+): Promise<number> => {
+  if (!check) {
+    const result = await renderToRoot(root);
+
+    if (!result.ok) {
+      io.stderr(renderRenderError(result.error));
+      return 1;
+    }
+
+    io.stdout(`rendered ${String(result.value.pages)} pages\n`);
+    return 0;
+  }
+
+  const result = await renderCheckFromRoot(root);
+
+  if (!result.ok) {
+    if (result.error.tag === "Drift") {
+      for (const issue of result.error.issues) {
+        io.stderr(`${renderDriftIssue(issue)}\n`);
+      }
+      return 1;
+    }
+
+    io.stderr(renderRenderError(result.error));
+    return 1;
+  }
+
+  io.stdout(
+    `render check passed: ${String(result.value.pages)} pages; ${String(result.value.checked)} files\n`,
+  );
+  return 0;
+};
 
 const renderProjectIssue = (issue: ProjectIssue): string => {
   switch (issue.tag) {
@@ -226,42 +289,30 @@ const runGuard = async (root: string, io: Output): Promise<number> => {
 };
 
 const runValidate = async (root: string, io: Output): Promise<number> => {
-  const discovered = await discoverContentFiles(root);
+  const loaded = await loadStandardFromRoot(root);
 
-  if (!discovered.ok) {
-    io.stderr(renderReadError(discovered.error));
-    return 1;
-  }
-
-  if (discovered.value.length === 0) {
-    io.stdout("no standard content found; nothing to validate\n");
-    return 0;
-  }
-
-  const sources = await readSourceFiles(root, discovered.value);
-
-  if (!sources.ok) {
-    io.stderr(renderReadError(sources.error));
-    return 1;
-  }
-
-  const schemas = await createSchemaValidator(join(root, "schemas"));
-
-  if (!schemas.ok) {
-    io.stderr(renderSchemaLoadError(schemas.error));
-    return 1;
-  }
-
-  const result = validateStandardFiles(sources.value, schemas.value);
-
-  if (!result.ok) {
-    for (const issue of result.error) {
-      io.stderr(`${renderIssue(issue)}\n`);
+  if (!loaded.ok) {
+    switch (loaded.error.tag) {
+      case "Read":
+        io.stderr(renderReadError(loaded.error.error));
+        return 1;
+      case "Schema":
+        io.stderr(renderSchemaLoadError(loaded.error.error));
+        return 1;
+      case "Invalid":
+        for (const issue of loaded.error.issues) {
+          io.stderr(`${renderIssue(issue)}\n`);
+        }
+        return 1;
+      case "NoContent":
+        io.stdout("no standard content found; nothing to validate\n");
+        return 0;
+      default:
+        return assertNever(loaded.error);
     }
-    return 1;
   }
 
-  io.stdout(`validated ${String(discovered.value.length)} files\n`);
+  io.stdout(`validated ${String(loaded.value.fileCount)} files\n`);
   return 0;
 };
 
@@ -285,6 +336,8 @@ export const runCommand = async (
       return runValidate(context.root, context.io);
     case "Init":
       return runInit(context.root, command, context.io);
+    case "Render":
+      return runRender(context.root, command.check, context.io);
     case "Guard":
       return runGuard(context.root, context.io);
     default:

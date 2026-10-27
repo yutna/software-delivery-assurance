@@ -13,6 +13,7 @@ import { err, ok, type Result } from "../foundation/result.js";
 import type { SourceFile } from "../standard/dto.js";
 import { isoDate, version, type IsoDate } from "../standard/primitives.js";
 import type { ProfileId } from "../standard/types.js";
+import { renderProjectReadme } from "../render/markdown.js";
 import { VERSION } from "../version.js";
 import {
   planProjectInit,
@@ -28,7 +29,7 @@ import {
   parseProjectManifestFile,
   parseRiskRegisterFile,
 } from "./parse.js";
-import type { ProjectIssue } from "./types.js";
+import type { ProjectInstance, ProjectIssue } from "./types.js";
 import { validateProject } from "./validate.js";
 
 export type InitProjectInput = {
@@ -203,7 +204,7 @@ const parseProjectFile = <T>(
 const validatePlannedProject = async (
   root: string,
   files: readonly PlannedFile[],
-): Promise<Result<void, readonly ProjectIssue[]>> => {
+): Promise<Result<ProjectInstance, readonly ProjectIssue[]>> => {
   const schemas = await createSchemaValidator(join(root, "schemas"));
 
   if (!schemas.ok) {
@@ -310,16 +311,17 @@ const validatePlannedProject = async (
     return err(issues);
   }
 
-  const validated = validateProject({
+  const instance: ProjectInstance = {
     manifest: manifest.value,
     assessment: assessment.value,
     evidence: evidence.value,
     claims: claims.value,
     risks: risks.value,
     lock: lock.value,
-  });
+  };
+  const validated = validateProject(instance);
 
-  return validated.ok ? ok(undefined) : err(validated.error);
+  return validated.ok ? ok(validated.value) : err(validated.error);
 };
 
 const writeProjectFiles = async (
@@ -431,13 +433,23 @@ export const initProject = async (
 
   if (!validated.ok) return err({ tag: "Validation", issues: validated.error });
 
-  const written = await writeProjectFiles(target, plan.value.files);
+  const nextSteps = plan.value.nextSteps
+    .map((step, index) => `${String(index + 1)}. ${step}`)
+    .join("\n");
+  const files: readonly PlannedFile[] = [
+    {
+      path: "README.md",
+      text: `${renderProjectReadme(validated.value)}\n## Next steps\n\n${nextSteps}\n`,
+    },
+    ...plan.value.files,
+  ];
+  const written = await writeProjectFiles(target, files);
 
   if (!written.ok) return written;
 
   return ok({
     target,
-    files: plan.value.files.map((file) => file.path),
+    files: files.map((file) => file.path),
     nextSteps: plan.value.nextSteps,
   });
 };

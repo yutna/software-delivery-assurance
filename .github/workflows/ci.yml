@@ -96,6 +96,19 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: node dist/cli.js guard
+  render-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: node dist/cli.js render --check
   dependency-audit:
     runs-on: ubuntu-latest
     steps:
@@ -120,6 +133,7 @@ jobs:
         fds-check,
         schema-validate,
         content-guard,
+        render-check,
         dependency-audit,
       ]
     runs-on: ubuntu-latest

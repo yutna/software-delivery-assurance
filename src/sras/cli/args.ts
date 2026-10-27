@@ -5,6 +5,7 @@ export type CliCommand =
   | { readonly tag: "Version" }
   | { readonly tag: "Help" }
   | { readonly tag: "Validate"; readonly all: true }
+  | { readonly tag: "Render"; readonly check: boolean }
   | {
       readonly tag: "Init";
       readonly directory: string;
@@ -118,6 +119,17 @@ export const parseArgs = (
 
   if (first === "init") {
     return parseInit(rest, argv);
+  }
+
+  if (first === "render") {
+    if (rest.length === 0) return ok({ tag: "Render", check: false });
+    if (rest.length === 1 && rest[0] === "--check") {
+      return ok({ tag: "Render", check: true });
+    }
+    if (rest.length > 1) {
+      return err({ tag: "TooManyArguments", values: argv });
+    }
+    return err({ tag: "UnknownArgument", value: rest[0] ?? "" });
   }
 
   if (first === "validate") {

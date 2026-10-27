@@ -67,4 +67,26 @@ export type {
   RiskRegister,
   ValidatedProject,
 } from "./project/types.js";
+export {
+  renderIndexPage,
+  renderOverlayPage,
+  renderProjectReadme,
+  renderRegisterPage,
+  renderRequirementPage,
+  renderStandard,
+} from "./render/markdown.js";
+export {
+  checkRendered,
+  REFERENCE_DIRECTORY,
+  renderCheckFromRoot,
+  renderToRoot,
+  type RenderCheckResult,
+} from "./render/workflow.js";
+export type {
+  RenderCheckError,
+  RenderDriftIssue,
+  RenderError,
+  RenderPage,
+  RenderSummary,
+} from "./render/types.js";
 export { VERSION } from "./version.js";
