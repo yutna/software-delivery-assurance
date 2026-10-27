@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/requirement.schema.json",
+  "title": "SRAS Core requirement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "title",
+    "description",
+    "rationale",
+    "domain",
+    "criticality",
+    "applicability",
+    "evidence",
+    "assessment",
+    "references",
+    "tags",
+    "status",
+    "introduced_in",
+    "deprecated_in",
+    "translation_status",
+    "review_status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SRAS-(GOV|SEC|PRV|CHG|OPS|INC|SCM)-\\d{3}$"
+    },
+    "version": {
+      "$ref": "#/$defs/semver"
+    },
+    "title": {
+      "$ref": "#/$defs/localizedTitle"
+    },
+    "description": {
+      "$ref": "#/$defs/localizedText"
+    },
+    "rationale": {
+      "$ref": "#/$defs/localizedText"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "governance",
+        "security",
+        "privacy",
+        "change-release",
+        "operations",
+        "incident-continuity",
+        "supply-chain"
+      ]
+    },
+    "criticality": {
+      "type": "string",
+      "enum": ["gate", "high", "medium", "low"]
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tiers", "modules", "overlays", "excludes"],
+      "properties": {
+        "tiers": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "enum": [1, 2, 3]
+          }
+        },
+        "modules": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^SRAS-(AI|INT|RGD|CLD|ONP)$"
+          }
+        },
+        "overlays": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2,5}-[A-Z]{3}$"
+          }
+        },
+        "excludes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/requirementId"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evidenceItem"
+      }
+    },
+    "assessment": {
+      "$ref": "#/$defs/assessment"
+    },
+    "references": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/tag"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "deprecated"]
+    },
+    "introduced_in": {
+      "$ref": "#/$defs/semver"
+    },
+    "deprecated_in": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/semver"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replaced_by": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/requirementId"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "translation_status": {
+      "type": "string",
+      "enum": ["complete", "partial", "missing"]
+    },
+    "machine_translated": {
+      "type": "boolean"
+    },
+    "translation_reviewed_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "translation_reviewed_at": {
+      "$ref": "#/$defs/date"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "unverified", "reviewed"]
+    },
+    "reviewed_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_at": {
+      "$ref": "#/$defs/date"
+    },
+    "review_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "$ref": "#/$defs/date"
+    },
+    "updated_at": {
+      "$ref": "#/$defs/date"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "reviewed",
+            "type": "string"
+          }
+        },
+        "required": ["review_status"],
+        "type": "object"
+      },
+      "then": {
+        "required": ["reviewed_by", "reviewed_at", "review_scope"],
+        "properties": {
+          "reviewed_by": {},
+          "reviewed_at": {},
+          "review_scope": {}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "translation_status": {
+            "const": "complete",
+            "type": "string"
+          }
+        },
+        "required": ["translation_status"],
+        "type": "object"
+      },
+      "then": {
+        "required": ["translation_reviewed_by", "translation_reviewed_at"],
+        "properties": {
+          "title": {
+            "properties": {
+              "th": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "description": {
+            "properties": {
+              "th": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "rationale": {
+            "properties": {
+              "th": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "translation_reviewed_by": {},
+          "translation_reviewed_at": {}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "deprecated",
+            "type": "string"
+          }
+        },
+        "required": ["status"],
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "deprecated_in": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  ],
+  "$defs": {
+    "semver": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "requirementId": {
+      "type": "string",
+      "pattern": "^SRAS-[A-Z]+-\\d{3}$"
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "localizedTitle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "th"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "th": {
+          "type": "string",
+          "maxLength": 120
+        }
+      }
+    },
+    "localizedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "th"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "th": {
+          "type": "string"
+        }
+      }
+    },
+    "evidenceItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "description", "max_age_days"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "document",
+            "diagram",
+            "configuration",
+            "screenshot",
+            "test_result",
+            "metric",
+            "ticket",
+            "log",
+            "contract",
+            "attestation",
+            "benchmark",
+            "interview",
+            "report"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "max_age_days": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lite", "full"],
+      "properties": {
+        "lite": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pass", "partial"],
+          "properties": {
+            "pass": {
+              "type": "string",
+              "minLength": 1
+            },
+            "partial": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "full": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["l2", "l3"],
+          "properties": {
+            "l2": {
+              "type": "string",
+              "minLength": 1
+            },
+            "l3": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "url", "type"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["standard", "regulation", "guidance", "source"]
+        }
+      }
+    }
+  }
+}

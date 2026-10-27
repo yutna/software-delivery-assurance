@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/standard.schema.json",
+  "title": "SRAS standard manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "standard",
+    "standard_version",
+    "status",
+    "released_at",
+    "profiles",
+    "domains",
+    "license"
+  ],
+  "properties": {
+    "standard": {
+      "type": "string",
+      "const": "SRAS"
+    },
+    "standard_version": {
+      "$ref": "requirement.schema.json#/$defs/semver"
+    },
+    "title": {
+      "$ref": "requirement.schema.json#/$defs/localizedTitle"
+    },
+    "description": {
+      "$ref": "requirement.schema.json#/$defs/localizedText"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "stable", "deprecated"]
+    },
+    "released_at": {
+      "anyOf": [
+        {
+          "$ref": "requirement.schema.json#/$defs/date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["lite", "full"]
+      }
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "governance",
+          "security",
+          "privacy",
+          "change-release",
+          "operations",
+          "incident-continuity",
+          "supply-chain"
+        ]
+      }
+    },
+    "license": {
+      "type": "string",
+      "const": "MIT"
+    },
+    "created_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    },
+    "updated_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    }
+  }
+}

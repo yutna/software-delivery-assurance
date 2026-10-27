@@ -1,0 +1,15 @@
+standard: SRAS
+standard_version: 0.1.0
+status: draft
+released_at: null
+profiles:
+  - lite
+  - full
+domains:
+  - governance
+  - security
+  - privacy
+  - change-release
+  - operations
+  - incident-continuity
+license: MIT

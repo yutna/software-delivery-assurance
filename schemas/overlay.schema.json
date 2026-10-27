@@ -1,0 +1,650 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/overlay.schema.json",
+  "title": "SRAS jurisdiction or industry overlay",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "jurisdiction",
+    "title",
+    "description",
+    "version",
+    "extends",
+    "requires",
+    "adds",
+    "overrides",
+    "waives",
+    "sources",
+    "not_covered",
+    "review_checklist",
+    "status",
+    "review_status",
+    "translation_status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,5}-[A-Z]{3}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["jurisdiction", "industry"]
+    },
+    "jurisdiction": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$|^ASEAN$|^EU$"
+    },
+    "industry": {
+      "type": "string",
+      "enum": ["finance", "ecommerce", "logistics", "public-sector"]
+    },
+    "title": {
+      "$ref": "requirement.schema.json#/$defs/localizedTitle"
+    },
+    "description": {
+      "$ref": "requirement.schema.json#/$defs/localizedText"
+    },
+    "version": {
+      "$ref": "requirement.schema.json#/$defs/semver"
+    },
+    "extends": {
+      "type": "string",
+      "pattern": "^[<>=]{0,2}\\d+\\.\\d+\\.\\d+(?: [<>=]{1,2}\\d+\\.\\d+\\.\\d+)*$"
+    },
+    "requires": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SRAS-(AI|INT|RGD|CLD|ONP)$"
+      }
+    },
+    "adds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/overlayRequirement"
+      }
+    },
+    "overrides": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/override"
+      }
+    },
+    "waives": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/waiver"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{2,5}-[A-Z]+-\\d{3}$"
+      }
+    },
+    "not_covered": {
+      "$ref": "requirement.schema.json#/$defs/localizedText"
+    },
+    "review_checklist": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "deprecated"]
+    },
+    "deprecated_in": {
+      "anyOf": [
+        {
+          "$ref": "requirement.schema.json#/$defs/semver"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replaced_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Z]{2,5}-[A-Z]{3}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "translation_status": {
+      "type": "string",
+      "enum": ["complete", "partial", "missing"]
+    },
+    "machine_translated": {
+      "type": "boolean"
+    },
+    "translation_reviewed_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "translation_reviewed_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "unverified", "reviewed"]
+    },
+    "reviewed_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    },
+    "review_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    },
+    "updated_at": {
+      "$ref": "requirement.schema.json#/$defs/date"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "industry",
+            "type": "string"
+          }
+        },
+        "required": ["type"],
+        "type": "object"
+      },
+      "then": {
+        "required": ["jurisdiction", "industry"],
+        "properties": {
+          "jurisdiction": {},
+          "industry": {}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "jurisdiction",
+            "type": "string"
+          }
+        },
+        "required": ["type"],
+        "type": "object"
+      },
+      "then": {
+        "required": ["jurisdiction"],
+        "not": {
+          "required": ["industry"],
+          "type": "object"
+        },
+        "properties": {
+          "jurisdiction": {}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "reviewed",
+            "type": "string"
+          }
+        },
+        "required": ["review_status"],
+        "type": "object"
+      },
+      "then": {
+        "required": ["reviewed_by", "reviewed_at", "review_scope"],
+        "properties": {
+          "reviewed_by": {},
+          "reviewed_at": {},
+          "review_scope": {}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "translation_status": {
+            "const": "complete",
+            "type": "string"
+          }
+        },
+        "required": ["translation_status"],
+        "type": "object"
+      },
+      "then": {
+        "required": ["translation_reviewed_by", "translation_reviewed_at"],
+        "properties": {
+          "description": {
+            "properties": {
+              "th": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "not_covered": {
+            "properties": {
+              "th": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "translation_reviewed_by": {},
+          "translation_reviewed_at": {}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "deprecated",
+            "type": "string"
+          }
+        },
+        "required": ["status"],
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "deprecated_in": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  ],
+  "$defs": {
+    "overlayRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "overlay",
+        "title",
+        "description",
+        "rationale",
+        "criticality",
+        "applicability",
+        "evidence",
+        "assessment",
+        "references",
+        "tags",
+        "status",
+        "introduced_in",
+        "deprecated_in",
+        "translation_status",
+        "review_status",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z]{2,5}-[A-Z]{3}-\\d{3}$"
+        },
+        "version": {
+          "$ref": "requirement.schema.json#/$defs/semver"
+        },
+        "overlay": {
+          "type": "string",
+          "pattern": "^[A-Z]{2,5}-[A-Z]{3}$"
+        },
+        "title": {
+          "$ref": "requirement.schema.json#/$defs/localizedTitle"
+        },
+        "description": {
+          "$ref": "requirement.schema.json#/$defs/localizedText"
+        },
+        "rationale": {
+          "$ref": "requirement.schema.json#/$defs/localizedText"
+        },
+        "criticality": {
+          "type": "string",
+          "enum": ["gate", "high", "medium", "low"]
+        },
+        "applicability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tiers", "modules", "overlays", "excludes"],
+          "properties": {
+            "tiers": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "integer",
+                "enum": [1, 2, 3]
+              }
+            },
+            "modules": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^SRAS-(AI|INT|RGD|CLD|ONP)$"
+              }
+            },
+            "overlays": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2,5}-[A-Z]{3}$"
+              }
+            },
+            "excludes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "$ref": "requirement.schema.json#/$defs/requirementId"
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "requirement.schema.json#/$defs/evidenceItem"
+          }
+        },
+        "assessment": {
+          "$ref": "requirement.schema.json#/$defs/assessment"
+        },
+        "references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "requirement.schema.json#/$defs/reference"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "requirement.schema.json#/$defs/tag"
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "active", "deprecated"]
+        },
+        "introduced_in": {
+          "$ref": "requirement.schema.json#/$defs/semver"
+        },
+        "deprecated_in": {
+          "anyOf": [
+            {
+              "$ref": "requirement.schema.json#/$defs/semver"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replaced_by": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2,5}-[A-Z]{3}-\\d{3}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "translation_status": {
+          "type": "string",
+          "enum": ["complete", "partial", "missing"]
+        },
+        "machine_translated": {
+          "type": "boolean"
+        },
+        "translation_reviewed_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "translation_reviewed_at": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        },
+        "review_status": {
+          "type": "string",
+          "enum": ["draft", "unverified", "reviewed"]
+        },
+        "reviewed_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_at": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        },
+        "review_scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        },
+        "updated_at": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_status": {
+                "const": "reviewed",
+                "type": "string"
+              }
+            },
+            "required": ["review_status"],
+            "type": "object"
+          },
+          "then": {
+            "required": ["reviewed_by", "reviewed_at", "review_scope"],
+            "properties": {
+              "reviewed_by": {},
+              "reviewed_at": {},
+              "review_scope": {}
+            },
+            "type": "object"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "translation_status": {
+                "const": "complete",
+                "type": "string"
+              }
+            },
+            "required": ["translation_status"],
+            "type": "object"
+          },
+          "then": {
+            "required": ["translation_reviewed_by", "translation_reviewed_at"],
+            "properties": {
+              "title": {
+                "properties": {
+                  "th": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "description": {
+                "properties": {
+                  "th": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "rationale": {
+                "properties": {
+                  "th": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "translation_reviewed_by": {},
+              "translation_reviewed_at": {}
+            },
+            "type": "object"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "deprecated",
+                "type": "string"
+              }
+            },
+            "required": ["status"],
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "deprecated_in": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        }
+      ]
+    },
+    "replacement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "description",
+        "rationale",
+        "criticality",
+        "evidence",
+        "assessment"
+      ],
+      "properties": {
+        "title": {
+          "$ref": "requirement.schema.json#/$defs/localizedTitle"
+        },
+        "description": {
+          "$ref": "requirement.schema.json#/$defs/localizedText"
+        },
+        "rationale": {
+          "$ref": "requirement.schema.json#/$defs/localizedText"
+        },
+        "criticality": {
+          "type": "string",
+          "enum": ["gate", "high", "medium", "low"]
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "requirement.schema.json#/$defs/evidenceItem"
+          }
+        },
+        "assessment": {
+          "$ref": "requirement.schema.json#/$defs/assessment"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement.schema.json#/$defs/reference"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "requirement.schema.json#/$defs/tag"
+          }
+        }
+      }
+    },
+    "override": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirement", "replacement", "rationale"],
+      "properties": {
+        "requirement": {
+          "$ref": "requirement.schema.json#/$defs/requirementId"
+        },
+        "replacement": {
+          "$ref": "#/$defs/replacement"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "waiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirement",
+        "justification",
+        "risk_owner",
+        "expires_at",
+        "rationale"
+      ],
+      "properties": {
+        "requirement": {
+          "$ref": "requirement.schema.json#/$defs/requirementId"
+        },
+        "justification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "risk_owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expires_at": {
+          "$ref": "requirement.schema.json#/$defs/date"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

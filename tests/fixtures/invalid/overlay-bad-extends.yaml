@@ -1,0 +1,28 @@
+id: TH-FIN
+type: industry
+jurisdiction: TH
+industry: finance
+title:
+  en: Thailand finance overlay
+  th: overlay ภาคการเงินประเทศไทย
+description:
+  en: Assurance deltas for financial services in Thailand.
+  th: ส่วนเพิ่ม assurance สำหรับบริการการเงินในประเทศไทย
+version: 0.1.0
+extends: not-a-semver-range
+requires: []
+adds: []
+overrides: []
+waives: []
+sources: []
+not_covered:
+  en: Not covered.
+  th: ไม่ครอบคลุม
+review_checklist: review-checklist.md
+status: draft
+deprecated_in: null
+translation_status: partial
+machine_translated: true
+review_status: draft
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
