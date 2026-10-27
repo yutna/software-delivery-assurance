@@ -1,0 +1,12 @@
+project:
+  name: __PROJECT_NAME__
+  description: __PROJECT_DESCRIPTION__
+  owner: __PROJECT_OWNER__
+  confidentiality: internal
+sras_version: 0.0.0
+profile: full
+tier: 2
+modules: []
+overlays: []
+created_at: "1970-01-01"
+updated_at: "1970-01-01"
