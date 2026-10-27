@@ -74,12 +74,14 @@ page](asean-comparison.md) summarises the six entries without ranking them.
 
 ## EU registers
 
-| ID            | Instrument                                                    | Type       | Review status |
-| ------------- | ------------------------------------------------------------- | ---------- | ------------- |
-| `EU-GDPR-001` | Regulation (EU) 2016/679 (General Data Protection Regulation) | Regulation | `unverified`  |
+| ID             | Instrument                                                                          | Type       | Review status |
+| -------------- | ----------------------------------------------------------------------------------- | ---------- | ------------- |
+| `EU-EIDAS-001` | Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS) | Regulation | `unverified`  |
+| `EU-GDPR-001`  | Regulation (EU) 2016/679 (General Data Protection Regulation)                       | Regulation | `unverified`  |
 
 Each EU entry links to its official source and its generated reference page:
 
+- [EU-EIDAS-001](../reference/registers/EU-EIDAS-001.md)
 - [EU-GDPR-001](../reference/registers/EU-GDPR-001.md)
 
 EU entries are register-only. They are not an EU overlay, and they do not create

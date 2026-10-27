@@ -88,7 +88,7 @@ npm run sras -- validate --all
 ผลลัพธ์ที่คาดหวัง:
 
 ```text
-validated 45 files
+validated 46 files
 ```
 
 คำสั่งนี้ตรวจเนื้อหา SRAS standard ใน library ซึ่งประกอบด้วย requirement, module, overlay, register และ crosswalk โดยใช้ JSON Schema 2020-12 ใต้ `schemas/` และ domain rule ใน `src/sras/standard/`
@@ -106,7 +106,7 @@ npm run sras -- render --check
 `render --check` คำนวณใหม่และรายงานหน้าที่หายไป เปลี่ยน หรือเกิน โดยไม่เขียนไฟล์ ผลลัพธ์ที่คาดหวัง:
 
 ```text
-render check passed: 146 pages; 146 files
+render check passed: 147 pages; 147 files
 ```
 
 คำสั่งนี้ deterministic: ลำดับหน้า ลำดับรายการ และเนื้อหาไม่มี timestamp หรือข้อมูล environment
@@ -120,7 +120,7 @@ npm run sras -- guard
 ผลลัพธ์ที่คาดหวัง:
 
 ```text
-guard passed: scanned 308 files; excluded 0
+guard passed: scanned 310 files; excluded 0
 ```
 
 guard สแกน path เนื้อหาสาธารณะเพื่อหา คำที่อยู่นอกขอบเขตด้านสุขภาพและ sector, secret, private network identifier, personal data, ชื่อลูกค้าจาก private override และ unsafe claim ส่วน FDS pack, `vendor/`, `tests/` และ seed ชั่วคราว `internal/` ถูกยกเว้น

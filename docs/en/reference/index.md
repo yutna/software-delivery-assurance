@@ -138,6 +138,7 @@ run `npm run sras -- render`.
 ## Registers
 
 - [ASEAN-MCC-001 — ASEAN Model Contractual Clauses for Cross Border Data Flows (2021)](registers/ASEAN-MCC-001.md)
+- [EU-EIDAS-001 — Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS)](registers/EU-EIDAS-001.md)
 - [EU-GDPR-001 — Regulation (EU) 2016/679 (General Data Protection Regulation)](registers/EU-GDPR-001.md)
 - [ID-PDP-001 — Law No. 27 of 2022 on Personal Data Protection](registers/ID-PDP-001.md)
 - [MY-PDPA-001 — Personal Data Protection Act 2010 (Act 709)](registers/MY-PDPA-001.md)

@@ -72,11 +72,13 @@ generate ไว้
 
 ## ทะเบียนสหภาพยุโรป
 
+- `EU-EIDAS-001` — Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS), regulation, `unverified`
 - `EU-GDPR-001` — Regulation (EU) 2016/679 (General Data Protection Regulation), regulation, `unverified`
 
 รายการ EU แต่ละรายการเชื่อมไปยังแหล่งอ้างอิงทางการและหน้า reference ที่
 generate ไว้
 
+- [EU-EIDAS-001](../../en/reference/registers/EU-EIDAS-001.md)
 - [EU-GDPR-001](../../en/reference/registers/EU-GDPR-001.md)
 
 รายการ EU เป็นเพียงทะเบียน ไม่ใช่ EU overlay และไม่ได้สร้างข้อกำหนดระดับ
