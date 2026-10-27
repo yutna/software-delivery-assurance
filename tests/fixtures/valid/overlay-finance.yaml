@@ -1,0 +1,83 @@
+id: TH-FIN
+type: industry
+jurisdiction: TH
+industry: finance
+title:
+  en: Thailand finance overlay
+  th: overlay ภาคการเงินประเทศไทย
+description:
+  en: Assurance deltas for banks, insurers, payment providers, fintech, and financial software vendors operating in Thailand.
+  th: ส่วนเพิ่ม assurance สำหรับธนาคาร ประกันภัย ผู้ให้บริการชำระเงิน fintech และผู้ขายซอฟต์แวร์การเงินที่ดำเนินงานในประเทศไทย
+version: 0.1.0
+extends: ">=0.1.0 <1.0.0"
+requires:
+  - SRAS-AI
+  - SRAS-INT
+  - SRAS-RGD
+  - SRAS-CLD
+adds:
+  - id: TH-FIN-001
+    version: 0.1.0
+    overlay: TH-FIN
+    title:
+      en: Critical financial services have a documented maximum tolerable downtime
+      th: บริการการเงินที่สำคัญมี maximum tolerable downtime ที่จัดทำเอกสารไว้
+    description:
+      en: Every critical financial service must have an approved maximum tolerable downtime and a recovery objective that is tested.
+      th: บริการการเงินที่สำคัญทุกรายการต้องมี maximum tolerable downtime ที่อนุมัติแล้วและ recovery objective ที่ผ่านการทดสอบ
+    rationale:
+      en: Availability commitments cannot be assessed without a stated tolerance.
+      th: ไม่สามารถประเมิน commitment ด้าน availability ได้หากไม่มี tolerance ที่ระบุไว้
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-CLD]
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Approved maximum tolerable downtime and recovery objective
+        max_age_days: 365
+      - type: test_result
+        description: Recovery exercise against the stated objective
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The downtime tolerance and recovery objective are documented and tested.
+        partial: The objective is documented but the test is incomplete.
+      full:
+        l2: Documented, approved, and exercised for the current release.
+        l3: Measured against production incidents and recovery results.
+    references:
+      - title: Bank of Thailand IT risk guidance
+        url: https://www.bot.or.th
+        type: guidance
+    tags: [availability, recovery]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+overrides: []
+waives: []
+sources:
+  - TH-PDPA-001
+  - TH-BOT-001
+  - TH-PAY-001
+  - TH-SEC-001
+  - TH-ECON-001
+not_covered:
+  en: Prudential capital requirements, licensing advice, and individual product approval.
+  th: ข้อกำหนดเงินทุน prudential คำแนะนำด้านใบอนุญาต และการอนุมัติผลิตภัณฑ์รายรายการ
+review_checklist: review-checklist.md
+status: active
+deprecated_in: null
+translation_status: partial
+machine_translated: true
+review_status: draft
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

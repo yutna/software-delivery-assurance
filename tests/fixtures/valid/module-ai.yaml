@@ -1,0 +1,63 @@
+id: SRAS-AI
+title:
+  en: AI and GenAI
+  th: AI และ GenAI
+description:
+  en: Assurance requirements for products with material AI or GenAI behaviour.
+  th: ข้อกำหนด assurance สำหรับผลิตภัณฑ์ที่มีพฤติกรรม AI หรือ GenAI ที่มีนัยสำคัญ
+version: 0.1.0
+applies_to:
+  - ai-enabled products
+requires: []
+requirements:
+  - id: SRAS-AI-001
+    version: 0.1.0
+    module: SRAS-AI
+    title:
+      en: The AI use case and decision boundary are documented and approved
+      th: use case และขอบเขตการตัดสินใจของ AI ถูกจัดทำเอกสารและอนุมัติ
+    description:
+      en: The AI use case, intended users, affected people, decision boundary, and level of automation must be documented and approved before release.
+      th: use case ผู้ใช้ที่ตั้งใจ บุคคลที่ได้รับผลกระทบ ขอบเขตการตัดสินใจ และระดับ automation ของ AI ต้องถูกจัดทำเอกสารและอนุมัติก่อน release
+    rationale:
+      en: An undocumented decision boundary cannot be reviewed or challenged.
+      th: ขอบเขตการตัดสินใจที่ไม่มีเอกสารไม่สามารถถูกตรวจทานหรือโต้แย้งได้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: []
+      excludes: []
+    evidence:
+      - type: document
+        description: Approved use-case register and decision-boundary diagram
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The use case and decision boundary are documented and approved.
+        partial: The use case is documented but the decision boundary is incomplete.
+      full:
+        l2: Documented and approved for the current release.
+        l3: Reviewed against production behaviour and affected users.
+    references:
+      - title: NIST AI RMF 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+    tags: [ai-governance, decision-boundary]
+    status: active
+    introduced_in: 0.1.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: unverified
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+status: active
+deprecated_in: null
+replaced_by: null
+translation_status: partial
+machine_translated: true
+review_status: unverified
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

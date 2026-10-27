@@ -1,0 +1,43 @@
+- id: SRAS-SEC-001
+  version: 0.1.0
+  title:
+    en: Authentication is required for every human and machine access path
+    th: ต้องมี authentication สำหรับทุกช่องทางเข้าถึงของมนุษย์และเครื่อง
+  description:
+    en: Every user, service, and administrative access path to production systems must require authentication. Shared accounts are prohibited for administrative access.
+    th: ผู้ใช้ บริการ และช่องทางผู้ดูแลทุกรายการที่เข้าถึงระบบ production ต้องมี authentication และห้ามใช้บัญชีร่วมสำหรับผู้ดูแล
+  rationale:
+    en: Unauthenticated access cannot be attributed, revoked, or audited.
+    th: การเข้าถึงที่ไม่มีการยืนยันตัวตนไม่สามารถระบุตัวตน เพิกถอน หรือตรวจสอบย้อนหลังได้
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Identity provider or access policy configuration
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: All production access paths require authentication.
+      partial: Some paths require authentication, and the gaps are documented.
+    full:
+      l2: Documented and implemented for all in-scope paths.
+      l3: Measured with access-review metrics.
+  references:
+    - title: NIST CSF 2.0 PR.AA
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [identity, access-control]
+  status: active
+  introduced_in: 0.1.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: unverified
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"

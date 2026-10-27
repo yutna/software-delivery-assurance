@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yutna/software-delivery-assurance/schemas/requirements-file.schema.json",
+  "title": "SRAS Core requirements file",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "$ref": "requirement.schema.json"
+  }
+}
