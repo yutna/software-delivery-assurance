@@ -3,7 +3,7 @@ project:
   description: Synthetic example for the Thailand public sector overlay.
   owner: Example team
   confidentiality: synthetic
-sras_version: 0.4.0
+sras_version: 0.5.0
 profile: full
 tier: 2
 scope:

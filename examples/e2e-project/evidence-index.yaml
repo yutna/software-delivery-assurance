@@ -1,0 +1,79 @@
+entries:
+  - id: EV-E2E-001
+    requirement_ids: [SRAS-GOV-001]
+    type: document
+    description: Synthetic scope and ownership record.
+    location: evidence/synthetic-policy.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real record is included.
+  - id: EV-E2E-002
+    requirement_ids: [SRAS-SEC-001]
+    type: configuration
+    description: Synthetic access-control configuration excerpt.
+    location: evidence/synthetic-configuration.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-10-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real configuration is included.
+  - id: EV-E2E-003
+    requirement_ids: [SRAS-SEC-009, SRAS-AI-003]
+    type: test_result
+    description: Synthetic vulnerability and AI release evaluation summary.
+    location: evidence/synthetic-test-result.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real system was tested.
+  - id: EV-E2E-004
+    requirement_ids: [SRAS-INC-005, TH-FIN-001, TH-FIN-003]
+    type: document
+    description: Synthetic continuity, availability, and exit plan excerpt.
+    location: evidence/synthetic-policy.md
+    owner: Example risk owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the exercise is not complete.
+  - id: EV-E2E-005
+    requirement_ids: [SRAS-AI-001, SRAS-AI-008]
+    type: report
+    description: Synthetic AI inventory, monitoring, and review note.
+    location: evidence/synthetic-review.md
+    owner: Example AI owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the AI system is not real.
+  - id: EV-E2E-006
+    requirement_ids: [TH-FIN-010]
+    type: report
+    description: Synthetic model risk review note.
+    location: evidence/synthetic-review.md
+    owner: Example model owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; the model is not real.

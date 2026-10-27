@@ -140,7 +140,7 @@ npm run sras -- guard
 Expected output:
 
 ```text
-guard passed: scanned 243 files; excluded 0
+guard passed: scanned 254 files; excluded 0
 ```
 
 The guard scans the public content paths for out-of-scope health and sector

@@ -1,0 +1,107 @@
+project:
+  name: End-to-end synthetic project
+  description: Synthetic Core plus AI plus Thailand finance overlay project used for the v0.5.0 end-to-end test.
+  owner: Example team
+  confidentiality: synthetic
+sras_version: 0.5.0
+profile: full
+tier: 2
+scope:
+  systems: [example-assurance-service]
+  data: [synthetic-records]
+  users: [example-assurance-team]
+  jurisdictions: [TH]
+modules: [SRAS-AI]
+overlays: [TH-FIN]
+assessed_at: "2026-10-27"
+assessor: Synthetic assessor
+requirements:
+  - id: SRAS-GOV-001
+    status: implemented
+    maturity: L3
+    evidence_refs: [EV-E2E-001]
+    notes: Synthetic scope and ownership record.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-SEC-001
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-E2E-002]
+    notes: Synthetic access-control configuration and test.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-SEC-009
+    status: implemented
+    maturity: L2
+    evidence_refs: [EV-E2E-003]
+    notes: Synthetic vulnerability management summary.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-INC-005
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-E2E-004]
+    notes: Synthetic continuity plan exists; the exercise is incomplete.
+    gap_owner: Example risk owner
+    due_date: "2027-03-31"
+  - id: SRAS-AI-001
+    status: verified
+    maturity: L3
+    evidence_refs: [EV-E2E-005]
+    notes: Synthetic AI inventory and accountable owner.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-AI-003
+    status: implemented
+    maturity: L3
+    evidence_refs: [EV-E2E-003]
+    notes: Synthetic release evaluation against an approved threshold.
+    gap_owner: null
+    due_date: null
+  - id: SRAS-AI-008
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-E2E-005]
+    notes: Synthetic monitoring exists; the review cadence is not complete.
+    gap_owner: Example AI owner
+    due_date: "2027-06-30"
+  - id: TH-FIN-001
+    status: implemented
+    maturity: L2
+    evidence_refs: [EV-E2E-004]
+    notes: Synthetic availability objectives and recovery exercise outline.
+    gap_owner: null
+    due_date: null
+  - id: TH-FIN-003
+    status: partial
+    maturity: L2
+    evidence_refs: [EV-E2E-004]
+    notes: Synthetic exit plan exists; the transition test is not scheduled.
+    gap_owner: Example vendor owner
+    due_date: "2027-06-30"
+  - id: TH-FIN-010
+    status: gap
+    maturity: L1
+    evidence_refs: [EV-E2E-006]
+    notes: Synthetic model inventory exists; validation is not complete.
+    gap_owner: Example model owner
+    due_date: "2027-06-30"
+gates:
+  pass: 5
+  fail: 1
+summary:
+  counts:
+    verified: 2
+    implemented: 4
+    partial: 3
+    gap: 1
+    not_assessed: 0
+    not_applicable: 0
+  index: 0.75
+signoff:
+  name: Synthetic reviewer
+  role: Example reviewer
+  date: "2026-10-27"
+limitations:
+  - Synthetic example only; it is not an assessment of a real product.
+  - No real evidence, customer data, or production detail is included.

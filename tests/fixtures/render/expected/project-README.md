@@ -4,7 +4,7 @@ Synthetic project instance for schema and parser tests.
 
 - Owner: Example team
 - Confidentiality: `synthetic`
-- SRAS version: `0.4.0`
+- SRAS version: `0.5.0`
 - Profile: `full`
 - Tier: 2
 - Modules: SRAS-AI
