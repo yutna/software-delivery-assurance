@@ -1,0 +1,525 @@
+id: TH-FIN
+type: industry
+jurisdiction: TH
+industry: finance
+title:
+  en: Thailand finance overlay
+  th: overlay ภาคการเงินประเทศไทย
+description:
+  en: Assurance deltas for banks, insurers, payment providers, fintech, and financial software vendors operating in Thailand.
+  th: ส่วนเพิ่ม assurance สำหรับธนาคาร ประกันภัย ผู้ให้บริการชำระเงิน fintech และผู้ขายซอฟต์แวร์การเงินที่ดำเนินงานในประเทศไทย
+version: 0.4.0
+extends: ">=0.3.0 <1.0.0"
+requires:
+  - SRAS-AI
+  - SRAS-INT
+  - SRAS-RGD
+  - SRAS-CLD
+adds:
+  - id: TH-FIN-001
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Critical financial services have a documented maximum tolerable downtime
+      th: บริการการเงินที่สำคัญมี maximum tolerable downtime ที่จัดทำเอกสารไว้
+    description:
+      en: Every critical financial service has an approved maximum tolerable downtime, a recovery time objective, and a recovery point objective. A recovery exercise within the last 12 months demonstrates the objective.
+      th: บริการการเงินที่สำคัญทุกรายการต้องมี maximum tolerable downtime, recovery time objective และ recovery point objective ที่อนุมัติแล้ว และต้องมีการฝึกซ้อมกู้คืนภายใน 12 เดือนที่ผ่านมาซึ่งแสดงให้เห็นว่าบรรลุวัตถุประสงค์
+    rationale:
+      en: Availability commitments cannot be assessed without a stated tolerance and a tested recovery path.
+      th: ไม่สามารถประเมิน commitment ด้าน availability ได้หากไม่มี tolerance ที่ระบุไว้และเส้นทางการกู้คืนที่ผ่านการทดสอบ
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Approved maximum tolerable downtime, RTO, and RPO for each critical service
+        max_age_days: 365
+      - type: test_result
+        description: Recovery exercise result against the stated objectives
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The tolerance and recovery objectives are documented and exercised.
+        partial: The objectives are documented but the exercise is incomplete.
+      full:
+        l2: Documented, approved, and exercised for the current release.
+        l3: Measured against production incidents and recovery results.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [availability, recovery, critical-service]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-002
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: IT risk is owned by the board and reviewed at least annually
+      th: ความเสี่ยงด้านไอทีมีเจ้าภาพระดับคณะกรรมการและทบทวนอย่างน้อยปีละครั้ง
+    description:
+      en: The board approves the IT risk appetite and receives an IT risk report at least annually. A named executive owns IT risk, and the risk register records IT risks with owners, ratings, and review dates.
+      th: คณะกรรมการอนุมัติ risk appetite ด้านไอทีและรับรายงานความเสี่ยงด้านไอทีอย่างน้อยปีละครั้ง ผู้บริหารที่มีชื่อรับผิดชอบความเสี่ยงด้านไอที และ risk register บันทึกความเสี่ยงด้านไอทีพร้อมเจ้าของ ระดับความเสี่ยง และวันทบทวน
+    rationale:
+      en: IT risk is a board-level risk for a financial institution, not only an engineering concern.
+      th: ความเสี่ยงด้านไอทีเป็นความเสี่ยงระดับคณะกรรมการของสถาบันการเงิน ไม่ใช่เพียงเรื่องของทีมวิศวกรรม
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Board-approved IT risk appetite and reporting pack
+        max_age_days: 365
+      - type: ticket
+        description: Board or risk committee review record with actions
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: IT risk appetite, owner, and annual review are recorded.
+        partial: An owner exists but the board review is overdue.
+      full:
+        l2: The board reviews IT risk at least annually with tracked actions.
+        l3: IT risk reporting is linked to the enterprise risk register and metrics.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [it-risk, board-oversight, risk-register]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-003
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Critical outsourcing arrangements have an exit plan and tested transition
+      th: ข้อตกลง outsourcing ที่สำคัญมีแผนออกและผ่านการทดสอบการโอนย้าย
+    description:
+      en: Every critical outsourcing or cloud arrangement has a documented exit plan covering data return, service transition, roles, and timing. A tabletop or live test within the last 12 months demonstrates the plan.
+      th: ข้อตกลง outsourcing หรือ cloud ที่สำคัญทุกรายการต้องมีแผนออกที่จัดทำเป็นเอกสาร ครอบคลุมการส่งคืนข้อมูล การโอนย้ายบริการ บทบาท และกรอบเวลา และต้องมีการทดสอบแบบ tabletop หรือทดสอบจริงภายใน 12 เดือนที่ผ่านมา
+    rationale:
+      en: An exit that has never been exercised is a plan, not a capability.
+      th: แผนออกที่ยังไม่เคยทดสอบเป็นเพียงเอกสาร ไม่ใช่ขีดความสามารถ
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-CLD]
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Exit plan with data return, transition, roles, and timing
+        max_age_days: 365
+      - type: test_result
+        description: Tabletop or live transition test result
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The exit plan exists and was exercised in the last 12 months.
+        partial: The plan exists but the test is overdue.
+      full:
+        l2: The plan is tested and updated after each material change.
+        l3: Exit readiness is measured with recovery and transition metrics.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [outsourcing, third-party, exit-plan]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-004
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Transaction records are integrity-protected and retained for the defined period
+      th: บันทึกธุรกรรมได้รับการปกป้องความถูกต้องและเก็บตามระยะเวลาที่กำหนด
+    description:
+      en: Transaction and ledger records are protected against unauthorised change, retained for the period set by policy and applicable rules, and accessible only through logged, approved access.
+      th: บันทึกธุรกรรมและบัญชีแยกประเภทได้รับการปกป้องจากการเปลี่ยนแปลงโดยไม่ได้รับอนุญาต เก็บรักษาตามระยะเวลาที่นโยบายและกฎเกณฑ์ที่ใช้บังคับกำหนด และเข้าถึงได้เฉพาะผ่านสิทธิ์ที่ได้รับอนุมัติและมีการบันทึก log
+    rationale:
+      en: Transaction integrity and retention are the basis for dispute handling, audit, and reconciliation.
+      th: ความถูกต้องของธุรกรรมและการเก็บรักษาเป็นพื้นฐานของการจัดการข้อโต้แย้ง การตรวจสอบ และการกระทบยอด
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Immutability, retention, and access controls for transaction records
+        max_age_days: 180
+      - type: log
+        description: Access log showing approved access to transaction records
+        max_age_days: 90
+      - type: document
+        description: Retention schedule and reconciliation procedure
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Records are protected, retained, and access is logged.
+        partial: Retention is defined but protection or logging has gaps.
+      full:
+        l2: Controls are implemented and tested for the current release.
+        l3: Integrity and reconciliation are measured with continuous checks.
+    references:
+      - title: Payment Systems Act B.E. 2560
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9194
+        type: regulation
+      - title: Bank of Thailand payment IT risk notification No. สนช. 1/2564
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2564/ThaiPDF/25640024.pdf
+        type: regulation
+    tags: [transaction-integrity, audit-trail, retention]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-005
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Fraud incidents have an escalation path and a customer communication plan
+      th: เหตุการณ์ฉ้อโกงมีเส้นทางส่งต่อและแผนสื่อสารกับลูกค้า
+    description:
+      en: Fraud detection signals have a named owner and escalation path. A customer communication plan covers notification, support, and remediation, and is exercised within the last 12 months.
+      th: สัญญาณการตรวจจับการฉ้อโกงมีเจ้าของและเส้นทางส่งต่อที่ระบุชื่อ แผนสื่อสารกับลูกค้าครอบคลุมการแจ้ง การสนับสนุน และการเยียวยา และต้องมีการฝึกซ้อมภายใน 12 เดือนที่ผ่านมา
+    rationale:
+      en: A fraud event that is detected but not escalated or communicated becomes a customer and regulatory problem.
+      th: เหตุการณ์ฉ้อโกงที่ตรวจพบแต่ไม่ถูกส่งต่อหรือสื่อสารจะกลายเป็นปัญหาต่อลูกค้าและหน่วยงานกำกับดูแล
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Fraud escalation matrix and customer communication plan
+        max_age_days: 365
+      - type: test_result
+        description: Fraud simulation or tabletop exercise result
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The escalation path and communication plan are documented and exercised.
+        partial: The plan exists but the exercise or owner is missing.
+      full:
+        l2: The plan is current and exercised with support and communications teams.
+        l3: Outcomes are measured against real fraud incidents and customer feedback.
+    references:
+      - title: Emergency Decree on Technology Crimes B.E. 2566
+        url: https://law.go.th/DetailLawPage?table_of_law_id=12199
+        type: regulation
+      - title: Bank of Thailand payment IT risk notification No. สนช. 1/2564
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2564/ThaiPDF/25640024.pdf
+        type: regulation
+    tags: [fraud, incident-response, customer-communication]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-006
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: High-privilege access to payment and ledger systems is separately approved
+      th: สิทธิ์ระดับสูงต่อระบบชำระเงินและบัญชีแยกประเภทได้รับการอนุมัติแยกต่างหาก
+    description:
+      en: Privileged roles on payment and ledger systems require separate approval, multi-factor authentication, session logging, and a quarterly access review. Standing access is time-bound.
+      th: บทบาทสิทธิ์ระดับสูงบนระบบชำระเงินและบัญชีแยกประเภทต้องได้รับการอนุมัติแยกต่างหาก ใช้ multi-factor authentication บันทึก session log และทบทวนสิทธิ์ทุกไตรมาส สิทธิ์แบบถาวรต้องมีกรอบเวลา
+    rationale:
+      en: A single unchecked privileged path can move money or alter records without attribution.
+      th: เส้นทางสิทธิ์ระดับสูงเพียงเส้นเดียวที่ไม่ถูกตรวจสอบสามารถเคลื่อนย้ายเงินหรือแก้ไขบันทึกโดยระบุตัวตนไม่ได้
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Privileged role definition, MFA, and session logging configuration
+        max_age_days: 180
+      - type: log
+        description: Privileged session log sample for payment and ledger systems
+        max_age_days: 90
+      - type: ticket
+        description: Quarterly privileged access review record
+        max_age_days: 120
+    assessment:
+      lite:
+        pass: Privileged access is separately approved, MFA-protected, and logged.
+        partial: Approval and MFA exist but review or logging has gaps.
+      full:
+        l2: Controls are implemented and reviewed every quarter.
+        l3: Privileged activity is monitored with anomaly detection and metrics.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+      - title: Payment Systems Act B.E. 2560
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9194
+        type: regulation
+    tags: [privileged-access, segregation-of-duties, payment]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-007
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Customer financial data is classified, minimised, and access-controlled
+      th: ข้อมูลการเงินของลูกค้าถูกจำแนก ลดปริมาณ และควบคุมการเข้าถึง
+    description:
+      en: Customer financial data is classified, limited to fields with a documented need, encrypted in transit and at rest, and accessible only to approved roles. Retention and deletion follow policy.
+      th: ข้อมูลการเงินของลูกค้าต้องได้รับการจำแนก จำกัดเฉพาะฟิลด์ที่มีความจำเป็นตามเอกสาร เข้ารหัสระหว่างส่งและขณะจัดเก็บ และเข้าถึงได้เฉพาะบทบาทที่ได้รับอนุมัติ การเก็บรักษาและการลบเป็นไปตามนโยบาย
+    rationale:
+      en: Financial data is a high-value target; minimisation and access control reduce the impact of a breach.
+      th: ข้อมูลการเงินเป็นเป้าหมายที่มีมูลค่าสูง การลดปริมาณและการควบคุมการเข้าถึงช่วยลดผลกระทบจากการรั่วไหล
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Data classification and minimisation record for customer financial data
+        max_age_days: 365
+      - type: configuration
+        description: Encryption and role-based access configuration
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Data is classified, minimised, encrypted, and role-restricted.
+        partial: Classification exists but some fields or stores are out of scope.
+      full:
+        l2: Controls cover every store and are verified in the current release.
+        l3: Access and retention are measured and reviewed on a cadence.
+    references:
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [customer-data, data-classification, access-control]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-008
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Core financial system changes have a tested rollback and independent review
+      th: การเปลี่ยนแปลงระบบการเงินหลักมี rollback ที่ทดสอบและรีวิวอย่างอิสระ
+    description:
+      en: Changes to core financial systems have a risk assessment, independent review, a tested rollback or roll-forward plan, and a change freeze rule for critical financial periods.
+      th: การเปลี่ยนแปลงระบบการเงินหลักต้องมีการประเมินความเสี่ยง การรีวิวอย่างอิสระ แผน rollback หรือ roll-forward ที่ผ่านการทดสอบ และกฎ change freeze สำหรับช่วงเวลาการเงินที่สำคัญ
+    rationale:
+      en: A failed core change can stop payments or corrupt records faster than a recovery team can react.
+      th: การเปลี่ยนแปลงระบบหลักที่ล้มเหลวสามารถหยุดการชำระเงินหรือทำให้บันทึกเสียหายได้เร็วกว่าที่ทีมกู้คืนจะตอบสนอง
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: ticket
+        description: Change record with risk assessment and independent approval
+        max_age_days: 180
+      - type: test_result
+        description: Rollback or roll-forward test result for the change
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Changes have independent review and a tested rollback path.
+        partial: Review exists but rollback testing is missing for some changes.
+      full:
+        l2: Every core change follows the process with evidence retained.
+        l3: Change failure and rollback rates are measured and reviewed.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [change-management, rollback, independent-review]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-009
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Regulatory notification readiness is tested for financial incidents
+      th: ความพร้อมในการแจ้งหน่วยงานกำกับดูแลได้รับการทดสอบสำหรับเหตุการณ์การเงิน
+    description:
+      en: A notification matrix names the regulator, trigger, owner, and deadline for financial incidents. Templates and contact details are current, and a tabletop within the last 12 months exercises the path.
+      th: ตารางการแจ้งระบุหน่วยงานกำกับดูแล เงื่อนไขการแจ้ง เจ้าของ และกำหนดเวลา สำหรับเหตุการณ์ทางการเงิน แม่แบบและข้อมูลติดต่อเป็นปัจจุบัน และต้องมีการฝึกซ้อมแบบ tabletop ภายใน 12 เดือนที่ผ่านมา
+    rationale:
+      en: A late or misdirected notification turns an incident into a regulatory breach.
+      th: การแจ้งที่ล่าช้าหรือผิดช่องทางทำให้เหตุการณ์กลายเป็นการฝ่าฝืนข้อกำหนดของหน่วยงานกำกับดูแล
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Notification matrix, templates, and current contact list
+        max_age_days: 365
+      - type: test_result
+        description: Tabletop exercise result for a financial incident notification
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The matrix, templates, and exercise are current.
+        partial: The matrix exists but contacts or exercise are out of date.
+      full:
+        l2: The path is exercised and actions are tracked to closure.
+        l3: Notification timeliness is measured against real incidents.
+    references:
+      - title: Cybersecurity Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=1594
+        type: regulation
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+    tags: [regulatory-notification, incident-response, reporting]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-FIN-010
+    version: 0.4.0
+    overlay: TH-FIN
+    title:
+      en: Models used in credit, fraud, or pricing are validated and monitored
+      th: โมเดลที่ใช้ในสินเชื่อ การฉ้อโกง หรือการตั้งราคาได้รับการตรวจสอบและติดตาม
+    description:
+      en: Models used in credit, fraud, or pricing are inventoried, validated independently of their developers, monitored against defined thresholds, and reviewed when performance drifts. Consequential decisions retain human oversight.
+      th: โมเดลที่ใช้ในสินเชื่อ การฉ้อโกง หรือการตั้งราคาต้องมีทะเบียน ผ่านการตรวจสอบอย่างอิสระจากผู้พัฒนา ติดตามเทียบกับเกณฑ์ที่กำหนด และทบทวนเมื่อประสิทธิภาพคลาดเคลื่อน การตัดสินใจที่มีนัยสำคัญยังคงมีการกำกับโดยมนุษย์
+    rationale:
+      en: A model that is not validated or monitored can make consistent, invisible financial decisions.
+      th: โมเดลที่ไม่ผ่านการตรวจสอบหรือติดตามสามารถตัดสินใจทางการเงินอย่างสม่ำเสมอโดยไม่มองเห็น
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-AI]
+      overlays: [TH-FIN]
+      excludes: []
+    evidence:
+      - type: document
+        description: Model inventory, validation report, and approval record
+        max_age_days: 365
+      - type: metric
+        description: Model performance and drift metrics against thresholds
+        max_age_days: 90
+      - type: report
+        description: Periodic model risk review with actions
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Models are inventoried, validated, and monitored.
+        partial: Inventory exists but validation or monitoring has gaps.
+      full:
+        l2: Validation and monitoring cover every model in production.
+        l3: Model risk is measured and reviewed with business outcomes.
+    references:
+      - title: Bank of Thailand IT risk notification No. สกช. 5/2566
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2566/ThaiPDF/25660202.pdf
+        type: regulation
+      - title: NIST AI Risk Management Framework 1.0
+        url: https://www.nist.gov/itl/ai-risk-management-framework
+        type: standard
+    tags: [model-risk, ai-governance, monitoring]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+overrides: []
+waives: []
+sources:
+  - TH-PDPA-001
+  - TH-PAY-001
+  - TH-CYBER-001
+  - TH-TECH-001
+  - TH-BOT-001
+  - TH-BOT-002
+not_covered:
+  en: Prudential capital and liquidity requirements, licensing decisions, individual product approval, conduct-of-business rules for specific products, and legal interpretation.
+  th: ข้อกำหนดด้านเงินทุนและสภาพคล่อง การตัดสินใจออกใบอนุญาต การอนุมัติผลิตภัณฑ์รายรายการ กฎเกณฑ์การประกอบธุรกิจสำหรับผลิตภัณฑ์เฉพาะ และการตีความกฎหมาย
+review_checklist: review-checklist.md
+status: active
+deprecated_in: null
+translation_status: partial
+machine_translated: true
+review_status: draft
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
