@@ -1,0 +1,650 @@
+id: TH-ECM
+type: industry
+jurisdiction: TH
+industry: ecommerce
+title:
+  en: Thailand e-commerce overlay
+  th: overlay ภาคอีคอมเมิร์ซประเทศไทย
+description:
+  en: Assurance deltas for online marketplaces, direct-to-consumer platforms, payment flows, and order fulfilment software operating in Thailand.
+  th: ส่วนเพิ่ม assurance สำหรับตลาดออนไลน์ แพลตฟอร์มขายตรงถึงผู้บริโภค กระบวนการชำระเงิน และซอฟต์แวร์จัดการคำสั่งซื้อที่ดำเนินงานในประเทศไทย
+version: 0.4.0
+extends: ">=0.3.0 <1.0.0"
+requires:
+  - SRAS-INT
+  - SRAS-RGD
+  - SRAS-CLD
+adds:
+  - id: TH-ECM-001
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Card data stays within the defined payment card scope
+      th: ข้อมูลบัตรอยู่ในขอบเขต payment card ที่กำหนด
+    description:
+      en: Card data is never stored, processed, or transmitted outside the defined payment card scope. The scope is documented, uses tokenisation or a hosted payment surface where possible, and is reviewed when the checkout or provider changes.
+      th: ข้อมูลบัตรไม่ถูกจัดเก็บ ประมวลผล หรือส่งต่อนอกขอบเขต payment card ที่กำหนด ขอบเขตต้องจัดทำเป็นเอกสาร ใช้ tokenisation หรือหน้าชำระเงินที่โฮสต์โดยผู้ให้บริการเมื่อทำได้ และทบทวนเมื่อ checkout หรือผู้ให้บริการเปลี่ยนแปลง
+    rationale:
+      en: Every extra system that touches card data expands the scope that must be protected and evidenced.
+      th: ทุกระบบเพิ่มเติมที่แตะข้อมูลบัตรจะขยายขอบเขตที่ต้องปกป้องและจัดทำหลักฐาน
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: document
+        description: Payment card scope diagram and data-flow record
+        max_age_days: 365
+      - type: configuration
+        description: Tokenisation or hosted payment configuration and storage rules
+        max_age_days: 180
+      - type: report
+        description: Scope review after the last material checkout change
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The scope is documented and no card data sits outside it.
+        partial: The scope exists but some flows or stores are unclassified.
+      full:
+        l2: The scope is verified for every checkout and provider path.
+        l3: Scope changes are reviewed automatically with deployment evidence.
+    references:
+      - title: Payment Systems Act B.E. 2560
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9194
+        type: regulation
+      - title: PCI DSS 4.0.1
+        url: https://www.pcisecuritystandards.org/standards/
+        type: standard
+    tags: [payment-card, scope-reduction, data-flow]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-002
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Checkout degradation is planned and communicated
+      th: การลดระดับบริการของ checkout มีแผนและมีการสื่อสาร
+    description:
+      en: Critical checkout journeys have a defined degraded mode for payment-provider or inventory failure. The mode is tested, does not silently lose orders, and shows the customer what happened and what happens next.
+      th: เส้นทาง checkout ที่สำคัญมีโหมดลดระดับที่กำหนดไว้สำหรับความล้มเหลวของผู้ให้บริการชำระเงินหรือระบบสต็อก โหมดนี้ต้องผ่านการทดสอบ ไม่ทำให้คำสั่งซื้อหายไปโดยไม่แจ้ง และแสดงให้ลูกค้าเห็นว่าเกิดอะไรขึ้นและจะเกิดอะไรต่อไป
+    rationale:
+      en: A checkout that fails silently loses revenue and leaves the customer without a recoverable state.
+      th: checkout ที่ล้มเหลวโดยไม่แจ้งทำให้สูญเสียรายได้และลูกค้าไม่มีสถานะที่กู้คืนได้
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-CLD]
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: document
+        description: Degraded-mode design and customer messaging for checkout
+        max_age_days: 365
+      - type: test_result
+        description: Failure injection or game-day result for checkout degradation
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Degraded mode is documented, tested, and communicated.
+        partial: A mode exists but the test or message is incomplete.
+      full:
+        l2: Failure paths are exercised for each critical checkout step.
+        l3: Degradation is measured with order-loss and recovery metrics.
+    references:
+      - title: Bank of Thailand payment IT risk notification No. สนช. 1/2564
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2564/ThaiPDF/25640024.pdf
+        type: regulation
+    tags: [checkout, availability, graceful-degradation]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-003
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Checkout failures do not create duplicate charges
+      th: ความล้มเหลวของ checkout ไม่ทำให้เกิดการเรียกเก็บซ้ำ
+    description:
+      en: Payment attempts are idempotent and reconciled with the provider. A retry, timeout, or browser refresh cannot create a duplicate charge, and a duplicate is detected and reversed through a documented path.
+      th: การพยายามชำระเงินต้อง idempotent และกระทบยอดกับผู้ให้บริการ การลองใหม่ การหมดเวลา หรือการรีเฟรชเบราว์เซอร์ต้องไม่ทำให้เกิดการเรียกเก็บซ้ำ และหากเกิดการเรียกเก็บซ้ำต้องตรวจจับและคืนเงินผ่านเส้นทางที่กำหนด
+    rationale:
+      en: Duplicate charges are a direct customer harm and a common failure mode under retry.
+      th: การเรียกเก็บซ้ำสร้างความเสียหายโดยตรงต่อลูกค้าและเป็นรูปแบบความล้มเหลวที่พบบ่อยเมื่อมีการลองใหม่
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: test_result
+        description: Retry, timeout, and refresh tests that check for duplicate charges
+        max_age_days: 180
+      - type: log
+        description: Payment reconciliation exception report and reversal record
+        max_age_days: 90
+      - type: document
+        description: Idempotency and duplicate-reversal procedure
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Retries are idempotent and a reconciliation check exists.
+        partial: Idempotency exists but reconciliation or reversal is manual.
+      full:
+        l2: Duplicate prevention and reversal are tested for every payment path.
+        l3: Duplicate and reversal rates are measured and reviewed.
+    references:
+      - title: Payment Systems Act B.E. 2560
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9194
+        type: regulation
+      - title: Bank of Thailand payment IT risk notification No. สนช. 1/2564
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2564/ThaiPDF/25640024.pdf
+        type: regulation
+    tags: [checkout, idempotency, payment-reconciliation]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-004
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Order, price, and promotion changes are auditable and reversible
+      th: การเปลี่ยนแปลงคำสั่งซื้อ ราคา และโปรโมชันตรวจสอบย้อนหลังและย้อนกลับได้
+    description:
+      en: Changes to orders, prices, discounts, and promotions record the actor, time, reason, and before-and-after values. A change can be reversed, and customer-visible changes are reflected consistently in the order record.
+      th: การเปลี่ยนแปลงคำสั่งซื้อ ราคา ส่วนลด และโปรโมชันต้องบันทึกผู้ดำเนินการ เวลา เหตุผล และค่าก่อนและหลัง การเปลี่ยนแปลงต้องย้อนกลับได้ และการเปลี่ยนแปลงที่ลูกค้าเห็นต้องสะท้อนในบันทึกคำสั่งซื้ออย่างสอดคล้อง
+    rationale:
+      en: Price and promotion errors are hard to investigate without an attributable change record.
+      th: ข้อผิดพลาดด้านราคาและโปรโมชันตรวจสอบได้ยากหากไม่มีบันทึกการเปลี่ยนแปลงที่ระบุผู้รับผิดชอบ
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: log
+        description: Change log with actor, time, reason, and before-and-after values
+        max_age_days: 90
+      - type: document
+        description: Reversal procedure and customer-correction policy
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Order and price changes are logged and reversible.
+        partial: Logging exists but reversal or customer correction is manual.
+      full:
+        l2: Changes are attributable and reversible for every channel.
+        l3: Price and promotion exceptions are measured and reviewed.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+      - title: Consumer Protection Act B.E. 2522
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+        type: regulation
+    tags: [order-integrity, price-integrity, audit-trail]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-005
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Refund and cancellation states agree across systems
+      th: สถานะการคืนเงินและการยกเลิกตรงกันในทุกระบบ
+    description:
+      en: Refund, return, and cancellation states are consistent between the platform, payment provider, and fulfilment systems. Orphan or stuck states are detected, reconciled, and communicated to the customer within the stated service target.
+      th: สถานะการคืนเงิน การคืนสินค้า และการยกเลิกต้องสอดคล้องกันระหว่างแพลตฟอร์ม ผู้ให้บริการชำระเงิน และระบบ fulfilment สถานะที่ค้างหรือไม่ตรงกันต้องถูกตรวจจับ กระทบยอด และแจ้งให้ลูกค้าทราบภายในเป้าหมายการให้บริการที่กำหนด
+    rationale:
+      en: A refund that exists in one system and not another becomes a dispute and a trust loss.
+      th: การคืนเงินที่มีอยู่ในระบบหนึ่งแต่ไม่มีในอีกระบบจะกลายเป็นข้อโต้แย้งและสูญเสียความเชื่อมั่น
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: test_result
+        description: End-to-end refund and cancellation state-transition tests
+        max_age_days: 180
+      - type: log
+        description: Reconciliation report for stuck or mismatched refund states
+        max_age_days: 90
+      - type: document
+        description: Refund and cancellation state model and service target
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Refund states are reconciled and stuck states are handled.
+        partial: Reconciliation is manual or the customer update is missing.
+      full:
+        l2: State transitions are tested across every payment and fulfilment path.
+        l3: Refund timeliness and mismatch rates are measured.
+    references:
+      - title: Consumer Protection Act B.E. 2522
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+        type: regulation
+      - title: Payment Systems Act B.E. 2560
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9194
+        type: regulation
+    tags: [refund, cancellation, reconciliation]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-006
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Consumer disclosures and consent are shown before purchase
+      th: การเปิดเผยข้อมูลผู้บริโภคและความยินยอมแสดงก่อนซื้อ
+    description:
+      en: Price, fees, delivery terms, cancellation and refund terms, and marketing consent are shown before the customer confirms a purchase. The version shown is recorded with the order, and consent is separate from the purchase terms.
+      th: ราคา ค่าธรรมเนียม เงื่อนไขการจัดส่ง เงื่อนไขการยกเลิกและคืนเงิน และความยินยอมด้านการตลาดต้องแสดงก่อนที่ลูกค้าจะยืนยันการซื้อ เวอร์ชันที่แสดงต้องถูกบันทึกพร้อมคำสั่งซื้อ และความยินยอมต้องแยกจากเงื่อนไขการซื้อ
+    rationale:
+      en: Disclosure that appears after payment cannot support an informed purchase decision.
+      th: การเปิดเผยข้อมูลที่ปรากฏหลังการชำระเงินไม่สามารถสนับสนุนการตัดสินใจซื้ออย่างมีข้อมูลได้
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: screenshot
+        description: Checkout screens showing price, fees, terms, and consent
+        max_age_days: 180
+      - type: document
+        description: Disclosure and consent version register linked to orders
+        max_age_days: 365
+      - type: log
+        description: Consent record sample with version and timestamp
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: Disclosures and consent appear before purchase and are recorded.
+        partial: Disclosures exist but consent is bundled with purchase terms.
+      full:
+        l2: Every material fee and term is disclosed and versioned per order.
+        l3: Disclosure comprehension and complaint trends are measured.
+    references:
+      - title: Consumer Protection Act B.E. 2522
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+        type: regulation
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+      - title: Royal Decree on Digital Platform Services B.E. 2565
+        url: https://www.etda.or.th/th/regulator/Digitalplatform/law.aspx
+        type: regulation
+    tags: [consumer-disclosure, consent, checkout]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-007
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Customer accounts are protected against takeover
+      th: บัญชีลูกค้าได้รับการป้องกันการถูกยึดบัญชี
+    description:
+      en: High-risk account actions require step-up authentication. Credential-stuffing controls, session management, breached-password checks, and a verified account-recovery path are in place and tested.
+      th: การดำเนินการในบัญชีที่มีความเสี่ยงสูงต้องมี step-up authentication มีมาตรการป้องกัน credential stuffing การจัดการ session การตรวจสอบรหัสผ่านที่รั่วไหล และเส้นทางการกู้คืนบัญชีที่ผ่านการยืนยัน และต้องผ่านการทดสอบ
+    rationale:
+      en: Account takeover turns a customer account into a fraud and data-loss path.
+      th: การยึดบัญชีเปลี่ยนบัญชีลูกค้าเป็นช่องทางการฉ้อโกงและการสูญเสียข้อมูล
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Step-up authentication, session, and recovery configuration
+        max_age_days: 180
+      - type: test_result
+        description: Credential-stuffing and account-recovery tests
+        max_age_days: 180
+      - type: log
+        description: Account takeover detection and response log sample
+        max_age_days: 90
+    assessment:
+      lite:
+        pass: High-risk actions are step-up protected and recovery is verified.
+        partial: Controls exist but recovery or detection is incomplete.
+      full:
+        l2: Controls are tested for every account and recovery path.
+        l3: Takeover attempts and outcomes are measured and reviewed.
+    references:
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+      - title: Emergency Decree on Technology Crimes B.E. 2566
+        url: https://law.go.th/DetailLawPage?table_of_law_id=12199
+        type: regulation
+    tags: [account-security, account-takeover, authentication]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-008
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Marketing consent is recorded and can be withdrawn
+      th: ความยินยอมด้านการตลาดถูกบันทึกและถอนได้
+    description:
+      en: Marketing consent is purpose-specific, opt-in, recorded with its version and timestamp, and can be withdrawn through a path that updates every sending system. Suppression is checked before each campaign.
+      th: ความยินยอมด้านการตลาดต้องเจาะจงวัตถุประสงค์ เป็นการเลือกเข้า บันทึกพร้อมเวอร์ชันและเวลา และถอนได้ผ่านเส้นทางที่อัปเดตทุกระบบที่ส่งข้อความ ต้องตรวจสอบ suppression ก่อนทุกแคมเปญ
+    rationale:
+      en: Consent that cannot be withdrawn or is not honoured across systems is not consent in practice.
+      th: ความยินยอมที่ถอนไม่ได้หรือไม่ถูกปฏิบัติในทุกระบบไม่ใช่ความยินยอมในทางปฏิบัติ
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: [SRAS-RGD]
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: log
+        description: Consent and withdrawal record with version and timestamp
+        max_age_days: 90
+      - type: document
+        description: Consent purpose register and suppression procedure
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Consent is recorded, withdrawable, and honoured by senders.
+        partial: Consent is recorded but withdrawal propagation is manual.
+      full:
+        l2: Withdrawal updates every sender and is verified before campaigns.
+        l3: Consent and complaint rates are measured by purpose.
+    references:
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+      - title: Royal Decree on Digital Platform Services B.E. 2565
+        url: https://www.etda.or.th/th/regulator/Digitalplatform/law.aspx
+        type: regulation
+    tags: [marketing-consent, privacy, consent-record]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-009
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Partner API access is authenticated, limited, and revocable
+      th: การเข้าถึง API ของพาร์ทเนอร์มีการยืนยันตัวตน จำกัด และเพิกถอนได้
+    description:
+      en: Every partner integration has scoped credentials, authenticated requests, rate limits, monitoring, and a revocation path. Partner onboarding records due diligence, contract terms, and a test path before production access.
+      th: การเชื่อมต่อของพาร์ทเนอร์ทุกรายต้องมี credential ที่จำกัดขอบเขต คำขอที่ผ่านการยืนยันตัวตน rate limit การติดตาม และเส้นทางเพิกถอน การ onboard พาร์ทเนอร์ต้องบันทึก due diligence เงื่อนไขสัญญา และเส้นทางทดสอบก่อนเข้าสู่ production
+    rationale:
+      en: A partner credential without scope or revocation is a standing door into order and payment data.
+      th: credential ของพาร์ทเนอร์ที่ไม่มีขอบเขตหรือเพิกถอนไม่ได้เป็นประตูถาวรสู่ข้อมูลคำสั่งซื้อและการชำระเงิน
+    criticality: gate
+    applicability:
+      tiers: [2, 3]
+      modules: [SRAS-INT]
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: configuration
+        description: Partner credential scope, rate limit, and revocation configuration
+        max_age_days: 180
+      - type: log
+        description: Partner API access and anomaly log sample
+        max_age_days: 90
+      - type: contract
+        description: Partner agreement with security, data, and exit terms
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Partner access is scoped, authenticated, limited, and revocable.
+        partial: Authentication exists but scope or revocation is incomplete.
+      full:
+        l2: Every partner integration is tested and reviewed before access.
+        l3: Partner access is monitored with anomaly detection and periodic review.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+      - title: Royal Decree on Digital Platform Services B.E. 2565
+        url: https://www.etda.or.th/th/regulator/Digitalplatform/law.aspx
+        type: regulation
+    tags: [partner-api, api-security, revocation]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-010
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Customer-facing flows meet the agreed accessibility target
+      th: เส้นทางที่ลูกค้าใช้งานเป็นไปตามเป้าหมาย accessibility ที่ตกลง
+    description:
+      en: Critical customer journeys meet the agreed accessibility target for the named WCAG version. Automated and manual checks cover search, product, cart, checkout, payment, and account recovery, and findings are remediated on a tracked plan.
+      th: เส้นทางลูกค้าที่สำคัญต้องเป็นไปตามเป้าหมาย accessibility ที่ตกลงสำหรับเวอร์ชัน WCAG ที่ระบุ การตรวจสอบอัตโนมัติและด้วยมนุษย์ครอบคลุมการค้นหา สินค้า ตะกร้า checkout การชำระเงิน และการกู้คืนบัญชี และข้อบกพร่องต้องได้รับการแก้ไขตามแผนที่ติดตามได้
+    rationale:
+      en: Accessibility declared only on a policy page does not reach the journeys where customers fail.
+      th: accessibility ที่ประกาศเพียงหน้านโยบายไม่ครอบคลุมเส้นทางที่ลูกค้าใช้งานจริงไม่สำเร็จ
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: test_result
+        description: Automated and manual accessibility results for critical journeys
+        max_age_days: 180
+      - type: report
+        description: Accessibility remediation plan with owners and dates
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: Critical journeys meet the target and findings have a plan.
+        partial: Some critical journeys are untested or defects are open.
+      full:
+        l2: Every critical journey is tested against the named WCAG version.
+        l3: Accessibility regressions are prevented in the release pipeline.
+    references:
+      - title: WCAG 2.2
+        url: https://www.w3.org/TR/WCAG22/
+        type: standard
+      - title: Consumer Protection Act B.E. 2522
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+        type: regulation
+    tags: [accessibility, wcag, customer-journey]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-011
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Order and dispute records are retained and retrievable
+      th: บันทึกคำสั่งซื้อและข้อพิพาทถูกเก็บรักษาและเรียกดูได้
+    description:
+      en: Order, payment, refund, cancellation, and dispute records are retained for the period set by policy and applicable rules, protected against unauthorised change, and retrievable within the service target for a customer or authority request.
+      th: บันทึกคำสั่งซื้อ การชำระเงิน การคืนเงิน การยกเลิก และข้อพิพาทต้องเก็บรักษาตามระยะเวลาที่นโยบายและกฎเกณฑ์ที่ใช้บังคับกำหนด ปกป้องจากการเปลี่ยนแปลงโดยไม่ได้รับอนุญาต และเรียกดูได้ภายในเป้าหมายการให้บริการสำหรับคำขอของลูกค้าหรือหน่วยงาน
+    rationale:
+      en: A dispute that cannot be reconstructed from records cannot be resolved fairly or consistently.
+      th: ข้อพิพาทที่ไม่สามารถสร้างใหม่จากบันทึกได้ไม่สามารถแก้ไขอย่างเป็นธรรมหรือสม่ำเสมอ
+    criticality: high
+    applicability:
+      tiers: [1, 2, 3]
+      modules: []
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: document
+        description: Retention schedule and retrieval procedure for order and dispute records
+        max_age_days: 365
+      - type: configuration
+        description: Retention, integrity, and access configuration for order records
+        max_age_days: 180
+      - type: log
+        description: Retrieval test result within the service target
+        max_age_days: 180
+    assessment:
+      lite:
+        pass: Records are retained, integrity-protected, and retrievable.
+        partial: Retention exists but retrieval or integrity has gaps.
+      full:
+        l2: Retention and retrieval are tested for every record type.
+        l3: Retrieval timeliness is measured against the service target.
+    references:
+      - title: Electronic Transactions Act B.E. 2544
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8937
+        type: regulation
+      - title: Consumer Protection Act B.E. 2522
+        url: https://law.go.th/DetailLawPage?table_of_law_id=9263
+        type: regulation
+    tags: [record-retention, dispute, audit-trail]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+  - id: TH-ECM-012
+    version: 0.4.0
+    overlay: TH-ECM
+    title:
+      en: Account takeover and payment fraud have a tested response
+      th: การยึดบัญชีและการฉ้อโกงการชำระเงินมีแนวตอบสนองที่ทดสอบแล้ว
+    description:
+      en: Account takeover and payment fraud have detection signals, an escalation owner, customer notification, and a regulatory reporting path. A simulation or tabletop within the last 12 months exercises the full response.
+      th: การยึดบัญชีและการฉ้อโกงการชำระเงินต้องมีสัญญาณตรวจจับ เจ้าของการส่งต่อ การแจ้งลูกค้า และเส้นทางการรายงานต่อหน่วยงานกำกับดูแล และต้องมีการจำลองหรือ tabletop ภายใน 12 เดือนที่ผ่านมาซึ่งทดสอบการตอบสนองทั้งหมด
+    rationale:
+      en: Fraud response that is assembled during an incident is slower and less consistent.
+      th: การตอบสนองต่อการฉ้อโกงที่ประกอบขึ้นระหว่างเหตุการณ์จะช้ากว่าและสม่ำเสมอน้อยกว่า
+    criticality: high
+    applicability:
+      tiers: [2, 3]
+      modules: []
+      overlays: [TH-ECM]
+      excludes: []
+    evidence:
+      - type: document
+        description: Fraud response plan, escalation matrix, and notification path
+        max_age_days: 365
+      - type: test_result
+        description: Simulation or tabletop result for account takeover and payment fraud
+        max_age_days: 365
+    assessment:
+      lite:
+        pass: The response is documented and exercised in the last 12 months.
+        partial: The plan exists but the exercise is overdue or incomplete.
+      full:
+        l2: The response is exercised with support, payments, and communications.
+        l3: Detection and response outcomes are measured against real incidents.
+    references:
+      - title: Emergency Decree on Technology Crimes B.E. 2566
+        url: https://law.go.th/DetailLawPage?table_of_law_id=12199
+        type: regulation
+      - title: Personal Data Protection Act B.E. 2562
+        url: https://law.go.th/DetailLawPage?table_of_law_id=8668
+        type: regulation
+      - title: Bank of Thailand payment IT risk notification No. สนช. 1/2564
+        url: https://www.bot.or.th/content/dam/bot/fipcs/documents/FOG/2564/ThaiPDF/25640024.pdf
+        type: regulation
+    tags: [fraud, account-takeover, incident-response]
+    status: active
+    introduced_in: 0.4.0
+    deprecated_in: null
+    replaced_by: null
+    translation_status: partial
+    machine_translated: true
+    review_status: draft
+    created_at: "2026-10-27"
+    updated_at: "2026-10-27"
+overrides: []
+waives: []
+sources:
+  - TH-PDPA-001
+  - TH-CPA-001
+  - TH-ETA-001
+  - TH-PAY-001
+  - TH-DPS-001
+  - TH-TECH-001
+  - TH-CYBER-001
+not_covered:
+  en: Consumer law advice, tax advice, marketplace liability, content moderation policy, card-brand certification, and legal interpretation.
+  th: คำแนะนำด้านกฎหมายผู้บริโภค ภาษี ความรับผิดของตลาดออนไลน์ นโยบายการกลั่นกรองเนื้อหา การรับรองจากเครือข่ายบัตร และการตีความกฎหมาย
+review_checklist: review-checklist.md
+status: active
+deprecated_in: null
+translation_status: partial
+machine_translated: true
+review_status: draft
+created_at: "2026-10-27"
+updated_at: "2026-10-27"
