@@ -58,6 +58,7 @@ export type Selection = {
 
 export type ResolvedRequirement = {
   readonly id: string;
+  readonly sourceId: string;
   readonly layer: ResolutionLayer;
   readonly criticality: Criticality;
   readonly requiredMaturity: MaturityLevel;
@@ -67,6 +68,7 @@ export type ResolvedRequirement = {
 };
 
 export type ResolutionCandidateSummary = {
+  readonly sourceId: string;
   readonly layer: ResolutionLayer;
   readonly criticality: Criticality;
   readonly requiredMaturity: MaturityLevel;
@@ -113,6 +115,7 @@ export type ResolutionIssue =
 
 type Candidate = {
   readonly id: string;
+  readonly sourceId: string;
   readonly layer: ResolutionLayer;
   readonly order: number;
   readonly criticality: Criticality;
@@ -183,6 +186,7 @@ const candidateFrom = (
   layer: ResolutionLayer,
 ): Candidate => ({
   id: requirement.id,
+  sourceId: requirement.id,
   layer,
   order: LAYER_ORDER[layer],
   criticality: requirement.criticality,
@@ -227,9 +231,10 @@ const equalStrictness = (left: Candidate, right: Candidate): boolean => {
 };
 
 const describeCandidate = (candidate: Candidate): string =>
-  `${candidate.layer}(${candidate.criticality}/${candidate.requiredMaturity}/${String(candidate.evidenceMaxAgeDays)}d${candidate.explicit ? ", explicit" : ""})`;
+  `${candidate.layer}(${candidate.sourceId}: ${candidate.criticality}/${candidate.requiredMaturity}/${String(candidate.evidenceMaxAgeDays)}d${candidate.explicit ? ", explicit" : ""})`;
 
 const summarize = (candidate: Candidate): ResolutionCandidateSummary => ({
+  sourceId: candidate.sourceId,
   layer: candidate.layer,
   criticality: candidate.criticality,
   requiredMaturity: candidate.requiredMaturity,
@@ -527,6 +532,7 @@ export const resolveStandard = (
 
       candidates.push({
         id: override.requirement,
+        sourceId: overlay.id,
         layer,
         order: LAYER_ORDER[layer],
         criticality: override.replacement.criticality,
@@ -550,6 +556,7 @@ export const resolveStandard = (
   for (const addition of selection.project.adds) {
     candidates.push({
       id: addition.replaces ?? addition.id,
+      sourceId: addition.id,
       layer: "project",
       order: LAYER_ORDER.project,
       criticality: addition.criticality,
@@ -623,6 +630,7 @@ export const resolveStandard = (
 
     resolved.push({
       id: outcome.candidate.id,
+      sourceId: outcome.candidate.sourceId,
       layer: outcome.candidate.layer,
       criticality: outcome.candidate.criticality,
       requiredMaturity: outcome.candidate.requiredMaturity,

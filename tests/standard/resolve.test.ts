@@ -386,10 +386,19 @@ describe("resolveStandard", () => {
         requirement.layer,
       ]),
     );
+    const sourceById = new Map(
+      result.value.requirements.map((requirement) => [
+        requirement.id,
+        requirement.sourceId,
+      ]),
+    );
 
     expect(byId.get(coreId)).toBe("project");
+    expect(sourceById.get(coreId)).toBe("PRJ-001");
     expect(byId.get("SRAS-AI-001")).toBe("module");
+    expect(sourceById.get("SRAS-AI-001")).toBe("SRAS-AI-001");
     expect(byId.get("TH-JUR-001")).toBe("jurisdiction");
+    expect(sourceById.get("TH-JUR-001")).toBe("TH-JUR-001");
   });
 
   test("an industry overlay wins over a jurisdiction overlay at equal strictness", () => {
@@ -420,10 +429,12 @@ describe("resolveStandard", () => {
     expect(result.ok).toBe(true);
     if (!result.ok) return;
 
-    expect(
-      result.value.requirements.find((requirement) => requirement.id === coreId)
-        ?.layer,
-    ).toBe("industry");
+    const resolved = result.value.requirements.find(
+      (requirement) => requirement.id === coreId,
+    );
+
+    expect(resolved?.layer).toBe("industry");
+    expect(resolved?.sourceId).toBe("TH-IND");
   });
 
   test("stricter criticality wins even from an earlier layer", () => {
@@ -555,6 +566,9 @@ describe("resolveStandard", () => {
     expect(conflict?.id).toBe(coreId);
     expect(conflict?.kind).toBe("incomparable");
     expect(conflict?.candidates).toHaveLength(2);
+    expect(conflict?.candidates.map((candidate) => candidate.sourceId)).toEqual(
+      ["SRAS-SEC-001", "PRJ-001"],
+    );
     expect(conflict?.message).toContain("incomparable");
   });
 

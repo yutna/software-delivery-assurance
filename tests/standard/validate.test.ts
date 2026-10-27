@@ -193,7 +193,7 @@ const makeCrosswalk = (mapped: CoreRequirement["id"]): Crosswalk => ({
 describe("validateStandard", () => {
   test("parses evidence expectations from requirement YAML", () => {
     expect(core.evidence.length).toBeGreaterThan(0);
-    expect(core.evidence[0]?.maxAgeDays).toBeGreaterThan(0);
+    expect(core.evidence[0].maxAgeDays).toBeGreaterThan(0);
   });
 
   test("accepts a coherent standard", () => {
