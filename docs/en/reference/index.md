@@ -137,6 +137,7 @@ run `npm run sras -- render`.
 
 ## Registers
 
+- [ASEAN-MCC-001 — ASEAN Model Contractual Clauses for Cross Border Data Flows (2021)](registers/ASEAN-MCC-001.md)
 - [ID-PDP-001 — Law No. 27 of 2022 on Personal Data Protection](registers/ID-PDP-001.md)
 - [MY-PDPA-001 — Personal Data Protection Act 2010 (Act 709)](registers/MY-PDPA-001.md)
 - [PH-DPA-001 — Republic Act No. 10173 (Data Privacy Act of 2012)](registers/PH-DPA-001.md)
