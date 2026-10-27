@@ -1,0 +1,25 @@
+id: MAP-TEST27001
+title:
+  en: SRAS test requirements to ISO/IEC 27001:2022
+  th: ข้อกำหนด SRAS สำหรับทดสอบไปยัง ISO/IEC 27001:2022
+description:
+  en: An informative test crosswalk for the schema and parser.
+  th: crosswalk สำหรับทดสอบ schema และ parser
+version: 0.1.0
+source_standard: ISO/IEC 27001:2022
+source_url: https://www.iso.org/standard/27001
+mappings:
+  - requirement: SRAS-SEC-001
+    external: A.8.5
+    relationship: supports
+    notes: Secure authentication control.
+  - requirement: SRAS-SEC-001
+    external: A.5.15
+    relationship: related
+    notes: Access control policy.
+status: draft
+review_status: unverified
+translation_status: partial
+machine_translated: true
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

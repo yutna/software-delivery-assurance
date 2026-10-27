@@ -93,5 +93,9 @@ export const validFiles: readonly SourceFile[] = [
   { path: "core/profiles/lite.yaml", text: fixture("valid/profile-lite.yaml") },
   { path: "core/profiles/full.yaml", text: profileFull },
   { path: "modules/ai/module.yaml", text: fixture("valid/module-ai.yaml") },
+  {
+    path: "mappings/iso-27001.yaml",
+    text: fixture("valid/crosswalk.yaml"),
+  },
   { path: "overlays/industries/finance/overlay.yaml", text: overlay },
 ];

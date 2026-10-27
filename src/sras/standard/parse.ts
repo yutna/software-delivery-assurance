@@ -1,11 +1,13 @@
 import { err, ok, type Result } from "../foundation/result.js";
 import type { DtoObject } from "./dto.js";
 import {
+  crosswalkId,
   moduleId,
   overlayId,
   overlayRequirementId,
   registerEntryId,
   requirementId,
+  type CrosswalkId,
   type ModuleId,
   type OverlayId,
   type OverlayRequirementId,
@@ -27,6 +29,9 @@ import type {
   CoreDomain,
   CoreRequirement,
   Criticality,
+  Crosswalk,
+  CrosswalkMapping,
+  CrosswalkRelationship,
   Industry,
   LocalizedText,
   MaturityLevel,
@@ -106,6 +111,12 @@ const INDUSTRIES = [
   "logistics",
   "public-sector",
 ] as const satisfies readonly Industry[];
+
+const CROSSWALK_RELATIONSHIPS = [
+  "supports",
+  "partial",
+  "related",
+] as const satisfies readonly CrosswalkRelationship[];
 
 type Issues = ValidationIssue[];
 
@@ -453,6 +464,27 @@ const readRegisterEntryIdValue = (
 
   if (!parsed.ok) {
     push(issues, file, path, `invalid register entry ID: ${value}`);
+    return undefined;
+  }
+
+  return parsed.value;
+};
+
+const readCrosswalkIdValue = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): CrosswalkId | undefined => {
+  if (typeof value !== "string") {
+    push(issues, file, path, "expected a crosswalk ID");
+    return undefined;
+  }
+
+  const parsed = crosswalkId(value);
+
+  if (!parsed.ok) {
+    push(issues, file, path, `invalid crosswalk ID: ${value}`);
     return undefined;
   }
 
@@ -1153,6 +1185,126 @@ const parseModule = (
   };
 };
 
+const parseCrosswalkMapping = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): CrosswalkMapping | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const requirement = readRequirementIdValue(
+    object["requirement"],
+    file,
+    `${path}/requirement`,
+    issues,
+  );
+  const external = readString(object, "external", file, path, issues);
+  const relationship = readEnum(
+    object,
+    "relationship",
+    CROSSWALK_RELATIONSHIPS,
+    file,
+    path,
+    issues,
+  );
+  const notes = readOptionalString(object, "notes", file, path, issues);
+
+  if (
+    requirement === undefined ||
+    external === undefined ||
+    relationship === undefined ||
+    notes === undefined
+  ) {
+    return undefined;
+  }
+
+  return { requirement, external, relationship, notes };
+};
+
+const parseCrosswalk = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): Crosswalk | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const metadata = readMetadata(object, file, path, issues);
+  const id = readCrosswalkIdValue(object["id"], file, `${path}/id`, issues);
+  const title = readLocalized(object["title"], file, `${path}/title`, issues);
+  const description = readLocalized(
+    object["description"],
+    file,
+    `${path}/description`,
+    issues,
+  );
+  const sourceStandard = readString(
+    object,
+    "source_standard",
+    file,
+    path,
+    issues,
+  );
+  const sourceUrl = readString(object, "source_url", file, path, issues);
+  const mappings = readArray(
+    object,
+    "mappings",
+    file,
+    path,
+    issues,
+    (item, itemPath) => parseCrosswalkMapping(item, file, itemPath, issues),
+  );
+  const deprecatedIn = readDeprecatedIn(object, file, path, issues);
+  const replacedBy =
+    "replaced_by" in object && object["replaced_by"] !== null
+      ? readCrosswalkIdValue(
+          object["replaced_by"],
+          file,
+          `${path}/replaced_by`,
+          issues,
+        )
+      : null;
+
+  if (
+    metadata === undefined ||
+    id === undefined ||
+    title === undefined ||
+    description === undefined ||
+    sourceStandard === undefined ||
+    sourceUrl === undefined ||
+    mappings === undefined ||
+    deprecatedIn === undefined ||
+    replacedBy === undefined
+  ) {
+    return undefined;
+  }
+
+  const [firstMapping, ...restMappings] = mappings;
+
+  if (firstMapping === undefined) {
+    push(issues, file, `${path}/mappings`, "expected at least one mapping");
+    return undefined;
+  }
+
+  return {
+    tag: "Crosswalk",
+    ...metadata,
+    id,
+    title,
+    description,
+    sourceStandard,
+    sourceUrl,
+    mappings: [firstMapping, ...restMappings],
+    deprecatedIn,
+    replacedBy,
+  };
+};
+
 const parseOverlay = (
   value: unknown,
   file: string,
@@ -1510,6 +1662,16 @@ export const parseModuleFile = (
   const module = parseModule(value, file, "", issues);
 
   return result(module, issues);
+};
+
+export const parseCrosswalkFile = (
+  value: unknown,
+  file: string,
+): Result<Crosswalk, readonly ValidationIssue[]> => {
+  const issues: Issues = [];
+  const crosswalk = parseCrosswalk(value, file, "", issues);
+
+  return result(crosswalk, issues);
 };
 
 export const parseOverlayFile = (

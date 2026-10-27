@@ -3,6 +3,7 @@ import { satisfiesRange, type Version } from "./primitives.js";
 import type {
   Applicability,
   CoreRequirement,
+  Crosswalk,
   LocalizedText,
   Module,
   ModuleRequirement,
@@ -307,6 +308,25 @@ const checkRegister = (
   checkReview(register, issues);
 };
 
+const checkCrosswalk = (
+  crosswalk: Crosswalk,
+  requirementIds: ReadonlySet<string>,
+  issues: ValidationIssue[],
+): void => {
+  for (const mapping of crosswalk.mappings) {
+    requireReference(
+      crosswalk.id,
+      mapping.requirement,
+      "crosswalk.mappings",
+      requirementIds.has(mapping.requirement),
+      issues,
+    );
+  }
+
+  checkReview(crosswalk, issues);
+  checkTranslation(crosswalk, issues);
+};
+
 const checkProfile = (profile: Profile, issues: ValidationIssue[]): void => {
   checkReview(profile, issues);
   checkTranslation(profile, issues);
@@ -373,6 +393,7 @@ export const validateStandard = (
   const moduleById = new Map<string, Module>();
   const overlayById = new Map<string, Overlay>();
   const registerById = new Map<string, RegisterEntry>();
+  const crosswalkById = new Map<string, Crosswalk>();
   const profileById = new Map<string, Profile>();
 
   for (const requirement of standard.requirements) {
@@ -397,6 +418,10 @@ export const validateStandard = (
 
   for (const register of standard.registers) {
     addUnique(registerById, register, issues);
+  }
+
+  for (const crosswalk of standard.crosswalks) {
+    addUnique(crosswalkById, crosswalk, issues);
   }
 
   for (const profile of standard.profiles) {
@@ -445,6 +470,10 @@ export const validateStandard = (
 
   for (const register of standard.registers) {
     checkRegister(register, allRequirementIds, issues);
+  }
+
+  for (const crosswalk of standard.crosswalks) {
+    checkCrosswalk(crosswalk, allRequirementIds, issues);
   }
 
   for (const profile of standard.profiles) {

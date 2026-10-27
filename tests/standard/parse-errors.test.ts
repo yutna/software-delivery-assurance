@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import type { Result } from "../../src/sras/foundation/result.js";
 import {
+  parseCrosswalkFile,
   parseManifestFile,
   parseModuleFile,
   parseOverlayFile,
@@ -171,6 +172,30 @@ const invalidManifest = {
   license: "NOT-MIT",
 };
 
+const invalidCrosswalk = {
+  id: "ISO27001",
+  title: { en: 1, th: 2 },
+  description: [],
+  version: "bad",
+  source_standard: 1,
+  source_url: 1,
+  mappings: [
+    {
+      requirement: 1,
+      external: 1,
+      relationship: "equivalent",
+      notes: 1,
+    },
+  ],
+  status: "nope",
+  deprecated_in: "bad",
+  replaced_by: 1,
+  translation_status: "nope",
+  review_status: "nope",
+  created_at: "bad",
+  updated_at: "bad",
+};
+
 describe("parse error paths", () => {
   test("requirements files", () => {
     expectError(parseRequirementsFile(null, "core/domains/x.yaml"));
@@ -237,5 +262,22 @@ describe("parse error paths", () => {
     expectError(parseManifestFile(null, "core/sras.yaml"));
     expectError(parseManifestFile({}, "core/sras.yaml"));
     expectError(parseManifestFile(invalidManifest, "core/sras.yaml"));
+  });
+
+  test("crosswalk files", () => {
+    expectError(parseCrosswalkFile(null, "mappings/iso-27001.yaml"));
+    expectError(parseCrosswalkFile({}, "mappings/iso-27001.yaml"));
+    expectError(
+      parseCrosswalkFile(invalidCrosswalk, "mappings/iso-27001.yaml"),
+    );
+    expectError(
+      parseCrosswalkFile(
+        {
+          ...invalidCrosswalk,
+          mappings: [],
+        },
+        "mappings/iso-27001.yaml",
+      ),
+    );
   });
 });

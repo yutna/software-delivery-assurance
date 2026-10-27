@@ -1,4 +1,5 @@
 import type {
+  CrosswalkId,
   ModuleId,
   OverlayId,
   OverlayRequirementId,
@@ -35,6 +36,8 @@ export type Industry = "finance" | "ecommerce" | "logistics" | "public-sector";
 export type Tier = 1 | 2 | 3;
 export type RegisterStatus =
   "in_force" | "amended" | "repealed" | "draft" | "unknown";
+
+export type CrosswalkRelationship = "supports" | "partial" | "related";
 
 export type LocalizedText = {
   readonly en: string;
@@ -176,6 +179,25 @@ export type RegisterEntry = StandardMetadata & {
   readonly registerStatus: RegisterStatus;
 };
 
+export type CrosswalkMapping = {
+  readonly requirement: RequirementId;
+  readonly external: string;
+  readonly relationship: CrosswalkRelationship;
+  readonly notes: string | null;
+};
+
+export type Crosswalk = StandardMetadata & {
+  readonly tag: "Crosswalk";
+  readonly id: CrosswalkId;
+  readonly title: LocalizedText;
+  readonly description: LocalizedText;
+  readonly sourceStandard: string;
+  readonly sourceUrl: string;
+  readonly mappings: NonEmpty<CrosswalkMapping>;
+  readonly deprecatedIn: Version | null;
+  readonly replacedBy: CrosswalkId | null;
+};
+
 export type Profile = StandardMetadata & {
   readonly tag: "Profile";
   readonly id: ProfileId;
@@ -206,6 +228,7 @@ export type Standard = {
   readonly modules: readonly Module[];
   readonly overlays: readonly Overlay[];
   readonly registers: readonly RegisterEntry[];
+  readonly crosswalks: readonly Crosswalk[];
   readonly profiles: readonly Profile[];
 };
 
