@@ -34,11 +34,14 @@ import type {
   Crosswalk,
   CrosswalkMapping,
   CrosswalkRelationship,
+  EvidenceExpectation,
+  EvidenceType,
   Industry,
   LocalizedText,
   MaturityLevel,
   Module,
   ModuleRequirement,
+  NonEmpty,
   Overlay,
   OverlayRequirement,
   Override,
@@ -136,6 +139,22 @@ const REGISTER_INSTRUMENT_TYPES = [
   "guidance",
   "framework",
 ] as const satisfies readonly RegisterInstrumentType[];
+
+const EVIDENCE_TYPES = [
+  "document",
+  "diagram",
+  "configuration",
+  "screenshot",
+  "test_result",
+  "metric",
+  "ticket",
+  "log",
+  "contract",
+  "attestation",
+  "benchmark",
+  "interview",
+  "report",
+] as const satisfies readonly EvidenceType[];
 
 const CROSSWALK_RELATIONSHIPS = [
   "supports",
@@ -570,6 +589,80 @@ const readStringArray = (
   return items;
 };
 
+const readNumber = (
+  object: DtoObject,
+  key: string,
+  file: string,
+  path: string,
+  issues: Issues,
+): number | undefined => {
+  const value = object[key];
+
+  if (typeof value !== "number" || !Number.isInteger(value) || value < 1) {
+    push(issues, file, `${path}/${key}`, "expected a positive integer");
+    return undefined;
+  }
+
+  return value;
+};
+
+const parseEvidenceItem = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): EvidenceExpectation | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const type = readEnum(object, "type", EVIDENCE_TYPES, file, path, issues);
+  const description = readString(object, "description", file, path, issues);
+  const maxAgeDays = readNumber(object, "max_age_days", file, path, issues);
+
+  if (
+    type === undefined ||
+    description === undefined ||
+    maxAgeDays === undefined
+  ) {
+    return undefined;
+  }
+
+  return { type, description, maxAgeDays };
+};
+
+const parseEvidence = (
+  object: DtoObject,
+  file: string,
+  path: string,
+  issues: Issues,
+): NonEmpty<EvidenceExpectation> | undefined => {
+  const evidence = readArray(
+    object,
+    "evidence",
+    file,
+    path,
+    issues,
+    (item, itemPath) => parseEvidenceItem(item, file, itemPath, issues),
+  );
+
+  if (evidence === undefined) return undefined;
+
+  const [first, ...rest] = evidence;
+
+  if (first === undefined) {
+    push(
+      issues,
+      file,
+      `${path}/evidence`,
+      "expected at least one evidence item",
+    );
+    return undefined;
+  }
+
+  return [first, ...rest];
+};
+
 const readLocalized = (
   value: unknown,
   file: string,
@@ -849,6 +942,7 @@ const parseCoreRequirement = (
     `${path}/applicability`,
     issues,
   );
+  const evidence = parseEvidence(object, file, path, issues);
   const title = readLocalized(object["title"], file, `${path}/title`, issues);
   const description = readLocalized(
     object["description"],
@@ -872,6 +966,7 @@ const parseCoreRequirement = (
     domain === undefined ||
     criticality === undefined ||
     applicability === undefined ||
+    evidence === undefined ||
     title === undefined ||
     description === undefined ||
     introducedIn === undefined ||
@@ -888,6 +983,7 @@ const parseCoreRequirement = (
     domain,
     criticality,
     applicability,
+    evidence,
     title,
     description,
     introducedIn,
@@ -928,6 +1024,7 @@ const parseModuleRequirement = (
     `${path}/applicability`,
     issues,
   );
+  const evidence = parseEvidence(object, file, path, issues);
   const title = readLocalized(object["title"], file, `${path}/title`, issues);
   const description = readLocalized(
     object["description"],
@@ -951,6 +1048,7 @@ const parseModuleRequirement = (
     module === undefined ||
     criticality === undefined ||
     applicability === undefined ||
+    evidence === undefined ||
     title === undefined ||
     description === undefined ||
     introducedIn === undefined ||
@@ -967,6 +1065,7 @@ const parseModuleRequirement = (
     module,
     criticality,
     applicability,
+    evidence,
     title,
     description,
     introducedIn,
@@ -1012,6 +1111,7 @@ const parseOverlayRequirement = (
     `${path}/applicability`,
     issues,
   );
+  const evidence = parseEvidence(object, file, path, issues);
   const title = readLocalized(object["title"], file, `${path}/title`, issues);
   const description = readLocalized(
     object["description"],
@@ -1037,6 +1137,7 @@ const parseOverlayRequirement = (
     overlay === undefined ||
     criticality === undefined ||
     applicability === undefined ||
+    evidence === undefined ||
     title === undefined ||
     description === undefined ||
     introducedIn === undefined ||
@@ -1053,6 +1154,7 @@ const parseOverlayRequirement = (
     overlay,
     criticality,
     applicability,
+    evidence,
     title,
     description,
     introducedIn,
