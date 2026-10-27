@@ -24,40 +24,40 @@ const makeIo = (): {
 };
 
 describe("sras CLI", () => {
-  test("--version prints the version and exits 0", () => {
+  test("--version prints the version and exits 0", async () => {
     const { io, stdout, stderr } = makeIo();
 
-    expect(run(["--version"], io)).toBe(0);
+    expect(await run(["--version"], io)).toBe(0);
     expect(stdout.join("")).toBe(`${VERSION}\n`);
     expect(stderr).toEqual([]);
   });
 
-  test("--help prints usage and exits 0", () => {
+  test("--help prints usage and exits 0", async () => {
     const { io, stdout } = makeIo();
 
-    expect(run(["--help"], io)).toBe(0);
+    expect(await run(["--help"], io)).toBe(0);
     expect(stdout.join("")).toContain("Usage:");
   });
 
-  test("no arguments prints help", () => {
+  test("no arguments prints help", async () => {
     const { io, stdout } = makeIo();
 
-    expect(run([], io)).toBe(0);
+    expect(await run([], io)).toBe(0);
     expect(stdout.join("")).toContain("Usage:");
   });
 
-  test("an unknown argument exits 2 and writes to stderr", () => {
+  test("an unknown argument exits 2 and writes to stderr", async () => {
     const { io, stdout, stderr } = makeIo();
 
-    expect(run(["--nope"], io)).toBe(2);
+    expect(await run(["--nope"], io)).toBe(2);
     expect(stdout).toEqual([]);
     expect(stderr.join("")).toContain("unknown argument: --nope");
   });
 
-  test("too many arguments exits 2", () => {
+  test("too many arguments exits 2", async () => {
     const { io, stderr } = makeIo();
 
-    expect(run(["--version", "--help"], io)).toBe(2);
+    expect(await run(["--version", "--help"], io)).toBe(2);
     expect(stderr.join("")).toContain("too many arguments");
   });
 });
