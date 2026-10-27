@@ -1,0 +1,46 @@
+id: EU-EIDAS-001
+jurisdiction: EU
+instrument: Regulation (EU) No 910/2014 on electronic identification and trust services (eIDAS)
+instrument_type: regulation
+regulator: European Commission and national supervisory bodies
+source_url: https://eur-lex.europa.eu/eli/reg/2014/910/oj
+effective_date: "2016-07-01"
+revision: "2026-10-28.r1"
+last_verified: "2026-10-28"
+review_due: "2027-10-28"
+status: amended
+summary:
+  en: The Regulation establishes a framework for electronic identification and for trust services in the European Union. It covers electronic signatures, electronic seals, electronic time stamps, electronic registered delivery services, and website authentication, and it sets rules for the recognition of electronic identification means and for the supervision of trust service providers. Regulation (EU) 2024/1183 amended it to establish the European Digital Identity Framework, including the EU Digital Identity Wallet.
+  th: ระเบียบนี้กำหนดกรอบสำหรับการระบุตัวตนทางอิเล็กทรอนิกส์และบริการที่เชื่อถือได้ (trust services) ในสหภาพยุโรป ครอบคลุมลายมือชื่ออิเล็กทรอนิกส์ ตราประทับอิเล็กทรอนิกส์ การประทับเวลาอิเล็กทรอนิกส์ บริการส่งเอกสารลงทะเบียนอิเล็กทรอนิกส์ และการรับรองเว็บไซต์ และกำหนดกฎสำหรับการยอมรับวิธีการระบุตัวตนทางอิเล็กทรอนิกส์และการกำกับดูแลผู้ให้บริการที่เชื่อถือได้ ระเบียบ (EU) 2024/1183 แก้ไขระเบียบนี้เพื่อจัดตั้งกรอบ European Digital Identity รวมถึงกระเป๋า EU Digital Identity Wallet
+obligations:
+  - en: A trust service provider meets the requirements for the trust service it provides and is subject to supervision by a national supervisory body.
+    th: ผู้ให้บริการที่เชื่อถือได้ปฏิบัติตามข้อกำหนดสำหรับบริการที่ตนให้และอยู่ภายใต้การกำกับดูแลของหน่วยงานกำกับดูแลระดับประเทศ
+  - en: A qualified trust service provider uses qualified certificates and qualified signature or seal creation devices that meet the Regulation's requirements.
+    th: ผู้ให้บริการที่เชื่อถือได้ซึ่งให้บริการแบบ qualified ใช้ใบรับรองแบบ qualified และอุปกรณ์สร้างลายมือชื่อหรือตราประทับแบบ qualified ที่เป็นไปตามข้อกำหนดของระเบียบ
+  - en: A trust service provider notifies the supervisory body of a security breach or a loss of integrity that affects the trust service it provides.
+    th: ผู้ให้บริการที่เชื่อถือได้แจ้งหน่วยงานกำกับดูแลเมื่อเกิดเหตุด้านความปลอดภัยหรือการสูญเสียความสมบูรณ์ของบริการที่เชื่อถือได้ที่ตนให้
+  - en: An online service provider that uses electronic identification accepts notified electronic identification means under the conditions the Regulation sets.
+    th: ผู้ให้บริการออนไลน์ที่ใช้การระบุตัวตนทางอิเล็กทรอนิกส์ยอมรับวิธีการระบุตัวตนที่แจ้งไว้ภายใต้เงื่อนไขที่ระเบียบกำหนด
+  - en: A Member State notifies its electronic identification schemes and provides authentication means to relying parties.
+    th: รัฐสมาชิกแจ้งรูปแบบการระบุตัวตนทางอิเล็กทรอนิกส์ของตนและจัดหาวิธีการยืนยันตัวตนให้แก่ relying party
+  - en: A provider of a European Digital Identity Wallet meets the requirements of the amended Regulation when it offers the wallet.
+    th: ผู้ให้บริการกระเป๋า European Digital Identity Wallet ปฏิบัติตามข้อกำหนดของระเบียบที่แก้ไขเพิ่มเติมเมื่อให้บริการกระเป๋า
+  - en: A qualified trust service provider verifies the identity of a person before issuing a qualified certificate to that person.
+    th: ผู้ให้บริการที่เชื่อถือได้แบบ qualified ตรวจสอบตัวตนของบุคคลก่อนออกใบรับรองแบบ qualified ให้แก่บุคคลนั้น
+mapped_requirements:
+  - SRAS-SEC-001
+  - SRAS-SEC-004
+  - SRAS-SEC-005
+  - SRAS-SEC-006
+  - SRAS-INT-002
+applies_to:
+  sectors: [finance, ecommerce, logistics, public-sector]
+  roles: [trust-service-provider, relying-party, online-service-provider]
+  data_types: [identity-data, electronic-signature]
+notes:
+  en: The Regulation entered into force on 17 September 2014 and applies from 1 July 2016, with exceptions listed in Article 60. Regulation (EU) 2024/1183 amended it and entered into force on 20 May 2024. This entry does not decide whether the Regulation applies to a particular organisation or service, and it does not state that any organisation meets it.
+  th: ระเบียบมีผลใช้บังคับเมื่อวันที่ 17 กันยายน 2557 และเริ่มใช้เมื่อวันที่ 1 กรกฎาคม 2559 โดยมีข้อยกเว้นตาม Article 60 ระเบียบ (EU) 2024/1183 แก้ไขเพิ่มเติมและมีผลใช้บังคับเมื่อวันที่ 20 พฤษภาคม 2567 รายการนี้ไม่วินิจฉัยว่าระเบียบใช้กับองค์กรหรือบริการใดโดยเฉพาะ และไม่ได้ระบุว่าองค์กรใดปฏิบัติตามระเบียบ
+source_language: en
+translation_status: partial
+machine_translated: true
+review_status: unverified
