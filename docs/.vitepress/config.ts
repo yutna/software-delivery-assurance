@@ -203,6 +203,7 @@ const config = {
   themeConfig: {
     socialLinks: [{ icon: "github", link: REPOSITORY }],
     search: { provider: "local" },
+    i18nRouting: false,
     editLink: {
       pattern: `${REPOSITORY}/edit/main/docs/:path`,
       text: "Edit this page on GitHub",
