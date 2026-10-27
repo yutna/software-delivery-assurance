@@ -151,3 +151,352 @@
   review_status: draft
   created_at: "2026-10-27"
   updated_at: "2026-10-27"
+- id: SRAS-PRV-004
+  version: 0.2.0
+  title:
+    en: Purpose limitation and lawful basis are recorded for each data use
+    th: การจำกัดวัตถุประสงค์และฐานทางกฎหมายถูกบันทึกสำหรับการใช้ข้อมูลแต่ละรายการ
+  description:
+    en: Each processing activity must record its purpose, lawful basis, data categories, and recipients, and must not use data for a new purpose without a recorded review. Processing without a recorded purpose or basis fails the requirement.
+    th: กิจกรรมการประมวลผลแต่ละรายการต้องบันทึกวัตถุประสงค์ ฐานทางกฎหมาย ประเภทข้อมูล และผู้รับข้อมูล และต้องไม่นำข้อมูลไปใช้ในวัตถุประสงค์ใหม่โดยไม่มีการทบทวนที่บันทึกไว้ การประมวลผลที่ไม่มีวัตถุประสงค์หรือฐานทางกฎหมายที่บันทึกไว้ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Data collected for one purpose cannot be repurposed without a new decision and, where required, a new notice.
+    th: ข้อมูลที่เก็บเพื่อวัตถุประสงค์หนึ่งไม่สามารถนำไปใช้ซ้ำได้โดยไม่มีการตัดสินใจใหม่และ การแจ้งใหม่เมื่อจำเป็น
+  domain: privacy
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Record of processing activities with purpose, basis, data categories, and recipients
+      max_age_days: 365
+    - type: ticket
+      description: Review record for new or changed processing purposes
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Every processing activity has a recorded purpose and lawful basis.
+      partial: Some activities lack a purpose, basis, or change review.
+    full:
+      l2: Maintained for all in-scope processing.
+      l3: Reviewed after material change and reconciled with the data inventory.
+  references:
+    - title: ISO/IEC 27701:2019
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+    - title: NIST Privacy Framework 1.0
+      url: https://www.nist.gov/privacy-framework
+      type: standard
+  tags: [purpose-limitation, lawful-basis, privacy]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-005
+  version: 0.2.0
+  title:
+    en: Data collection is limited to fields with a documented need
+    th: การเก็บข้อมูลจำกัดเฉพาะฟิลด์ที่มีความจำเป็นที่จัดทำเอกสาร
+  description:
+    en: Each personal data field must have a documented purpose and retention need, and fields without a current need must be removed or justified. A new field collected without review fails the requirement.
+    th: ฟิลด์ข้อมูลส่วนบุคคลแต่ละฟิลด์ต้องมีวัตถุประสงค์และความจำเป็นด้านการจัดเก็บที่จัดทำเอกสาร และฟิลด์ที่ไม่มีความจำเป็นในปัจจุบันต้องถูกลบหรือมีเหตุผลรองรับ การเพิ่มฟิลด์ใหม่โดยไม่มีการทบทวนถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Unnecessary fields increase breach impact and the cost of retention and deletion.
+    th: ฟิลด์ที่ไม่จำเป็นเพิ่มผลกระทบจากการรั่วไหลและต้นทุนของการจัดเก็บและการลบ
+  domain: privacy
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Field-level data inventory with purpose and necessity decision
+      max_age_days: 365
+    - type: ticket
+      description: Review record for new personal data fields
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Personal data fields have a documented need and no unreviewed fields are collected.
+      partial: Some fields lack a documented need or review.
+    full:
+      l2: Applied to all in-scope collection points.
+      l3: Measured with field count, unused-field findings, and removal trends.
+  references:
+    - title: ISO/IEC 27701:2019
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+    - title: NIST Privacy Framework 1.0
+      url: https://www.nist.gov/privacy-framework
+      type: standard
+  tags: [data-minimization, privacy, data-inventory]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-006
+  version: 0.2.0
+  title:
+    en: Privacy notice and consent records match actual processing
+    th: ประกาศความเป็นส่วนตัวและบันทึกความยินยอมสอดคล้องกับการประมวลผลจริง
+  description:
+    en: The privacy notice must describe the current processing activities, and where consent is the basis, consent must be recorded with scope, time, and withdrawal state. A notice that omits an active processing purpose or a consent record that cannot be withdrawn fails the requirement.
+    th: ประกาศความเป็นส่วนตัวต้องอธิบายกิจกรรมการประมวลผลในปัจจุบัน และในกรณีที่ใช้ความยินยอมเป็นฐาน ความยินยอมต้องถูกบันทึกพร้อมขอบเขต เวลา และสถานะการถอน การประกาศที่ละเว้นวัตถุประสงค์ที่ยังใช้งานอยู่หรือบันทึกความยินยอมที่ไม่สามารถถอนได้ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A notice or consent record that diverges from the system is misleading.
+    th: ประกาศหรือบันทึกความยินยอมที่แตกต่างจากระบบจริงทำให้เข้าใจผิด
+  domain: privacy
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Current privacy notice mapped to processing activities
+      max_age_days: 180
+    - type: report
+      description: Consent record sample with scope, timestamp, and withdrawal state
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: The notice matches current processing and consent can be withdrawn.
+      partial: The notice or consent records are incomplete for some activities.
+    full:
+      l2: Reconciled with the processing record for the current release.
+      l3: Reviewed after material change and measured with notice-accuracy and withdrawal metrics.
+  references:
+    - title: Thailand Personal Data Protection Act
+      url: https://www.pdpc.or.th
+      type: regulation
+    - title: ISO/IEC 27701:2019
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+  tags: [privacy-notice, consent, transparency]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-007
+  version: 0.2.0
+  title:
+    en: Cross-border transfers are identified and controlled
+    th: การส่งข้อมูลข้ามพรมแดนถูกระบุและควบคุม
+  description:
+    en: Each cross-border transfer must be recorded with destination, recipient, purpose, safeguard, and review date, and must use an approved transfer mechanism. An undisclosed transfer or an expired safeguard fails the requirement.
+    th: การส่งข้อมูลข้ามพรมแดนแต่ละรายการต้องถูกบันทึกพร้อมปลายทาง ผู้รับ วัตถุประสงค์ มาตรการคุ้มครอง และวันทบทวน และต้องใช้กลไกการส่งข้อมูลที่ได้รับอนุมัติ การส่งข้อมูลที่ไม่เปิดเผยหรือมาตรการคุ้มครองที่หมดอายุถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Data loses the protection of its origin jurisdiction when it crosses a border.
+    th: ข้อมูลสูญเสียการคุ้มครองของเขตอำนาจต้นทางเมื่อถูกส่งข้ามพรมแดน
+  domain: privacy
+  criticality: gate
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Cross-border transfer register with destination, recipient, safeguard, and review date
+      max_age_days: 180
+    - type: contract
+      description: Approved transfer mechanism or contractual safeguard
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Every transfer is recorded and uses an approved safeguard.
+      partial: Some transfers are undocumented or use an expired safeguard.
+    full:
+      l2: Register maintained and reconciled with the data inventory.
+      l3: Reviewed before new transfers and after legal or vendor change.
+  references:
+    - title: Thailand Personal Data Protection Act
+      url: https://www.pdpc.or.th
+      type: regulation
+    - title: ISO/IEC 27701:2019
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+  tags: [cross-border, data-transfer, privacy]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-008
+  version: 0.2.0
+  title:
+    en: Privacy breaches can be detected, assessed, and notified on time
+    th: การละเมิดข้อมูลส่วนบุคคลสามารถตรวจจับ ประเมิน และแจ้งได้ทันเวลา
+  description:
+    en: The product must have a documented privacy breach process with detection sources, an assessment step, notification owners, and a timeline, and must exercise it. A breach process that has never been tested or has no notification owner fails the requirement.
+    th: ผลิตภัณฑ์ต้องมีกระบวนการจัดการการละเมิดข้อมูลส่วนบุคคลที่จัดทำเอกสาร พร้อมแหล่งตรวจจับ ขั้นตอนประเมิน owner ผู้แจ้ง และกำหนดเวลา และต้องมีการซ้อมกระบวนการ กระบวนการที่ไม่เคยถูกทดสอบหรือไม่มี owner สำหรับการแจ้งถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A late or unowned breach response turns a containable event into a reportable failure.
+    th: การตอบสนองต่อการละเมิดที่ล่าช้าหรือไม่มีผู้รับผิดชอบทำให้เหตุการณ์ที่ควบคุมได้กลายเป็นความล้มเหลวที่ต้องรายงาน
+  domain: privacy
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Privacy breach response procedure with roles and notification timeline
+      max_age_days: 365
+    - type: report
+      description: Tabletop or breach exercise record with findings
+      max_age_days: 365
+    - type: ticket
+      description: Breach log with assessment and notification decisions
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: The process is documented, owned, and exercised.
+      partial: The process exists but is untested or lacks a notification owner.
+    full:
+      l2: Documented and exercised within the last year.
+      l3: Measured with detection time, assessment time, and notification readiness.
+  references:
+    - title: Thailand Personal Data Protection Act
+      url: https://www.pdpc.or.th
+      type: regulation
+    - title: NIST Privacy Framework 1.0
+      url: https://www.nist.gov/privacy-framework
+      type: standard
+  tags: [breach, incident-readiness, privacy]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-009
+  version: 0.2.0
+  title:
+    en: Processors are assessed, contracted, and reviewed
+    th: ผู้ประมวลผลข้อมูลได้รับการประเมิน ทำสัญญา และทบทวน
+  description:
+    en: Each processor and subprocessor that handles personal data must be listed with its role, data categories, contract status, assessment result, and review date. A processor without a current agreement or assessment fails the requirement.
+    th: ผู้ประมวลผลและผู้ประมวลผลช่วงที่จัดการข้อมูลส่วนบุคคลแต่ละรายต้องถูกระบุพร้อมบทบาท ประเภทข้อมูล สถานะสัญญา ผลการประเมิน และวันทบทวน ผู้ประมวลผลที่ไม่มีข้อตกลงหรือการประเมินที่เป็นปัจจุบันถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A processor extends the product's data boundary and its obligations.
+    th: ผู้ประมวลผลขยายขอบเขตข้อมูลและข้อผูกพันของผลิตภัณฑ์
+  domain: privacy
+  criticality: gate
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Processor and subprocessor register with contracts and assessment status
+      max_age_days: 180
+    - type: contract
+      description: Current data processing agreement or equivalent terms
+      max_age_days: 365
+    - type: report
+      description: Processor assessment record for the current period
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Every processor has a current agreement and an assessment.
+      partial: Some processors lack an agreement, assessment, or review date.
+    full:
+      l2: Register maintained and reconciled with the data inventory.
+      l3: Assessed on a defined cadence with remediation and termination evidence.
+  references:
+    - title: Thailand Personal Data Protection Act
+      url: https://www.pdpc.or.th
+      type: regulation
+    - title: ISO/IEC 27701:2019
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+  tags: [processor-management, third-party, privacy]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-PRV-010
+  version: 0.2.0
+  title:
+    en: High-risk processing has a privacy impact assessment
+    th: การประมวลผลที่มีความเสี่ยงสูงมีการประเมินผลกระทบด้านความเป็นส่วนตัว
+  description:
+    en: Processing that is high risk by nature, scale, sensitivity, or new technology must have a privacy impact assessment before launch and after material change, with mitigations recorded. A high-risk launch without an assessment fails the requirement.
+    th: การประมวลผลที่มีความเสี่ยงสูงเนื่องจากลักษณะ ขนาด ความอ่อนไหว หรือเทคโนโลยีใหม่ ต้องมีการประเมินผลกระทบด้านความเป็นส่วนตัวก่อนเปิดใช้งานและหลังการเปลี่ยนแปลงที่มีนัยสำคัญ โดยบันทึกมาตรการบรรเทา การเปิดใช้งานที่มีความเสี่ยงสูงโดยไม่มีการประเมินถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: High-risk processing needs a documented decision before it affects real people.
+    th: การประมวลผลที่มีความเสี่ยงสูงต้องการการตัดสินใจที่บันทึกไว้ก่อนส่งผลกระทบต่อบุคคลจริง
+  domain: privacy
+  criticality: high
+  applicability:
+    tiers: [2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Privacy impact assessment with scope, risks, and mitigations
+      max_age_days: 365
+    - type: ticket
+      description: Approval record for launch and material change
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: High-risk processing has a current assessment and recorded decision.
+      partial: An assessment exists but is incomplete or not linked to launch approval.
+    full:
+      l2: Completed before launch for all high-risk processing.
+      l3: Reviewed after material change and tracked to mitigation closure.
+  references:
+    - title: ISO/IEC 27701:2019
+      url: https://www.iso.org/standard/71670.html
+      type: standard
+    - title: NIST Privacy Framework 1.0
+      url: https://www.nist.gov/privacy-framework
+      type: standard
+  tags: [privacy-impact-assessment, risk, privacy]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
