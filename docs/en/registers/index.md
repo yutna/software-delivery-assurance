@@ -43,11 +43,24 @@ Each generated reference page carries the official source, the
 - [TH-PROC-001](../reference/registers/TH-PROC-001.md)
 - [TH-TECH-001](../reference/registers/TH-TECH-001.md)
 
+## ASEAN registers
+
+| ID            | Instrument                        | Jurisdiction | Type | Review status |
+| ------------- | --------------------------------- | ------------ | ---- | ------------- |
+| `SG-PDPA-001` | Personal Data Protection Act 2012 | Singapore    | Law  | `unverified`  |
+
+Each ASEAN entry links to its official source and its generated reference page:
+
+- [SG-PDPA-001](../reference/registers/SG-PDPA-001.md)
+
+ASEAN entries are register-only. They are not an ASEAN overlay, and they do not
+create region-level requirements.
+
 ## Review limitation
 
-Every Thailand register entry in v0.6.0 is `unverified`. A named qualified
-reviewer has not signed off. The entries are useful for finding the official
-source and structuring an assessment; they are not a legal conclusion.
+Every register entry in v0.7.0 is `unverified`. A named qualified reviewer has
+not signed off. The entries are useful for finding the official source and
+structuring an assessment; they are not a legal conclusion.
 
 `review_status: reviewed` requires a named reviewer, a review date, and a
 scope. Legal content stays unverified until a qualified legal reviewer signs
@@ -65,9 +78,9 @@ A register records facts. An overlay adds requirements. The two are separate:
 
 ## Other jurisdictions
 
-Thailand is the only jurisdiction with a maintained register in v0.6.0. ASEAN
-and EU register entries are planned for later milestones and will remain
-register-only until a qualified reviewer is named and the review is recorded.
+Thailand and ASEAN have maintained registers in v0.7.0. EU register entries
+are planned for v0.8.0. Every non-Thai entry remains register-only until a
+qualified reviewer is named and the review is recorded.
 
 ## Related pages
 

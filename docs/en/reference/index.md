@@ -137,6 +137,7 @@ run `npm run sras -- render`.
 
 ## Registers
 
+- [SG-PDPA-001 — Personal Data Protection Act 2012](registers/SG-PDPA-001.md)
 - [TH-BOT-001 — Bank of Thailand Notification No. สกช. 5/2566 on Information Technology Risk Management for Financial Institutions and Specialized Financial Institutions (2023)](registers/TH-BOT-001.md)
 - [TH-BOT-002 — Bank of Thailand Notification No. สนช. 1/2564 on Information Technology Risk Management under the Payment Systems Act (2021)](registers/TH-BOT-002.md)
 - [TH-CCA-001 — Computer Crime Act B.E. 2550 (2007)](registers/TH-CCA-001.md)
