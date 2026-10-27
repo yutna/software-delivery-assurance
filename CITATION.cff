@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this library, cite the repository and the SRAS version."
+title: "Software Delivery Assurance Library"
+authors:
+  - family-names: "Siphuengchai"
+    given-names: "Yutthana"
+version: 0.1.0
+date-released: "2026-11-01"
+url: "https://github.com/yutna/software-delivery-assurance"
+license: MIT

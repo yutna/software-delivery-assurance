@@ -49,9 +49,31 @@ Run `functional-reviewing-functional-design` before marking the PR ready.
 - [ ] Pure core tests use plain values, not infrastructure mocks
 - [ ] Review findings are ranked by cost and the cheap real ones are fixed
 
+## Content review
+
+Use this for requirements, modules, overlays, registers, templates, and examples.
+
+- [ ] The requirement is testable and the negative case is clear
+- [ ] Evidence type and freshness are defined
+- [ ] Criticality and applicability are justified
+- [ ] References are official and current
+- [ ] No vendor endorsement and no legal conclusion
+- [ ] No customer names, real evidence, secrets, or production identifiers
+- [ ] The exact boundary sentence is present only in `SCOPE.md`
+
+## Translation review
+
+- [ ] Thai and English have the same meaning
+- [ ] Technical terms follow the glossary
+- [ ] IDs and YAML keys are unchanged
+- [ ] Machine translation is marked `machine_translated: true`
+- [ ] `translation_status` matches reality and `complete` has a reviewer
+
 ## Checklist
 
 - [ ] Linked issue is in the correct version milestone
 - [ ] Tests and docs updated where relevant
 - [ ] Thai and English fields updated where relevant
 - [ ] No unsupported legal or compliance claim
+- [ ] All commits are pushed; no uncommitted work remains
+- [ ] A handoff comment is posted if the issue is unfinished

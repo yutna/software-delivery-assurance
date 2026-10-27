@@ -1,23 +1,95 @@
-# software-delivery-assurance
+# Software Delivery Assurance Library
 
-[![ci](https://github.com/yutna/software-delivery-assurance/actions/workflows/ci.yml/badge.svg)](https://github.com/yutna/software-delivery-assurance/actions/workflows/ci.yml)
-[![release](https://img.shields.io/github/v/release/yutna/software-delivery-assurance?sort=semver)](https://github.com/yutna/software-delivery-assurance/releases/latest)
-[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+Open, evidence-based assurance for software delivery.
 
-Open library for software delivery assurance: SRAS core, modules, sector overlays, regulatory registers, and project templates.
+## What this repository is
 
-## Features
+A public library for answering four questions with evidence:
 
-## Installation
+1. What must be true before software is delivered?
+2. What evidence proves it?
+3. What may we claim, and what may we not claim?
+4. What is the gap and the remediation plan?
 
-## Usage
+The library contains the SRAS Core, optional technical modules, sector
+overlays, regulatory registers, project-instance templates, and TypeScript
+tools that validate, render, and guard the content.
 
-## Development
+## What it is not
+
+- Not a certification, accreditation, audit attestation, or regulatory approval.
+- Not legal advice or a definitive statement of legal compliance.
+- Not a customer-specific assessment, evidence pack, or contract.
+- Not a hosted product, dashboard, or multi-tenant platform.
+
+See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
+
+## Current status
+
+**v0.1.0 draft — foundation.** The repository is being built in small, reviewed
+milestones. The CLI currently supports `sras --version`; content validation,
+project init, rendering, and the content guard arrive in later milestones.
+
+## Who it is for
+
+Product owners, engineering leads, security and privacy teams, operations
+teams, assessors, and bid teams that need a reusable, evidence-based way to
+discuss software readiness without inventing a new checklist for every
+customer.
+
+## Supported sectors
+
+Finance, e-commerce, logistics, and public sector. The sector overlays are
+deltas on the Core, not full standards.
+
+## Quick start
+
+Requirements: Node.js 24 LTS and npm 11.
+
+```bash
+npm ci
+npm run typecheck
+npm test
+npm run check:fds
+npm run sras -- --version
+```
+
+Read [SCOPE.md](SCOPE.md), then follow [ROADMAP.md](ROADMAP.md) for the planned
+milestones. The assessment workflow, project template, and full CLI are added
+in v0.5.0.
+
+## Repository map (current and planned)
+
+| Path         | Purpose                                                     |
+| ------------ | ----------------------------------------------------------- |
+| `core/`      | SRAS Core requirements and profiles                         |
+| `modules/`   | Optional technical modules                                  |
+| `overlays/`  | Sector and jurisdiction deltas                              |
+| `registers/` | Regulatory registers with official sources                  |
+| `mappings/`  | Informative crosswalks to external standards                |
+| `templates/` | Project-instance templates                                  |
+| `examples/`  | Synthetic examples only                                     |
+| `schemas/`   | JSON Schema 2020-12 contracts                               |
+| `src/sras/`  | TypeScript domain core, adapters, and CLI                   |
+| `tools/`     | Repository checks and the FDS sync/verify tools             |
+| `tests/`     | Unit, integration, golden, and content tests                |
+| `docs/`      | Bilingual documentation site from v0.6.0                    |
+| `internal/`  | Temporary bootstrap seed; deleted in the final v1.0.0 issue |
 
 ## Contributing
 
-Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+Follow [CONTRIBUTING.md](CONTRIBUTING.md). Every change goes through an issue,
+a short branch, a draft pull request, CI, and a squash merge. FDS design notes
+and review checklists are required for TypeScript module, workflow, type,
+signature, or boundary changes.
 
-## License
+## License, notice, and disclaimer
 
-[MIT](LICENSE)
+- [LICENSE](LICENSE) — MIT.
+- [NOTICE.md](NOTICE.md) — third-party material and trademarks.
+- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) — FDS attribution.
+- [DISCLAIMER.md](DISCLAIMER.md) — not legal advice, not a certification.
+
+## Citation
+
+Use [CITATION.cff](CITATION.cff) to cite the repository and the SRAS version.
