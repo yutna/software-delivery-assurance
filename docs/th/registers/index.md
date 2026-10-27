@@ -44,11 +44,13 @@ machine_translated: true
 
 ## ทะเบียนอาเซียน
 
+- `MY-PDPA-001` — Personal Data Protection Act 2010 (Act 709), Malaysia, law, `unverified`
 - `SG-PDPA-001` — Personal Data Protection Act 2012, Singapore, law, `unverified`
 
 รายการอาเซียนแต่ละรายการเชื่อมไปยังแหล่งอ้างอิงทางการและหน้า reference ที่
 generate ไว้
 
+- [MY-PDPA-001](../../en/reference/registers/MY-PDPA-001.md)
 - [SG-PDPA-001](../../en/reference/registers/SG-PDPA-001.md)
 
 รายการอาเซียนเป็นเพียงทะเบียน ไม่ใช่ overlay ของอาเซียน และไม่ได้สร้าง
