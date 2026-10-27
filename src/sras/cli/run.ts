@@ -1,11 +1,7 @@
+import { processOutput, type Output } from "../adapters/output.js";
 import { assertNever } from "../foundation/assert-never.js";
 import { parseArgs, type ArgsError } from "./args.js";
-import { runCommand, type CliIo } from "./command.js";
-
-export const defaultIo: CliIo = {
-  stdout: (text) => process.stdout.write(text),
-  stderr: (text) => process.stderr.write(text),
-};
+import { runCommand } from "./command.js";
 
 const renderArgsError = (error: ArgsError): string => {
   switch (error.tag) {
@@ -13,12 +9,18 @@ const renderArgsError = (error: ArgsError): string => {
       return `unknown argument: ${error.value}\n`;
     case "TooManyArguments":
       return `too many arguments: ${error.values.join(" ")}\n`;
+    case "MissingFlag":
+      return `missing required flag: ${error.value}\n`;
     default:
       return assertNever(error);
   }
 };
 
-export const run = (argv: readonly string[], io: CliIo = defaultIo): number => {
+export const run = async (
+  argv: readonly string[],
+  io: Output = processOutput,
+  root: string = process.cwd(),
+): Promise<number> => {
   const parsed = parseArgs(argv);
 
   if (!parsed.ok) {
@@ -26,5 +28,5 @@ export const run = (argv: readonly string[], io: CliIo = defaultIo): number => {
     return 2;
   }
 
-  return runCommand(parsed.value, io);
+  return runCommand(parsed.value, { io, root });
 };
