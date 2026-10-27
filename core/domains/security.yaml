@@ -203,3 +203,422 @@
   review_status: draft
   created_at: "2026-10-27"
   updated_at: "2026-10-27"
+- id: SRAS-SEC-005
+  version: 0.2.0
+  title:
+    en: Multi-factor authentication protects privileged and remote access
+    th: multi-factor authentication ปกป้องการเข้าถึงแบบ privileged และระยะไกล
+  description:
+    en: Privileged accounts and all remote or administrative access must require multi-factor authentication. Single-factor authentication for these paths fails the requirement, even when the password is strong.
+    th: บัญชี privileged และการเข้าถึงระยะไกลหรือการเข้าถึงของผู้ดูแลทั้งหมดต้องใช้ multi-factor authentication การยืนยันตัวตนด้วยปัจจัยเดียวสำหรับช่องทางเหล่านี้ถือว่าไม่ผ่านข้อกำหนด แม้รหัสผ่านจะแข็งแรง
+  rationale:
+    en: A stolen password is not enough to reach privileged functions when a second factor is enforced.
+    th: รหัสผ่านที่ถูกขโมยไม่เพียงพอต่อการเข้าถึงฟังก์ชัน privileged เมื่อมีการบังคับใช้ปัจจัยที่สอง
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Multi-factor authentication policy and enforcement configuration
+      max_age_days: 180
+    - type: test_result
+      description: Authentication test for privileged and remote access paths
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Privileged and remote access paths require multi-factor authentication.
+      partial: Multi-factor authentication is enforced for some privileged or remote paths.
+    full:
+      l2: Enforced for every privileged and remote path in scope.
+      l3: Measured with coverage and authentication-exception metrics.
+  references:
+    - title: NIST CSF 2.0 PR.AA
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: OWASP ASVS V2 Authentication
+      url: https://owasp.org/www-project-application-security-verification-standard/
+      type: standard
+  tags: [identity, authentication, privileged-access]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-006
+  version: 0.2.0
+  title:
+    en: Access is granted, reviewed, and revoked through a controlled process
+    th: การให้สิทธิ์ ทบทวน และเพิกถอนการเข้าถึงเป็นไปตามกระบวนการที่ควบคุม
+  description:
+    en: Access must be granted through an approved request, reviewed at a defined cadence, and revoked when a person changes role or leaves. An account that remains active after departure or role change fails the requirement.
+    th: การเข้าถึงต้องได้รับอนุมัติผ่านคำขอที่ได้รับอนุมัติ มีการทบทวนตามรอบที่กำหนด และเพิกถอนเมื่อผู้ใช้เปลี่ยนบทบาทหรือออกจากองค์กร บัญชีที่ยังใช้งานได้หลังออกจากองค์กรหรือเปลี่ยนบทบาทถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Unreviewed access accumulates and outlives the reason it was granted.
+    th: สิทธิ์ที่ไม่ได้ทบทวนจะสะสมและคงอยู่เกินกว่าเหตุผลที่ให้สิทธิ์นั้น
+  domain: security
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Access request and approval procedure
+      max_age_days: 365
+    - type: ticket
+      description: Most recent access review with decisions and approver
+      max_age_days: 180
+    - type: report
+      description: Leaver and role-change reconciliation for the current period
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Access requests, reviews, and revocations are recorded and current.
+      partial: The process exists but reviews or revocations are incomplete.
+    full:
+      l2: Applied to all in-scope systems for the current period.
+      l3: Measured with review completion, orphan-account counts, and time-to-revoke.
+  references:
+    - title: ISO/IEC 27001:2022 8.2 and 8.3
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: NIST CSF 2.0 PR.AA
+      url: https://www.nist.gov/cyberframework
+      type: standard
+  tags: [access-control, access-review, identity]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-007
+  version: 0.2.0
+  title:
+    en: Security requirements and threat models are defined before build
+    th: ข้อกำหนดด้านความปลอดภัยและ threat model ถูกกำหนดก่อนการพัฒนา
+  description:
+    en: Each material change must have documented security requirements and a threat model that covers assets, trust boundaries, threats, and mitigations before implementation. A high-risk change without a threat model fails the requirement.
+    th: การเปลี่ยนแปลงที่มีนัยสำคัญแต่ละครั้งต้องมีข้อกำหนดด้านความปลอดภัยและ threat model ที่ครอบคลุมสินทรัพย์ ขอบเขตความเชื่อถือ ภัยคุกคาม และมาตรการบรรเทาก่อนเริ่มพัฒนา การเปลี่ยนแปลงที่มีความเสี่ยงสูงโดยไม่มี threat model ถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Security decisions are cheapest and most effective before the design is fixed.
+    th: การตัดสินใจด้านความปลอดภัยมีต้นทุนต่ำและได้ผลที่สุดก่อนที่การออกแบบจะถูกตรึง
+  domain: security
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: document
+      description: Security requirements and threat model for the current release
+      max_age_days: 365
+    - type: ticket
+      description: Design review record with security sign-off
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Security requirements and a threat model exist for high-risk changes.
+      partial: Some high-risk changes have no threat model or security sign-off.
+    full:
+      l2: Applied to all high-risk changes in the current release.
+      l3: Threat models updated after material change and tracked to mitigation closure.
+  references:
+    - title: NIST SP 800-218 SSDF PW.1
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: ISO/IEC 27001:2022 8.25 and 8.26
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: OWASP ASVS V1 Architecture
+      url: https://owasp.org/www-project-application-security-verification-standard/
+      type: standard
+  tags: [secure-sdlc, threat-modeling, design]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-008
+  version: 0.2.0
+  title:
+    en: Code review and automated security scans gate every change
+    th: การ review code และการสแกนความปลอดภัยอัตโนมัติเป็น gate ของทุกการเปลี่ยนแปลง
+  description:
+    en: Every production change must pass peer review and automated secret, dependency, and static analysis scans before merge. A merge that bypasses a required scan or review fails the requirement.
+    th: การเปลี่ยนแปลงสู่ production ทุกรายการต้องผ่านการ review โดยเพื่อนร่วมงานและการสแกน secret dependency และ static analysis อัตโนมัติก่อน merge การ merge ที่ข้ามการสแกนหรือการ review ที่กำหนดถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A consistent automated gate catches defects that manual review alone misses.
+    th: gate อัตโนมัติที่สม่ำเสมอตรวจจับข้อบกพร่องที่การ review ด้วยมือเพียงอย่างเดียวอาจมองข้าม
+  domain: security
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: CI pipeline configuration showing required review and scan jobs
+      max_age_days: 180
+    - type: report
+      description: Scan results and merge-blocking policy for the current release
+      max_age_days: 90
+    - type: ticket
+      description: Exception record for any bypass with approval and expiry
+      max_age_days: 90
+  assessment:
+    lite:
+      pass: Required reviews and scans run on every production change.
+      partial: Scans or reviews exist but are not consistently enforced.
+    full:
+      l2: Enforced for all production changes in the current release.
+      l3: Measured with bypass rate, finding age, and remediation trends.
+  references:
+    - title: NIST SP 800-218 SSDF PW.7 and PW.8
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      type: standard
+    - title: ISO/IEC 27001:2022 8.28
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: OWASP ASVS V1 and V10
+      url: https://owasp.org/www-project-application-security-verification-standard/
+      type: standard
+  tags: [secure-sdlc, code-review, static-analysis]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-009
+  version: 0.2.0
+  title:
+    en: Vulnerabilities are prioritized and remediated within defined targets
+    th: ช่องโหว่ถูกจัดลำดับความสำคัญและแก้ไขภายในเป้าหมายที่กำหนด
+  description:
+    en: Security findings from scans, tests, and reports must be tracked with severity, owner, and remediation target, and must be remediated or formally accepted within the target. An overdue critical finding without an approved exception fails the requirement.
+    th: findings ด้านความปลอดภัยจากการสแกน การทดสอบ และรายงาน ต้องถูกติดตามพร้อม severity owner และเป้าหมายการแก้ไข และต้องได้รับการแก้ไขหรือยอมรับอย่างเป็นทางการภายในเป้าหมาย finding ระดับ critical ที่เกินกำหนดโดยไม่มีข้อยกเว้นที่ได้รับอนุมัติถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: A finding without an owner and deadline is a permanent, invisible risk.
+    th: finding ที่ไม่มี owner และกำหนดเวลาเป็นความเสี่ยงถาวรที่มองไม่เห็น
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: report
+      description: Vulnerability register with severity, owner, target date, and status
+      max_age_days: 30
+    - type: ticket
+      description: Remediation or acceptance evidence for open critical and high findings
+      max_age_days: 30
+  assessment:
+    lite:
+      pass: All critical and high findings have an owner and a target date, and overdue items are escalated.
+      partial: Findings are tracked but some lack an owner, target, or decision.
+    full:
+      l2: Managed within defined targets for the current release.
+      l3: Measured with time-to-remediate, recurrence, and exception trends.
+  references:
+    - title: NIST CSF 2.0 ID.RA and PR.PS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.8
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: FIRST CVSS
+      url: https://www.first.org/cvss/
+      type: standard
+  tags: [vulnerability-management, remediation, security]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-010
+  version: 0.2.0
+  title:
+    en: Security events are logged, monitored, and alerted with an owner
+    th: เหตุการณ์ด้านความปลอดภัยถูกบันทึก เฝ้าระวัง และแจ้งเตือนโดยมี owner
+  description:
+    en: Security-relevant events must be collected in a protected log with sufficient context and retention, monitored for defined conditions, and routed to a named owner with an actionable alert. An unmonitored production system fails the requirement.
+    th: เหตุการณ์ที่เกี่ยวข้องกับความปลอดภัยต้องถูกรวบรวมใน log ที่ได้รับการป้องกันพร้อมบริบทและระยะเวลาจัดเก็บที่เพียงพอ ถูกเฝ้าระวังตามเงื่อนไขที่กำหนด และส่งต่อไปยัง owner ที่ระบุชื่อพร้อมการแจ้งเตือนที่นำไปปฏิบัติได้ ระบบ production ที่ไม่มีการเฝ้าระวังถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: An event that is not collected or reviewed cannot be detected or investigated.
+    th: เหตุการณ์ที่ไม่ถูกเก็บหรือทบทวนไม่สามารถตรวจจับหรือสืบสวนได้
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: configuration
+      description: Log collection, retention, and alert rule configuration
+      max_age_days: 180
+    - type: test_result
+      description: Alert test showing detection and notification
+      max_age_days: 90
+    - type: document
+      description: Logging and monitoring ownership and retention policy
+      max_age_days: 365
+  assessment:
+    lite:
+      pass: Security events are logged with retention and alerts reach a named owner.
+      partial: Logging exists but retention, alerting, or ownership is incomplete.
+    full:
+      l2: Covered for all production systems and critical events.
+      l3: Measured with detection coverage, alert quality, and time-to-acknowledge.
+  references:
+    - title: NIST CSF 2.0 DE.CM
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.15 and 8.16
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: OWASP ASVS V7 Logging
+      url: https://owasp.org/www-project-application-security-verification-standard/
+      type: standard
+  tags: [logging, monitoring, detection]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-011
+  version: 0.2.0
+  title:
+    en: Production networks are segmented and traffic is restricted by policy
+    th: เครือข่าย production ถูกแบ่งส่วนและจำกัดการรับส่งข้อมูลตามนโยบาย
+  description:
+    en: Production environments must be segmented from development and administrative networks, with inbound and outbound traffic restricted by documented rules. A flat network or an unrestricted administrative path fails the requirement.
+    th: สภาพแวดล้อม production ต้องถูกแบ่งส่วนจากเครือข่าย development และเครือข่ายผู้ดูแล โดยจำกัดการรับส่งข้อมูลขาเข้าและขาออกด้วยกฎที่จัดทำเอกสาร เครือข่ายแบบ flat หรือช่องทางผู้ดูแลที่ไม่ถูกจำกัดถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Segmentation limits lateral movement after a compromise.
+    th: การแบ่งส่วนเครือข่ายจำกัดการเคลื่อนที่ในแนวนอนหลังการถูก compromise
+  domain: security
+  criticality: gate
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: diagram
+      description: Network diagram showing segments, trust boundaries, and data flows
+      max_age_days: 365
+    - type: configuration
+      description: Firewall, security-group, or network-policy rules for production
+      max_age_days: 180
+    - type: test_result
+      description: Connectivity test proving denied paths and allowed paths
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: Production is segmented and documented rules restrict inbound and outbound traffic.
+      partial: Segmentation exists but some paths are unrestricted or undocumented.
+    full:
+      l2: Implemented and tested for all production segments.
+      l3: Reviewed after material change and measured with drift and exposed-service findings.
+  references:
+    - title: NIST CSF 2.0 PR.IR
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.20, 8.21, and 8.22
+      url: https://www.iso.org/standard/27001
+      type: standard
+  tags: [segmentation, network-security, access-control]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
+- id: SRAS-SEC-012
+  version: 0.2.0
+  title:
+    en: Independent security testing is performed and findings are closed
+    th: มีการทดสอบความปลอดภัยโดยอิสระและปิด findings อย่างครบถ้วน
+  description:
+    en: In-scope systems must undergo independent penetration testing or a comparable security assessment at a defined cadence, with scope, results, and remediation recorded. A test with unaddressed critical findings and no approved exception fails the requirement.
+    th: ระบบที่อยู่ในขอบเขตต้องได้รับการทดสอบเจาะระบบโดยอิสระหรือการประเมินความปลอดภัยที่เทียบเท่าตามรอบที่กำหนด โดยบันทึกขอบเขต ผลลัพธ์ และการแก้ไข การทดสอบที่มี critical findings ที่ยังไม่ได้รับการแก้ไขและไม่มีข้อยกเว้นที่ได้รับอนุมัติถือว่าไม่ผ่านข้อกำหนดนี้
+  rationale:
+    en: Independent testing challenges assumptions that the delivery team cannot see.
+    th: การทดสอบโดยอิสระท้าทายสมมติฐานที่ทีมส่งมอบมองไม่เห็น
+  domain: security
+  criticality: high
+  applicability:
+    tiers: [1, 2, 3]
+    modules: []
+    overlays: []
+    excludes: []
+  evidence:
+    - type: report
+      description: Independent test report with scope, date, and methodology
+      max_age_days: 365
+    - type: ticket
+      description: Remediation tracker for test findings with owners and status
+      max_age_days: 180
+  assessment:
+    lite:
+      pass: An independent test was completed for the current scope and critical findings are closed.
+      partial: A test was completed but critical remediation or scope coverage is incomplete.
+    full:
+      l2: Completed at the defined cadence for the current release.
+      l3: Risk-based scope, retest evidence, and trend analysis across cycles.
+  references:
+    - title: NIST CSF 2.0 ID.RA and PR.PS
+      url: https://www.nist.gov/cyberframework
+      type: standard
+    - title: ISO/IEC 27001:2022 8.29
+      url: https://www.iso.org/standard/27001
+      type: standard
+    - title: OWASP ASVS
+      url: https://owasp.org/www-project-application-security-verification-standard/
+      type: standard
+  tags: [security-testing, penetration-testing, assurance]
+  status: active
+  introduced_in: 0.2.0
+  deprecated_in: null
+  replaced_by: null
+  translation_status: partial
+  machine_translated: true
+  review_status: draft
+  created_at: "2026-10-27"
+  updated_at: "2026-10-27"
