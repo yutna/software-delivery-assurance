@@ -23,7 +23,7 @@ features:
   - title: Four sector overlays
     details: 45 Thailand deltas for finance, e-commerce, logistics, and public sector, layered on the Core without waiving a gate.
   - title: Registers and crosswalks
-    details: 12 Thailand register entries with official sources, plus informative crosswalks to widely used external standards.
+    details: 12 Thailand and 6 ASEAN register entries with official sources, plus informative crosswalks to widely used external standards.
   - title: Project instances
     details: A copyable template, a reproducible lockfile, and an init command for private assessments that never enter this repository.
   - title: Tools that keep content honest
@@ -38,7 +38,7 @@ features:
 - [Concepts](concepts/index.md) — requirements, profiles, modules, overlays,
   resolution, project instances, claims, and tools.
 - [Sectors](sectors/index.md) — the four Thailand sector overlays.
-- [Registers](registers/index.md) — the factual index of Thailand instruments.
+- [Registers](registers/index.md) — the factual index of Thailand and ASEAN instruments, with an ASEAN comparison page.
 - [Reference](reference/index.md) — generated requirement, overlay, and register
   pages.
 - [Glossary](glossary.md) — the shared vocabulary used across the site.

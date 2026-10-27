@@ -84,7 +84,13 @@ const enSidebar: DefaultTheme.Sidebar = [
   },
   {
     text: "Registers",
-    items: [{ text: "Register index", link: "/en/registers/" }],
+    items: [
+      { text: "Register index", link: "/en/registers/" },
+      {
+        text: "ASEAN comparison",
+        link: "/en/registers/asean-comparison",
+      },
+    ],
   },
   {
     text: "Templates",
@@ -142,7 +148,13 @@ const thSidebar: DefaultTheme.Sidebar = [
   },
   {
     text: "ทะเบียน",
-    items: [{ text: "ดัชนีทะเบียน", link: "/th/registers/" }],
+    items: [
+      { text: "ดัชนีทะเบียน", link: "/th/registers/" },
+      {
+        text: "การเปรียบเทียบอาเซียน",
+        link: "/th/registers/asean-comparison",
+      },
+    ],
   },
   {
     text: "Templates",
@@ -163,7 +175,7 @@ const thSidebar: DefaultTheme.Sidebar = [
  * literal on its own line; the version checker reads it from this file.
  */
 const config = {
-  version: "0.6.0",
+  version: "0.7.0",
   title: "Software Delivery Assurance",
   description:
     "Open, evidence-based assurance for software delivery: SRAS standards, registers, and tools.",

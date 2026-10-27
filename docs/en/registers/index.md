@@ -69,7 +69,8 @@ Each ASEAN entry links to its official source and its generated reference page:
 is not presented as current law.
 
 ASEAN entries are register-only. They are not an ASEAN overlay, and they do not
-create region-level requirements.
+create region-level requirements. The [ASEAN comparison and cross-border
+page](asean-comparison.md) summarises the six entries without ranking them.
 
 ## Review limitation
 

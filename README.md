@@ -26,24 +26,34 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**v0.6.0 — bilingual documentation site.** The library now publishes an English
-and Thai VitePress site at
+**v0.7.0 — ASEAN registers.** The library adds register-only coverage for six
+ASEAN instruments: the Singapore Personal Data Protection Act 2012, the
+Malaysia Personal Data Protection Act 2010 (Act 709), Law No. 27 of 2022 on
+Personal Data Protection in Indonesia, Decree No. 13/2023/ND-CP in Viet Nam,
+Republic Act No. 10173 in the Philippines, and the ASEAN Model Contractual
+Clauses for Cross Border Data Flows (2021). The
+[ASEAN comparison and cross-border page](docs/en/registers/asean-comparison.md)
+summarises the six entries without ranking them. Every ASEAN entry is
+`unverified` and register-only; no ASEAN overlay exists.
+
+The rest of the standard is unchanged: seven core domains with 70 active
+requirements, both the `lite` and `full` profiles, five technical modules with
+52 requirements for AI/GenAI, integration and API, regulated data, cloud/SaaS,
+and on-premises, and four Thailand sector overlays with 45 requirements for
+finance, e-commerce, logistics, and public sector. Twelve Thailand register
+entries plus the six ASEAN entries index official sources, seven informative
+crosswalks link SRAS to ISO/IEC 27001:2022, NIST CSF 2.0, OWASP ASVS 5.0, PCI
+DSS 4.0.1, WCAG 2.2 AA, ISO/IEC 42001:2023, and NIST AI RMF 1.0, and a pure
+resolver applies Core, modules, overlays, and project additions with
+stricter-wins conflict reporting.
+
+The library publishes an English and Thai VitePress site at
 [yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
 English pages are canonical for identifiers, schema keys, and file names. Thai
 pages are machine-assisted drafts marked `translation_status: partial` until a
 human reviewer confirms them. CI builds the site on every pull request and
 checks links with lychee; a merge to `main` deploys `docs/.vitepress/dist` to
 GitHub Pages.
-
-The standard itself is unchanged: seven core domains with 70 active
-requirements, both the `lite` and `full` profiles, five technical modules with
-52 requirements for AI/GenAI, integration and API, regulated data, cloud/SaaS,
-and on-premises, and four Thailand sector overlays with 45 requirements for
-finance, e-commerce, logistics, and public sector. Twelve Thailand register
-entries index official sources, seven informative crosswalks link SRAS to
-ISO/IEC 27001:2022, NIST CSF 2.0, OWASP ASVS 5.0, PCI DSS 4.0.1, WCAG 2.2 AA,
-ISO/IEC 42001:2023, and NIST AI RMF 1.0, and a pure resolver applies Core,
-modules, overlays, and project additions with stricter-wins conflict reporting.
 
 The tools provide project JSON Schemas and domain types, a copyable project
 template, `sras init`, deterministic Markdown rendering with `sras render
