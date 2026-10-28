@@ -52,4 +52,4 @@ formal-standard track เป็นทางเลือกและยังอ�
 - [อภิธานศัพท์](glossary.md) — คำศัพท์ที่ใช้ร่วมกันทั้งไซต์
 
 หน้าภาษาอังกฤษเป็นฉบับหลักสำหรับ identifier, schema key และชื่อไฟล์
-คำแปลภาษาไทยดูได้จาก language switcher
+ส่วนคำแปลภาษาไทยดูได้จาก language switcher

@@ -13,9 +13,9 @@ Software Delivery Assurance Starter Kit เป็นวิธีแบบเป�
 overlay ภาคธุรกิจของประเทศไทย, ทะเบียนกฎระเบียบ, template โปรเจกต์ และเครื่องมือ
 TypeScript สำหรับตรวจสอบ render และ guard เนื้อหาให้พร้อมใช้
 
-ไซต์นี้อธิบาย SRAS v0.9.0 milestone v0.10.0 กำลังปรับตำแหน่งของ repository
-ให้เป็น starter kit โดยไม่ bump version ไม่ cut release และไม่ปิด track
-formal-standard ของ v1.0.0
+ไซต์นี้อธิบาย SRAS v0.9.0 ส่วน milestone v0.10.0 กำลังปรับตำแหน่งของ
+repository ให้เป็น starter kit โดยไม่ bump version ไม่ cut release และไม่ปิด
+formal-standard track ของ v1.0.0
 
 > หน้านี้เป็นฉบับภาษาไทยที่แปลโดยเครื่องและปรับถ้อยคำเพื่อให้อ่านง่ายขึ้น
 > ยังไม่ผ่านการตรวจทานโดยมนุษย์ จึงยังคง `translation_status: partial` และ
@@ -109,7 +109,7 @@ repository ยังเผยแพร่
 ภาครัฐเป็นเส้นทางหลักสำหรับหน่วยงานรัฐและผู้ขายที่ส่งมอบบริการดิจิทัลของไทย
 
 ประเทศไทยมี overlay ภาคธุรกิจครบและมีทะเบียนกฎระเบียบที่ดูแลต่อเนื่อง
-อาเซียนมี[รายการทะเบียนหกรายการ](registers/index.md)และ
+อาเซียนมี [รายการทะเบียนหกรายการ](registers/index.md) และ
 [หน้าการเปรียบเทียบ](registers/asean-comparison.md) สหภาพยุโรปมีทะเบียนเก้า
 รายการและ[หน้าการเปรียบเทียบของตนเอง](registers/eu-comparison.md)
 รายการเหล่านี้เป็นเพียงรายการอ้างอิง ไม่ใช่ overlay สำหรับการปฏิบัติตามกฎหมาย
