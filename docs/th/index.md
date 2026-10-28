@@ -32,8 +32,9 @@ features:
 
 ## เริ่มต้นที่นี่
 
-template / starter-kit track เป็นเส้นทางหลักและใช้ได้โดยมีข้อจำกัด
-formal-standard track เป็นทางเลือกและยังอยู่ในเส้นทาง v1.0.0
+repository นี้เป็น concern template และใช้ได้โดยมีข้อจำกัด ไม่ได้อ้างว่าเป็น
+มาตรฐาน โปรเจกต์ที่ต้องการ formal review, human Thai review หรือ certification
+ต้องทำสิ่งนั้นในบริบทของตนเอง
 
 - [ความพร้อมของ template](governance/template-readiness.md) — วันนี้ใช้อะไรได้
   และยังมีข้อจำกัดอะไร

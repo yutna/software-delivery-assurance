@@ -71,15 +71,14 @@ The v0.10.0 owner map is part of the positioning milestone (`planned`).
 | v0.10.0 จะเพิ่ม owner map และ confidence labels           | `planned`     | milestone กำลังทำ ยังไม่ใช่ release             |
 | overlay ภาครัฐครอบคลุมคำแนะนำกฎหมายจัดซื้อจัดจ้าง         | ไม่อนุญาต     | ไม่ครอบคลุมคำแนะนำทางกฎหมาย ข้อความนี้เป็นเท็จ  |
 
-## ความสัมพันธ์กับสองเส้นทาง
+## ความสัมพันธ์กับ AI audit
 
-template track ใช้ confidence label เพื่อรักษาความซื่อตรงของข้อความ
-formal-standard track ใช้บันทึกการทบทวนและการลงนาม การทบทวนอย่างเป็นทางการ
-เพิ่มความเชื่อมั่นได้ แต่ไม่เปลี่ยน confidence label ให้เป็นการรับรอง
+confidence label ช่วยรักษาความซื่อตรงของข้อความใน template repository นี้ไม่ได้
+ใช้ formal review หรือ sign-off โปรเจกต์ที่นำไปใช้อาจเพิ่มการทบทวนของตนเอง
+แต่การทบทวนนั้นไม่เปลี่ยน confidence label ให้เป็นการรับรอง
 
 [ความพร้อมของ template](template-readiness.md) ใช้ป้ายทั้งสี่
-[การทบทวนความพร้อม v1.0.0](v1-readiness.md) ยังเป็นบันทึกการทบทวน ไม่ใช่
-confidence label
+[บันทึก AI audit](v1-audit.md) เป็นบันทึกการตรวจ ไม่ใช่ confidence label
 
 ## ขอบเขตของข้อตกลงนี้
 

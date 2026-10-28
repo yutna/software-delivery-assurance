@@ -8,49 +8,31 @@ through an issue, a pull request, CI, and a squash merge.
 
 ## Policy version and applicability
 
-This policy applies from the v1.0.0 milestone onward. It also governs the v1.x
-maintenance line and the v2.0 preparation work.
-
-The policy is ready before the release is. Until the v1.0.0 milestone closes,
-the content version remains SRAS 0.9.0, the formal-standard track is not ready,
-and no page may describe the repository as a released v1.0.0 standard. The
-[readiness review](docs/en/governance/v1-readiness.md) lists the blockers.
+This policy applies to the 0.10.0 concern-template minor and later. The library
+is a concern template, not a standard. The content version remains SRAS 0.9.0
+until a later 1.0.0 template release. No page may describe the repository as a
+standard, certified, externally reviewed, or human-reviewed.
 
 The policy cannot be satisfied by a document alone. A review status changes
 only when the named reviewer, the date, and the scope exist and are recorded.
+This repository's content is AI-authored and AI-audited; it stays `draft` or
+`unverified`.
 
-## Two tracks
+## One product, project-owned review
 
-The repository has two tracks with different evidence requirements.
+The repository collects concerns, questions, evidence expectations, and
+synthetic examples. An adopting project decides which concerns apply, how to
+implement them, and what formal documents to produce.
 
-### Template / starter-kit track (default)
+The repository does not claim to be a standard, a certification, or an external
+review. It does not require a human Thai reviewer, an external reviewer, or a
+legal reviewer for a template release. When a project needs those reviews, it
+runs them in its own context and keeps the record there.
 
-The template track is for projects that copy the template and build a private
-assurance record. It is usable now with limitations.
-
-- The maintainer owns the template, docs, examples, and tooling.
-- A change needs an issue, a pull request, CI, and a squash merge.
-- An external reviewer is not required.
-- The maintainer may describe the track as "usable with limitations" but not as
-  stable, certified, externally reviewed, or legally reviewed.
-- The limitations in
-  [template readiness](docs/en/governance/template-readiness.md) apply to every
-  adoption and must stay visible.
-
-### Formal-standard track (optional)
-
-The formal-standard track is for an organisation that needs a reviewed SRAS
-standard, external review, or a v1.0.0 stability claim.
-
-- It follows the v1.0.0 milestone and the
-  [readiness review](docs/en/governance/v1-readiness.md).
-- It needs a named human Thai reviewer for the 167 active requirements and a
-  named external reviewer for the formal-standard scope.
-- It needs the final audit, release notes, announcement, and cleanup issues.
-- It is not a prerequisite for using the starter kit.
-- The [external review packet](docs/en/governance/external-review-packet.md) and
-  the [Thai review kit](docs/en/governance/thai-review-kit.md) are optional tools
-  for this track. Neither is a review result.
+The maintainer owns the template, docs, examples, and tooling. A change needs an
+issue, a pull request, CI, and a squash merge. The maintainer may describe the
+library as "usable with limitations" but not as stable, certified, externally
+reviewed, or legally reviewed.
 
 ## Decision process
 
@@ -60,9 +42,8 @@ standard, external review, or a v1.0.0 stability claim.
   review cycle.
 - Breaking changes: major version, deprecation notice, migration guide, and a
   review cycle.
-- New sector or jurisdiction: issue with scope, sources, named reviewer, and
-  exit criteria. A register stays `unverified` until a qualified reviewer signs
-  off.
+- New sector or jurisdiction: issue with scope, sources, and the AI audit plan.
+  A register stays `unverified`; an adopting project may add its own review.
 
 ## Review status
 
@@ -97,6 +78,11 @@ review text, but it cannot mark a translation complete or claim to be the human
 reviewer. A Thai page that has not had a human review stays `partial` with
 `machine_translated: true`, even when the wording is polished.
 
+This repository's content is AI-authored and AI-audited. No human reviewer has
+confirmed the translation, no external reviewer has signed the content, and no
+legal reviewer has approved it. The content therefore stays `draft` or
+`unverified`; it is not `reviewed`, and the translation stays `partial`.
+
 Legal content stays `unverified` without a qualified legal reviewer. Legal and
 regulatory concerns are documented as desk research with official sources, the
 limits of the research, and questions a project must answer. The library does
@@ -113,8 +99,10 @@ do not change a structured object.
 ## Review checklists
 
 The detailed status model, review types, and checklists are in the
-[review policy](docs/en/governance/review-policy.md). The short form below is
-binding for every pull request that touches reviewed content.
+[review policy](docs/en/governance/review-policy.md). The short form below is a
+template for a project that runs its own review. For this repository, the AI
+audit uses the content and release checklists; it does not claim a human review
+or an external review.
 
 ### Content review checklist
 
@@ -160,17 +148,19 @@ binding for every pull request that touches reviewed content.
 
 ## Release cadence
 
-One milestone is one release. A version milestone contains 3 to 7 issues. A
-release requires all milestone issues closed, `ci-ok` and `pr-check / check`
-green on `main`, `oss-kit doctor` with no drift, a passing release preflight,
-and the completed audit checklist. GitHub Releases is the changelog; there is
-no `CHANGELOG.md`.
+One milestone is one template release. A version milestone contains 3 to 7
+issues. A template release requires:
 
-A release also requires the version and the review status to match the release
-scope. If the translation is still `partial`, the milestone must record that as
-a documented blocker and must not cut a stable release. A draft release note or
-announcement is not a release, and merging the draft does not change the
-content version.
+- every milestone issue closed;
+- `ci-ok` and `pr-check / check` green on `main`;
+- `oss-kit doctor` with no drift;
+- a passing release preflight;
+- the AI audit record completed;
+- release notes and an announcement that state the limitations;
+- the version consistent across the version files.
+
+The release is a template release. It does not require a human Thai review, an
+external reviewer, or a legal reviewer, and it does not claim to be a standard.
 
 A positioning or template milestone may close without a release or a version
 bump when its own scope says so. It must not be presented as a standard release.
@@ -185,8 +175,8 @@ without an explicit relationship.
 ## Adding an overlay
 
 Open an issue with the jurisdiction or industry, the sources from the register,
-the proposed additions, overrides, and waivers, and a named subject-matter
-reviewer. An overlay is a delta, not a full standard. A gate requirement cannot
+the proposed additions, overrides, waivers, and the sources that support them. An
+overlay is a delta, not a full standard. A gate requirement cannot
 be waived. Every overlay has a `not_covered` section and a review checklist.
 
 ## Adding a register entry

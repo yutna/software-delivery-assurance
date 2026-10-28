@@ -5,17 +5,18 @@ machine_translated: false
 
 # Review policy
 
-**Status:** governance policy for the v1.0.0 milestone, the v1.x maintenance
-line, and v2.0 preparation. **Recorded:** 2026-10-28. **Applies to:** SRAS 0.9.0
-and later content.
+**Status:** governance policy for the 0.10.0 concern-template minor, the v1.x
+maintenance line, and v2.0 preparation. **Recorded:** 2026-10-28. **Applies to:**
+SRAS 0.9.0 and later content.
 
 This page is the detailed review policy. [GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
 is the binding summary. The policy describes how a review is recorded. It does
 not create a review, a reviewer, a date, or a sign-off that does not exist.
 
-The policy is ready before the release is. The content version is still SRAS
-0.9.0, the v1.0.0 milestone is open, and the formal-standard track is not ready.
-The [v1.0.0 readiness review](v1-readiness.md) records the blockers.
+The content version is 0.9.0. This repository is a concern template, not a
+standard. It is AI-authored and AI-audited. No human, external, or legal review
+is claimed. The [AI audit record](v1-audit.md) states what was checked and what
+remains a limitation.
 
 ## Three different questions
 
@@ -79,6 +80,10 @@ presented as a human-reviewed translation.
 
 A missing review is recorded as missing. The repository does not invent a
 reviewer, a date, or a sign-off to complete a table.
+
+This repository uses the AI drafting and self-review row and the release audit
+row. The human Thai, legal, and external rows are tools an adopting project may
+use in its own context. They have not been performed for this repository.
 
 ## How to record a review
 

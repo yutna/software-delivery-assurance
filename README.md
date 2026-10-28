@@ -21,17 +21,18 @@ scope, assessment, evidence index, claims, and risk register there.
 The public repository holds templates and synthetic examples only. Real
 evidence and customer data stay in the private project instance.
 
-## Two ways to use it
+## How it is used
 
-| Track                         | Use it when                                                                 | Status                                  |
-| ----------------------------- | --------------------------------------------------------------------------- | --------------------------------------- |
-| **Template / starter kit**    | You are starting a project and need a structured assurance record now.      | Usable with limitations                 |
-| **Formal-standard reference** | You need a reviewed standard, external review, or a v1.0.0 stability claim. | Not ready; v1.0.0 track remains blocked |
+| Part                | What it does                                                                                                                                         | What it does not do                                                                                           |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **This repository** | Collects concerns, questions, evidence expectations, and synthetic examples for a project team to consider.                                          | It does not decide that a concern applies, prescribe an implementation, or produce a formal assurance record. |
+| **Your project**    | Selects the concerns that fit its context, decides how to implement them, writes its own evidence and formal documents, and obtains its own reviews. | It does not inherit a certification, a standard status, or an approval from this repository.                  |
 
-The template track is the default. It does not require an external reviewer,
-and it does not produce a certification. The formal-standard track is optional
-and separate. Read [template readiness](docs/en/governance/template-readiness.md)
-before relying on the kit for a real delivery decision.
+The library is a concern template. A project that needs a formal review, a legal
+opinion, a human Thai review, or a certification runs that work in its own
+context and keeps the record there. Read
+[template readiness](docs/en/governance/template-readiness.md) before relying on
+the kit for a real delivery decision.
 
 ## What it is not
 
@@ -48,7 +49,7 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 **Content version: SRAS 0.9.0. Template positioning: v0.10.0 milestone in
 progress, no release cut and no version bump.**
 
-The template track is usable with limitations. The project template, `init`,
+The template is usable with limitations. The project template, `init`,
 `project validate`, `project refresh`, deterministic rendering, and the content
 guard work. The four Thailand sector overlays include public sector, and a
 public-sector instance records the contracting authority and contract reference.
@@ -56,10 +57,11 @@ public-sector instance records the contracting authority and contract reference.
 The limitations are part of the product, not a footnote:
 
 - All 167 active requirements are `translation_status: partial` with
-  `machine_translated: true`. A human Thai review has not happened.
+  `machine_translated: true`. The content is AI-authored and AI-audited; no
+  human Thai review is claimed.
 - The 27 register entries are `review_status: unverified`.
-- No external reviewer has been engaged. No page claims external review,
-  certification, or legal approval.
+- No external reviewer, legal reviewer, or certification body has been engaged.
+  No page claims external review, certification, or legal approval.
 - Four legal and regulatory concerns have desk research notes. The library does
   not determine whether they apply to your project; see
   [legal concerns](docs/en/governance/legal-concerns.md).
@@ -70,14 +72,15 @@ The limitations are part of the product, not a footnote:
 The v0.9.0 pilots produced 18 findings: 14 are now fixed, none remain deferred,
 and 4 are legal or regulatory concerns with desk research notes. The
 [pilot summary](docs/en/pilots/summary.md) records each disposition. The
-[v1.0.0 readiness review](docs/en/governance/v1-readiness.md) records why the
-formal-standard track is not ready.
+[AI audit record](docs/en/governance/v1-audit.md) records what the AI checked,
+what it found, and what remains a limitation.
 
 The repository also publishes an English and Thai VitePress site at
 [yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
 English pages are canonical for identifiers, schema keys, and file names. Thai
-pages are machine-assisted drafts marked `translation_status: partial` until a
-human reviewer confirms them. CI builds the site on every pull request and
+pages are machine-assisted drafts marked `translation_status: partial`. A
+project that needs a human-confirmed translation runs that review in its own
+context. CI builds the site on every pull request and
 checks links with lychee; a merge to `main` deploys `docs/.vitepress/dist` to
 GitHub Pages.
 
@@ -133,8 +136,9 @@ Then read, in this order:
 
 The published site is
 [yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
-Follow [ROADMAP.md](ROADMAP.md) for the planned milestones. The template track
-is planned as v0.10.0; the formal-standard track remains v1.0.0.
+Follow [ROADMAP.md](ROADMAP.md) for the planned milestones. The 0.10.0 minor
+finishes the concern-template positioning. A 1.0.0 template release is planned
+after that work is complete; it is not a standard release.
 
 ## Repository map
 
@@ -159,8 +163,8 @@ is planned as v0.10.0; the formal-standard track remains v1.0.0.
 Follow [CONTRIBUTING.md](CONTRIBUTING.md). Every change goes through an issue,
 a short branch, a draft pull request, CI, and a squash merge. FDS design notes
 and review checklists are required for TypeScript module, workflow, type,
-signature, or boundary changes. Template-track documentation changes do not
-require an external reviewer.
+signature, or boundary changes. Documentation changes do not require an
+external reviewer.
 
 ## License, notice, and disclaimer
 

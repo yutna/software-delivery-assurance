@@ -12,21 +12,19 @@ standard, Thailand sector overlays, regulatory registers, project templates,
 and TypeScript tools that validate, render, and guard the content.
 
 This site documents SRAS v0.9.0. The v0.10.0 milestone repositions the
-repository as a starter kit. It does not bump the version, cut a release, or
-close the v1.0.0 formal-standard track.
+repository as a concern template. It does not bump the version, cut a release, or
+claim a standard status.
 
-## Two tracks
+## How it is used
 
-The repository is used in one of two ways. The default is the template track.
+| Part                | What it does                                                                                                                                         | What it does not do                                                                                           |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **This repository** | Collects concerns, questions, evidence expectations, and synthetic examples for a project team to consider.                                          | It does not decide that a concern applies, prescribe an implementation, or produce a formal assurance record. |
+| **Your project**    | Selects the concerns that fit its context, decides how to implement them, writes its own evidence and formal documents, and obtains its own reviews. | It does not inherit a certification, a standard status, or an approval from this repository.                  |
 
-| Track                     | What it means                                                                     | Status                            |
-| ------------------------- | --------------------------------------------------------------------------------- | --------------------------------- |
-| Template / starter kit    | Copy the template, assess a project, and keep the record in a private repository. | Usable with limitations           |
-| Formal-standard reference | Use SRAS as a reviewed standard, with external review and a v1.0.0 claim.         | Not ready; v1.0.0 remains blocked |
-
-The template track does not need an external reviewer and does not produce a
-certification. The formal-standard track is optional. It needs a human Thai
-review, an external human review, and the remaining v1.0.0 work. Read
+The library is a concern template. A project that needs a formal review, a human
+Thai review, a legal opinion, or a certification runs that work in its own
+context and keeps the record there. Read
 [template readiness](governance/template-readiness.md) before relying on the kit
 for a real delivery decision.
 
