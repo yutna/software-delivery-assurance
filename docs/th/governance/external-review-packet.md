@@ -90,8 +90,9 @@ v1.0.0 เท่านั้น
 4. register ทั้ง 27 entry อ้างแหล่งทางการ มี version วันที่ตรวจ วันที่ถึงกำหนด
    ทบทวน และ requirement ที่ mapping หรือไม่
 5. overlay อยู่ในขอบเขต และหลีกเลี่ยงการสรุปทางกฎหมายที่แหล่งอ้างอิงไม่รองรับหรือไม่
-6. คำถามทางกฎหมายที่เปิดอยู่ทั้งสี่ข้อ (#128, #129, #130, #131) ยังเปิดอยู่ชัดเจน
-   และไม่มีคำตอบที่แต่งขึ้นใน library หรือไม่
+6. ข้อกังวลทางกฎหมายทั้งสี่ข้อ (#128, #129, #130, #131) ยังระบุชัดว่าเป็นเรื่อง
+   ของแต่ละโปรเจกต์ พร้อมแหล่งอ้างอิงและข้อจำกัด แทนการสรุปทางกฎหมายใน
+   requirement หรือไม่
 7. project template ครบและสอดคล้องกัน และคำสั่งที่ เขียนไว้ทำงานจาก clean
    checkout หรือไม่
 8. `project validate` จับ lockfile ที่ล้า ไฟล์ที่หาย และ selection ที่มาตรฐานไม่
@@ -116,7 +117,7 @@ v1.0.0 เท่านั้น
 - [ ] entry ทุกอันระบุแหล่งทางการและ version
 - [ ] มีวันที่ตรวจและวันที่ถึงกำหนดทบทวน และสมเหตุสมผล
 - [ ] entry ไม่สรุปผลทางกฎหมายหรือสถานะ compliance
-- [ ] คำถามทางกฎหมายที่เปิดอยู่ยังเปิด และไม่ถูกตอบใน requirement
+- [ ] ข้อกังวลทางกฎหมายถูกบันทึกเป็น `unverified` และไม่ถูกตอบใน requirement
 - [ ] ไม่มี vendor endorsement ในแหล่ง ตัวอย่าง หรือ claim
 
 ### เนื้อหาไทย
@@ -164,7 +165,8 @@ v1.0.0 เท่านั้น
 - **Finding triage:** `docs/en/pilots/summary.md` — 18 finding มี disposition
 - **Readiness review:** `docs/en/governance/v1-readiness.md` — ยังไม่พร้อม
   v1.0.0
-- **คำถามทางกฎหมายที่เปิด:** issues #128, #129, #130, #131 — เปิด
+- **ข้อกังวลทางกฎหมาย:** issues #128, #129, #130, #131;
+  `docs/en/governance/legal-concerns.md` — research notes; โปรเจกต์ต้องตัดสินใจเอง
 - **Release issues คงเหลือ:** issues #61, #62, #63, #64, #65, #66 — เปิด
 - **Release ที่ตรวจ:**
   [v0.9.0](https://github.com/yutna/software-delivery-assurance/releases/tag/v0.9.0)
@@ -215,6 +217,7 @@ Signature or verifiable approval:
 ## หน้าที่เกี่ยวข้อง
 
 - [ความพร้อมของ template](template-readiness.md)
+- [ข้อกังวลทางกฎหมาย](legal-concerns.md)
 - [v1.0.0 readiness review](v1-readiness.md)
 - [Pilot summary and triage](../pilots/summary.md)
 - [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

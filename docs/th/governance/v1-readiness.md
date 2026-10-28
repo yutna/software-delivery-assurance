@@ -86,6 +86,8 @@ template / starter-kit track ใช้ได้โดยมีข้อจำก
 
 - ทะเบียนยังเป็น `unverified` หากไม่มีผู้ตรวจทานกฎหมายที่มีคุณสมบัติ ไลบรารี
   อธิบายแหล่งและข้อผูกพันได้ แต่ไม่อ้างความสอดคล้อง
+- [ข้อกังวลทางกฎหมาย](legal-concerns.md) เป็น desk research ไม่ใช่ความเห็น
+  ทางกฎหมายสำหรับโปรเจกต์ใด
 - Overlay และข้อกำหนดยังเป็น `review_status: draft`
 - ผู้ประเมินหนึ่งคนรันการนำร่องทั้งสองครั้ง และทั้งสองใช้ข้อมูล synthetic
 - จำนวน coverage ของการนำร่องอธิบายตัวอย่าง ไม่ใช่การประเมินในระบบจริง
@@ -165,6 +167,7 @@ blocker ที่เหลือคือข้อ 1, 2 และ 4 ในรา
 ## หน้าที่เกี่ยวข้อง
 
 - [ความพร้อมของ template](template-readiness.md)
+- [ข้อกังวลทางกฎหมาย](legal-concerns.md)
 - [สรุปการนำร่อง](../pilots/summary.md)
 - [สถานะการดำเนินงาน](https://github.com/yutna/software-delivery-assurance/issues/67)
 - [นโยบาย governance](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

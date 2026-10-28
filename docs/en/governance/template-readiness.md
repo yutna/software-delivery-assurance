@@ -43,17 +43,18 @@ external reviewer has approved the content.
 
 ## Limitations you must plan for
 
-| Limitation                    | Effect on a project                                                                  | Owner action                                                         |
-| ----------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| Thai translation is partial   | All 167 active requirements remain machine-assisted and not human-reviewed.          | Use English as canonical; arrange human Thai review for external use |
-| Registers are unverified      | The entries index official sources but are not legal advice or a compliance finding. | Consult a qualified legal or regulatory focal point                  |
-| No external review            | No independent reviewer has validated the standard or the template.                  | Do not claim external review or independent validation               |
-| Four legal questions are open | Retention, BOT cloud approval, WCAG level, and open-data licence remain unanswered.  | Resolve them for your project and record the answer privately        |
-| Template is generic           | It does not encode agency-specific procurement, records, or approval rules.          | Add local rules in the private instance, not in this repository      |
+| Limitation                     | Effect on a project                                                                     | Owner action                                                          |
+| ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Thai translation is partial    | All 167 active requirements remain machine-assisted and not human-reviewed.             | Use English as canonical; arrange human Thai review for external use  |
+| Registers are unverified       | The entries index official sources but are not legal advice or a compliance finding.    | Consult a qualified legal or regulatory focal point                   |
+| No external review             | No independent reviewer has validated the standard or the template.                     | Do not claim external review or independent validation                |
+| Four legal concerns have notes | The notes collect official sources and open questions; they do not decide your project. | Read [legal concerns](legal-concerns.md) and record your own decision |
+| Template is generic            | It does not encode agency-specific procurement, records, or approval rules.             | Add local rules in the private instance, not in this repository       |
 
-The open legal questions are `#128`, `#129`, `#130`, and `#131`. All five
-deferred findings from the v0.9.0 pilots are now fixed: `#127`, `#132`, `#135`,
-`#134`, and `#126`.
+The legal concern notes are `#128`, `#129`, `#130`, and `#131`. They collect
+official sources and questions; they are not legal opinions and do not decide a
+project. All five deferred findings from the v0.9.0 pilots are now fixed:
+`#127`, `#132`, `#135`, `#134`, and `#126`.
 
 WCAG 2.2 and the NIST AI Risk Management Framework 1.0 are external standards,
 not register entries. The rule and official sources are in
@@ -65,8 +66,8 @@ not register entries. The rule and official sources are in
 2. The [owner map](../templates/owner-map.md) is filled with real role names.
 3. The project instance is private and the evidence stays outside this
    repository.
-4. A legal or regulatory focal point reviews the registers and the open legal
-   questions that affect the project.
+4. A legal or regulatory focal point reviews the registers and the
+   [legal concerns](legal-concerns.md) that affect the project.
 5. A human Thai reviewer checks any Thai content that will be published or
    used in an official decision.
 6. The team records claims, gaps, owners, and due dates in the instance, not
@@ -133,6 +134,7 @@ Read [confidence labels](confidence-labels.md) for the convention.
 ## Related pages
 
 - [Owner map](../templates/owner-map.md)
+- [Legal concerns](legal-concerns.md)
 - [Quick start](../quick-start.md)
 - [Project template](../templates/project.md)
 - [Public sector](../sectors/public-sector.md)

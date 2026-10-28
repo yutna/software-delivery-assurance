@@ -141,6 +141,10 @@ reviewer, a review date, and a scope. Legal content stays `unverified` until a
 qualified legal reviewer signs off. If a reviewer is not available, the
 limitation is visible and the content is not used for a compliance claim.
 
+Legal and regulatory concerns may carry a desk research note with official
+sources and open questions. That note is not a legal opinion and does not
+determine whether a source applies to a project.
+
 Thai and English are both first-class content languages. English is canonical
 for identifiers, schema keys, and file names. Machine translation is marked
 with `machine_translated: true` and `translation_status: partial` until a human

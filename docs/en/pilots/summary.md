@@ -15,7 +15,8 @@ SRAS 0.8.0 and the synthetic projects only.
 - Findings: 18 — 6 high, 8 medium, 4 low.
 - Fixed at v0.9.0 in #59: 9.
 - Deferred at v0.9.0 with a follow-up issue: 5.
-- Open legal questions: 4.
+- Legal and regulatory concerns: 4 (desk research notes; project decision
+  required).
 - External review: none. No external reviewer has been engaged.
 - Review performed: AI self-review on 2026-10-28, accepted by the owner for the
   v0.9.0 review step. It is not independent, human, or legal review.
@@ -127,17 +128,25 @@ or external review. The register entries remain `unverified`, no page claims
 external review or independent validation, and the v0.9.0 release notes do not
 claim external review. An external human review remains a v1.0.0 blocker.
 
-## Open legal questions
+## Legal and regulatory concerns
 
-These questions came from the pilots. The repository records them and does not
-answer them. A qualified reviewer must supply the source and the scope.
+These concerns came from the pilots. The repository records the question, the
+official sources, and the points a project must decide. It does not answer the
+question for any project. The [legal concerns](../governance/legal-concerns.md)
+page contains the desk research notes, the limits of that research, and a project
+decision record template.
 
-| Issue | Question                                                                                                      | Requirement  |
-| ----- | ------------------------------------------------------------------------------------------------------------- | ------------ |
-| #129  | Which instrument sets the minimum transaction-record retention period, and does it differ by service type?    | `TH-FIN-004` |
-| #128  | Does a material cloud or outsourcing arrangement need prior Bank of Thailand notification or approval?        | `TH-FIN-003` |
-| #131  | Which WCAG version and conformance level apply to Thai public services, and does the answer differ by agency? | `TH-PUB-003` |
-| #130  | Which licence terms are acceptable for open government data?                                                  | `TH-PUB-005` |
+The issues are closed when the concern note is published. That closure means
+"research note published", not "legal question answered" and not "the source
+applies to your project". A project that needs a legal conclusion obtains its
+own qualified advice.
+
+| Issue | Question                                                                                                                              | Requirement  |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| #129  | Which instruments set minimum transaction-record retention periods, and do they differ by service type?                               | `TH-FIN-004` |
+| #128  | What do the published Bank of Thailand rules say about prior notification or approval for material cloud or outsourcing arrangements? | `TH-FIN-003` |
+| #131  | Which WCAG versions and levels do the relevant Thai standards and guidance describe for public services?                              | `TH-PUB-003` |
+| #130  | Which licence terms does the applicable Thai guidance accept for open government data?                                                | `TH-PUB-005` |
 
 All four requirements stay `review_status: draft`. No period, approval step,
 conformance level, or licence is asserted in the library.

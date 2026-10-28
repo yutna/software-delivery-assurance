@@ -65,6 +65,13 @@ content requires a Thai reviewer before `translation_status: complete`.
 Machine translation is marked `machine_translated: true` and remains `partial`
 until a human reviewer confirms it.
 
+Legal and regulatory concerns are documented as desk research with official
+sources, the limits of the research, and questions a project must answer. The
+library does not decide whether a source applies to a project. A project records
+its own decision in its private instance and obtains qualified advice when the
+risk or the law requires it. A desk note may be published without a legal
+reviewer; it is never a legal opinion.
+
 The review status fields describe content review and translation review. They
 are not certification and not a confidence label. The docs-only
 [confidence labels](docs/en/governance/confidence-labels.md) are separate and

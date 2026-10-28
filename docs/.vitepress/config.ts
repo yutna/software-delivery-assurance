@@ -25,6 +25,10 @@ const enNav: DefaultTheme.NavItem[] = [
         link: "/en/governance/confidence-labels",
       },
       {
+        text: "Legal concerns",
+        link: "/en/governance/legal-concerns",
+      },
+      {
         text: "v1.0.0 readiness",
         link: "/en/governance/v1-readiness",
       },
@@ -62,6 +66,10 @@ const thNav: DefaultTheme.NavItem[] = [
         link: "/th/governance/confidence-labels",
       },
       {
+        text: "ข้อกังวลทางกฎหมาย",
+        link: "/th/governance/legal-concerns",
+      },
+      {
         text: "ความพร้อม v1.0.0",
         link: "/th/governance/v1-readiness",
       },
@@ -97,6 +105,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "Confidence labels",
         link: "/en/governance/confidence-labels",
+      },
+      {
+        text: "Legal concerns",
+        link: "/en/governance/legal-concerns",
       },
       {
         text: "v1.0.0 readiness",
@@ -195,6 +207,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       {
         text: "Confidence labels",
         link: "/th/governance/confidence-labels",
+      },
+      {
+        text: "ข้อกังวลทางกฎหมาย",
+        link: "/th/governance/legal-concerns",
       },
       {
         text: "ความพร้อม v1.0.0",
