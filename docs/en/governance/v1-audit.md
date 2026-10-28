@@ -144,9 +144,8 @@ release metadata) and #66 (cleanup and the 1.0.0 template release).
 ## 1.0.0 final AI audit
 
 **Status:** final AI audit for the 1.0.0 template release. **Date:** 2026-10-28.
-**Audited commit:** the `main` commit that closes #66; the exact SHA and command
-output are in the dashboard comment. **Auditor:** the AI execution agent under
-owner direction.
+**Audited commit:** `23ae0a9ebd7a7d77e47f0d0f6bb8c6f6d571c0d9` (`main` after
+PR #182). **Auditor:** the AI execution agent under owner direction.
 
 This is a template release, not a standard release. This audit is not a human
 review, an external review, a legal review, or a certification.
@@ -181,7 +180,7 @@ registers are unverified, no external or human review is claimed, and the
 template is generic. An adopting project decides which concerns apply and
 records its own reviews and approvals.
 
-The technical gates pass and the release is ready. The repository does not
+The technical gates pass and the release was created on 2026-10-28. The repository does not
 claim a standard, a certification, legal compliance, external review, or human
 review. The dashboard comment records the exact commit and command output:
 <https://github.com/yutna/software-delivery-assurance/issues/67>.
