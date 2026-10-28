@@ -14,6 +14,9 @@ requirements, and run the checks. They use synthetic projects only.
 | A     | Finance       | [Finance pilot](finance.md)             |
 | B     | Public sector | [Public sector pilot](public-sector.md) |
 
+The consolidated findings, external review status, and open legal questions are
+in the [pilot summary](summary.md).
+
 Pilot reports are internal engineering evidence. They are not customer
 assessments, audit attestations, or legal advice, and they do not state that a
 product meets a legal requirement.
