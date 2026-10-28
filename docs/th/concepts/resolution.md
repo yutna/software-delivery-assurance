@@ -72,16 +72,17 @@ gate ไม่ถูกยกเว้น ทางเดียวคือ `not
 - version ของ SRAS และ checksum ของมาตรฐาน
 - module ที่เลือกและ version
 - overlay ที่เลือกและ version
-- generator และเวลาที่สร้าง
+- SHA-256 ของ standard input ทุกไฟล์ที่ resolve แล้ว
 
 การประเมินโปรเจกต์ต้องทำซ้ำได้จาก lockfile แม้คลังจะเปลี่ยน เมื่อ version ของ
-คลังเปลี่ยน ให้ refresh lockfile และทบทวนข้อกำหนดที่ resolve ก่อนประเมินใหม่
+คลังเปลี่ยน ให้สร้าง instance ใหม่และทบทวนข้อกำหนดที่ resolve ก่อนประเมินใหม่
+เวอร์ชันนี้ยัง refresh lockfile ที่มีอยู่ไม่ได้ คำสั่ง refresh ติดตามอยู่ใน #127
 
 ## ตัวอย่างที่ทำไว้
 
 `examples/e2e-project/` เป็นโปรเจกต์ synthetic แบบ full profile ที่ใช้ module
-AI และ overlay การเงินประเทศไทย lockfile pin SRAS 0.5.0, `SRAS-AI` และ
-`TH-FIN` ตัวอย่างนี้ฝึกใช้ข้อกำหนด Core, module และ overlay โดยไม่มีข้อมูล
+AI และ overlay การเงินประเทศไทย lockfile pin version SRAS ปัจจุบัน, `SRAS-AI`
+และ `TH-FIN` ตัวอย่างนี้ฝึกใช้ข้อกำหนด Core, module และ overlay โดยไม่มีข้อมูล
 ลูกค้าจริง
 
 ## หน้าที่เกี่ยวข้อง

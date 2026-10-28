@@ -1,15 +1,41 @@
+lockfile_version: 1
 sras:
   version: 0.8.0
-  checksum: null
+  checksum: sha256:2667c5e94d2b35a1b2fb7bd186e329e5d7bc53ce3451c1052db9d309724f783b
 modules:
   - id: SRAS-INT
-    version: 0.8.0
+    version: 0.1.0
   - id: SRAS-RGD
-    version: 0.8.0
+    version: 0.1.0
   - id: SRAS-CLD
-    version: 0.8.0
+    version: 0.1.0
 overlays:
   - id: TH-LOG
-    version: 0.8.0
-generated_at: "2026-10-27T00:00:00Z"
-notes: Synthetic example only; the lockfile pins versions and makes no integrity claim.
+    version: 0.4.0
+inputs:
+  - path: core/domains/change-release.yaml
+    sha256: 6ae249cad4969e7faef455e1766402f631c08f106d26fbec3c6105e442a7d179
+  - path: core/domains/governance.yaml
+    sha256: 10f8989e5705aaa097ba8b5d3f1ed97db06c2d4b2a167f6d6ec1c9ee6ade5ff0
+  - path: core/domains/incident-continuity.yaml
+    sha256: 8979ec6b55c170a17da61426442af1281f2c1b9655e2d3ac281d2c5e54e5318a
+  - path: core/domains/operations.yaml
+    sha256: b897bc804146de8c63b0b65ab9e58232a83c9b0030fe0e28d95687dca9a4256b
+  - path: core/domains/privacy.yaml
+    sha256: 251bc689c2458877a41a3092a4b9f9477bdd670d0e9143429ae2c8e25e8dc6e5
+  - path: core/domains/security.yaml
+    sha256: 9c44091b1ff8cf11c02ae9a0c40316dffc91f8a23b6bc0e17b9166ec77bbeaf1
+  - path: core/domains/supply-chain.yaml
+    sha256: 3f82ebce6fa27a208a2a31956afb5a74bc4d0c50d9746bc81d467a80a4793260
+  - path: core/profiles/full.yaml
+    sha256: 66158613036aefa83c83fa4714c39a06bf0f7312e24199daea675c83d1c24bbd
+  - path: core/sras.yaml
+    sha256: 08d90fed38c12ddad391b04cd0bdb514a376b3281ac70f8c6b85af27edbf49c2
+  - path: modules/cloud-saas/module.yaml
+    sha256: 8edb84b507cc23ed27e841e12feb3985cc8d3f82d02e3bcff45fc7bc8800f6ca
+  - path: modules/integration/module.yaml
+    sha256: fa82b42b2875baa58269d1946462718ec2cf60767ae2817cc5b54321cc7b550c
+  - path: modules/regulated-data/module.yaml
+    sha256: 0104c12b84fd71860d39e0c8b7e28ef1e961380d2d38bad5f09900ef684db631
+  - path: overlays/industries/logistics/overlay.yaml
+    sha256: a81ce719a8a54bfad30bd2f2bbb279f85e9b3fdd8e6b1ebe8c39674d3cbb7f9b

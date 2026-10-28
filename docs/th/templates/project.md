@@ -168,7 +168,7 @@ risk ที่เป็น `accepted` ต้องมี `acceptance_id`
 
 ## `assurance.lock.yaml`
 
-lockfile pin standard input ที่ resolve แล้วและ checksum ห้ามแก้ด้วยมือ ให้สร้าง instance ใหม่หรือ refresh จาก standard input ที่เลือก
+lockfile pin standard input ที่ resolve แล้วและ checksum ห้ามแก้ด้วยมือ เวอร์ชันนี้ยัง refresh lockfile ที่มีอยู่ไม่ได้ ให้สร้าง instance ใหม่และคัดลอก assessment เมื่อการเลือกหรือ version ของ SRAS เปลี่ยน คำสั่ง refresh ติดตามอยู่ใน #127
 
 ```yaml
 lockfile_version: 1

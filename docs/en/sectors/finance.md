@@ -53,9 +53,10 @@ generated [finance reference](../reference/overlays/TH-FIN.md).
 
 ## Related register entries
 
-The finance overlay references `TH-BOT-001` and `TH-BOT-002`. Read the
-[register index](../registers/index.md) for the official sources and the
-review limitation.
+The finance overlay references `TH-BOT-001`, `TH-BOT-002`, `TH-PAY-001`,
+`TH-TECH-001`, `TH-PDPA-001`, and `TH-CYBER-001`, plus the NIST AI Risk
+Management Framework 1.0. Read the [register index](../registers/index.md) for
+the official sources and the review limitation.
 
 ## Related pages
 

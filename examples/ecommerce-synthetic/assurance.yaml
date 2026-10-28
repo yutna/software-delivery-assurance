@@ -1,0 +1,12 @@
+project:
+  name: E-commerce synthetic example
+  description: Synthetic example for the Thailand e-commerce overlay.
+  owner: Example team
+  confidentiality: synthetic
+sras_version: 0.8.0
+profile: full
+tier: 2
+modules: [SRAS-INT, SRAS-RGD, SRAS-CLD]
+overlays: [TH-ECM]
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

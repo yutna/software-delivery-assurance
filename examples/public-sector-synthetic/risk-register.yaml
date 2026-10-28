@@ -1,0 +1,27 @@
+risks:
+  - id: RSK-PUB-001
+    requirement_ids: [SRAS-INC-005]
+    description: The synthetic continuity exercise is not complete.
+    severity: high
+    likelihood: medium
+    impact: high
+    remediation: Complete the exercise and record the result.
+    owner: Example operations owner
+    due_date: "2027-03-31"
+    status: open
+    acceptance_id: null
+    customer_disclosure: yes
+    notes: Synthetic example only; the gap is intentional.
+  - id: RSK-PUB-002
+    requirement_ids: [TH-PUB-003]
+    description: The synthetic accessibility review has open remediation actions.
+    severity: high
+    likelihood: medium
+    impact: high
+    remediation: Close the accessibility actions and retest the critical journeys.
+    owner: Example product owner
+    due_date: "2027-06-30"
+    status: open
+    acceptance_id: null
+    customer_disclosure: yes
+    notes: Synthetic example only; the review is not about a real service.

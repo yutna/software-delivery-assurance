@@ -186,8 +186,9 @@ An `accepted` risk requires an `acceptance_id`.
 ## `assurance.lock.yaml`
 
 The lockfile pins the resolved standard inputs and their checksums. Do not edit
-it by hand; create a new instance or refresh it from the selected standard
-inputs.
+it by hand. This version does not refresh an existing lockfile; create a new
+instance and copy the assessment when the selection or the SRAS version changes.
+A refresh command is tracked in #127.
 
 ```yaml
 lockfile_version: 1

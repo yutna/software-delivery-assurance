@@ -40,7 +40,7 @@ index, and evidence coverage.
 | `evidence-index.yaml` | Index of evidence held outside the instance                     |
 | `claims.yaml`         | Allowed and prohibited public wording                           |
 | `risk-register.yaml`  | Gaps and risks with owners, due dates, and disclosure decisions |
-| `assurance.lock.yaml` | Pinned standard, modules, overlays, checksum, and generator     |
+| `assurance.lock.yaml` | Pinned standard inputs, module and overlay versions, checksum   |
 
 The full file-by-file reference is the [project template guide](../templates/project.md).
 
@@ -88,8 +88,11 @@ keeps its history.
 ## Lockfile
 
 `assurance.lock.yaml` makes the assessment reproducible. It pins the SRAS
-version and checksum, the selected modules and overlays, the generator, and the
-generation time. Refresh it when the standard or selection changes.
+version and checksum, the selected module and overlay versions, and the SHA-256
+of every resolved standard input. It records no timestamp, generator, or
+environment data, so the same inputs produce the same file. This version does
+not refresh an existing lockfile; create a new instance when the standard or
+the selection changes. A refresh command is tracked in #127.
 
 ## What stays private
 

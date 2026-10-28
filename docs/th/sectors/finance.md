@@ -48,8 +48,9 @@ overlay `TH-FIN` เพิ่มข้อกำหนด assurance 10 ข้อ 
 
 ## รายการทะเบียนที่เกี่ยวข้อง
 
-overlay การเงินอ้างอิง `TH-BOT-001` และ `TH-BOT-002` อ่าน
-[ดัชนีทะเบียน](../registers/index.md) สำหรับแหล่งอ้างอิงทางการและข้อจำกัดใน
+overlay การเงินอ้างอิง `TH-BOT-001`, `TH-BOT-002`, `TH-PAY-001`, `TH-TECH-001`,
+`TH-PDPA-001` และ `TH-CYBER-001` พร้อม NIST AI Risk Management Framework 1.0
+อ่าน[ดัชนีทะเบียน](../registers/index.md) สำหรับแหล่งอ้างอิงทางการและข้อจำกัดใน
 การตรวจทาน
 
 ## หน้าที่เกี่ยวข้อง
