@@ -32,8 +32,8 @@ placeholder ใช้ profile คำนวณ lockfile ตรวจสอบผ�
   lockfile และตรวจ coverage
 - [อ่านตัวอย่าง end-to-end](e2e-walkthrough.md) — ดูอินสแตนซ์ synthetic
   ที่กรอกครบและเหตุผลที่มัน valid
-- [แพลตฟอร์มที่รองรับ](ci-validation.md#supported-platforms) — macOS และ
-  Ubuntu CI พร้อมแนวทาง WSL สำหรับ Windows
+- [แพลตฟอร์มที่รองรับ](ci-validation.md) — macOS และ Ubuntu CI พร้อมแนวทาง
+  WSL สำหรับ Windows
 
 ## ตัวอย่าง synthetic
 
