@@ -22,6 +22,19 @@ placeholder ใช้ profile คำนวณ lockfile ตรวจสอบผ�
 [ความพร้อมของ template](../governance/template-readiness.md) ว่าวันนี้ kit
 รองรับอะไรได้และยังรองรับอะไรไม่ได้
 
+## การดูแลอินสแตนซ์
+
+หลัง `init` ครั้งแรก ใช้หน้าต่อไปนี้เพื่อรันและดูแลอินสแตนซ์
+
+- [ตรวจสอบอินสแตนซ์โปรเจกต์ส่วนตัวใน CI](ci-validation.md) — ปัก version
+  ของ library, build แล้วรัน `project validate` และ `project resolve`
+- [อัปเกรดอินสแตนซ์ 1.x](upgrade-1x.md) — อัปเดต `sras_version`, refresh
+  lockfile และตรวจ coverage
+- [อ่านตัวอย่าง end-to-end](e2e-walkthrough.md) — ดูอินสแตนซ์ synthetic
+  ที่กรอกครบและเหตุผลที่มัน valid
+- [แพลตฟอร์มที่รองรับ](ci-validation.md) — macOS และ Ubuntu CI พร้อมแนวทาง
+  WSL สำหรับ Windows
+
 ## ตัวอย่าง synthetic
 
 - `examples/e2e-project/` — Core + module AI + overlay การเงินประเทศไทย

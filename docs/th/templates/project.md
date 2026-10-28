@@ -295,6 +295,9 @@ path รูปแบบ canonical ไม่มี whitespace ไม่มี tim
 
 ## หน้าที่เกี่ยวข้อง
 
+- [ตรวจสอบอินสแตนซ์โปรเจกต์ส่วนตัวใน CI](ci-validation.md)
+- [อัปเกรดอินสแตนซ์ 1.x](upgrade-1x.md)
+- [อ่านตัวอย่าง end-to-end](e2e-walkthrough.md)
 - [เริ่มต้นอย่างรวดเร็ว](../quick-start.md)
 - [Owner map](owner-map.md)
 - [ความพร้อมของ template](../governance/template-readiness.md)

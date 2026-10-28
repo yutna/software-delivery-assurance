@@ -24,6 +24,19 @@ Before copying, assign the roles in the [owner map](owner-map.md). Read
 [template readiness](../governance/template-readiness.md) for what the kit can
 and cannot support today.
 
+## Adopter operations
+
+After the first `init`, use these pages to run and maintain the instance:
+
+- [Validate a private project instance in CI](ci-validation.md) — pin the
+  library, build it, and run `project validate` and `project resolve`.
+- [Upgrade a 1.x instance](upgrade-1x.md) — update `sras_version`, refresh the
+  lockfile, and check coverage.
+- [Walk through the end-to-end example](e2e-walkthrough.md) — see a complete
+  synthetic instance and why it is valid.
+- [Supported platforms](ci-validation.md#supported-platforms) — macOS and
+  Ubuntu CI, with WSL guidance for Windows.
+
 ## Synthetic examples
 
 | Example                             | Scope                                       |

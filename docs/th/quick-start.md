@@ -45,7 +45,7 @@ npm run sras -- init ~/sras-demo --profile lite
 created project instance at /Users/you/sras-demo
 files: README.md, assurance.yaml, assessment.yaml, evidence-index.yaml, claims.yaml, risk-register.yaml, assurance.lock.yaml
 next steps:
-1. Edit assurance.yaml and assessment.yaml to set the project scope, assessor, and sign-off.
+1. Edit assurance.yaml and assessment.yaml to set the project scope and assessor, and replace the `Not signed` sign-off when a human approves the assessment.
 2. Select the modules and overlays that match the product, then run npm run sras -- project refresh <dir> from the library repository.
 3. Assess the resolved requirements and record evidence in the private evidence store.
 4. Run npm run sras -- project validate <dir>, validate --all, render --check, and guard from the library repository.
@@ -192,7 +192,7 @@ npm run sras -- guard
 ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-guard passed: scanned 374 files; excluded 0
+guard passed: scanned 380 files; excluded 0
 ```
 
 จำนวนไฟล์อาจเปลี่ยนเมื่อเพิ่มหรือลบไฟล์ สิ่งสำคัญคือผลผ่านหรือไม่ผ่าน
@@ -264,6 +264,10 @@ npm run sras -- guard --annotations
 - อ่าน [ความพร้อมของ template](governance/template-readiness.md)
 - มอบหมายบทบาทตาม [owner map](templates/owner-map.md)
 - อ่าน [คู่มือ template โปรเจกต์](templates/project.md)
+- [ตรวจสอบอินสแตนซ์ใน CI](templates/ci-validation.md) ด้วย tag ของ library
+  ที่ปักไว้
+- อ่าน [ขั้นตอนอัปเกรด 1.x](templates/upgrade-1x.md) ก่อน release ถัดไป
+- เดินอ่าน[ตัวอย่าง end-to-end](templates/e2e-walkthrough.md)
 - ดู [reference index](reference/index.md)
 - สำหรับงานภาครัฐ อ่าน [overlay ภาครัฐ](sectors/public-sector.md)
 - อ่าน `SCOPE.md`, `GOVERNANCE.md` และ `CONTRIBUTING.md` ก่อนประเมินจริง

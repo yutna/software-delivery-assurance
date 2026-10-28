@@ -294,6 +294,9 @@ every machine.
 
 ## Related
 
+- [Validate a private project instance in CI](ci-validation.md)
+- [Upgrade a 1.x instance](upgrade-1x.md)
+- [Walk through the end-to-end example](e2e-walkthrough.md)
 - [Quick start](../quick-start.md)
 - [Reference index](../reference/index.md)
 - `SCOPE.md`, `GOVERNANCE.md`, and `CONTRIBUTING.md` in the repository root
