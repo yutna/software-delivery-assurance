@@ -5,8 +5,8 @@ machine_translated: true
 
 # Templates
 
-repository มี template โปรเจกต์ที่คัดลอกได้และตัวอย่าง synthetic ทั้งสองอย่าง
-ไม่มีข้อมูลลูกค้า หลักฐานจริง หรือ production identifier
+repository มี template โปรเจกต์ที่คัดลอกได้และตัวอย่าง synthetic ทั้งคู่ไม่มี
+ข้อมูลลูกค้า หลักฐานจริง หรือ production identifier
 
 ## Template โปรเจกต์
 
