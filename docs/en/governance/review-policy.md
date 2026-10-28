@@ -5,15 +5,15 @@ machine_translated: false
 
 # Review policy
 
-**Status:** governance policy for the 0.10.0 concern-template minor, the v1.x
+**Status:** governance policy for the 1.0.0 template release, the v1.x
 maintenance line, and v2.0 preparation. **Recorded:** 2026-10-28. **Applies to:**
-SRAS 0.9.0 and later content.
+SRAS 1.0.0 and later content.
 
 This page is the detailed review policy. [GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
 is the binding summary. The policy describes how a review is recorded. It does
 not create a review, a reviewer, a date, or a sign-off that does not exist.
 
-The content version is 0.9.0. This repository is a concern template, not a
+The content version is 1.0.0. This repository is a concern template, not a
 standard. It is AI-authored and AI-audited. No human, external, or legal review
 is claimed. The [AI audit record](v1-audit.md) states what was checked and what
 remains a limitation.
@@ -76,7 +76,7 @@ presented as a human-reviewed translation.
 | Human Thai translation review | A named Thai reviewer                          | `translation_status: complete` for the reviewed scope | Legal review, external review                     | Not performed                       |
 | Qualified legal review        | A named qualified legal reviewer               | A legal review record for the reviewed scope          | A project-specific legal opinion for every reader | Not performed                       |
 | External independent review   | A named reviewer independent of the maintainer | An external review record for the agreed scope        | Certification, accreditation, regulatory approval | Not performed                       |
-| Release audit                 | The maintainer with the execution agent        | Audit evidence and a gap report                       | A release if a blocker remains                    | Gap report in progress              |
+| Release audit                 | The maintainer with the execution agent        | Audit evidence and a gap report                       | A release if a blocker remains                    | 1.0.0 AI audit recorded             |
 
 A missing review is recorded as missing. The repository does not invent a
 reviewer, a date, or a sign-off to complete a table.

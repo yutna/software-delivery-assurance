@@ -9,7 +9,7 @@ description:
   en: Assurance deltas for government agencies, state enterprises, and vendors delivering digital public services in Thailand.
   th: ส่วนเพิ่ม assurance สำหรับหน่วยงานของรัฐ รัฐวิสาหกิจ และผู้ขายที่ให้บริการภาครัฐดิจิทัลในประเทศไทย
 version: 0.4.0
-extends: ">=0.3.0 <1.0.0"
+extends: ">=0.3.0 <2.0.0"
 requires:
   - SRAS-INT
   - SRAS-RGD

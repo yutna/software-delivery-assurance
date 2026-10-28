@@ -6,7 +6,7 @@ machine_translated: false
 # AI audit and limitations
 
 **Status:** AI audit record. **Auditor:** the AI execution agent (DeepSeek V4.1
-Flash via OpenCode). **Date:** 2026-10-28. **Content version:** SRAS 0.9.0.
+Flash via OpenCode). **Date:** 2026-10-28. **Content version:** SRAS 1.0.0.
 
 This is not a human review, an external review, a legal review, or a
 certification. No human sign-off is recorded, and the repository does not claim
@@ -40,7 +40,7 @@ compliant, or whether a Thai translation is ready for a formal publication.
 - **Docs QA and build:** `npm run check:docs` and `npm run docs:build` pass.
 - **Tests and types:** `npm test`, `npm run typecheck`, `npm run lint`, and
   `npm run format:check` pass.
-- **Version consistency:** the five version files agree at 0.9.0.
+- **Version consistency:** the five version files agree at 1.0.0.
 - **FDS pack:** `npm run check:fds` passes on the pinned pack.
 - **Counts:** the Core has 70 active requirements, the modules 52, the overlays
   45, the registers 27, and the crosswalks 7.

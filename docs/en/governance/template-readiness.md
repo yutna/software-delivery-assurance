@@ -6,8 +6,8 @@ machine_translated: false
 # Template readiness
 
 **Track:** template / starter kit. **Status:** usable with limitations.
-**Content version:** SRAS 0.9.0. **Positioning milestone:** v0.10.0 (no release
-cut, no version bump). **Recorded:** 2026-10-28.
+**Content version:** SRAS 1.0.0. **Release:** v1.0.0 template release,
+2026-10-28. **Recorded:** 2026-10-28.
 
 This page states what a team can rely on today and what it must not claim. It is
 the entry point for the template. The [AI audit record](v1-audit.md) holds the
@@ -36,7 +36,7 @@ external reviewer has approved the content.
 | Refresh a project lockfile        | Ready   | `sras project refresh <dir>`; writes only the lockfile             |
 | Inspect resolution and coverage   | Ready   | `sras project resolve <dir>`; lists every unassessed gate          |
 | Record a public-sector authority  | Ready   | `scope.public_sector` with contracting authority and contract      |
-| Core, modules, and overlays       | Present | 70 Core, 52 module, and 45 overlay requirements at SRAS 0.9.0      |
+| Core, modules, and overlays       | Present | 70 Core, 52 module, and 45 overlay requirements at SRAS 1.0.0      |
 | Thailand registers and crosswalks | Present | 12 Thailand register entries and 7 informative crosswalks          |
 | Deterministic reference pages     | Ready   | `sras render --check`                                              |
 | Public-content guard              | Ready   | `sras guard` and CI annotations                                    |
@@ -124,7 +124,8 @@ Do not use:
   verification commands. Rerun them at your commit; exact counts may change.
 - The content descriptions are **documented** from the repository.
 - The suitability judgement is **provisional** until a real project uses it.
-- The v0.10.0 repositioning work is **planned** and not a release.
+- The v1.0.0 template release is **published**, and the adoption judgement
+  remains **provisional**.
 
 Read [confidence labels](confidence-labels.md) for the convention.
 
@@ -135,5 +136,5 @@ Read [confidence labels](confidence-labels.md) for the convention.
 - [Quick start](../quick-start.md)
 - [Project template](../templates/project.md)
 - [Public sector](../sectors/public-sector.md)
-- [v1.0.0 readiness review](v1-readiness.md)
+- [AI audit and limitations](v1-readiness.md)
 - [Confidence labels](confidence-labels.md)
