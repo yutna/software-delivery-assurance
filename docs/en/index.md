@@ -6,7 +6,7 @@ machine_translated: false
 hero:
   name: Software Delivery Assurance
   text: A starter kit for evidence-based software delivery
-  tagline: Copy the project template, assess a real project, and keep the evidence private. Built for future projects, especially Thai public-sector delivery, with the SRAS reference standard and tools included.
+  tagline: Copy the project template, assess a real project, and keep the evidence private. Built for future projects, especially Thai public-sector delivery, with the SRAS reference requirements and tools included.
   actions:
     - theme: brand
       text: Quick start

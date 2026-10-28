@@ -67,8 +67,8 @@ does not claim them.
 ## Supported markets
 
 - Thailand: full sector overlays and a maintained regulatory register.
-- ASEAN: register-only references in v0.x.
-- EU: register-only references in v0.x.
+- ASEAN: register-only references.
+- EU: register-only references.
 
 ASEAN and EU content does not become a compliance overlay until a qualified
 reviewer is named and the review is recorded.

@@ -6,7 +6,7 @@ machine_translated: false
 # Quick start
 
 This guide takes a new user from a clean checkout to a created project instance
-and a passing library gate in about 15 minutes. Run every command from the
+and a passing library check in about 15 minutes. Run every command from the
 repository root.
 
 This is the template track. Read
@@ -18,6 +18,9 @@ with limitations and does not produce a certification.
 - Node.js 24 LTS and npm 11.
 - A clone of `yutna/software-delivery-assurance`.
 - No customer data, secret, or real evidence in this repository.
+- The `sras` CLI is not published to npm. Run it from this clone, and pin a
+  release tag or commit for a real assessment so the library in your lockfile
+  matches the tool that produced it.
 
 ```bash
 git clone https://github.com/yutna/software-delivery-assurance.git
@@ -66,6 +69,12 @@ Edit these files in the new project instance:
 | `claims.yaml`         | Allowed and prohibited wording                                 |
 | `risk-register.yaml`  | Gaps and risks with an owner and a due date                    |
 
+`init` pre-fills `signoff` with `Project owner`, the role `Project owner`, and
+the creation date so the generated file is schema-valid. That is a placeholder,
+not an approval. Replace the name, role, and date with a named human decision
+before the instance is used for any delivery decision. `project validate` checks
+the structure, not who signed.
+
 An assessed requirement has this shape:
 
 ```yaml
@@ -109,7 +118,7 @@ npm run sras -- project validate ~/sras-demo
 Expected output:
 
 ```text
-project valid: /Users/you/sras-demo; 12 resolved standard inputs; lockfile current
+project valid: /Users/you/sras-demo; 9 resolved standard inputs; lockfile current
 ```
 
 `project validate` parses every project file, applies the same rules as `init`,
@@ -184,7 +193,7 @@ npm run sras -- guard
 Expected output:
 
 ```text
-guard passed: scanned 354 files; excluded 0
+guard passed: scanned 365 files; excluded 0
 ```
 
 The count changes as files are added or removed; the pass/fail result is what

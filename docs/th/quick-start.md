@@ -7,8 +7,8 @@ machine_translated: true
 
 # เริ่มต้นอย่างรวดเร็ว
 
-คู่มือนี้พาจาก checkout ที่สะอาดไปจนถึง project instance ที่สร้างแล้วและ
-library gate ที่ผ่าน ใช้เวลาประมาณ 15 นาที ให้รันทุกคำสั่งจาก repository root
+คู่มือนี้พาจาก checkout ที่สะอาดไปจนถึง project instance ที่สร้างแล้วและผ่านการ
+ตรวจ library ใช้เวลาประมาณ 15 นาที ให้รันทุกคำสั่งจาก repository root
 
 > หน้านี้เป็นฉบับภาษาไทยที่แปลโดยเครื่องและปรับถ้อยคำเพื่อให้อ่านง่ายขึ้น
 > ยังไม่ผ่านการตรวจทานโดยมนุษย์ จึงยังคง `translation_status: partial` และ
@@ -20,6 +20,8 @@ library gate ที่ผ่าน ใช้เวลาประมาณ 15 �
 - Node.js 24 LTS และ npm 11
 - clone ของ `yutna/software-delivery-assurance`
 - ไม่มี customer data, secret หรือหลักฐานจริงใน repository นี้
+- CLI `sras` ไม่ได้เผยแพร่บน npm จึงต้องรันจาก clone นี้ เวลาใช้ประเมินจริงให้ pin
+  release tag หรือ commit เพื่อให้ library ใน lockfile ตรงกับเครื่องมือที่สร้างไฟล์นั้น
 - เข้าใจว่ากำลังใช้ template track ซึ่งเป็นเส้นทางหลัก ไม่ใช่การรับรอง
 
 ```bash
@@ -67,6 +69,11 @@ evidence coverage ทั้งสอง profile ใช้ requirement ID ชุ�
 | `claims.yaml`         | ถ้อยคำที่อนุญาตและห้ามใช้                                          |
 | `risk-register.yaml`  | ช่องว่างและความเสี่ยงพร้อม owner และ due date                      |
 
+`init` เติม `signoff` ด้วย `Project owner` บทบาท `Project owner` และวันที่สร้าง
+เพื่อให้ไฟล์ที่สร้างยัง valid ตาม schema แต่ไม่ใช่การอนุมัติ ให้เปลี่ยนชื่อ บทบาท
+และวันที่เป็นการตัดสินใจของมนุษย์ที่ระบุชื่อได้ก่อนใช้อินสแตนซ์เพื่อการตัดสินใจ
+ส่งมอบใด ๆ `project validate` ตรวจโครงสร้าง ไม่ได้ตรวจว่าใครลงนาม
+
 requirement ที่ประเมินแล้วมีรูปแบบดังนี้:
 
 ```yaml
@@ -108,7 +115,7 @@ npm run sras -- project validate ~/sras-demo
 ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-project valid: /Users/you/sras-demo; 12 resolved standard inputs; lockfile current
+project valid: /Users/you/sras-demo; 9 resolved standard inputs; lockfile current
 ```
 
 `project validate` parse ไฟล์โปรเจกต์ทุกไฟล์ ใช้กฎเดียวกับ `init` resolve
@@ -182,7 +189,7 @@ npm run sras -- guard
 ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-guard passed: scanned 354 files; excluded 0
+guard passed: scanned 365 files; excluded 0
 ```
 
 จำนวนไฟล์อาจเปลี่ยนเมื่อเพิ่มหรือลบไฟล์ สิ่งสำคัญคือผลผ่านหรือไม่ผ่าน

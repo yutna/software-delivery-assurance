@@ -113,6 +113,25 @@ summary:
 Statuses are `not_assessed`, `gap`, `partial`, `implemented`, `verified`, and
 `not_applicable`. The counts must match the requirement list.
 
+| Status           | Meaning in this template                                                                    |
+| ---------------- | ------------------------------------------------------------------------------------------- |
+| `not_assessed`   | No decision is recorded. The requirement is still open.                                     |
+| `not_applicable` | The requirement does not apply to the recorded scope; record the reason in `notes`.         |
+| `gap`            | The requirement applies and is not met; record a remediation, owner, and due date.          |
+| `partial`        | Part of the requirement is met; record the unmet part.                                      |
+| `implemented`    | The control is in place, but current evidence has not been verified against every type yet. |
+| `verified`       | Current evidence of every expected type supports the requirement.                           |
+
+Only `verified` has an enforced evidence-type rule. The other labels are an
+assessment convention; record the reason in `notes` so the next reader can see
+it.
+
+`init` writes `signoff` with `Project owner`, the role `Project owner`, and the
+creation date. The schema requires a sign-off object, so the placeholder keeps
+the generated file valid, but it is not an approval. Replace the name, role, and
+date with a named human decision before the instance is used for any delivery
+decision. `project validate` checks the structure, not who signed.
+
 `scope.public_sector` is optional and is either `null` or an object with both
 `contracting_authority` and `contract_reference`. Set it when the instance
 selects `TH-PUB` and assesses `TH-PUB-001`; validation reports a missing value

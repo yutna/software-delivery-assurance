@@ -8,7 +8,7 @@ machine_translated: false
 The Software Delivery Assurance Starter Kit is an open, evidence-based way to
 set up assurance for a software project. It is built for future projects,
 especially Thai public-sector delivery, and it includes the SRAS reference
-standard, Thailand sector overlays, regulatory registers, project templates,
+requirements, Thailand sector overlays, regulatory registers, project templates,
 and TypeScript tools that validate, render, and guard the content.
 
 This site documents SRAS 1.0.0. The v1.0.0 template release positions the

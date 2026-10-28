@@ -5,17 +5,23 @@ machine_translated: true
 
 <!-- markdownlint-disable MD060: Prettier wraps Thai tables by code point; MD060 expects display width. -->
 
-# บันทึก AI audit 0.10.0
+# บันทึก AI audit
+
+หน้านี้บันทึก AI audit สองครั้ง: audit 0.10.0 ที่ commit `6d88c10` (เวอร์ชัน
+เนื้อหา SRAS 0.9.0) เก็บไว้เป็นประวัติ และ audit สุดท้ายของ 1.0.0 ที่ commit
+`23ae0a9` สรุปข้อจำกัดปัจจุบันดูได้ที่
+[AI audit และข้อจำกัด](v1-readiness.md)
 
 **สถานะ:** AI audit เสร็จ ข้อจำกัดของ template ถูกบันทึกไว้
 **commit ที่ตรวจ:** `6d88c1019b90e2a2e5cdbec4dab50713294af6ea` (`main` หลัง #62)
 **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 0.9.0 **ผู้ตรวจ:** AI execution
 agent ภายใต้การกำกับของเจ้าของ repository
 
-หน้านี้บันทึกหลักฐานจากคำสั่งสำหรับ AI audit 0.10.0 และข้อจำกัดที่ยังเหลือ
-ไม่ใช่ release sign-off ไม่ใช่ human review หรือ external review ไม่ freeze
-มาตรฐาน ไม่ bump version ไม่ปิด milestone และไม่ cut release หน้า audit ถูกเพิ่ม
-โดย PR หลังจาก commit ที่ตรวจ เนื้อหาที่ตรวจคือ commit ข้างต้น
+หน้านี้บันทึกหลักฐานจากคำสั่งสำหรับ AI audit 0.10.0 และ audit สุดท้ายของ 1.0.0
+รวมถึงข้อจำกัดที่ยังเหลือ ไม่ใช่ release sign-off ไม่ใช่ human review หรือ
+external review ไม่ freeze มาตรฐาน ไม่ bump version ไม่ปิด milestone และไม่ cut
+release หน้า audit ถูกเพิ่มโดย PR หลังจาก commit ที่ตรวจ เนื้อหาที่ตรวจคือ commit
+ข้างต้น
 
 repository นี้เป็น concern template ข้อจำกัดด้านล่างถูกบันทึกสำหรับโปรเจกต์ที่
 นำไปใช้ และไม่บล็อก template release

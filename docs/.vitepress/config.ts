@@ -45,7 +45,7 @@ const enNav: DefaultTheme.NavItem[] = [
         link: "/en/governance/review-policy",
       },
       {
-        text: "0.10.0 AI audit",
+        text: "AI audit record",
         link: "/en/governance/v1-audit",
       },
       {
@@ -102,7 +102,7 @@ const thNav: DefaultTheme.NavItem[] = [
         link: "/th/governance/review-policy",
       },
       {
-        text: "AI audit 0.10.0",
+        text: "บันทึก AI audit",
         link: "/th/governance/v1-audit",
       },
       {
@@ -159,7 +159,7 @@ const enSidebar: DefaultTheme.Sidebar = [
         link: "/en/governance/review-policy",
       },
       {
-        text: "0.10.0 AI audit",
+        text: "AI audit record",
         link: "/en/governance/v1-audit",
       },
       {
@@ -277,7 +277,7 @@ const thSidebar: DefaultTheme.Sidebar = [
         link: "/th/governance/review-policy",
       },
       {
-        text: "AI audit 0.10.0",
+        text: "บันทึก AI audit",
         link: "/th/governance/v1-audit",
       },
       {
@@ -368,7 +368,7 @@ const config = {
   version: "1.0.0",
   title: "Software Delivery Assurance",
   description:
-    "Open, evidence-based assurance for software delivery: SRAS standards, registers, and tools.",
+    "Open, evidence-based assurance for software delivery: SRAS reference requirements, registers, and tools.",
   base: readBase(process.env["DOCS_BASE"]),
   lastUpdated: true,
   head: [["meta", { name: "theme-color", content: "#0f766e" }]],
