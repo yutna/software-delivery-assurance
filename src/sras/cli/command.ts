@@ -205,6 +205,8 @@ const renderProjectIssue = (issue: ProjectIssue): string => {
       return `${issue.file}: ${issue.kind}: unknown selection: ${issue.id}`;
     case "MissingField":
       return `${issue.file}: ${issue.field}: ${issue.message}`;
+    case "MissingEvidenceType":
+      return `${issue.file}: ${issue.requirement}: missing evidence type ${issue.expected}; found ${issue.found.length === 0 ? "none" : issue.found.join(", ")}`;
     default:
       return assertNever(issue);
   }

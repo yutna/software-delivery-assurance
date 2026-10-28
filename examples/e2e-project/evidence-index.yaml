@@ -1,8 +1,8 @@
 entries:
   - id: EV-E2E-001
-    requirement_ids: [SRAS-GOV-001]
+    requirement_ids: [SRAS-GOV-001, SRAS-AI-001]
     type: document
-    description: Synthetic scope and ownership record.
+    description: Synthetic scope, ownership, and AI accountability record.
     location: evidence/synthetic-policy.md
     owner: Example team
     collected_at: "2026-10-27"
@@ -26,9 +26,9 @@ entries:
     access: public example
     notes: Synthetic example only; no real configuration is included.
   - id: EV-E2E-003
-    requirement_ids: [SRAS-SEC-009, SRAS-AI-003]
+    requirement_ids: [SRAS-SEC-001, SRAS-SEC-009, SRAS-AI-003]
     type: test_result
-    description: Synthetic vulnerability and AI release evaluation summary.
+    description: Synthetic access-control, vulnerability, and AI release evaluation summary.
     location: evidence/synthetic-test-result.md
     owner: Example team
     collected_at: "2026-10-27"
@@ -77,3 +77,16 @@ entries:
     hash: null
     access: public example
     notes: Synthetic example only; the model is not real.
+  - id: EV-E2E-007
+    requirement_ids: [SRAS-AI-001]
+    type: ticket
+    description: Synthetic AI system approval and ownership ticket.
+    location: evidence/synthetic-review.md
+    owner: Example AI owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real ticket system is used.

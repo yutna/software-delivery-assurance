@@ -77,3 +77,29 @@ entries:
     hash: null
     access: public example
     notes: Synthetic example only; no real region or provider is named.
+  - id: EV-PUB-007
+    requirement_ids: [TH-PUB-001]
+    type: contract
+    description: Synthetic contract and acceptance record.
+    location: evidence/synthetic-procurement.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real contracting authority is named.
+  - id: EV-PUB-008
+    requirement_ids: [TH-PUB-001]
+    type: report
+    description: Synthetic vendor performance and acceptance report.
+    location: evidence/synthetic-review.md
+    owner: Example team
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real vendor is named.

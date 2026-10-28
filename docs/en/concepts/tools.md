@@ -46,7 +46,8 @@ code 1.
 `project validate <dir>` reads an existing project instance, parses every
 project file with the same schemas and parsers as `init`, applies the project
 rules, resolves the selection against the library, and verifies the lockfile
-checksum. It is read-only and exits with code 1 on any issue.
+checksum. It also checks that a `verified` requirement has every evidence type
+the requirement expects. It is read-only and exits with code 1 on any issue.
 
 `project refresh <dir>` rebuilds `assurance.lock.yaml` from the current manifest
 selection and the resolved standard inputs. It validates the candidate instance

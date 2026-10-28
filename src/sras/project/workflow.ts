@@ -15,6 +15,7 @@ import type { SourceFile } from "../standard/dto.js";
 import { isoDate, version, type IsoDate } from "../standard/primitives.js";
 import type {
   ProfileId,
+  Requirement,
   ValidatedStandard,
   ValidationIssue,
 } from "../standard/types.js";
@@ -48,7 +49,7 @@ import type {
   ProjectIssue,
   ProjectLock,
 } from "./types.js";
-import { validateProject } from "./validate.js";
+import { validateProject, validateEvidenceTypeCoverage } from "./validate.js";
 
 export type InitProjectInput = {
   readonly root: string;
@@ -534,6 +535,14 @@ const readStandard = async (
   }
 };
 
+const allRequirements = (
+  standard: ValidatedStandard,
+): readonly Requirement[] => [
+  ...standard.requirements,
+  ...standard.modules.flatMap((module) => module.requirements),
+  ...standard.overlays.flatMap((overlay) => overlay.adds),
+];
+
 type ResolvedProjectInputs = {
   readonly inputs: readonly SourceFile[];
   readonly modules: readonly LockedModule[];
@@ -663,6 +672,13 @@ export const validateProjectDirectory = async (
 
   if (!standard.ok) return standard;
 
+  const coverage = validateEvidenceTypeCoverage(
+    instance.value,
+    allRequirements(standard.value),
+  );
+
+  if (coverage.length > 0) return err({ tag: "Issues", issues: coverage });
+
   const resolved = await resolveProjectInputs(
     input.root,
     standard.value,
@@ -702,6 +718,13 @@ export const refreshProjectLock = async (
   const standard = await readStandard(input.root);
 
   if (!standard.ok) return standard;
+
+  const coverage = validateEvidenceTypeCoverage(
+    instance.value,
+    allRequirements(standard.value),
+  );
+
+  if (coverage.length > 0) return err({ tag: "Issues", issues: coverage });
 
   const resolved = await resolveProjectInputs(
     input.root,

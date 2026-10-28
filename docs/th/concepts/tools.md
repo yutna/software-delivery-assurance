@@ -51,8 +51,9 @@ crosswalks เทียบกับ JSON Schema 2020-12 และกฎของ
 
 `project validate <dir>` อ่าน project instance ที่มีอยู่ parse ไฟล์โปรเจกต์
 ทุกไฟล์ด้วย schema และ parser เดียวกับ `init` ใช้กฎของโปรเจกต์ resolve
-selection เทียบกับ library และตรวจ checksum ของ lockfile คำสั่งนี้อ่านอย่างเดียว
-และออกด้วย exit code 1 เมื่อพบปัญหา
+selection เทียบกับ library และตรวจ checksum ของ lockfile รวมถึงตรวจว่า
+requirement ที่เป็น `verified` มีหลักฐานครบทุกประเภทที่ข้อกำหนดคาดหวัง
+คำสั่งนี้อ่านอย่างเดียวและออกด้วย exit code 1 เมื่อพบปัญหา
 
 `project refresh <dir>` สร้าง `assurance.lock.yaml` ใหม่จาก selection ใน
 manifest ปัจจุบันและ standard input ที่ resolve แล้ว ตรวจ instance ที่จะเขียน

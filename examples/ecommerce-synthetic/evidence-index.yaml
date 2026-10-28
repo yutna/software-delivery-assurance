@@ -1,8 +1,8 @@
 entries:
   - id: EV-ECM-001
-    requirement_ids: [SRAS-GOV-001, SRAS-PRV-006]
+    requirement_ids: [SRAS-GOV-001, SRAS-PRV-006, SRAS-SEC-004, TH-ECM-003]
     type: document
-    description: Synthetic scope, ownership, notice, and consent record.
+    description: Synthetic scope, ownership, notice, consent, and checkout policy record.
     location: evidence/synthetic-policy.md
     owner: Example team
     collected_at: "2026-10-27"
@@ -26,9 +26,9 @@ entries:
     access: public example
     notes: Synthetic example only; no real configuration is included.
   - id: EV-ECM-003
-    requirement_ids: [TH-ECM-003]
+    requirement_ids: [SRAS-SEC-004, TH-ECM-003]
     type: test_result
-    description: Synthetic checkout retry and duplicate-charge test result.
+    description: Synthetic encryption and checkout retry test result.
     location: evidence/synthetic-test-result.md
     owner: Example team
     collected_at: "2026-10-27"
@@ -39,9 +39,9 @@ entries:
     access: public example
     notes: Synthetic example only; no real system was tested.
   - id: EV-ECM-004
-    requirement_ids: [TH-ECM-007]
+    requirement_ids: [TH-ECM-003, TH-ECM-007]
     type: log
-    description: Synthetic account takeover monitoring and recovery log sample.
+    description: Synthetic checkout monitoring and account takeover log sample.
     location: evidence/synthetic-log.md
     owner: Example security owner
     collected_at: "2026-10-27"

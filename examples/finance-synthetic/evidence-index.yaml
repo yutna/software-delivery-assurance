@@ -26,9 +26,9 @@ entries:
     access: public example
     notes: Synthetic example only; no real configuration is included.
   - id: EV-FIN-003
-    requirement_ids: [SRAS-SEC-009]
+    requirement_ids: [SRAS-SEC-001, SRAS-SEC-009]
     type: test_result
-    description: Synthetic vulnerability management test summary.
+    description: Synthetic access-control and vulnerability management test summary.
     location: evidence/synthetic-test-result.md
     owner: Example team
     collected_at: "2026-10-27"
@@ -77,3 +77,29 @@ entries:
     hash: null
     access: public example
     notes: Synthetic example only; the model is not real.
+  - id: EV-FIN-007
+    requirement_ids: [TH-FIN-006]
+    type: log
+    description: Synthetic privileged-access approval log sample.
+    location: evidence/synthetic-log.md
+    owner: Example security owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real access log is included.
+  - id: EV-FIN-008
+    requirement_ids: [TH-FIN-006]
+    type: ticket
+    description: Synthetic privileged-access review and approval ticket.
+    location: evidence/synthetic-review.md
+    owner: Example security owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real ticket system is used.
