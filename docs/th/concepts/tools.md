@@ -7,9 +7,8 @@ machine_translated: true
 
 # เครื่องมือและการตรวจสอบ
 
-CLI `sras` เป็น shell บาง ๆ เหนือ core TypeScript ที่บริสุทธิ์ ใช้ตรวจสอบ
-เนื้อหามาตรฐาน render reference pages guard เนื้อหาสาธารณะ และสร้าง project
-instance
+CLI `sras` เป็นชั้นคำสั่งบาง ๆ บน core TypeScript ที่บริสุทธิ์ ใช้ตรวจสอบเนื้อหา
+มาตรฐาน render reference pages guard เนื้อหาสาธารณะ และสร้าง project instance
 
 เครื่องมือเหล่านี้ช่วยให้ทีมตรวจซ้ำได้ว่าไฟล์ยังสอดคล้องกัน และช่วยป้องกันไม่ให้
 ข้อความที่ไม่ปลอดภัยหลุดออกไปใน repository สาธารณะ แต่ไม่ได้แทนการตัดสินใจของ
@@ -97,7 +96,7 @@ Markdown
 `--format json` พิมพ์ report version 1 ที่คงที่ไปยัง stdout `--annotations`
 พิมพ์ GitHub Actions annotations พร้อมไฟล์และบรรทัด สอง flag ใช้ร่วมกันไม่ได้
 
-public denylist คือ `guard/denylist.yaml` private override เพิ่มได้ผ่าน
+public denylist คือ `guard/denylist.yaml` ส่วน private override เพิ่มได้ผ่าน
 `SRAS_DENYLIST_PATH` override ไม่ถูก commit และลดทอนกฎสาธารณะไม่ได้
 
 ## Init

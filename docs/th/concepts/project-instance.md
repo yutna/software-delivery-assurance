@@ -12,8 +12,8 @@ assessment, evidence index, claims และ risk register เก็บไว้
 ส่วนตัวหรือแยกต่างหาก และไม่เคยอยู่ในคลังสาธารณะนี้
 
 ถ้าเปรียบเทียบให้เห็นภาพ repository นี้เป็นแม่แบบและคู่มือ
-ส่วน project instance คือแฟ้มงานจริงของทีม ซึ่งมีข้อมูลที่ละเอียดอ่อนและต้องจำกัด
-การเข้าถึง
+ส่วน project instance คือแฟ้มงานจริงของทีม ซึ่งมีข้อมูลที่ละเอียดอ่อนและต้อง
+จำกัดการเข้าถึง
 
 > หน้านี้เป็นฉบับภาษาไทยที่แปลโดยเครื่องและปรับถ้อยคำ ยังไม่ผ่านการตรวจทาน
 > โดยมนุษย์ จึงยังคง `translation_status: partial` และ `machine_translated: true`
@@ -133,8 +133,8 @@ npm run sras -- project refresh ~/sras-demo
 - สัญญาและความเห็นทางกฎหมาย
 - การยอมรับความเสี่ยงและ sign-off
 
-repository สาธารณะเก็บ SRAS Core และ modules, overlays และ registers,
-templates และ schemas, ตัวอย่าง synthetic และ crosswalks
+repository สาธารณะเก็บ SRAS Core, modules, overlays, registers, templates,
+schemas, ตัวอย่าง synthetic และ crosswalks
 
 ## เช็กลิสต์ก่อนส่งงาน
 
