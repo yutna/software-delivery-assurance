@@ -20,6 +20,10 @@ const enNav: DefaultTheme.NavItem[] = [
         text: "v1.0.0 readiness",
         link: "/en/governance/v1-readiness",
       },
+      {
+        text: "External review packet",
+        link: "/en/governance/external-review-packet",
+      },
     ],
   },
   { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
@@ -41,6 +45,10 @@ const thNav: DefaultTheme.NavItem[] = [
         text: "ความพร้อม v1.0.0",
         link: "/th/governance/v1-readiness",
       },
+      {
+        text: "External review packet",
+        link: "/th/governance/external-review-packet",
+      },
     ],
   },
   { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
@@ -61,6 +69,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "v1.0.0 readiness",
         link: "/en/governance/v1-readiness",
+      },
+      {
+        text: "External review packet",
+        link: "/en/governance/external-review-packet",
       },
     ],
   },
@@ -142,6 +154,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       {
         text: "ความพร้อม v1.0.0",
         link: "/th/governance/v1-readiness",
+      },
+      {
+        text: "External review packet",
+        link: "/th/governance/external-review-packet",
       },
     ],
   },

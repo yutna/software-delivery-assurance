@@ -139,6 +139,29 @@ Scope: this readiness assessment for SRAS 0.9.0, including the v1.0.0 blockers
 listed above. The sign-off does not claim v1.0.0 readiness, external review, or
 legal review.
 
+## Status update after the signed review
+
+Recorded 2026-10-28 after the review and sign-off above. This addendum does not
+revise the review and does not claim v1.0.0 readiness.
+
+- **#127 is fixed** by PR #140, merge commit
+  `aaaa04eb196c485bd53251556c417c03a006561f`. `project validate <dir>` checks an
+  edited instance and its lockfile; `project refresh <dir>` recomputes the
+  lockfile.
+- **#132 is fixed** by PR #141, merge commit
+  `22fd3a5d97eab45d32b1662c387c3e9d1b8d0ddf`. A public sector instance records
+  `scope.public_sector` and validation requires it for an assessed `TH-PUB-001`.
+- **External review is still absent.** No reviewer has been named or engaged.
+  The [external review packet](external-review-packet.md) is a template and is
+  not a review result.
+- **Thai review is still a blocker.** All 167 active requirements remain
+  `translation_status: partial` with `machine_translated: true`. The review kit
+  is tracked in #143.
+
+The remaining blockers are items 1, 2, and 4 from the list above: the Thai human
+review, the external human review, and the open v1.0.0 issues. The registers
+remain `unverified`, and legal questions #128–#131 remain open.
+
 ## Related pages
 
 - [Pilot summary](../pilots/summary.md)
