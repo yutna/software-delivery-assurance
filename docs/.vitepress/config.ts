@@ -29,15 +29,15 @@ const enNav: DefaultTheme.NavItem[] = [
         link: "/en/governance/legal-concerns",
       },
       {
-        text: "v1.0.0 readiness",
+        text: "AI audit and limitations",
         link: "/en/governance/v1-readiness",
       },
       {
-        text: "External review packet",
+        text: "External review packet (adopter)",
         link: "/en/governance/external-review-packet",
       },
       {
-        text: "Thai review kit",
+        text: "Thai review kit (adopter)",
         link: "/en/governance/thai-review-kit",
       },
       {
@@ -45,7 +45,7 @@ const enNav: DefaultTheme.NavItem[] = [
         link: "/en/governance/review-policy",
       },
       {
-        text: "v1.0.0 audit",
+        text: "0.10.0 AI audit",
         link: "/en/governance/v1-audit",
       },
       {
@@ -86,15 +86,15 @@ const thNav: DefaultTheme.NavItem[] = [
         link: "/th/governance/legal-concerns",
       },
       {
-        text: "ความพร้อม v1.0.0",
+        text: "AI audit และข้อจำกัด",
         link: "/th/governance/v1-readiness",
       },
       {
-        text: "External review packet",
+        text: "External review packet (adopter)",
         link: "/th/governance/external-review-packet",
       },
       {
-        text: "Thai review kit",
+        text: "Thai review kit (adopter)",
         link: "/th/governance/thai-review-kit",
       },
       {
@@ -102,7 +102,7 @@ const thNav: DefaultTheme.NavItem[] = [
         link: "/th/governance/review-policy",
       },
       {
-        text: "การตรวจ v1.0.0",
+        text: "AI audit 0.10.0",
         link: "/th/governance/v1-audit",
       },
       {
@@ -143,15 +143,15 @@ const enSidebar: DefaultTheme.Sidebar = [
         link: "/en/governance/legal-concerns",
       },
       {
-        text: "v1.0.0 readiness",
+        text: "AI audit and limitations",
         link: "/en/governance/v1-readiness",
       },
       {
-        text: "External review packet",
+        text: "External review packet (adopter)",
         link: "/en/governance/external-review-packet",
       },
       {
-        text: "Thai review kit",
+        text: "Thai review kit (adopter)",
         link: "/en/governance/thai-review-kit",
       },
       {
@@ -159,7 +159,7 @@ const enSidebar: DefaultTheme.Sidebar = [
         link: "/en/governance/review-policy",
       },
       {
-        text: "v1.0.0 audit",
+        text: "0.10.0 AI audit",
         link: "/en/governance/v1-audit",
       },
       {
@@ -261,15 +261,15 @@ const thSidebar: DefaultTheme.Sidebar = [
         link: "/th/governance/legal-concerns",
       },
       {
-        text: "ความพร้อม v1.0.0",
+        text: "AI audit และข้อจำกัด",
         link: "/th/governance/v1-readiness",
       },
       {
-        text: "External review packet",
+        text: "External review packet (adopter)",
         link: "/th/governance/external-review-packet",
       },
       {
-        text: "Thai review kit",
+        text: "Thai review kit (adopter)",
         link: "/th/governance/thai-review-kit",
       },
       {
@@ -277,7 +277,7 @@ const thSidebar: DefaultTheme.Sidebar = [
         link: "/th/governance/review-policy",
       },
       {
-        text: "การตรวจ v1.0.0",
+        text: "AI audit 0.10.0",
         link: "/th/governance/v1-audit",
       },
       {

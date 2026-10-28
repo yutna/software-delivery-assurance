@@ -3,20 +3,20 @@ translation_status: partial
 machine_translated: true
 ---
 
-# External review packet
+# External review packet (adopter tool)
 
-**สถานะ: template เท่านั้น ยังไม่มีผู้ตรวจที่ระบุชื่อ ไม่มีการติดต่อ และไม่มีบันทึก
-ผล ยังไม่มีการตรวจสอบจากภายนอกเกิดขึ้น**
+**สถานะ: เครื่องมือทางเลือกสำหรับโปรเจกต์ที่นำไปใช้ library ไม่ได้อ้างการทบทวน
+ภายนอก**
 
-**เครื่องมือทางเลือกสำหรับ formal-standard track** packet นี้เป็นของ
-formal-standard track ซึ่งเป็นทางเลือก ส่วน template / starter-kit track
-ไม่จำเป็นต้องใช้ packet นี้ และใช้ได้โดยมีข้อจำกัดตาม
-[ความพร้อมของ template](template-readiness.md) ใช้ packet นี้เมื่อองค์กรต้องการ
-อ้างอิงระดับ formal-standard จัดให้มีการทบทวนภายนอก หรือเตรียม candidate ของ
-v1.0.0 เท่านั้น
+**เครื่องมือทางเลือกสำหรับโปรเจกต์ที่นำไปใช้** โปรเจกต์อาจใช้ packet นี้หาก
+ตัดสินใจจัดให้มีการทบทวนภายนอกสำหรับขอบเขตหรือการส่งมอบของตนเอง library
+ไม่จำเป็นต้องใช้และไม่ได้อ้างว่ามีการทบทวนนั้น template ใช้ได้โดยมีข้อจำกัดตาม
+[ความพร้อมของ template](template-readiness.md) โปรเจกต์ที่นำไปใช้ตัดสินใจเองว่าจะ
+จัดให้มีการทบทวนภายนอกสำหรับขอบเขตหรือการส่งมอบของตนหรือไม่
 
-**จัดทำ:** 2026-10-28 **เป้าหมาย:** SRAS 1.0.0 candidate ซึ่งอิงจาก SRAS 0.9.0
-**ผู้ตรวจ:** _รอระบุชื่อ_ **วันที่ตรวจ:** _รอบันทึก_
+**จัดทำ:** 2026-10-28 **เป้าหมาย:** ขอบเขตของโปรเจกต์ที่นำไปใช้ ซึ่งอิงจาก
+concern template SRAS 0.9.0 **ผู้ตรวจ:** _ให้โปรเจกต์ระบุชื่อ_
+**วันที่ตรวจ:** _ให้โปรเจกต์บันทึก_
 
 หน้านี้เป็น packet สำหรับผู้ตรวจภายนอกในอนาคต ระบุขอบเขต คำถาม หลักฐาน และวิธี
 บันทึกผล เจ้าของ repository ต้องเป็นผู้ระบุชื่อผู้ตรวจ และผู้ตรวจต้องเป็นผู้เขียน
@@ -164,14 +164,11 @@ v1.0.0 เท่านั้น
   ผ่าน 5 จาก 5
 - **Pilot reports:** `docs/en/pilots/` — pilot synthetic สองชุด
 - **Finding triage:** `docs/en/pilots/summary.md` — 18 finding มี disposition
-- **Readiness review:** `docs/en/governance/v1-readiness.md` — ยังไม่พร้อม
-  v1.0.0
+- **AI audit:** `docs/en/governance/v1-readiness.md` — มีข้อจำกัดที่บันทึกไว้
 - **ข้อกังวลทางกฎหมาย:** issues #128, #129, #130, #131;
   `docs/en/governance/legal-concerns.md` — research notes; โปรเจกต์ต้องตัดสินใจเอง
-- **Release issues คงเหลือ:** issues #61, #62, #63, #64, #65, #66 — เปิด
-- **Release ที่ตรวจ:**
-  [v0.9.0](https://github.com/yutna/software-delivery-assurance/releases/tag/v0.9.0)
-  — เผยแพร่
+- **Library issues:** #61, #66, #171 — เปิด
+- **Content version ที่ตรวจ:** SRAS 0.9.0
 
 Repository: <https://github.com/yutna/software-delivery-assurance>
 
@@ -219,7 +216,7 @@ Signature or verifiable approval:
 
 - [ความพร้อมของ template](template-readiness.md)
 - [ข้อกังวลทางกฎหมาย](legal-concerns.md)
-- [v1.0.0 readiness review](v1-readiness.md)
+- [AI audit และข้อจำกัด](v1-readiness.md)
 - [Pilot summary and triage](../pilots/summary.md)
 - [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
 - [Execution status](https://github.com/yutna/software-delivery-assurance/issues/67)
