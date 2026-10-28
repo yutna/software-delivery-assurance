@@ -34,6 +34,7 @@ import type {
   OverlayRequirement,
   Override,
   Profile,
+  RequirementReference,
   Standard,
   StandardManifest,
   Tier,
@@ -82,6 +83,15 @@ const evidenceOf = (maxAgeDays: number): readonly [EvidenceExpectation] => [
   { type: "test_result", description: "Test evidence", maxAgeDays },
 ];
 
+const guidance = {
+  lite: { pass: "Pass", partial: "Partial" },
+  full: { l2: "L2", l3: "L3" },
+} as const;
+
+const referencesOf = (title: string): readonly [RequirementReference] => [
+  { title, url: "https://example.com", type: "standard" },
+];
+
 const coreRequirement = (
   id: string,
   criticality: Criticality,
@@ -97,6 +107,9 @@ const coreRequirement = (
   evidence: evidenceOf(maxAgeDays),
   title: { en: `Core ${id}`, th: `core ${id}` },
   description: { en: `Core description ${id}`, th: `คำอธิบาย core ${id}` },
+  rationale: { en: `Core rationale ${id}`, th: `เหตุผล core ${id}` },
+  assessment: guidance,
+  references: referencesOf(`Core ${id}`),
   introducedIn: must(version("0.4.0")),
   deprecatedIn: null,
   replacedBy: null,
@@ -120,6 +133,9 @@ const moduleRequirement = (
   evidence: evidenceOf(maxAgeDays),
   title: { en: "Module requirement", th: "ข้อกำหนดโมดูล" },
   description: { en: "Module description", th: "คำอธิบายโมดูล" },
+  rationale: { en: "Module rationale", th: "เหตุผลโมดูล" },
+  assessment: guidance,
+  references: referencesOf("Module requirement"),
   introducedIn: must(version("0.4.0")),
   deprecatedIn: null,
   replacedBy: null,
@@ -165,6 +181,9 @@ const overlayRequirementOf = (
     en: `Overlay description ${id}`,
     th: `คำอธิบาย overlay ${id}`,
   },
+  rationale: { en: `Overlay rationale ${id}`, th: `เหตุผล overlay ${id}` },
+  assessment: guidance,
+  references: referencesOf(`Overlay ${id}`),
   introducedIn: must(version("0.4.0")),
   deprecatedIn: null,
   replacedBy: null,

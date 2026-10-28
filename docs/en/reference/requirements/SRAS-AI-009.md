@@ -16,6 +16,12 @@ The product must monitor input, output, and performance drift and define the con
 
 **Thai:** ผลิตภัณฑ์ต้อง monitor drift ของ input output และประสิทธิภาพ และกำหนดเงื่อนไขที่กระตุ้นการประเมินซ้ำ การ train ใหม่ หรือการถอนออก Drift ที่ไม่มี owner รับผิดชอบไม่ถือว่าถูกจัดการ
 
+## Rationale
+
+Models and data change over time, so a prior evaluation goes stale.
+
+**Thai:** โมเดลและข้อมูลเปลี่ยนแปลงตลอดเวลา ทำให้ผลประเมินเดิมล้าสมัย
+
 ## Applicability
 
 - Tiers: 2, 3
@@ -27,6 +33,23 @@ The product must monitor input, output, and performance drift and define the con
 
 - **metric** (max 30 days): Drift indicators for input, output, and performance
 - **report** (max 90 days): Drift review and action record
+
+## Assessment
+
+- Lite pass: Drift is monitored and a trigger for review is defined.
+- Lite partial: Drift is measured but no trigger or owner is defined.
+- Full L2: Drift triggers a defined review with an accountable owner.
+- Full L3: Drift actions are measured against later evaluation results.
+
+## References
+
+- [NIST AI RMF 1.0](https://www.nist.gov/itl/ai-risk-management-framework) — `standard`
+- [ISO/IEC 23894:2023](https://www.iso.org/standard/77304.html) — `standard`
+
+## Crosswalks
+
+- [MAP-ISO42001 — SRAS AI to ISO/IEC 42001:2023](../crosswalks/MAP-ISO42001.md): `9.1 Monitoring, measurement, analysis and evaluation` (supports) — Monitoring supports drift detection and review.
+- [MAP-NISTAIRMF — SRAS AI to NIST AI RMF 1.0](../crosswalks/MAP-NISTAIRMF.md): `MEASURE 2.1, MANAGE 3.1` (supports) — Monitoring supports drift detection and response.
 
 ## Review
 

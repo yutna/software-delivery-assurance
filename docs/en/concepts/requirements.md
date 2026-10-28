@@ -79,6 +79,13 @@ Evidence rules:
 a second requirement: it shows how an assessor should recognise the same
 statement at a different depth.
 
+Each generated requirement page in the [reference](../reference/index.md) shows
+the description, rationale, applicability, evidence types, lite and full
+assessment guidance, external references, and every informative crosswalk that
+maps the requirement. A section with no entries shows `none`. A crosswalk
+relationship is `supports`, `partial`, or `related`; it is not an equivalence or
+a certification claim.
+
 ## IDs and stability
 
 Core and module requirements use `SRAS-<DOMAIN>-<NNN>`. Overlay requirements

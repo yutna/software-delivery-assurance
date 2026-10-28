@@ -16,6 +16,12 @@ Exported customer data must use a documented format with a published schema, mus
 
 **Thai:** ข้อมูลลูกค้าที่ส่งออกต้องใช้รูปแบบที่จัดทำเอกสารพร้อม schema ที่เผยแพร่ ต้องรักษาขอบเขตและความสัมพันธ์ตามที่ตกลง และต้องใช้งานได้โดยไม่ต้องพึ่งบริการที่ส่งออก รูปแบบเฉพาะของผลิตภัณฑ์ที่ไม่มี schema เผยแพร่ไม่เป็นไปตามข้อกำหนด
 
+## Rationale
+
+An export that only the original service can read is not portability.
+
+**Thai:** การส่งออกที่อ่านได้เฉพาะบริการเดิมไม่ใช่การพกพาข้อมูล
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ Exported customer data must use a documented format with a published schema, mus
 
 - **document** (max 365 days): Export format specification and schema
 - **test_result** (max 365 days): Import of an export into a separate environment
+
+## Assessment
+
+- Lite pass: The export format and schema are documented and usable.
+- Lite partial: An export exists but the schema or completeness is unverified.
+- Full L2: The export is tested outside the exporting service.
+- Full L3: The export covers relationships and is versioned.
+
+## References
+
+- [ISO/IEC 27018:2019](https://www.iso.org/standard/76559.html) — `standard`
+- [CSA Cloud Controls Matrix](https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4) — `guidance`
+
+## Crosswalks
+
+- none
 
 ## Review
 

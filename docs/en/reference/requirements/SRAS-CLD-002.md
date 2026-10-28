@@ -16,6 +16,12 @@ A multi-tenant service must isolate tenant data and configuration at the applica
 
 **Thai:** บริการ multi-tenant ต้องแยกข้อมูลและ configuration ของ tenant ที่ชั้น application storage และ network และต้องทดสอบว่า tenant หนึ่งไม่สามารถอ่านหรือแก้ไขข้อมูลหรือ metadata ของ tenant อื่นได้ การแยกต้องไม่พึ่งพาการตรวจสอบเพียงจุดเดียว
 
+## Rationale
+
+A single missing filter exposes every tenant to every other tenant.
+
+**Thai:** การขาด filter เพียงจุดเดียวทำให้ tenant ทุกรายเข้าถึงข้อมูลของกันและกันได้
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ A multi-tenant service must isolate tenant data and configuration at the applica
 
 - **test_result** (max 180 days): Cross-tenant access tests for data and metadata
 - **configuration** (max 180 days): Tenant isolation controls at application and storage layers
+
+## Assessment
+
+- Lite pass: Tenant isolation is enforced and tested with negative cases.
+- Lite partial: Isolation is designed but tests or storage controls are incomplete.
+- Full L2: Isolation is tested across application, storage, and network paths.
+- Full L3: Isolation tests run on every release and after schema change.
+
+## References
+
+- [ISO/IEC 27017:2015](https://www.iso.org/standard/43757.html) — `standard`
+- [CSA Cloud Controls Matrix](https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4) — `guidance`
+
+## Crosswalks
+
+- none
 
 ## Review
 

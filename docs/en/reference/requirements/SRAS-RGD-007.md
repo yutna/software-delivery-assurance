@@ -16,6 +16,12 @@ The product must define how a regulated-data breach is detected, assessed, conta
 
 **Thai:** ผลิตภัณฑ์ต้องกำหนดวิธีตรวจจับ ประเมิน ควบคุม และแจ้งเหตุละเมิดข้อมูลที่มีข้อกำหนดกำกับต่อฝ่ายภายในและภายนอกที่รับผิดชอบ ภายในระยะเวลาที่กำหนด ต้องมีช่องทางติดต่อและบันทึกการตัดสินใจก่อนเกิดเหตุการณ์
 
+## Rationale
+
+Notification decisions made for the first time during an incident are late and inconsistent.
+
+**Thai:** การตัดสินใจแจ้งเหตุที่เพิ่งทำครั้งแรกระหว่างเกิดเหตุจะล่าช้าและไม่สม่ำเสมอ
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ The product must define how a regulated-data breach is detected, assessed, conta
 
 - **document** (max 365 days): Breach response procedure with notification timeline
 - **ticket** (max 365 days): Breach drill or tabletop exercise record
+
+## Assessment
+
+- Lite pass: Detection, assessment, and notification paths are defined.
+- Lite partial: A procedure exists but contacts or timelines are incomplete.
+- Full L2: The procedure is exercised and decisions are recorded.
+- Full L3: Exercises are reviewed and corrective actions are tracked.
+
+## References
+
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001) — `standard`
+- [NIST Privacy Framework 1.0](https://www.nist.gov/privacy-framework) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

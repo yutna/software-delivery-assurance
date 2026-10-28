@@ -16,6 +16,12 @@ The product must record its dependence on cloud regions, zones, and service quot
 
 **Thai:** ผลิตภัณฑ์ต้องบันทึกการพึ่งพา region zone และ quota ของบริการ cloud และต้องทดสอบว่าความล้มเหลวของ zone หรือ quota ไม่เกิน service objective ที่อนุมัติ dependency ที่ไม่มี fallback ที่ทดสอบแล้วถือเป็น single point of failure
 
+## Rationale
+
+Cloud redundancy is not automatic; it exists only where it is designed and tested.
+
+**Thai:** ความซ้ำซ้อนของ cloud ไม่ได้เกิดขึ้นเอง แต่มีเฉพาะจุดที่ถูกออกแบบและทดสอบแล้ว
+
 ## Applicability
 
 - Tiers: 2, 3
@@ -27,6 +33,22 @@ The product must record its dependence on cloud regions, zones, and service quot
 
 - **diagram** (max 365 days): Region, zone, and quota dependency map
 - **test_result** (max 365 days): Failover or quota exhaustion test result
+
+## Assessment
+
+- Lite pass: Dependencies and fallbacks are documented and tested.
+- Lite partial: Dependencies are documented but failover is untested.
+- Full L2: Failover and quota limits are tested against the service objective.
+- Full L3: Tests are repeated after architecture or provider change.
+
+## References
+
+- [NIST SP 800-144](https://csrc.nist.gov/pubs/sp/800/144/final) — `standard`
+- [CSA Cloud Controls Matrix](https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4) — `guidance`
+
+## Crosswalks
+
+- none
 
 ## Review
 

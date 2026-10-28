@@ -16,6 +16,12 @@ Every third-party component must have a recorded license, an approval decision f
 
 **Thai:** องค์ประกอบจากบุคคลภายนอกทุกรายการต้องมี license ที่บันทึกไว้ การตัดสินใจอนุมัติการใช้งาน และข้อผูกพันที่ติดตาม เช่น การระบุที่มา หรือการเปิดเผย source องค์ประกอบที่มี license ที่ไม่อนุมัติหรือไม่ทราบถือว่าไม่ผ่านข้อกำหนดนี้
 
+## Rationale
+
+An unknown license can block distribution or create an unexpected obligation.
+
+**Thai:** license ที่ไม่ทราบสามารถขัดขวางการเผยแพร่หรือสร้างข้อผูกพันที่ไม่คาดคิด
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ Every third-party component must have a recorded license, an approval decision f
 
 - **document** (max 180 days): Component license inventory with approval decisions
 - **report** (max 180 days): Attribution and obligation checklist for the current release
+
+## Assessment
+
+- Lite pass: Components have known, approved licenses and tracked obligations.
+- Lite partial: Some components lack a license record or approval.
+- Full L2: Covered for all distributed components.
+- Full L3: Measured with unknown-license findings and obligation completeness.
+
+## References
+
+- [ISO/IEC 5230:2020](https://www.iso.org/standard/81068.html) — `standard`
+- [NIST SP 800-218 SSDF PW.4](https://csrc.nist.gov/pubs/sp/800/218/final) — `standard`
+
+## Crosswalks
+
+- [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.5.32` (supports) — Intellectual property rights.
 
 ## Review
 

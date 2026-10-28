@@ -47,11 +47,14 @@ import type {
   Override,
   Profile,
   ProfileId,
+  AssessmentGuidance,
+  ReferenceType,
   RegisterAppliesTo,
   RegisterEntry,
   RegisterInstrumentType,
   RegisterObligation,
   RegisterStatus,
+  RequirementReference,
   ReviewMetadata,
   ReviewStatus,
   StandardManifest,
@@ -161,6 +164,13 @@ const CROSSWALK_RELATIONSHIPS = [
   "partial",
   "related",
 ] as const satisfies readonly CrosswalkRelationship[];
+
+const REFERENCE_TYPES = [
+  "standard",
+  "regulation",
+  "guidance",
+  "source",
+] as const satisfies readonly ReferenceType[];
 
 type Issues = ValidationIssue[];
 
@@ -663,6 +673,86 @@ const parseEvidence = (
   return [first, ...rest];
 };
 
+const parseAssessmentGuidance = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): AssessmentGuidance | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const lite = readObject(object["lite"], file, `${path}/lite`, issues);
+  const full = readObject(object["full"], file, `${path}/full`, issues);
+
+  if (lite === undefined || full === undefined) return undefined;
+
+  const pass = readString(lite, "pass", file, `${path}/lite`, issues);
+  const partial = readString(lite, "partial", file, `${path}/lite`, issues);
+  const l2 = readString(full, "l2", file, `${path}/full`, issues);
+  const l3 = readString(full, "l3", file, `${path}/full`, issues);
+
+  if (
+    pass === undefined ||
+    partial === undefined ||
+    l2 === undefined ||
+    l3 === undefined
+  ) {
+    return undefined;
+  }
+
+  return { lite: { pass, partial }, full: { l2, l3 } };
+};
+
+const parseReferenceItem = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): RequirementReference | undefined => {
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const title = readString(object, "title", file, path, issues);
+  const url = readString(object, "url", file, path, issues);
+  const type = readEnum(object, "type", REFERENCE_TYPES, file, path, issues);
+
+  if (title === undefined || url === undefined || type === undefined) {
+    return undefined;
+  }
+
+  return { title, url, type };
+};
+
+const parseReferences = (
+  object: DtoObject,
+  file: string,
+  path: string,
+  issues: Issues,
+): NonEmpty<RequirementReference> | undefined => {
+  const references = readArray(
+    object,
+    "references",
+    file,
+    path,
+    issues,
+    (item, itemPath) => parseReferenceItem(item, file, itemPath, issues),
+  );
+
+  if (references === undefined) return undefined;
+
+  const [first, ...rest] = references;
+
+  if (first === undefined) {
+    push(issues, file, `${path}/references`, "expected at least one reference");
+    return undefined;
+  }
+
+  return [first, ...rest];
+};
+
 const readLocalized = (
   value: unknown,
   file: string,
@@ -950,6 +1040,19 @@ const parseCoreRequirement = (
     `${path}/description`,
     issues,
   );
+  const rationale = readLocalized(
+    object["rationale"],
+    file,
+    `${path}/rationale`,
+    issues,
+  );
+  const assessment = parseAssessmentGuidance(
+    object["assessment"],
+    file,
+    `${path}/assessment`,
+    issues,
+  );
+  const references = parseReferences(object, file, path, issues);
   const introducedIn = readVersion(object, "introduced_in", file, path, issues);
   const deprecatedIn = readDeprecatedIn(object, file, path, issues);
   const replacedBy = readOptionalRequirementId(
@@ -969,6 +1072,9 @@ const parseCoreRequirement = (
     evidence === undefined ||
     title === undefined ||
     description === undefined ||
+    rationale === undefined ||
+    assessment === undefined ||
+    references === undefined ||
     introducedIn === undefined ||
     deprecatedIn === undefined ||
     replacedBy === undefined
@@ -986,6 +1092,9 @@ const parseCoreRequirement = (
     evidence,
     title,
     description,
+    rationale,
+    assessment,
+    references,
     introducedIn,
     deprecatedIn,
     replacedBy,
@@ -1032,6 +1141,19 @@ const parseModuleRequirement = (
     `${path}/description`,
     issues,
   );
+  const rationale = readLocalized(
+    object["rationale"],
+    file,
+    `${path}/rationale`,
+    issues,
+  );
+  const assessment = parseAssessmentGuidance(
+    object["assessment"],
+    file,
+    `${path}/assessment`,
+    issues,
+  );
+  const references = parseReferences(object, file, path, issues);
   const introducedIn = readVersion(object, "introduced_in", file, path, issues);
   const deprecatedIn = readDeprecatedIn(object, file, path, issues);
   const replacedBy = readOptionalRequirementId(
@@ -1051,6 +1173,9 @@ const parseModuleRequirement = (
     evidence === undefined ||
     title === undefined ||
     description === undefined ||
+    rationale === undefined ||
+    assessment === undefined ||
+    references === undefined ||
     introducedIn === undefined ||
     deprecatedIn === undefined ||
     replacedBy === undefined
@@ -1068,6 +1193,9 @@ const parseModuleRequirement = (
     evidence,
     title,
     description,
+    rationale,
+    assessment,
+    references,
     introducedIn,
     deprecatedIn,
     replacedBy,
@@ -1119,6 +1247,19 @@ const parseOverlayRequirement = (
     `${path}/description`,
     issues,
   );
+  const rationale = readLocalized(
+    object["rationale"],
+    file,
+    `${path}/rationale`,
+    issues,
+  );
+  const assessment = parseAssessmentGuidance(
+    object["assessment"],
+    file,
+    `${path}/assessment`,
+    issues,
+  );
+  const references = parseReferences(object, file, path, issues);
   const introducedIn = readVersion(object, "introduced_in", file, path, issues);
   const deprecatedIn = readDeprecatedIn(object, file, path, issues);
   const replacedBy =
@@ -1140,6 +1281,9 @@ const parseOverlayRequirement = (
     evidence === undefined ||
     title === undefined ||
     description === undefined ||
+    rationale === undefined ||
+    assessment === undefined ||
+    references === undefined ||
     introducedIn === undefined ||
     deprecatedIn === undefined ||
     replacedBy === undefined
@@ -1157,6 +1301,9 @@ const parseOverlayRequirement = (
     evidence,
     title,
     description,
+    rationale,
+    assessment,
+    references,
     introducedIn,
     deprecatedIn,
     replacedBy,

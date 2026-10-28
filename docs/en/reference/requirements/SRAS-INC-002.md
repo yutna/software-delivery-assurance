@@ -16,6 +16,12 @@ The product must define incident severity levels, decision criteria, escalation 
 
 **Thai:** ผลิตภัณฑ์ต้องกำหนดระดับความรุนแรงของเหตุการณ์ เกณฑ์การตัดสินใจ เงื่อนไขการส่งต่อ และผู้ติดต่อที่ระบุชื่อ และเส้นทาง on-call ต้องเข้าถึงผู้มีอำนาจตัดสินใจ เหตุการณ์ที่ไม่มีกฎระดับความรุนแรงหรือผู้ติดต่อส่งต่อที่ติดต่อไม่ได้ถือว่าไม่ผ่านข้อกำหนดนี้
 
+## Rationale
+
+Without agreed severity, response effort is allocated by whoever is loudest.
+
+**Thai:** หากไม่มีระดับความรุนแรงที่ตกลงร่วมกัน ความพยายามในการตอบสนองจะขึ้นอยู่กับว่าใครเสียงดังที่สุด
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,23 @@ The product must define incident severity levels, decision criteria, escalation 
 
 - **document** (max 90 days): Severity matrix and escalation path with named contacts and targets
 - **ticket** (max 90 days): Latest escalation or paging test record
+
+## Assessment
+
+- Lite pass: Severity rules and escalation contacts are current and reachable.
+- Lite partial: Rules exist but some contacts or triggers are stale.
+- Full L2: Current for all critical services.
+- Full L3: Measured with escalation time and decision latency.
+
+## References
+
+- [NIST CSF 2.0 RS.MA](https://www.nist.gov/cyberframework) — `standard`
+- [ISO/IEC 27001:2022 5.25](https://www.iso.org/standard/27001) — `standard`
+
+## Crosswalks
+
+- [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.5.24, A.5.25` (partial) — Incident preparation and assessment are covered; severity taxonomy is an SRAS addition.
+- [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `RS.MA-02, RS.MA-03` (supports) — Incident triage and categorization.
 
 ## Review
 

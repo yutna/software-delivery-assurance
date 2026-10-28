@@ -100,6 +100,7 @@ export type {
   ValidatedProject,
 } from "./project/types.js";
 export {
+  renderCrosswalkPage,
   renderIndexPage,
   renderOverlayPage,
   renderProjectReadme,

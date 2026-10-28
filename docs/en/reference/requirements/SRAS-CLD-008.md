@@ -16,6 +16,12 @@ Administrative, authentication, and data-access events must be logged with actor
 
 **Thai:** เหตุการณ์ด้าน administration authentication และการเข้าถึงข้อมูลต้องถูกบันทึกพร้อม actor เวลา แหล่งที่มา และเป้าหมาย ป้องกันการแก้ไขโดยบัญชีที่ถูกบันทึก และเก็บรักษาตามระยะเวลาที่กำหนด log ที่ผู้ถูกบันทึกสามารถแก้ไขได้ไม่น่าเชื่อถือ
 
+## Rationale
+
+An editable audit trail cannot support an investigation or a dispute.
+
+**Thai:** audit trail ที่แก้ไขได้ไม่สามารถสนับสนุนการสืบสวนหรือข้อโต้แย้งได้
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ Administrative, authentication, and data-access events must be logged with actor
 
 - **configuration** (max 180 days): Audit log destination, immutability, and retention configuration
 - **log** (max 90 days): Sample audit events with actor, time, source, and target
+
+## Assessment
+
+- Lite pass: Audit events are logged, protected, and retained.
+- Lite partial: Logging exists but immutability or retention is incomplete.
+- Full L2: Logs are immutable, retained, and reviewed for coverage.
+- Full L3: Log coverage is tested against the event catalogue.
+
+## References
+
+- [ISO/IEC 27017:2015](https://www.iso.org/standard/43757.html) — `standard`
+- [NIST SP 800-144](https://csrc.nist.gov/pubs/sp/800/144/final) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

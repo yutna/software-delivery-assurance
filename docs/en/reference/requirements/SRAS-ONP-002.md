@@ -16,6 +16,12 @@ Each on-premises asset type must have a versioned hardening baseline covering se
 
 **Thai:** asset แต่ละประเภทใน on-premises ต้องมี hardening baseline ที่มี version ครอบคลุม services accounts protocols permissions และ logging ต้องตรวจสอบ configuration ที่ติดตั้งเทียบกับ baseline และการเบี่ยงเบนต้องได้รับอนุมัติและบันทึกไว้
 
+## Rationale
+
+A default installation exposes services that nobody intended to run.
+
+**Thai:** การติดตั้งตามค่าเริ่มต้นเปิดบริการที่ไม่มีใครตั้งใจให้ทำงาน
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ Each on-premises asset type must have a versioned hardening baseline covering se
 
 - **configuration** (max 180 days): Versioned hardening baseline per asset type
 - **test_result** (max 180 days): Configuration verification against the baseline
+
+## Assessment
+
+- Lite pass: A baseline exists and deployed assets are verified against it.
+- Lite partial: A baseline exists but verification or deviation records are incomplete.
+- Full L2: Verification covers every asset type and deviations are approved.
+- Full L3: Baseline changes are reviewed and applied through change control.
+
+## References
+
+- [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks) — `guidance`
+- [NIST SP 800-128](https://csrc.nist.gov/pubs/sp/800/128/final) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

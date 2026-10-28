@@ -16,6 +16,12 @@ Where the product operates equipment in a facility it controls, access, power, c
 
 **Thai:** เมื่อผลิตภัณฑ์ใช้งานอุปกรณ์ในสถานที่ที่ควบคุมเอง การเข้าถึง ไฟฟ้า การระบายความร้อน ระบบดับเพลิง และการ monitor สภาพแวดล้อมต้องถูกจัดทำเอกสารและมีหลักฐาน การควบคุมสถานที่ที่ไม่มีหลักฐานปัจจุบันไม่ถือว่ามี assurance
 
+## Rationale
+
+Physical access defeats logical controls that assume the hardware is protected.
+
+**Thai:** การเข้าถึงทางกายภาพทำให้การควบคุมเชิงตรรกะที่ถือว่าฮาร์ดแวร์ได้รับการป้องกันล้มเหลว
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ Where the product operates equipment in a facility it controls, access, power, c
 
 - **document** (max 365 days): Facility access, power, cooling, and fire control description
 - **attestation** (max 365 days): Current facility or data centre attestation
+
+## Assessment
+
+- Lite pass: Facility controls are documented with current evidence.
+- Lite partial: Controls are described but evidence is stale.
+- Full L2: Controls are evidenced and reviewed for the current period.
+- Full L3: Incidents and environmental events are reviewed.
+
+## References
+
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001) — `standard`
+- [NIST SP 800-53 Rev. 5](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

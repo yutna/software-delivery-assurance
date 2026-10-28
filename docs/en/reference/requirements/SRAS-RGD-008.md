@@ -16,6 +16,12 @@ A processor that handles regulated data must be assessed before onboarding and r
 
 **Thai:** processor ที่จัดการข้อมูลที่มีข้อกำหนดกำกับต้องถูกประเมินก่อน onboard และทบทวนตามรอบที่กำหนด โดยใช้หลักฐานด้านความปลอดภัย สิทธิในการตรวจสอบ และการเปิดเผย subprocessor การประเมินที่ไม่มีหลักฐานปัจจุบันไม่ถือว่าเสร็จสมบูรณ์
 
+## Rationale
+
+A contract without evidence of practice is an assumption, not assurance.
+
+**Thai:** สัญญาที่ไม่มีหลักฐานการปฏิบัติเป็นเพียงสมมติฐาน ไม่ใช่ assurance
+
 ## Applicability
 
 - Tiers: 2, 3
@@ -27,6 +33,22 @@ A processor that handles regulated data must be assessed before onboarding and r
 
 - **report** (max 365 days): Processor assessment with security evidence and gaps
 - **attestation** (max 365 days): Current independent attestation or audit report
+
+## Assessment
+
+- Lite pass: Each processor has a current assessment.
+- Lite partial: An assessment exists but evidence is stale or incomplete.
+- Full L2: Assessments and independent evidence are current.
+- Full L3: Findings are tracked to closure and re-assessed on change.
+
+## References
+
+- [ISO/IEC 27701:2019](https://www.iso.org/standard/71670.html) — `standard`
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

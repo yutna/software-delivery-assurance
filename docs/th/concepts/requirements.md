@@ -74,6 +74,12 @@ assessment บันทึกสถานะสำหรับทุกข้อ
 `assessment.full` อธิบาย L2 และ L3 สำหรับการตรวจเชิงลึก แนวทางเหล่านี้ไม่ใช่
 ข้อกำหนดที่สอง แต่ช่วยให้ผู้ประเมินเห็นถ้อยแถลงเดียวกันในระดับที่ต่างกัน
 
+หน้า requirement ที่สร้างใน [reference](../reference/index.md) แสดง description,
+rationale, applicability, ประเภทหลักฐาน, แนวทางการประเมิน lite และ full,
+references ภายนอก และ crosswalk เชิงข้อมูลทุกอันที่แมป requirement นั้น
+ส่วนที่ไม่มีรายการจะแสดง `none` ความสัมพันธ์ของ crosswalk มีค่า `supports`,
+`partial` หรือ `related` ไม่ใช่การอ้างความเท่าเทียมหรือการรับรอง
+
 ## ID และความคงที่
 
 ข้อกำหนด Core และ module ใช้ `SRAS-<DOMAIN>-<NNN>` ข้อกำหนด overlay ใช้

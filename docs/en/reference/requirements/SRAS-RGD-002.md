@@ -16,6 +16,12 @@ Each processing purpose for regulated data must record the lawful basis relied o
 
 **Thai:** วัตถุประสงค์การประมวลผลข้อมูลที่มีข้อกำหนดกำกับแต่ละรายการต้องบันทึกฐานทางกฎหมายที่ใช้อ้างอิง ประเภทของเจ้าของข้อมูลและข้อมูล และ owner ที่รับผิดชอบ วัตถุประสงค์ที่ไม่มีฐานที่บันทึกไว้ต้องไม่ถูกประมวลผล การเลือกฐานที่ใช้เป็นหน้าที่ของหน่วยงานด้าน privacy ที่รับผิดชอบ ไม่ใช่ของไลบรารีนี้
 
+## Rationale
+
+Processing without a recorded basis cannot be explained, reviewed, or defended.
+
+**Thai:** การประมวลผลที่ไม่มีฐานบันทึกไว้ไม่สามารถอธิบาย ทบทวน หรือปกป้องได้
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -26,6 +32,22 @@ Each processing purpose for regulated data must record the lawful basis relied o
 ## Evidence
 
 - **document** (max 365 days): Processing register with purpose, basis, and owner
+
+## Assessment
+
+- Lite pass: Every purpose records a basis and an owner.
+- Lite partial: Some purposes are recorded but the basis or owner is missing.
+- Full L2: Purposes and bases are recorded and reviewed for the release.
+- Full L3: Changes in purpose trigger a recorded basis review.
+
+## References
+
+- [ISO/IEC 29100:2011](https://www.iso.org/standard/45123.html) — `standard`
+- [OECD Privacy Guidelines](https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188) — `guidance`
+
+## Crosswalks
+
+- none
 
 ## Review
 
