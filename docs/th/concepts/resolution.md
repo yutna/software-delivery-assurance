@@ -43,9 +43,9 @@ assessment notes และ risk register
 
 ## Gate และ not-applicable
 
-gate ไม่ถูกยกเว้น ทางเดียวคือ `not_applicable` พร้อมเหตุผลด้าน scope ที่
-บันทึกไว้และการอนุมัติจาก owner การอนุมัติเป็นส่วนหนึ่งของ assessment ไม่ใช่
-ข้อความส่วนตัว
+gate ยกเว้นไม่ได้ ทางเดียวคือ `not_applicable` พร้อมเหตุผลด้าน scope ที่บันทึก
+ไว้และการอนุมัติจาก owner การอนุมัติเป็นส่วนหนึ่งของ assessment ไม่ใช่ข้อความ
+ส่วนตัว
 
 ข้อกำหนดที่ไม่ใช่ gate ถูกยกเว้นได้เฉพาะเมื่อมี
 
@@ -104,8 +104,7 @@ requirement ที่ทีมบันทึกไว้
 
 `examples/e2e-project/` เป็นโปรเจกต์ synthetic แบบ full profile ที่ใช้ module
 AI และ overlay การเงินประเทศไทย lockfile pin version SRAS ปัจจุบัน, `SRAS-AI`
-และ `TH-FIN` ตัวอย่างนี้ฝึกใช้ข้อกำหนด Core, module และ overlay โดยไม่มีข้อมูล
-ลูกค้าจริง
+และ `TH-FIN` ตัวอย่างนี้ใช้ข้อกำหนด Core, module และ overlay โดยไม่มีข้อมูลลูกค้าจริง
 
 ## หน้าที่เกี่ยวข้อง
 
