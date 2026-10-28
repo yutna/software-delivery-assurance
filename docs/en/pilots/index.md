@@ -9,9 +9,10 @@ The pilots test the library the way a new user would: create a project
 instance, select Core, modules, and an overlay, assess the resolved
 requirements, and run the checks. They use synthetic projects only.
 
-| Pilot | Sector  | Report                      |
-| ----- | ------- | --------------------------- |
-| A     | Finance | [Finance pilot](finance.md) |
+| Pilot | Sector        | Report                                  |
+| ----- | ------------- | --------------------------------------- |
+| A     | Finance       | [Finance pilot](finance.md)             |
+| B     | Public sector | [Public sector pilot](public-sector.md) |
 
 Pilot reports are internal engineering evidence. They are not customer
 assessments, audit attestations, or legal advice, and they do not state that a

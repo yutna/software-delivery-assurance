@@ -110,6 +110,7 @@ const enSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "Pilot overview", link: "/en/pilots/" },
       { text: "Finance pilot", link: "/en/pilots/finance" },
+      { text: "Public sector pilot", link: "/en/pilots/public-sector" },
     ],
   },
   {
@@ -185,6 +186,7 @@ const thSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "ภาพรวมการนำร่อง", link: "/th/pilots/" },
       { text: "การนำร่องด้านการเงิน", link: "/th/pilots/finance" },
+      { text: "การนำร่องภาครัฐ", link: "/th/pilots/public-sector" },
     ],
   },
   {
