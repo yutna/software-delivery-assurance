@@ -27,16 +27,25 @@ machine_translated: true
 
 ### อยู่ในขอบเขต
 
-| พื้นที่                  | สิ่งที่ตรวจ                                                                   | จุดเริ่มต้น                                                       |
-| ------------------------ | ----------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Core requirements        | 70 requirement ที่ active: ถ้อยคำ criticality applicability evidence และ gate | `core/domains/`, `docs/en/reference/requirements/`                |
-| Technical modules        | 52 requirement ที่ active ในห้า module                                        | `modules/`, `docs/en/reference/requirements/`                     |
-| Sector overlays          | 45 requirement ที่ active ในสี่ overlay ของประเทศไทย                          | `overlays/`, `docs/en/reference/overlays/`                        |
-| Registers                | 27 source entry: แหล่งทางการ version สถานะ วันที่ และ requirement ที่อ้างอิง  | `registers/`, `docs/en/reference/registers/`                      |
-| Crosswalks               | 7 mapping เชิงข้อมูลไปยังมาตรฐานภายนอก                                        | `mappings/`                                                       |
-| Project template และ CLI | รูปแบบ template กฎ validation lockfile, `init`, `project validate/refresh`    | `templates/project/`, `docs/en/templates/project.md`              |
-| Governance และ claims    | ข้อความ readiness สถานะ review ข้อจำกัด และการไม่กล่าวอ้าง compliance         | `GOVERNANCE.md`, `docs/en/governance/v1-readiness.md`, `SCOPE.md` |
-| เอกสารสองภาษา            | หน้า English และ Thai glossary และ frontmatter status                         | `docs/en/`, `docs/th/`                                            |
+- **Core requirements:** 70 requirement ที่ active — ถ้อยคำ criticality
+  applicability evidence และ gate เริ่มที่ `core/domains/` และ
+  `docs/en/reference/requirements/`
+- **Technical modules:** 52 requirement ที่ active ในห้า module เริ่มที่
+  `modules/` และ `docs/en/reference/requirements/`
+- **Sector overlays:** 45 requirement ที่ active ในสี่ overlay ของประเทศไทย
+  เริ่มที่ `overlays/` และ `docs/en/reference/overlays/`
+- **Registers:** 27 source entry — แหล่งทางการ version สถานะ วันที่ และ
+  requirement ที่อ้างอิง เริ่มที่ `registers/` และ
+  `docs/en/reference/registers/`
+- **Crosswalks:** 7 mapping เชิงข้อมูลไปยังมาตรฐานภายนอก เริ่มที่ `mappings/`
+- **Project template และ CLI:** รูปแบบ template กฎ validation lockfile, `init`,
+  `project validate/refresh` เริ่มที่ `templates/project/` และ
+  `docs/en/templates/project.md`
+- **Governance และ claims:** ข้อความ readiness สถานะ review ข้อจำกัด และการไม่
+  กล่าวอ้าง compliance เริ่มที่ `GOVERNANCE.md`,
+  `docs/en/governance/v1-readiness.md` และ `SCOPE.md`
+- **เอกสารสองภาษา:** หน้า English และ Thai glossary และ frontmatter status
+  เริ่มที่ `docs/en/` และ `docs/th/`
 
 ### อยู่นอกขอบเขต
 
