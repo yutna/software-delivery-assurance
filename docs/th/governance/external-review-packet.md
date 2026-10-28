@@ -27,16 +27,16 @@ machine_translated: true
 
 ### อยู่ในขอบเขต
 
-| พื้นที่ | สิ่งที่ตรวจ | จุดเริ่มต้น |
+| พื้นที่                  | สิ่งที่ตรวจ                                                                   | จุดเริ่มต้น                                                       |
 | ------------------------ | ----------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Core requirements | 70 requirement ที่ active: ถ้อยคำ criticality applicability evidence และ gate | `core/domains/`, `docs/en/reference/requirements/` |
-| Technical modules | 52 requirement ที่ active ในห้า module | `modules/`, `docs/en/reference/requirements/` |
-| Sector overlays | 45 requirement ที่ active ในสี่ overlay ของประเทศไทย | `overlays/`, `docs/en/reference/overlays/` |
-| Registers | 27 source entry: แหล่งทางการ version สถานะ วันที่ และ requirement ที่อ้างอิง | `registers/`, `docs/en/reference/registers/` |
-| Crosswalks | 7 mapping เชิงข้อมูลไปยังมาตรฐานภายนอก | `mappings/` |
-| Project template และ CLI | รูปแบบ template กฎ validation lockfile, `init`, `project validate/refresh` | `templates/project/`, `docs/en/templates/project.md` |
-| Governance และ claims | ข้อความ readiness สถานะ review ข้อจำกัด และการไม่กล่าวอ้าง compliance | `GOVERNANCE.md`, `docs/en/governance/v1-readiness.md`, `SCOPE.md` |
-| เอกสารสองภาษา | หน้า English และ Thai glossary และ frontmatter status | `docs/en/`, `docs/th/` |
+| Core requirements        | 70 requirement ที่ active: ถ้อยคำ criticality applicability evidence และ gate | `core/domains/`, `docs/en/reference/requirements/`                |
+| Technical modules        | 52 requirement ที่ active ในห้า module                                        | `modules/`, `docs/en/reference/requirements/`                     |
+| Sector overlays          | 45 requirement ที่ active ในสี่ overlay ของประเทศไทย                          | `overlays/`, `docs/en/reference/overlays/`                        |
+| Registers                | 27 source entry: แหล่งทางการ version สถานะ วันที่ และ requirement ที่อ้างอิง  | `registers/`, `docs/en/reference/registers/`                      |
+| Crosswalks               | 7 mapping เชิงข้อมูลไปยังมาตรฐานภายนอก                                        | `mappings/`                                                       |
+| Project template และ CLI | รูปแบบ template กฎ validation lockfile, `init`, `project validate/refresh`    | `templates/project/`, `docs/en/templates/project.md`              |
+| Governance และ claims    | ข้อความ readiness สถานะ review ข้อจำกัด และการไม่กล่าวอ้าง compliance         | `GOVERNANCE.md`, `docs/en/governance/v1-readiness.md`, `SCOPE.md` |
+| เอกสารสองภาษา            | หน้า English และ Thai glossary และ frontmatter status                         | `docs/en/`, `docs/th/`                                            |
 
 ### อยู่นอกขอบเขต
 
@@ -132,22 +132,22 @@ machine_translated: true
 รันคำสั่งเหล่านี้จาก clean checkout ที่ commit ที่ตรวจ และบันทึกผล ตัวเลขด้านล่าง
 เป็น baseline ที่บันทึกตอนจัดทำ packet เมื่อ 2026-10-28 หลัง #140 และ #141 ให้คำนวณใหม่ที่ commit ที่ตรวจ
 
-| หลักฐาน | คำสั่งหรือตำแหน่ง | baseline ตอนจัดทำ |
+| หลักฐาน                | คำสั่งหรือตำแหน่ง                                                                  | baseline ตอนจัดทำ         |
 | ---------------------- | ---------------------------------------------------------------------------------- | ------------------------- |
-| เนื้อหามาตรฐาน | `npm run sras -- validate --all` | 53 ไฟล์ |
-| Tests | `npm test` | ผ่าน 327 |
-| Type และ style | `npm run typecheck`, `npm run lint`, `npm run format:check` | ผ่าน |
-| Reference pages | `npm run sras -- render --check` | 154 หน้า |
-| เอกสารสองภาษา | `npm run check:docs`, `npm run docs:build` | 182 English, 29 Thai |
-| Content guard | `npm run sras -- guard` | สแกน 346 ไฟล์ |
-| FDS pack | `npm run check:fds` | 43 skills ที่ `4d3875c` |
-| ตัวอย่างโปรเจกต์ | `npm run sras -- project validate examples/<name>` | ผ่าน 5 จาก 5 |
-| Pilot reports | `docs/en/pilots/` | pilot synthetic สองชุด |
-| Finding triage | `docs/en/pilots/summary.md` | 18 finding มี disposition |
-| Readiness review | `docs/en/governance/v1-readiness.md` | ยังไม่พร้อม v1.0.0 |
-| คำถามทางกฎหมายที่เปิด | issues #128, #129, #130, #131 | เปิด |
-| Release issues คงเหลือ | issues #61, #62, #63, #64, #65, #66 | เปิด |
-| Release ที่ตรวจ | [v0.9.0](https://github.com/yutna/software-delivery-assurance/releases/tag/v0.9.0) | เผยแพร่ |
+| เนื้อหามาตรฐาน         | `npm run sras -- validate --all`                                                   | 53 ไฟล์                   |
+| Tests                  | `npm test`                                                                         | ผ่าน 327                  |
+| Type และ style         | `npm run typecheck`, `npm run lint`, `npm run format:check`                        | ผ่าน                      |
+| Reference pages        | `npm run sras -- render --check`                                                   | 154 หน้า                  |
+| เอกสารสองภาษา          | `npm run check:docs`, `npm run docs:build`                                         | 182 English, 29 Thai      |
+| Content guard          | `npm run sras -- guard`                                                            | สแกน 346 ไฟล์             |
+| FDS pack               | `npm run check:fds`                                                                | 43 skills ที่ `4d3875c`   |
+| ตัวอย่างโปรเจกต์       | `npm run sras -- project validate examples/<name>`                                 | ผ่าน 5 จาก 5              |
+| Pilot reports          | `docs/en/pilots/`                                                                  | pilot synthetic สองชุด    |
+| Finding triage         | `docs/en/pilots/summary.md`                                                        | 18 finding มี disposition |
+| Readiness review       | `docs/en/governance/v1-readiness.md`                                               | ยังไม่พร้อม v1.0.0        |
+| คำถามทางกฎหมายที่เปิด  | issues #128, #129, #130, #131                                                      | เปิด                      |
+| Release issues คงเหลือ | issues #61, #62, #63, #64, #65, #66                                                | เปิด                      |
+| Release ที่ตรวจ        | [v0.9.0](https://github.com/yutna/software-delivery-assurance/releases/tag/v0.9.0) | เผยแพร่                   |
 
 Repository: <https://github.com/yutna/software-delivery-assurance>
 
