@@ -21,6 +21,7 @@ const enNav: DefaultTheme.NavItem[] = [
   { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
   { text: "Sectors", link: "/en/sectors/", activeMatch: "/en/sectors/" },
   { text: "Registers", link: "/en/registers/", activeMatch: "/en/registers/" },
+  { text: "Pilots", link: "/en/pilots/", activeMatch: "/en/pilots/" },
   { text: "Reference", link: "/en/reference/" },
   { text: "Templates", link: "/en/templates/", activeMatch: "/en/templates/" },
 ];
@@ -37,6 +38,7 @@ const thNav: DefaultTheme.NavItem[] = [
   { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
   { text: "ภาคธุรกิจ", link: "/th/sectors/", activeMatch: "/th/sectors/" },
   { text: "ทะเบียน", link: "/th/registers/", activeMatch: "/th/registers/" },
+  { text: "การนำร่อง", link: "/th/pilots/", activeMatch: "/th/pilots/" },
   { text: "Reference", link: "/th/reference/" },
   { text: "Templates", link: "/th/templates/", activeMatch: "/th/templates/" },
 ];
@@ -101,6 +103,13 @@ const enSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "Templates overview", link: "/en/templates/" },
       { text: "Project template", link: "/en/templates/project" },
+    ],
+  },
+  {
+    text: "Pilots",
+    items: [
+      { text: "Pilot overview", link: "/en/pilots/" },
+      { text: "Finance pilot", link: "/en/pilots/finance" },
     ],
   },
   {
@@ -169,6 +178,13 @@ const thSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "ภาพรวม templates", link: "/th/templates/" },
       { text: "Template โปรเจกต์", link: "/th/templates/project" },
+    ],
+  },
+  {
+    text: "การนำร่อง",
+    items: [
+      { text: "ภาพรวมการนำร่อง", link: "/th/pilots/" },
+      { text: "การนำร่องด้านการเงิน", link: "/th/pilots/finance" },
     ],
   },
   {
