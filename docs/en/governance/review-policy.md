@@ -145,9 +145,9 @@ no corresponding review event.
 ### Release review checklist
 
 - [ ] Every milestone issue is closed and the milestone scope is complete.
-- [ ] The version is consistent in `package.json`, `package-lock.json`,
-      `src/sras/version.ts`, `CITATION.cff`, `core/sras.yaml`, and the docs
-      config.
+- [ ] The version is consistent in `package.json`, `package-lock.json` (the
+      root `version` and `packages[""].version`), `src/sras/version.ts`,
+      `CITATION.cff`, `core/sras.yaml`, and the docs config.
 - [ ] `ci-ok` and `pr-check / check` are green on `main`.
 - [ ] `oss-kit doctor` reports no drift.
 - [ ] The audit evidence is posted to the dashboard issue.
