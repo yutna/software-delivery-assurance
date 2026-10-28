@@ -40,7 +40,7 @@ starter kit เหมาะกับการวางแผนภายใน �
 | ดู resolution และ coverage        | พร้อม  | `sras project resolve <dir>` แสดงทุก gate ที่ยังไม่ถูกประเมิน        |
 | บันทึกหน่วยงานผู้ว่าจ้างภาครัฐ    | พร้อม  | `scope.public_sector` พร้อม contracting authority และ contract       |
 | Core, module และ overlay          | มีอยู่ | ข้อกำหนด Core 70, module 52 และ overlay 45 ใน SRAS 1.0.0             |
-| ทะเบียนและ crosswalk ไทย          | มีอยู่ | ทะเบียนไทย 12 รายการและ crosswalk 7 ชุด                              |
+| ทะเบียนและ crosswalk ไทย          | มีอยู่ | ทะเบียนไทย 12 รายการและ crosswalk 8 ชุด                              |
 | Reference pages แบบ deterministic | พร้อม  | `sras render --check`                                                |
 | Content guard สาธารณะ             | พร้อม  | `sras guard` และ CI annotations                                      |
 

@@ -51,6 +51,8 @@ Security decisions are cheapest and most effective before the design is fixed.
 
 - [MAP-ASVS — SRAS Core and Integration to OWASP ASVS 5.0](../crosswalks/MAP-ASVS.md): `v5.0.0-15.1, v5.0.0-15.2` (supports) — Secure coding documentation, architecture, and dependencies.
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.25, A.8.26, A.8.27` (supports) — Secure development, application requirements, and architecture.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PO.1` (supports) — Security requirements and threat models define the security expectations before build.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PW.1` (supports) — Threat modeling is the SSDF risk-based security requirements practice.
 
 ## Review
 

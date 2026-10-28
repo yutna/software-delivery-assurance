@@ -74,7 +74,7 @@ belong in this repository.
 | Sector overlays      |     4 | `overlays/industries/` |
 | Overlay requirements |    45 | `overlays/industries/` |
 | Thailand registers   |    12 | `registers/th/`        |
-| Crosswalks           |     7 | `mappings/`            |
+| Crosswalks           |     8 | `mappings/`            |
 | Profiles             |     2 | `core/profiles/`       |
 | Project template     |     1 | `templates/project/`   |
 | Synthetic examples   |     5 | `examples/`            |

@@ -52,6 +52,7 @@ A consistent automated gate catches defects that manual review alone misses.
 
 - [MAP-ASVS — SRAS Core and Integration to OWASP ASVS 5.0](../crosswalks/MAP-ASVS.md): `v5.0.0-15.3` (supports) — Defensive coding.
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.28, A.8.29` (partial) — Secure coding and testing are required; change gating is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PW.7, PW.8` (supports) — Code review and automated security scans implement the review and test practices for every change.
 
 ## Review
 

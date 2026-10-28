@@ -49,6 +49,7 @@ A supplier compromise becomes the product's incident within hours.
 ## Crosswalks
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.5.7, A.5.22, A.5.24` (supports) — Threat intelligence, supplier monitoring, and incident planning.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `RV.1` (partial) — Supplier incident monitoring covers the supply chain; SSDF RV.1 focuses on vulnerabilities in the organization's own products.
 
 ## Review
 

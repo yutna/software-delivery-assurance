@@ -39,7 +39,7 @@ repository นี้เป็น concern template ไม่ใช่มาตร
   `npm run format:check` ผ่าน
 - **Version consistency:** ไฟล์เวอร์ชันทั้งหมดตรงกันที่ 1.0.0
 - **FDS pack:** `npm run check:fds` ผ่าน pack ที่ pin ไว้
-- **จำนวน:** Core 70, module 52, overlay 45, register 27 และ crosswalk 7
+- **จำนวน:** Core 70, module 52, overlay 45, register 27 และ crosswalk 8
 - **Claims:** ไม่มีหน้าใดอ้างการรับรอง ข้อสรุปทางกฎหมาย การทบทวนภายนอก หรือ
   human sign-off
 - **Defects:** finding จาก pilot ที่กระทบ template และ CLI แก้แล้วโดย #140,

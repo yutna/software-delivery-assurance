@@ -1,0 +1,113 @@
+id: MAP-NISTSSDF
+title:
+  en: SRAS Core to NIST SP 800-218 (SSDF) 1.1
+  th: SRAS Core ไปยัง NIST SP 800-218 (SSDF) 1.1
+description:
+  en: >-
+    Targeted informative crosswalk from SRAS requirements to the secure
+    software development practices in NIST SP 800-218 (SSDF) 1.1. It covers
+    the requirements that cite SSDF practices directly and the closely related
+    governance, change, and vulnerability requirements. It is not an
+    equivalence, a certification, or a compliance claim. Not covered by this
+    crosswalk: PO.4 security-check criteria, PW.2 design review, PW.3 secure
+    reuse criteria, PW.5 secure coding standards, PW.6 build configuration
+    hardening, PW.9 default secure configuration, and RV.3 root-cause analysis.
+  th: >-
+    crosswalk เชิงข้อมูลแบบเจาะจงจาก requirement ของ SRAS ไปยังแนวปฏิบัติ secure
+    software development ใน NIST SP 800-218 (SSDF) 1.1 ครอบคลุม requirement
+    ที่อ้างแนวปฏิบัติ SSDF โดยตรง และ requirement ด้าน governance, change และ
+    vulnerability ที่เกี่ยวข้องอย่างใกล้ชิด ไม่ใช่การอ้างความเท่าเทียม การรับรอง
+    หรือการอ้าง compliance สิ่งที่ยังไม่ครอบคลุมใน crosswalk นี้ คือ PO.4
+    เกณฑ์การตรวจ security, PW.2 การทบทวน design, PW.3 เกณฑ์การใช้ซอฟต์แวร์ซ้ำ,
+    PW.5 มาตรฐาน secure coding, PW.6 การตั้งค่า build ให้ปลอดภัย, PW.9 default
+    secure configuration และ RV.3 root-cause analysis
+version: 0.1.0
+source_standard: NIST SP 800-218 (SSDF) 1.1
+source_url: https://csrc.nist.gov/pubs/sp/800/218/final
+mappings:
+  - requirement: SRAS-GOV-005
+    external: PO.2
+    relationship: supports
+    notes: Assurance roles and decision rights cover the SSDF roles and responsibilities practice.
+  - requirement: SRAS-CHG-001
+    external: PS.1
+    relationship: supports
+    notes: Version control protects source and configuration from unauthorized change.
+  - requirement: SRAS-CHG-002
+    external: PW.7
+    relationship: supports
+    notes: Peer review is the SSDF code-review practice applied to every change.
+  - requirement: SRAS-CHG-003
+    external: PS.2, PW.8, PO.3
+    relationship: partial
+    notes: CI builds, tests, and scans with a supporting toolchain; artifact integrity verification and toolchain hardening remain environment-specific.
+  - requirement: SRAS-CHG-004
+    external: PW.8
+    relationship: supports
+    notes: Automated tests execute the product to confirm the expected behavior.
+  - requirement: SRAS-CHG-005
+    external: PO.5
+    relationship: supports
+    notes: Separate development, test, and production environments implement the SSDF environment practice.
+  - requirement: SRAS-CHG-008
+    external: PS.3
+    relationship: partial
+    notes: Versioned release evidence and limitations support archiving; archive integrity and retention are not specified.
+  - requirement: SRAS-CHG-009
+    external: PW.6
+    relationship: partial
+    notes: Versioned and reviewed configuration covers build inputs; compiler and build hardening are not specified.
+  - requirement: SRAS-SCM-002
+    external: PS.3
+    relationship: supports
+    notes: An SBOM records release components for archiving and traceability.
+  - requirement: SRAS-SCM-003
+    external: PS.2
+    relationship: supports
+    notes: Trusted sources and integrity verification implement release integrity.
+  - requirement: SRAS-SCM-005
+    external: PW.4
+    relationship: partial
+    notes: Third-party components are tracked for license obligations; the secure acquisition review that PW.4 also expects is an SRAS addition to this requirement.
+  - requirement: SRAS-SCM-010
+    external: RV.1
+    relationship: partial
+    notes: Supplier incident monitoring covers the supply chain; SSDF RV.1 focuses on vulnerabilities in the organization's own products.
+  - requirement: SRAS-SEC-007
+    external: PO.1
+    relationship: supports
+    notes: Security requirements and threat models define the security expectations before build.
+  - requirement: SRAS-SEC-007
+    external: PW.1
+    relationship: supports
+    notes: Threat modeling is the SSDF risk-based security requirements practice.
+  - requirement: SRAS-SEC-008
+    external: PW.7, PW.8
+    relationship: supports
+    notes: Code review and automated security scans implement the review and test practices for every change.
+  - requirement: SRAS-SEC-009
+    external: RV.1
+    relationship: supports
+    notes: Vulnerability identification and remediation cover the SSDF vulnerability response practice.
+  - requirement: SRAS-SEC-009
+    external: RV.2
+    relationship: partial
+    notes: Prioritization and remediation targets cover assessment and treatment; root-cause analysis is RV.3 and is not covered.
+  - requirement: SRAS-SEC-012
+    external: RV.2
+    relationship: related
+    notes: Independent testing informs vulnerability assessment; the remediation targets themselves are specified by SRAS-SEC-009.
+  - requirement: SRAS-AI-006
+    external: PS.3
+    relationship: partial
+    notes: Prompts, models, and configuration are versioned; SP 800-218A adds model provenance and data lineage expectations.
+  - requirement: SRAS-AI-007
+    external: PW.7, PW.8
+    relationship: partial
+    notes: Controlled AI release and rollback cover review and testing; AI-specific evaluation is an SP 800-218A addition.
+status: draft
+review_status: unverified
+translation_status: partial
+machine_translated: true
+created_at: "2026-10-28"
+updated_at: "2026-10-28"

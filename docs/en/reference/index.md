@@ -172,5 +172,6 @@ run `npm run sras -- render`.
 - [MAP-ISO42001 — SRAS AI to ISO/IEC 42001:2023](crosswalks/MAP-ISO42001.md)
 - [MAP-NISTAIRMF — SRAS AI to NIST AI RMF 1.0](crosswalks/MAP-NISTAIRMF.md)
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](crosswalks/MAP-NISTCSF.md)
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](crosswalks/MAP-NISTSSDF.md)
 - [MAP-PCIDSS — SRAS Core to PCI DSS 4.0.1](crosswalks/MAP-PCIDSS.md)
 - [MAP-WCAG22 — SRAS Core to WCAG 2.2 Level AA](crosswalks/MAP-WCAG22.md)

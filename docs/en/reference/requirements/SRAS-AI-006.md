@@ -50,6 +50,7 @@ An AI behaviour that cannot be reproduced cannot be investigated or rolled back.
 
 - [MAP-ISO42001 — SRAS AI to ISO/IEC 42001:2023](../crosswalks/MAP-ISO42001.md): `A.6 AI system life cycle` (supports) — Life cycle records and version control.
 - [MAP-NISTAIRMF — SRAS AI to NIST AI RMF 1.0](../crosswalks/MAP-NISTAIRMF.md): `MEASURE 1.1, MANAGE 1.1` (partial) — Measurement and response are covered; prompt and model versioning is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PS.3` (partial) — Prompts, models, and configuration are versioned; SP 800-218A adds model provenance and data lineage expectations.
 
 ## Review
 

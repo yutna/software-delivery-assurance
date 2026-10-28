@@ -50,6 +50,7 @@ A change that is not in version control cannot be reviewed, reproduced, or rolle
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.32, A.8.4` (supports) — Change management and source code access.
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `PR.PS-01` (supports) — Configuration management.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PS.1` (supports) — Version control protects source and configuration from unauthorized change.
 - [MAP-PCIDSS — SRAS Core to PCI DSS 4.0.1](../crosswalks/MAP-PCIDSS.md): `6.5.1` (supports) — Change control for secure systems and software.
 
 ## Review

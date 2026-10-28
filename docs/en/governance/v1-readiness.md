@@ -43,7 +43,7 @@ compliant, or whether a Thai translation is ready for a formal publication.
 - **Version consistency:** the version files agree at 1.0.0.
 - **FDS pack:** `npm run check:fds` passes on the pinned pack.
 - **Counts:** the Core has 70 active requirements, the modules 52, the overlays
-  45, the registers 27, and the crosswalks 7.
+  45, the registers 27, and the crosswalks 8.
 - **Claims:** no page claims a certification, a legal conclusion, an external
   review, or a human sign-off.
 - **Defects:** the historical pilot findings that affected the template and the

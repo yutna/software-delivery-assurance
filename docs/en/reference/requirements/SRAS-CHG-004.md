@@ -49,6 +49,7 @@ Manual checks at release time cannot prove that a journey still works after chan
 ## Crosswalks
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.29` (partial) — Security testing is required; journey coverage is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PW.8` (supports) — Automated tests execute the product to confirm the expected behavior.
 - [MAP-WCAG22 — SRAS Core to WCAG 2.2 Level AA](../crosswalks/MAP-WCAG22.md): `5.2 Conformance Requirements` (related) — Automated tests cannot confirm accessibility conformance; manual and assistive-technology testing are required.
 
 ## Review

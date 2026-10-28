@@ -51,6 +51,7 @@ Independent testing challenges assumptions that the delivery team cannot see.
 
 - [MAP-ASVS — SRAS Core and Integration to OWASP ASVS 5.0](../crosswalks/MAP-ASVS.md): `v5.0.0-15.3` (partial) — Defensive coding supports testing; independent security testing is an SRAS addition.
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.29, A.8.34` (partial) — Security testing and audit protection are covered; independence is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `RV.2` (related) — Independent testing informs vulnerability assessment; the remediation targets themselves are specified by SRAS-SEC-009.
 
 ## Review
 

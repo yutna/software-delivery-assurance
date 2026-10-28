@@ -49,6 +49,7 @@ Without release evidence, nobody can prove what is running or who approved it.
 ## Crosswalks
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `7.5, A.8.32` (partial) — Documented information and change records support release evidence.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PS.3` (partial) — Versioned release evidence and limitations support archiving; archive integrity and retention are not specified.
 - [MAP-WCAG22 — SRAS Core to WCAG 2.2 Level AA](../crosswalks/MAP-WCAG22.md): `5.3 Conformance Claims` (related) — Release evidence should state the accessibility target and known limitations.
 
 ## Review

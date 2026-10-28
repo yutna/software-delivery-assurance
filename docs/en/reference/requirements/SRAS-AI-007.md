@@ -50,6 +50,7 @@ Models and prompts change behaviour without a code change.
 
 - [MAP-ISO42001 — SRAS AI to ISO/IEC 42001:2023](../crosswalks/MAP-ISO42001.md): `A.6 AI system life cycle` (supports) — Deployment, operation, and change control.
 - [MAP-NISTAIRMF — SRAS AI to NIST AI RMF 1.0](../crosswalks/MAP-NISTAIRMF.md): `MANAGE 1.1, MANAGE 2.1` (supports) — Risk response and change control.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PW.7, PW.8` (partial) — Controlled AI release and rollback cover review and testing; AI-specific evaluation is an SP 800-218A addition.
 
 ## Review
 
