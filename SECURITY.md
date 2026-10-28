@@ -19,7 +19,7 @@ This is a solo-maintained project; responses are best-effort.
 ## Known development-only advisories
 
 `npm audit --omit=dev --audit-level=high` is the blocking gate for shipped
-dependencies. At v1.0.0 it reports no vulnerabilities in the shipped graph.
+dependencies. At v1.1.0 it reports no vulnerabilities in the shipped graph.
 
 A high-severity advisory remains in the development-only `markdownlint-cli2`
 tree through `micromark-extension-math` and `katex`. Dependabot reports

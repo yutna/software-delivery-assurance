@@ -46,13 +46,16 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**Content version: SRAS 1.0.0. Template release: v1.0.0, published
+**Content version: SRAS 1.1.0. Template release: v1.1.0, published
 2026-10-28. This is a template release, not a standard.**
 
 The template is usable with limitations. The project template, `init`,
 `project validate`, `project refresh`, deterministic rendering, and the content
 guard work. The four Thailand sector overlays include public sector, and a
 public-sector instance records the contracting authority and contract reference.
+The 1.1.0 release adds requirement-page guidance and crosswalk pages, a NIST
+SP 800-218 (SSDF) crosswalk, adopter operations guides, and an explicit
+`Not signed` sign-off for new instances.
 
 The limitations are part of the product, not a footnote:
 
@@ -136,7 +139,7 @@ Then read, in this order:
 
 The published site is
 [yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
-Follow [ROADMAP.md](ROADMAP.md) for the released milestones. The 1.0.0
+Follow [ROADMAP.md](ROADMAP.md) for the released milestones. The 1.1.0
 template release publishes the concern template. It is not a standard release.
 
 ## Repository map

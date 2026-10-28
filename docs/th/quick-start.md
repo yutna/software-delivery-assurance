@@ -192,7 +192,7 @@ npm run sras -- guard
 ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-guard passed: scanned 380 files; excluded 0
+guard passed: scanned 384 files; excluded 0
 ```
 
 จำนวนไฟล์อาจเปลี่ยนเมื่อเพิ่มหรือลบไฟล์ สิ่งสำคัญคือผลผ่านหรือไม่ผ่าน

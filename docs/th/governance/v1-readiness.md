@@ -6,7 +6,7 @@ machine_translated: true
 # AI audit และข้อจำกัด
 
 **สถานะ:** บันทึก AI audit **ผู้ตรวจ:** AI execution agent (DeepSeek V4.1 Flash
-ผ่าน OpenCode) **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 1.0.0
+ผ่าน OpenCode) **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 1.1.0
 
 นี่ไม่ใช่การทบทวนโดยมนุษย์ การทบทวนภายนอก การทบทวนทางกฎหมาย หรือการรับรอง
 ไม่มี human sign-off ที่บันทึกไว้ และ repository ไม่ได้อ้างว่ามี
@@ -30,14 +30,15 @@ repository นี้เป็น concern template ไม่ใช่มาตร
 
 ## สิ่งที่ AI ตรวจ
 
-- **Schema และ domain validation:** `npm run sras -- validate --all` ผ่าน 53 ไฟล์
+- **Schema และ domain validation:** `npm run sras -- validate --all` ผ่าน 54 ไฟล์
 - **Reference pages แบบ deterministic:** `npm run sras -- render --check` ผ่าน
-  154 หน้า
+  162 หน้า รวมหน้า crosswalk 8 หน้า
 - **Content guard:** `npm run sras -- guard` ผ่านเนื้อหาสาธารณะ
 - **Docs QA และ build:** `npm run check:docs` และ `npm run docs:build` ผ่าน
 - **Tests และ types:** `npm test`, `npm run typecheck`, `npm run lint` และ
   `npm run format:check` ผ่าน
-- **Version consistency:** ไฟล์เวอร์ชันทั้งหมดตรงกันที่ 1.0.0
+- **Version consistency:** `node tools/check-version.ts 1.1.0` ผ่าน และตรวจทั้ง
+  สอง field ของ version ใน `package-lock.json`
 - **FDS pack:** `npm run check:fds` ผ่าน pack ที่ pin ไว้
 - **จำนวน:** Core 70, module 52, overlay 45, register 27 และ crosswalk 8
 - **Claims:** ไม่มีหน้าใดอ้างการรับรอง ข้อสรุปทางกฎหมาย การทบทวนภายนอก หรือ

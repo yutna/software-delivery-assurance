@@ -33,7 +33,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     env:
-      SRAS_REF: v1.0.0
+      SRAS_REF: v1.1.0
     steps:
       - name: Check out the project instance
         uses: actions/checkout@v7
@@ -87,7 +87,7 @@ jobs:
 rg '^sras_version:' assurance.yaml
 ```
 
-ณ วันที่เขียน `v1.0.0` เป็น tag ที่เผยแพร่แล้ว ให้เปลี่ยนเป็น release ที่ตรงกับ
+ณ วันที่เขียน `v1.1.0` เป็น tag ที่เผยแพร่แล้ว ให้เปลี่ยนเป็น release ที่ตรงกับ
 อินสแตนซ์ `project refresh` เขียน version เดียวกันลงใน `assurance.lock.yaml`
 lockfile จึงระบุ input ที่สร้างผลลัพธ์นั้น
 

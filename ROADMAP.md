@@ -79,3 +79,16 @@ external review, and does not claim certification or compliance.
 
 An adopting project that needs a formal review runs it in its own context. The
 library only points at the concerns and keeps the synthetic examples.
+
+## v1.1.0 — Adopter operations and crosswalk depth
+
+Published as a 1.1.0 template release on 2026-10-28. The release adds rationale,
+assessment guidance, references, and crosswalk links to generated requirement
+pages; generates crosswalk pages; adds a targeted NIST SP 800-218 (SSDF)
+crosswalk; documents private CI validation and 1.x upgrades for adopters; makes
+an unsigned sign-off explicit; and checks both `package-lock.json` version
+fields. It also completes the issue-form and citation metadata follow-ups.
+
+No requirement ID, schema shape, or gate changed. The Thai translation remains
+partial, the registers remain unverified, and no human, external, or legal
+review is claimed.
