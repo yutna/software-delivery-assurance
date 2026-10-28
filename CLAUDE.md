@@ -32,3 +32,7 @@ is the index; the rest of the pack carries one rule each.
   other `as` in `src/`.
 - `internal/` is temporary bootstrap material, excluded from the guard and
   docs, and deleted in the final v1.0.0 issue.
+- Thai prose under `docs/th/` is written and reviewed with the `kien-thai`
+  skill plus the `sras-thai` project overlay. Use `kode-thai` for the audit
+  loop. Keep `translation_status: partial` and `machine_translated: true`;
+  never claim a human review.
