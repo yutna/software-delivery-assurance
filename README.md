@@ -61,12 +61,12 @@ The limitations are part of the product, not a footnote:
 - No external reviewer has been engaged. No page claims external review,
   certification, or legal approval.
 - Four legal questions (#128–#131) remain open.
-- Evidence type coverage (#135) and resolution output (#126) are not complete.
+- Evidence type coverage (#134) and resolution output (#126) are not complete.
 - The template is a starting point for your own scope and local rules. It does
   not replace procurement advice, legal advice, or your organisation's quality
   and security programme.
 
-The v0.9.0 pilots produced 18 findings: 11 are now fixed, 3 remain deferred with
+The v0.9.0 pilots produced 18 findings: 12 are now fixed, 2 remain deferred with
 an issue, and 4 are open legal questions. The [pilot summary](docs/en/pilots/summary.md)
 records each disposition. The [v1.0.0 readiness review](docs/en/governance/v1-readiness.md)
 records why the formal-standard track is not ready.

@@ -65,8 +65,8 @@ The pilot used the same steps as pilot A so the two reports are comparable.
 | PS-03 | Medium   | `TH-PUB-003` is a gate with no minimum accessibility target, and the project schema has no field that records the target the project agreed.                                      | Open legal question #131 |
 | PS-04 | High     | The project schema has no field for the contracting authority or contract reference, so `TH-PUB-001` cannot be tied to the body that awarded the contract.                        | Deferred to #132         |
 | PS-05 | Medium   | `TH-PUB-005` requires a licence for open data but does not name an acceptable licence set, so any string passes.                                                                  | Open legal question #130 |
-| PS-06 | Low      | `TH-PUB-003` cites WCAG 2.2, a standard that has no register entry, so its version and review date are not tracked with the other sources.                                        | Deferred to #134         |
-| PS-07 | Medium   | Evidence type coverage is not checked. `TH-PUB-001` expects a document, a contract, and a vendor performance report, but the example marks the gate `verified` with one document. | Deferred to #135         |
+| PS-06 | Low      | `TH-PUB-003` cites WCAG 2.2, a standard that has no register entry, so its version and review date are not tracked with the other sources.                                        | Deferred to #135         |
+| PS-07 | Medium   | Evidence type coverage is not checked. `TH-PUB-001` expects a document, a contract, and a vendor performance report, but the example marks the gate `verified` with one document. | Deferred to #134         |
 
 ## Detail on the high findings
 
@@ -127,8 +127,8 @@ them.
 ## Follow-ups
 
 - Fixed findings: #59.
-- Deferred findings: #132 (contracting authority), #134 (external standards in
-  the register), and #135 (evidence type coverage).
+- Deferred findings: #132 (contracting authority), #135 (external standards in
+  the register), and #134 (evidence type coverage).
 - Open legal questions: #130 and #131.
 
 ## Related pages

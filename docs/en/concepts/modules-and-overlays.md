@@ -73,6 +73,10 @@ including module and overlay requirements.
 The factual record of a law or regulation lives in a
 [register](../registers/index.md), not in an overlay.
 
+A voluntary external standard cited for assessment guidance stays in the
+requirement's references. It is not a register entry unless a law gives it
+binding force; see [external standards](../registers/index.md#external-standards-cited-by-requirements).
+
 ## Related pages
 
 - [Resolution](resolution.md)
