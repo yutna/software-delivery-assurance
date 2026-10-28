@@ -75,6 +75,8 @@ requirements:
 - `assurance.yaml` และ `assessment.yaml` ต้องตรงกันในเรื่อง project identity, SRAS version, profile, tier, modules และ overlays
 - claim ที่เป็น `verified` หรือ `partial` ต้องมี evidence ที่ยัง current มีผู้อนุมัติ และมีวันหมดอายุ
 - risk ที่เป็น `accepted` ต้องมี acceptance ID
+- public sector instance ที่ประเมิน `TH-PUB-001` ต้องมี `scope.public_sector`
+  พร้อม `contracting_authority` และ `contract_reference`
 - location ของ evidence ต้องเป็น private reference เช่น `evidence/synthetic-policy.md` ห้ามเป็น public URL
 
 คู่มือไฟล์ทั้งหมดอยู่ที่ [templates/project.md](templates/project.md)

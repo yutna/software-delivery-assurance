@@ -83,6 +83,7 @@ scope:
   data: [synthetic-records]
   users: [example-team]
   jurisdictions: [TH]
+  public_sector: null
 requirements:
   - id: SRAS-GOV-001
     status: implemented
@@ -107,6 +108,35 @@ summary:
 
 Statuses are `not_assessed`, `gap`, `partial`, `implemented`, `verified`, and
 `not_applicable`. The counts must match the requirement list.
+
+`scope.public_sector` is optional and is either `null` or an object with both
+`contracting_authority` and `contract_reference`. Set it when the instance
+selects `TH-PUB` and assesses `TH-PUB-001`; validation reports a missing value
+in that case. Use a synthetic authority in a public example, never a real
+agency name.
+
+```yaml
+scope:
+  public_sector:
+    contracting_authority: Synthetic public authority
+    contract_reference: SYNTH-CONTRACT-001
+```
+
+## Migration note: `scope.public_sector`
+
+The field is additive and optional. Existing instances remain valid: an absent
+`public_sector` is read as `null`. No lockfile change is needed because the
+assessment is not a lock input.
+
+To migrate a public sector instance:
+
+1. Add `scope.public_sector` with both fields to `assessment.yaml`.
+2. Use the authority that awarded the contract and the internal contract
+   reference; do not put a real agency name in the public repository.
+3. Run `npm run sras -- project validate <dir>`.
+
+An instance that selects `TH-PUB`, assesses `TH-PUB-001`, and leaves the field
+`null` now fails validation with a `scope/public_sector` issue.
 
 `full` requires `maturity` on every requirement and a numeric `summary.index`.
 `lite` requires `maturity: null` and `summary.index: null`.

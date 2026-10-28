@@ -33,12 +33,12 @@ const makeIo = (): {
   };
 };
 
-const copyExample = async (): Promise<string> => {
+const copyExample = async (example = "e2e-project"): Promise<string> => {
   const directory = await mkdtemp(join(tmpdir(), "sras-cli-project-"));
   temporaryDirectories.push(directory);
   const target = join(directory, "project");
 
-  await cp(join(process.cwd(), "examples", "e2e-project"), target, {
+  await cp(join(process.cwd(), "examples", example), target, {
     recursive: true,
   });
 
@@ -114,6 +114,29 @@ describe("sras project", () => {
       1,
     );
     expect(stderr.join("")).toContain("project read error: claims.yaml");
+  });
+
+  test("reports a missing contracting authority for TH-PUB-001", async () => {
+    const target = await copyExample("public-sector-synthetic");
+    const path = join(target, "assessment.yaml");
+    const text = await readFile(path, "utf8");
+
+    await writeFile(
+      path,
+      text.replace(
+        "  public_sector:\n    contracting_authority: Synthetic public authority\n    contract_reference: SYNTH-CONTRACT-001",
+        "  public_sector: null",
+      ),
+      "utf8",
+    );
+
+    const { io, stderr } = makeIo();
+
+    expect(await run(["project", "validate", target], io, process.cwd())).toBe(
+      1,
+    );
+    expect(stderr.join("")).toContain("scope/public_sector");
+    expect(stderr.join("")).toContain("TH-PUB-001");
   });
 
   test("missing arguments are usage errors", async () => {

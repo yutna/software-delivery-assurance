@@ -11,6 +11,9 @@ scope:
   data: [synthetic-service-records]
   users: [synthetic-service-team]
   jurisdictions: [TH]
+  public_sector:
+    contracting_authority: Synthetic public authority
+    contract_reference: SYNTH-CONTRACT-001
 modules: [SRAS-INT, SRAS-RGD, SRAS-CLD]
 overlays: [TH-PUB]
 assessed_at: "2026-10-27"

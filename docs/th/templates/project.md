@@ -70,6 +70,7 @@ scope:
   data: [synthetic-records]
   users: [example-team]
   jurisdictions: [TH]
+  public_sector: null
 requirements:
   - id: SRAS-GOV-001
     status: implemented
@@ -96,6 +97,34 @@ summary:
 
 `full` ต้องมี `maturity` ทุก requirement และ `summary.index` เป็นตัวเลข
 `lite` ต้องมี `maturity: null` และ `summary.index: null`
+
+`scope.public_sector` เป็นฟิลด์เสริม ค่าเป็น `null` หรือ object ที่มีทั้ง
+`contracting_authority` และ `contract_reference` ต้องตั้งค่าเมื่อ instance
+เลือก `TH-PUB` และประเมิน `TH-PUB-001`; validation จะรายงานค่าที่หายในกรณีนั้น
+ตัวอย่างสาธารณะต้องใช้หน่วยงาน synthetic เท่านั้น ห้ามใส่ชื่อหน่วยงานจริง
+
+```yaml
+scope:
+  public_sector:
+    contracting_authority: Synthetic public authority
+    contract_reference: SYNTH-CONTRACT-001
+```
+
+## Migration note: `scope.public_sector`
+
+ฟิลด์นี้เพิ่มแบบเสริมและไม่บังคับ instance เดิมยังใช้ได้: ถ้าไม่มี
+`public_sector` จะอ่านเป็น `null` ไม่ต้องเปลี่ยน lockfile เพราะ assessment ไม่ใช่
+lock input
+
+การย้าย public sector instance:
+
+1. เพิ่ม `scope.public_sector` พร้อมทั้งสองฟิลด์ใน `assessment.yaml`
+2. ใช้หน่วยงานที่ว่าจ้างและ reference ของสัญญาภายใน ห้ามใส่ชื่อหน่วยงานจริงใน
+   repository สาธารณะ
+3. รัน `npm run sras -- project validate <dir>`
+
+instance ที่เลือก `TH-PUB` ประเมิน `TH-PUB-001` และปล่อยฟิลด์เป็น `null` จะ
+validation ไม่ผ่านพร้อม issue `scope/public_sector`
 
 ## `evidence-index.yaml`
 

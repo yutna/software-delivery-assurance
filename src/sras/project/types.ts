@@ -45,11 +45,17 @@ export type ProjectManifest = {
   readonly updatedAt: IsoDate;
 };
 
+export type PublicSectorScope = {
+  readonly contractingAuthority: string;
+  readonly contractReference: string;
+};
+
 export type ProjectScope = {
   readonly systems: readonly string[];
   readonly data: readonly string[];
   readonly users: readonly string[];
   readonly jurisdictions: readonly string[];
+  readonly publicSector: PublicSectorScope | null;
 };
 
 export type AssessmentRequirementRef = RequirementId | OverlayRequirementId;
@@ -275,4 +281,10 @@ export type ProjectIssue =
       readonly file: string;
       readonly kind: "profile" | "module" | "overlay";
       readonly id: string;
+    }
+  | {
+      readonly tag: "MissingField";
+      readonly file: string;
+      readonly field: string;
+      readonly message: string;
     };
