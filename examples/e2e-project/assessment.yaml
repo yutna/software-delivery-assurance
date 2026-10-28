@@ -26,7 +26,7 @@ requirements:
   - id: SRAS-SEC-001
     status: verified
     maturity: L3
-    evidence_refs: [EV-E2E-002]
+    evidence_refs: [EV-E2E-002, EV-E2E-003]
     notes: Synthetic access-control configuration and test.
     gap_owner: null
     due_date: null
@@ -47,8 +47,8 @@ requirements:
   - id: SRAS-AI-001
     status: verified
     maturity: L3
-    evidence_refs: [EV-E2E-005]
-    notes: Synthetic AI inventory and accountable owner.
+    evidence_refs: [EV-E2E-005, EV-E2E-001, EV-E2E-007]
+    notes: Synthetic AI inventory, document, and approval ticket.
     gap_owner: null
     due_date: null
   - id: SRAS-AI-003

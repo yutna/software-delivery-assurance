@@ -172,6 +172,9 @@ entries:
 - `location` ต้องเป็น private reference ห้ามเป็น public URL
 - `hash` เป็น `null` หรือ digest ที่ขึ้นต้นด้วย `sha256:`
 - `freshness_status: current` ต้องไม่ขัดกับ `expires_at`
+- requirement ที่เป็น `verified` ต้องมีหลักฐานครบทุกประเภทที่ข้อกำหนดคาดหวัง
+  `project validate` จะรายงานประเภทที่ขาดและประเภทที่พบ ประเภทอื่นใช้แทนกัน
+  ไม่ได้ การตรวจนี้ดูประเภท ไม่ได้ดูคุณภาพของหลักฐาน และ freshness เป็นกฎแยก
 - หลักฐานจริงและ customer data อยู่นอก repository นี้เสมอ
 
 ## `claims.yaml`

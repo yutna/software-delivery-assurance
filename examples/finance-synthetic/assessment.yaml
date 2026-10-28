@@ -26,7 +26,7 @@ requirements:
   - id: SRAS-SEC-001
     status: verified
     maturity: L3
-    evidence_refs: [EV-FIN-002]
+    evidence_refs: [EV-FIN-002, EV-FIN-003]
     notes: Synthetic access-control configuration and test.
     gap_owner: null
     due_date: null
@@ -61,8 +61,8 @@ requirements:
   - id: TH-FIN-006
     status: verified
     maturity: L3
-    evidence_refs: [EV-FIN-002]
-    notes: Synthetic privileged-access approval and review record.
+    evidence_refs: [EV-FIN-002, EV-FIN-007, EV-FIN-008]
+    notes: Synthetic privileged-access configuration, log, and approval ticket.
     gap_owner: null
     due_date: null
   - id: TH-FIN-010

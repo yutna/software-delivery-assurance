@@ -89,6 +89,8 @@ requirements:
   SRAS version, profile, tier, modules และ overlays
 - claim ที่เป็น `verified` หรือ `partial` ต้องมีหลักฐานที่ยังใช้ได้ มีผู้อนุมัติ
   และมีวันหมดอายุ
+- requirement ที่เป็น `verified` ต้องมีหลักฐานอย่างน้อยหนึ่งรายการของทุกประเภท
+  ที่ข้อกำหนดคาดหวัง ประเภทอื่นใช้แทนประเภทที่ขาดไม่ได้
 - risk ที่เป็น `accepted` ต้องมี acceptance ID
 - public sector instance ที่ประเมิน `TH-PUB-001` ต้องมี `scope.public_sector`
   พร้อม `contracting_authority` และ `contract_reference`

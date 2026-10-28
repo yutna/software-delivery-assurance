@@ -73,6 +73,33 @@ describe("validateProjectDirectory", () => {
     expect(must(result).inputCount).toBe(11);
   });
 
+  test("rejects a verified requirement with a missing evidence type", async () => {
+    const target = await copyExample();
+    const path = join(target, "evidence-index.yaml");
+    const text = await readFile(path, "utf8");
+
+    await writeFile(
+      path,
+      text.replace("type: test_result", "type: report"),
+      "utf8",
+    );
+
+    const result = await validateProjectDirectory({
+      root: process.cwd(),
+      target,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(
+      issuesOf(result).some(
+        (issue) =>
+          issue.tag === "MissingEvidenceType" &&
+          issue.requirement === "SRAS-SEC-001" &&
+          issue.expected === "test_result",
+      ),
+    ).toBe(true);
+  });
+
   test("rejects a stale lock after the selection changes", async () => {
     const target = await copyExample();
 

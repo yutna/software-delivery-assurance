@@ -52,9 +52,9 @@ entries:
     access: public example
     notes: Synthetic example only; no real partner system was tested.
   - id: EV-LOG-005
-    requirement_ids: [TH-LOG-005]
+    requirement_ids: [TH-LOG-005, TH-LOG-011]
     type: log
-    description: Synthetic carrier access monitoring sample.
+    description: Synthetic carrier access and proof-of-delivery monitoring sample.
     location: evidence/synthetic-log.md
     owner: Example carrier owner
     collected_at: "2026-10-27"
@@ -64,3 +64,16 @@ entries:
     hash: null
     access: public example
     notes: Synthetic example only; the revocation record is incomplete.
+  - id: EV-LOG-006
+    requirement_ids: [SRAS-OPS-001]
+    type: report
+    description: Synthetic telemetry and operations review report.
+    location: evidence/synthetic-policy.md
+    owner: Example operations owner
+    collected_at: "2026-10-27"
+    expires_at: "2027-04-27"
+    freshness_status: current
+    redaction: full
+    hash: null
+    access: public example
+    notes: Synthetic example only; no real operations report is included.

@@ -170,6 +170,11 @@ entries:
 `location` must be a private reference, never a public URL. `hash` is either
 `null` or a `sha256:` digest.
 
+For a `verified` requirement, the evidence set must include every type the
+requirement expects. `project validate` reports a missing type and names the
+types it found. A different type does not substitute. The check covers types,
+not evidence quality; freshness is a separate rule.
+
 ## `claims.yaml`
 
 A claim without current evidence is `not_claimed`, not “probably true”. A claim

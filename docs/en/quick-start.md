@@ -90,6 +90,8 @@ Rules that the project parsers enforce:
   SRAS version, profile, tier, modules, and overlays.
 - A `verified` or `partial` claim needs current evidence, an approver, and an
   expiry date.
+- A `verified` requirement needs at least one evidence entry of every type the
+  requirement expects. A different type does not substitute for a missing type.
 - An `accepted` risk needs an acceptance ID.
 - A public sector instance that assesses `TH-PUB-001` records
   `scope.public_sector` with `contracting_authority` and `contract_reference`.

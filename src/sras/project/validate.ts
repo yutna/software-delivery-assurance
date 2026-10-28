@@ -1,5 +1,7 @@
 import { err, ok, type Result } from "../foundation/result.js";
+import type { Requirement } from "../standard/types.js";
 import type {
+  EvidenceEntry,
   ProjectInstance,
   ProjectIssue,
   ValidatedProject,
@@ -213,6 +215,55 @@ const compareEvidence = (
       }
     }
   }
+};
+
+/**
+ * A `verified` requirement claims that its evidence set is complete. This
+ * rule compares the evidence types the requirement expects with the types
+ * linked from the assessment. It does not judge evidence quality or freshness;
+ * freshness is a separate rule.
+ */
+export const validateEvidenceTypeCoverage = (
+  instance: ProjectInstance,
+  requirements: readonly Requirement[],
+): readonly ProjectIssue[] => {
+  const issues: ProjectIssue[] = [];
+  const evidenceById = new Map(
+    instance.evidence.entries.map((entry) => [entry.id, entry]),
+  );
+  const requirementById = new Map(
+    requirements.map((requirement) => [requirement.id, requirement]),
+  );
+
+  for (const assessed of instance.assessment.requirements) {
+    if (assessed.status !== "verified") continue;
+
+    const requirement = requirementById.get(assessed.id);
+    if (requirement === undefined) continue;
+
+    const found = [
+      ...new Set(
+        assessed.evidenceRefs
+          .map((reference) => evidenceById.get(reference))
+          .filter((entry): entry is EvidenceEntry => entry !== undefined)
+          .map((entry) => entry.type),
+      ),
+    ];
+
+    for (const expectation of requirement.evidence) {
+      if (found.includes(expectation.type)) continue;
+
+      issues.push({
+        tag: "MissingEvidenceType",
+        file: instance.assessment.sourceFile,
+        requirement: assessed.id,
+        expected: expectation.type,
+        found,
+      });
+    }
+  }
+
+  return issues;
 };
 
 const compareClaims = (

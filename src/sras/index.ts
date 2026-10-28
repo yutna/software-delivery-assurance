@@ -59,7 +59,10 @@ export {
   type ProjectDirectoryResult,
   type ProjectRefreshResult,
 } from "./project/workflow.js";
-export { validateProject } from "./project/validate.js";
+export {
+  validateEvidenceTypeCoverage,
+  validateProject,
+} from "./project/validate.js";
 export {
   renderGuardAnnotations,
   renderGuardJson,

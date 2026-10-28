@@ -26,8 +26,8 @@ requirements:
   - id: SRAS-OPS-001
     status: verified
     maturity: L3
-    evidence_refs: [EV-LOG-002]
-    notes: Synthetic telemetry configuration for the tracking service.
+    evidence_refs: [EV-LOG-002, EV-LOG-006]
+    notes: Synthetic telemetry configuration and operations report for the tracking service.
     gap_owner: null
     due_date: null
   - id: SRAS-INC-005
@@ -61,8 +61,8 @@ requirements:
   - id: TH-LOG-011
     status: verified
     maturity: L3
-    evidence_refs: [EV-LOG-002]
-    notes: Synthetic proof-of-delivery integrity and retrieval test.
+    evidence_refs: [EV-LOG-002, EV-LOG-005]
+    notes: Synthetic proof-of-delivery integrity, retrieval, and monitoring test.
     gap_owner: null
     due_date: null
 gates:

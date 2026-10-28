@@ -43,7 +43,7 @@ requirements:
   - id: TH-PUB-001
     status: verified
     maturity: L3
-    evidence_refs: [EV-PUB-004]
+    evidence_refs: [EV-PUB-004, EV-PUB-007, EV-PUB-008]
     notes: Synthetic procurement, contract, and acceptance evidence set.
     gap_owner: null
     due_date: null

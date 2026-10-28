@@ -287,4 +287,11 @@ export type ProjectIssue =
       readonly file: string;
       readonly field: string;
       readonly message: string;
+    }
+  | {
+      readonly tag: "MissingEvidenceType";
+      readonly file: string;
+      readonly requirement: string;
+      readonly expected: EvidenceType;
+      readonly found: readonly EvidenceType[];
     };

@@ -26,8 +26,8 @@ requirements:
   - id: SRAS-SEC-004
     status: verified
     maturity: L3
-    evidence_refs: [EV-ECM-002]
-    notes: Synthetic encryption configuration and test.
+    evidence_refs: [EV-ECM-002, EV-ECM-001, EV-ECM-003]
+    notes: Synthetic encryption configuration, policy, and test.
     gap_owner: null
     due_date: null
   - id: SRAS-PRV-006
@@ -47,8 +47,8 @@ requirements:
   - id: TH-ECM-003
     status: verified
     maturity: L3
-    evidence_refs: [EV-ECM-003]
-    notes: Synthetic checkout retry and reconciliation test.
+    evidence_refs: [EV-ECM-003, EV-ECM-001, EV-ECM-004]
+    notes: Synthetic checkout retry, reconciliation, and monitoring test.
     gap_owner: null
     due_date: null
   - id: TH-ECM-007
