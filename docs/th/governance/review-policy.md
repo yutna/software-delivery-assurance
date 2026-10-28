@@ -153,8 +153,9 @@ Limitations: <what was not reviewed>
 ### Release review checklist
 
 - [ ] issue ของ milestone ปิดครบและขอบเขต milestone เสร็จ
-- [ ] เวอร์ชันสอดคล้องกันใน `package.json`, `package-lock.json`,
-      `src/sras/version.ts`, `CITATION.cff`, `core/sras.yaml` และ docs config
+- [ ] เวอร์ชันสอดคล้องกันใน `package.json`, `package-lock.json` (ทั้ง root
+      `version` และ `packages[""].version`), `src/sras/version.ts`,
+      `CITATION.cff`, `core/sras.yaml` และ docs config
 - [ ] `ci-ok` และ `pr-check / check` เขียวบน `main`
 - [ ] `oss-kit doctor` รายงานว่าไม่มีความคลาดเคลื่อน
 - [ ] หลักฐาน audit ถูกโพสต์ใน dashboard issue
