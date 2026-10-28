@@ -144,7 +144,7 @@ scope:
    repository สาธารณะ
 3. รัน `npm run sras -- project validate <dir>`
 
-instance ที่เลือก `TH-PUB` ประเมิน `TH-PUB-001` และปล่อยฟิลด์เป็น `null` จะ
+instance ที่เลือก `TH-PUB` ประเมิน `TH-PUB-001` และปล่อยฟิลด์เป็น `null` จะทำให้
 validation ไม่ผ่านพร้อม issue `scope/public_sector`
 
 ## `evidence-index.yaml`
@@ -222,13 +222,13 @@ risks:
     notes: The review is part of the annual assurance cycle.
 ```
 
-risk ที่เป็น `accepted` ต้องมี `acceptance_id` ความเสี่ยงที่ปิดแล้วยังเก็บ
+risk ที่เป็น `accepted` ต้องมี `acceptance_id` ส่วนความเสี่ยงที่ปิดแล้วยังเก็บ
 ประวัติ
 
 ## `assurance.lock.yaml`
 
-lockfile pin standard input ที่ resolve แล้วและ checksum ห้ามแก้ด้วยมือ เมื่อ
-เปลี่ยน selection หรืออัปเดตคลัง ให้ refresh จาก directory ของโปรเจกต์
+lockfile pin standard input ที่ resolve แล้วและ checksum ไว้ ห้ามแก้ด้วยมือ
+เมื่อเปลี่ยน selection หรืออัปเดตคลัง ให้ refresh จาก directory ของโปรเจกต์
 
 ```bash
 npm run sras -- project refresh ~/sras-demo
