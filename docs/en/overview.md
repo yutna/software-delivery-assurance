@@ -10,7 +10,7 @@ for software delivery assurance. It provides the SRAS Core, optional technical
 modules, Thailand sector overlays, regulatory registers, project-instance
 templates, and TypeScript tools that validate, render, and guard the content.
 
-This site documents SRAS v0.8.0.
+This site documents SRAS v0.9.0.
 
 ## The four questions
 
@@ -95,7 +95,7 @@ register-only references, not compliance overlays.
 
 Content is marked `draft`, `unverified`, or `reviewed`. `reviewed` requires a
 named reviewer, a review date, and a scope. Legal content stays `unverified`
-until a qualified legal reviewer signs off. The v0.8.0 standard content is
+until a qualified legal reviewer signs off. The v0.9.0 standard content is
 draft or unverified; no external reviewer has signed it off.
 
 English is canonical for identifiers, schema keys, and file names. Thai is a

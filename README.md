@@ -26,14 +26,14 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**v0.8.0 — EU registers.** The library adds register-only coverage for nine
-EU instruments: the General Data Protection Regulation, eIDAS, the NIS 2
-Directive, the Cyber Resilience Act, the Digital Operational Resilience Act,
-the Payment Services Directive 2, the Artificial Intelligence Act, the Data
-Act, and the European Accessibility Act. The
-[EU comparison and applicability page](docs/en/registers/eu-comparison.md)
-summarises the nine entries without ranking them or deciding applicability.
-Every EU entry is `unverified` and register-only; no EU overlay exists.
+**v0.9.0 — Pilot and community review.** Two internal pilots ran against
+synthetic projects for finance and public sector. They produced 18 findings:
+nine are fixed, five are deferred with a follow-up issue, and four remain open
+legal questions. The four sector examples are now complete project instances
+with tests, and project validation rejects evidence that is declared current
+after it expired. External review and the owner's v1.0.0 readiness sign-off are
+pending; the [readiness review](docs/en/governance/v1-readiness.md) records the
+blocking items.
 
 The rest of the standard is unchanged: seven core domains with 70 active
 requirements, both the `lite` and `full` profiles, five technical modules with
@@ -58,7 +58,8 @@ The tools provide project JSON Schemas and domain types, a copyable project
 template, `sras init`, deterministic Markdown rendering with `sras render
 --check`, and content-guard reports with GitHub Actions annotations. The
 synthetic end-to-end project under `examples/e2e-project/` exercises Core, the
-AI module, and the finance overlay.
+AI module, and the finance overlay. The four sector examples under `examples/`
+are complete project instances with manifests, risk registers, and lockfiles.
 
 ## Who it is for
 

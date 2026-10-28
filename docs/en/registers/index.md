@@ -124,7 +124,7 @@ A register records facts. An overlay adds requirements. The two are separate:
 
 ## Other jurisdictions
 
-Thailand, ASEAN, and the EU have maintained registers in v0.8.0. Every non-Thai
+Thailand, ASEAN, and the EU have maintained registers in v0.9.0. Every non-Thai
 entry remains register-only until a qualified reviewer is named and the review
 is recorded.
 

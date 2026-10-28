@@ -93,7 +93,7 @@ validated 53 files
 
 คำสั่งนี้ตรวจเนื้อหา SRAS standard ใน library ซึ่งประกอบด้วย requirement, module, overlay, register และ crosswalk โดยใช้ JSON Schema 2020-12 ใต้ `schemas/` และ domain rule ใน `src/sras/standard/`
 
-> **การตรวจ project instance:** v0.8.0 ตรวจ project instance ตอนที่ `init` สร้างมันขึ้นมา ไฟล์ที่วางแผนไว้จะถูกตรวจด้วย schema และ project parser เดียวกันก่อนเขียนลง disk ยังไม่มีคำสั่งตรวจ project instance แยกใน v0.8.0
+> **การตรวจ project instance:** v0.9.0 ตรวจ project instance ตอนที่ `init` สร้างมันขึ้นมา ไฟล์ที่วางแผนไว้จะถูกตรวจด้วย schema และ project parser เดียวกันก่อนเขียนลง disk ยังไม่มีคำสั่งตรวจ project instance แยกใน v0.9.0
 
 ## ขั้นที่ 4 — Render และตรวจหน้า reference
 
@@ -120,7 +120,7 @@ npm run sras -- guard
 ผลลัพธ์ที่คาดหวัง:
 
 ```text
-guard passed: scanned 326 files; excluded 0
+guard passed: scanned 344 files; excluded 0
 ```
 
 guard สแกน path เนื้อหาสาธารณะเพื่อหา คำที่อยู่นอกขอบเขตด้านสุขภาพและ sector, secret, private network identifier, personal data, ชื่อลูกค้าจาก private override และ unsafe claim ส่วน FDS pack, `vendor/`, `tests/` และ seed ชั่วคราว `internal/` ถูกยกเว้น
