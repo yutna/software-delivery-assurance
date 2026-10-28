@@ -13,7 +13,13 @@ import type { GuardError, GuardFinding } from "../guard/types.js";
 import { scanContent } from "../guard/workflow.js";
 import type { InitIssue } from "../project/init.js";
 import type { ProjectIssue } from "../project/types.js";
-import { initProject, type InitShellError } from "../project/workflow.js";
+import {
+  initProject,
+  refreshProjectLock,
+  validateProjectDirectory,
+  type InitShellError,
+  type ProjectDirectoryError,
+} from "../project/workflow.js";
 import { renderCheckFromRoot, renderToRoot } from "../render/workflow.js";
 import type { RenderDriftIssue, RenderError } from "../render/types.js";
 import type { ValidationIssue } from "../standard/types.js";
@@ -29,6 +35,8 @@ const HELP = [
   "  sras --help",
   "  sras validate --all",
   "  sras init <dir> --profile lite|full",
+  "  sras project validate <dir>",
+  "  sras project refresh <dir>",
   "  sras render [--check]",
   "  sras guard [--format text|json] [--annotations]",
   "",
@@ -193,6 +201,8 @@ const renderProjectIssue = (issue: ProjectIssue): string => {
       return `${issue.file}: checksum: expected ${issue.expected}, found ${issue.actual}`;
     case "Lockfile":
       return `${issue.file}: lockfile: ${issue.message}`;
+    case "UnknownSelection":
+      return `${issue.file}: ${issue.kind}: unknown selection: ${issue.id}`;
     default:
       return assertNever(issue);
   }
@@ -238,6 +248,69 @@ const renderInitShellError = (error: InitShellError): string => {
     default:
       return assertNever(error);
   }
+};
+
+const renderProjectDirectoryError = (error: ProjectDirectoryError): string => {
+  switch (error.tag) {
+    case "InvalidTarget":
+      return `invalid project directory ${error.target}: ${error.message}`;
+    case "PathTraversal":
+      return `invalid project directory ${error.target}: path traversal is not allowed`;
+    case "Read":
+      return `project read error: ${error.file}: ${error.message}`;
+    case "Schema":
+      return `project schema error: ${error.message}`;
+    case "StandardMissing":
+      return "no standard content found; nothing to validate";
+    case "StandardInvalid":
+      return `standard validation error:\n${error.issues.map(renderIssue).join("\n")}`;
+    case "Issues":
+      return `project validation error:\n${error.issues.map(renderProjectIssue).join("\n")}`;
+    case "Lockfile":
+      return `project lockfile error:\n${error.issues.map(renderProjectIssue).join("\n")}`;
+    case "Write":
+      return `project write error: ${error.file}: ${error.message}`;
+    default:
+      return assertNever(error);
+  }
+};
+
+const runProject = async (
+  root: string,
+  command: Extract<CliCommand, { readonly tag: "Project" }>,
+  io: Output,
+): Promise<number> => {
+  if (command.action === "validate") {
+    const result = await validateProjectDirectory({
+      root,
+      target: command.directory,
+    });
+
+    if (!result.ok) {
+      io.stderr(`${renderProjectDirectoryError(result.error)}\n`);
+      return 1;
+    }
+
+    io.stdout(
+      `project valid: ${result.value.target}; ${String(result.value.inputCount)} resolved standard inputs; lockfile current\n`,
+    );
+    return 0;
+  }
+
+  const result = await refreshProjectLock({
+    root,
+    target: command.directory,
+  });
+
+  if (!result.ok) {
+    io.stderr(`${renderProjectDirectoryError(result.error)}\n`);
+    return 1;
+  }
+
+  io.stdout(
+    `refreshed ${result.value.target}/assurance.lock.yaml; ${String(result.value.inputCount)} resolved standard inputs; ${result.value.checksum}\n`,
+  );
+  return 0;
 };
 
 const runInit = async (
@@ -357,6 +430,8 @@ export const runCommand = async (
       return runValidate(context.root, context.io);
     case "Init":
       return runInit(context.root, command, context.io);
+    case "Project":
+      return runProject(context.root, command, context.io);
     case "Render":
       return runRender(context.root, command.check, context.io);
     case "Guard":

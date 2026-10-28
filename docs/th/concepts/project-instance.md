@@ -87,9 +87,21 @@ impact, remediation, owner, due date, status, acceptance ID และการ�
 `assurance.lock.yaml` ทำให้การประเมินทำซ้ำได้ pin version และ checksum ของ
 SRAS, version ของ module และ overlay ที่เลือก และ SHA-256 ของ standard input
 ทุกไฟล์ที่ resolve แล้ว ไม่บันทึก timestamp, generator หรือข้อมูลสภาพแวดล้อม
-ไฟล์จึงเหมือนเดิมทุกครั้งที่ input เหมือนกัน เวอร์ชันนี้ยัง refresh lockfile ที่มีอยู่
-ไม่ได้ ให้สร้าง instance ใหม่เมื่อมาตรฐานหรือการเลือกเปลี่ยน คำสั่ง refresh
-ติดตามอยู่ใน #127
+ไฟล์จึงเหมือนเดิมทุกครั้งที่ input เหมือนกัน
+
+ตรวจ instance หลังแก้ไข และ refresh lockfile เมื่อเปลี่ยน selection หรือ
+มาตรฐาน
+
+```bash
+npm run sras -- project validate ~/sras-demo
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project validate` เป็นคำสั่งอ่านอย่างเดียว parse ไฟล์โปรเจกต์ทุกไฟล์ ใช้กฎ
+ของโปรเจกต์ resolve selection ปัจจุบัน และล้มเหลวเมื่อ lockfile ล้า
+`project refresh` คำนวณ `assurance.lock.yaml` ใหม่จาก selection ปัจจุบัน
+เขียนเฉพาะไฟล์นั้น และปฏิเสธการเขียนเมื่อกฎโปรเจกต์ข้ออื่นยังล้มเหลว
+ทั้งสองคำสั่งไม่เรียก network
 
 ## สิ่งที่ต้องเป็นส่วนตัว
 

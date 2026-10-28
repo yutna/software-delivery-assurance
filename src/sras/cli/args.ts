@@ -12,12 +12,19 @@ export type CliCommand =
       readonly profile: ProfileId;
     }
   | {
+      readonly tag: "Project";
+      readonly action: ProjectAction;
+      readonly directory: string;
+    }
+  | {
       readonly tag: "Guard";
       readonly format: GuardFormat;
       readonly annotations: boolean;
     };
 
 export type GuardFormat = "text" | "json";
+
+export type ProjectAction = "validate" | "refresh";
 
 export type ArgsError =
   | { readonly tag: "UnknownArgument"; readonly value: string }
@@ -26,6 +33,7 @@ export type ArgsError =
   | { readonly tag: "MissingArgument"; readonly value: string }
   | { readonly tag: "InvalidProfile"; readonly value: string }
   | { readonly tag: "InvalidFormat"; readonly value: string }
+  | { readonly tag: "InvalidProjectAction"; readonly value: string }
   | { readonly tag: "ConflictingFlags"; readonly values: readonly string[] };
 
 const PROFILES = ["lite", "full"] as const satisfies readonly ProfileId[];
@@ -98,6 +106,38 @@ const parseInit = (
   }
 
   return ok({ tag: "Init", directory, profile });
+};
+
+const PROJECT_ACTIONS = [
+  "validate",
+  "refresh",
+] as const satisfies readonly ProjectAction[];
+
+const parseProject = (
+  values: readonly string[],
+  argv: readonly string[],
+): Result<CliCommand, ArgsError> => {
+  const [action, directory, ...rest] = values;
+
+  if (action === undefined) {
+    return err({ tag: "MissingArgument", value: "validate|refresh" });
+  }
+
+  const parsed = PROJECT_ACTIONS.find((candidate) => candidate === action);
+
+  if (parsed === undefined) {
+    return err({ tag: "InvalidProjectAction", value: action });
+  }
+
+  if (directory === undefined) {
+    return err({ tag: "MissingArgument", value: "<dir>" });
+  }
+
+  if (rest.length > 0) {
+    return err({ tag: "TooManyArguments", values: argv });
+  }
+
+  return ok({ tag: "Project", action: parsed, directory });
 };
 
 export const parseArgs = (
@@ -201,6 +241,10 @@ export const parseArgs = (
 
   if (first === "init") {
     return parseInit(rest, argv);
+  }
+
+  if (first === "project") {
+    return parseProject(rest, argv);
   }
 
   if (first === "render") {

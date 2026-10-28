@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { stringify } from "yaml";
 import { err, ok, type Result } from "../foundation/result.js";
 import type { SourceFile } from "../standard/dto.js";
 import type { Version } from "../standard/primitives.js";
@@ -114,6 +115,36 @@ export type CreateProjectLockInput = {
   readonly overlays: readonly LockedOverlay[];
   readonly inputs: readonly SourceFile[];
 };
+
+const lockDocument = (
+  lock: ProjectLock,
+): Readonly<Record<string, unknown>> => ({
+  lockfile_version: 1,
+  sras: {
+    version: lock.sras.version,
+    checksum: lock.sras.checksum,
+  },
+  modules: lock.modules.map((module) => ({
+    id: module.id,
+    version: module.version,
+  })),
+  overlays: lock.overlays.map((overlay) => ({
+    id: overlay.id,
+    version: overlay.version,
+  })),
+  inputs: lock.inputs.map((input) => ({
+    path: input.path,
+    sha256: input.sha256,
+  })),
+});
+
+/**
+ * Serialises a lock in the canonical field order used by every project
+ * instance. The output is deterministic: `lineWidth: 0` leaves the YAML
+ * emitter's line wrapping out of the result.
+ */
+export const renderProjectLock = (lock: ProjectLock): string =>
+  stringify(lockDocument(lock), { lineWidth: 0 });
 
 export const createProjectLock = (
   input: CreateProjectLockInput,

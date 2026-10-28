@@ -3,6 +3,7 @@ import { basename, isAbsolute, join, resolve } from "node:path";
 import {
   createSchemaValidator,
   type SchemaIssue,
+  type SchemaLoadError,
   type SchemaName,
   type SchemaValidator,
 } from "../adapters/json-schema.js";
@@ -12,7 +13,12 @@ import { assertNever } from "../foundation/assert-never.js";
 import { err, ok, type Result } from "../foundation/result.js";
 import type { SourceFile } from "../standard/dto.js";
 import { isoDate, version, type IsoDate } from "../standard/primitives.js";
-import type { ProfileId } from "../standard/types.js";
+import type {
+  ProfileId,
+  ValidatedStandard,
+  ValidationIssue,
+} from "../standard/types.js";
+import { loadStandardFromRoot } from "../standard/workflow.js";
 import { renderProjectReadme } from "../render/markdown.js";
 import { VERSION } from "../version.js";
 import {
@@ -22,6 +28,12 @@ import {
   type PlannedFile,
 } from "./init.js";
 import {
+  createProjectLock,
+  renderProjectLock,
+  verifyProjectLock,
+} from "./lockfile.js";
+import type { Checksum } from "./ids.js";
+import {
   parseAssessmentFile,
   parseClaimRegisterFile,
   parseEvidenceIndexFile,
@@ -29,7 +41,13 @@ import {
   parseProjectManifestFile,
   parseRiskRegisterFile,
 } from "./parse.js";
-import type { ProjectInstance, ProjectIssue } from "./types.js";
+import type {
+  LockedModule,
+  LockedOverlay,
+  ProjectInstance,
+  ProjectIssue,
+  ProjectLock,
+} from "./types.js";
 import { validateProject } from "./validate.js";
 
 export type InitProjectInput = {
@@ -60,19 +78,61 @@ export type InitShellError =
   | { readonly tag: "Plan"; readonly issues: readonly InitIssue[] }
   | { readonly tag: "Validation"; readonly issues: readonly ProjectIssue[] };
 
+export type ProjectDirectoryInput = {
+  readonly root: string;
+  readonly target: string;
+};
+
+export type ProjectDirectoryResult = {
+  readonly target: string;
+  readonly inputCount: number;
+};
+
+export type ProjectRefreshResult = ProjectDirectoryResult & {
+  readonly checksum: Checksum;
+};
+
+type TargetError =
+  | {
+      readonly tag: "InvalidTarget";
+      readonly target: string;
+      readonly message: string;
+    }
+  | { readonly tag: "PathTraversal"; readonly target: string };
+
+export type ProjectDirectoryError =
+  | TargetError
+  | { readonly tag: "Read"; readonly file: string; readonly message: string }
+  | { readonly tag: "Schema"; readonly message: string }
+  | { readonly tag: "StandardMissing" }
+  | {
+      readonly tag: "StandardInvalid";
+      readonly issues: readonly ValidationIssue[];
+    }
+  | { readonly tag: "Issues"; readonly issues: readonly ProjectIssue[] }
+  | {
+      readonly tag: "Lockfile";
+      readonly issues: readonly ProjectIssue[];
+    }
+  | { readonly tag: "Write"; readonly file: string; readonly message: string };
+
 const isNotFound = (error: unknown): boolean =>
   typeof error === "object" &&
   error !== null &&
   "code" in error &&
   error.code === "ENOENT";
 
-const readError = (error: ReadError): InitShellError => {
+type ReadFailure = {
+  readonly file: string;
+  readonly message: string;
+};
+
+const readFailure = (error: ReadError): ReadFailure => {
   switch (error.tag) {
     case "Read":
-      return { tag: "Read", file: error.file, message: error.message };
+      return { file: error.file, message: error.message };
     case "TooLarge":
       return {
-        tag: "Read",
         file: error.file,
         message: `file is ${String(error.bytes)} bytes; limit is ${String(error.limit)}`,
       };
@@ -81,11 +141,103 @@ const readError = (error: ReadError): InitShellError => {
   }
 };
 
+const readError = (error: ReadError): InitShellError => ({
+  tag: "Read",
+  ...readFailure(error),
+});
+
+const projectReadError = (error: ReadError): ProjectDirectoryError => ({
+  tag: "Read",
+  ...readFailure(error),
+});
+
+const schemaLoadMessage = (error: SchemaLoadError): string =>
+  error.tag === "Read" ? `${error.file}: ${error.message}` : error.message;
+
+const projectSchemaError = (error: SchemaLoadError): ProjectDirectoryError => ({
+  tag: "Schema",
+  message: schemaLoadMessage(error),
+});
+
 const hasTraversal = (target: string): boolean =>
   target.split(/[\\/]+/).some((segment) => segment === "..");
 
 const targetPath = (root: string, target: string): string =>
   isAbsolute(target) ? resolve(target) : resolve(root, target);
+
+const projectTarget = (
+  root: string,
+  target: string,
+): Result<string, TargetError> => {
+  if (target.trim() === "") {
+    return err({
+      tag: "InvalidTarget",
+      target,
+      message: "target directory is required",
+    });
+  }
+
+  if (target.includes("\0")) {
+    return err({
+      tag: "InvalidTarget",
+      target,
+      message: "target directory contains a NUL byte",
+    });
+  }
+
+  if (hasTraversal(target)) {
+    return err({ tag: "PathTraversal", target });
+  }
+
+  return ok(targetPath(root, target));
+};
+
+const initTargetError = (error: TargetError): InitShellError => {
+  switch (error.tag) {
+    case "InvalidTarget":
+      return {
+        tag: "InvalidTarget",
+        target: error.target,
+        message: error.message,
+      };
+    case "PathTraversal":
+      return { tag: "PathTraversal", target: error.target };
+    default:
+      return assertNever(error);
+  }
+};
+
+const ensureProjectDirectory = async (
+  target: string,
+): Promise<Result<void, ProjectDirectoryError>> => {
+  try {
+    const stats = await lstat(target);
+
+    if (!stats.isDirectory()) {
+      return err({
+        tag: "InvalidTarget",
+        target,
+        message: "target exists and is not a directory",
+      });
+    }
+
+    return ok(undefined);
+  } catch (error) {
+    if (isNotFound(error)) {
+      return err({
+        tag: "InvalidTarget",
+        target,
+        message: "target directory does not exist",
+      });
+    }
+
+    return err({
+      tag: "InvalidTarget",
+      target,
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+};
 
 const ensureTargetAvailable = async (
   target: string,
@@ -201,32 +353,11 @@ const parseProjectFile = <T>(
   return parser(parsed.value, source.path);
 };
 
-const validatePlannedProject = async (
-  root: string,
-  files: readonly PlannedFile[],
-): Promise<Result<ProjectInstance, readonly ProjectIssue[]>> => {
-  const schemas = await createSchemaValidator(join(root, "schemas"));
-
-  if (!schemas.ok) {
-    return err([
-      {
-        tag: "Parse",
-        file: "schemas",
-        path: "",
-        message:
-          schemas.error.tag === "Read"
-            ? `${schemas.error.file}: ${schemas.error.message}`
-            : schemas.error.message,
-      },
-    ]);
-  }
-
-  const byPath = new Map(files.map((file) => [file.path, file.text]));
-  const source = (path: string): SourceFile | undefined => {
-    const text = byPath.get(path);
-    return text === undefined ? undefined : { path, text };
-  };
-
+const parseProjectInstance = (
+  schemas: SchemaValidator,
+  source: (path: string) => SourceFile | undefined,
+  missingLabel: string,
+): Result<ProjectInstance, readonly ProjectIssue[]> => {
   const manifestSource = source("assurance.yaml");
   const assessmentSource = source("assessment.yaml");
   const evidenceSource = source("evidence-index.yaml");
@@ -245,45 +376,45 @@ const validatePlannedProject = async (
     return err([
       {
         tag: "Parse",
-        file: "<plan>",
+        file: "<project>",
         path: "",
-        message: "planned project is missing a required file",
+        message: `${missingLabel} is missing a required file`,
       },
     ]);
   }
 
   const manifest = parseProjectFile(
-    schemas.value,
+    schemas,
     manifestSource,
     "assurance",
     parseProjectManifestFile,
   );
   const assessment = parseProjectFile(
-    schemas.value,
+    schemas,
     assessmentSource,
     "assessment",
     parseAssessmentFile,
   );
   const evidence = parseProjectFile(
-    schemas.value,
+    schemas,
     evidenceSource,
     "evidence-index",
     parseEvidenceIndexFile,
   );
   const claims = parseProjectFile(
-    schemas.value,
+    schemas,
     claimSource,
     "claim",
     parseClaimRegisterFile,
   );
   const risks = parseProjectFile(
-    schemas.value,
+    schemas,
     riskSource,
     "risk-register",
     parseRiskRegisterFile,
   );
   const lock = parseProjectFile(
-    schemas.value,
+    schemas,
     lockSource,
     "project-lock",
     parseProjectLockFile,
@@ -311,17 +442,301 @@ const validatePlannedProject = async (
     return err(issues);
   }
 
-  const instance: ProjectInstance = {
+  return ok({
     manifest: manifest.value,
     assessment: assessment.value,
     evidence: evidence.value,
     claims: claims.value,
     risks: risks.value,
     lock: lock.value,
-  };
-  const validated = validateProject(instance);
+  });
+};
+
+const validatePlannedProject = async (
+  root: string,
+  files: readonly PlannedFile[],
+): Promise<Result<ProjectInstance, readonly ProjectIssue[]>> => {
+  const schemas = await createSchemaValidator(join(root, "schemas"));
+
+  if (!schemas.ok) {
+    return err([
+      {
+        tag: "Parse",
+        file: "schemas",
+        path: "",
+        message: schemaLoadMessage(schemas.error),
+      },
+    ]);
+  }
+
+  const byPath = new Map(files.map((file) => [file.path, file.text]));
+  const parsed = parseProjectInstance(
+    schemas.value,
+    (path) => {
+      const text = byPath.get(path);
+      return text === undefined ? undefined : { path, text };
+    },
+    "planned project",
+  );
+
+  if (!parsed.ok) return parsed;
+
+  const validated = validateProject(parsed.value);
 
   return validated.ok ? ok(validated.value) : err(validated.error);
+};
+
+const readProjectInstance = async (
+  root: string,
+  target: string,
+): Promise<Result<ProjectInstance, ProjectDirectoryError>> => {
+  const sources = await readSourceFiles(target, [...TEMPLATE_FILES]);
+
+  if (!sources.ok) return err(projectReadError(sources.error));
+
+  const schemas = await createSchemaValidator(join(root, "schemas"));
+
+  if (!schemas.ok) return err(projectSchemaError(schemas.error));
+
+  const byPath = new Map(
+    sources.value.map((source) => [source.path, source.text]),
+  );
+  const parsed = parseProjectInstance(
+    schemas.value,
+    (path) => {
+      const text = byPath.get(path);
+      return text === undefined ? undefined : { path, text };
+    },
+    "project instance",
+  );
+
+  return parsed.ok ? parsed : err({ tag: "Issues", issues: parsed.error });
+};
+
+const readStandard = async (
+  root: string,
+): Promise<Result<ValidatedStandard, ProjectDirectoryError>> => {
+  const loaded = await loadStandardFromRoot(root);
+
+  if (loaded.ok) return ok(loaded.value.standard);
+
+  switch (loaded.error.tag) {
+    case "Read":
+      return err(projectReadError(loaded.error.error));
+    case "Schema":
+      return err(projectSchemaError(loaded.error.error));
+    case "Invalid":
+      return err({ tag: "StandardInvalid", issues: loaded.error.issues });
+    case "NoContent":
+      return err({ tag: "StandardMissing" });
+    default:
+      return assertNever(loaded.error);
+  }
+};
+
+type ResolvedProjectInputs = {
+  readonly inputs: readonly SourceFile[];
+  readonly modules: readonly LockedModule[];
+  readonly overlays: readonly LockedOverlay[];
+};
+
+const resolveProjectInputs = async (
+  root: string,
+  standard: ValidatedStandard,
+  instance: ProjectInstance,
+): Promise<Result<ResolvedProjectInputs, ProjectDirectoryError>> => {
+  const manifest = instance.manifest;
+  const profile = standard.profiles.find(
+    (candidate) => candidate.id === manifest.profile,
+  );
+
+  if (profile === undefined) {
+    return err({
+      tag: "Issues",
+      issues: [
+        {
+          tag: "UnknownSelection",
+          file: manifest.sourceFile,
+          kind: "profile",
+          id: manifest.profile,
+        },
+      ],
+    });
+  }
+
+  const issues: ProjectIssue[] = [];
+  const modules: LockedModule[] = [];
+  const overlays: LockedOverlay[] = [];
+  const moduleFiles: string[] = [];
+  const overlayFiles: string[] = [];
+
+  for (const id of manifest.modules) {
+    const module = standard.modules.find((candidate) => candidate.id === id);
+
+    if (module === undefined) {
+      issues.push({
+        tag: "UnknownSelection",
+        file: manifest.sourceFile,
+        kind: "module",
+        id,
+      });
+      continue;
+    }
+
+    modules.push({ id: module.id, version: module.version });
+    moduleFiles.push(module.sourceFile);
+  }
+
+  for (const id of manifest.overlays) {
+    const overlay = standard.overlays.find((candidate) => candidate.id === id);
+
+    if (overlay === undefined) {
+      issues.push({
+        tag: "UnknownSelection",
+        file: manifest.sourceFile,
+        kind: "overlay",
+        id,
+      });
+      continue;
+    }
+
+    overlays.push({ id: overlay.id, version: overlay.version });
+    overlayFiles.push(overlay.sourceFile);
+  }
+
+  if (issues.length > 0) return err({ tag: "Issues", issues });
+
+  const paths = [
+    ...new Set([
+      standard.manifest.sourceFile,
+      profile.sourceFile,
+      ...standard.requirements.map((requirement) => requirement.sourceFile),
+      ...moduleFiles,
+      ...overlayFiles,
+    ]),
+  ].sort();
+
+  const inputs = await readSourceFiles(root, paths);
+
+  if (!inputs.ok) return err(projectReadError(inputs.error));
+
+  return ok({ inputs: inputs.value, modules, overlays });
+};
+
+const buildProjectLock = (
+  instance: ProjectInstance,
+  resolved: ResolvedProjectInputs,
+): Result<ProjectLock, ProjectDirectoryError> => {
+  const lock = createProjectLock({
+    sourceFile: "assurance.lock.yaml",
+    srasVersion: instance.manifest.srasVersion,
+    modules: resolved.modules,
+    overlays: resolved.overlays,
+    inputs: resolved.inputs,
+  });
+
+  return lock.ok
+    ? ok(lock.value)
+    : err({ tag: "Lockfile", issues: lock.error });
+};
+
+export const validateProjectDirectory = async (
+  input: ProjectDirectoryInput,
+): Promise<Result<ProjectDirectoryResult, ProjectDirectoryError>> => {
+  const target = projectTarget(input.root, input.target);
+
+  if (!target.ok) return target;
+
+  const directory = await ensureProjectDirectory(target.value);
+
+  if (!directory.ok) return directory;
+
+  const instance = await readProjectInstance(input.root, target.value);
+
+  if (!instance.ok) return instance;
+
+  const validated = validateProject(instance.value);
+
+  if (!validated.ok) return err({ tag: "Issues", issues: validated.error });
+
+  const standard = await readStandard(input.root);
+
+  if (!standard.ok) return standard;
+
+  const resolved = await resolveProjectInputs(
+    input.root,
+    standard.value,
+    instance.value,
+  );
+
+  if (!resolved.ok) return resolved;
+
+  const verified = verifyProjectLock(
+    instance.value.lock,
+    resolved.value.inputs,
+  );
+
+  if (!verified.ok) return err({ tag: "Issues", issues: verified.error });
+
+  return ok({
+    target: target.value,
+    inputCount: resolved.value.inputs.length,
+  });
+};
+
+export const refreshProjectLock = async (
+  input: ProjectDirectoryInput,
+): Promise<Result<ProjectRefreshResult, ProjectDirectoryError>> => {
+  const target = projectTarget(input.root, input.target);
+
+  if (!target.ok) return target;
+
+  const directory = await ensureProjectDirectory(target.value);
+
+  if (!directory.ok) return directory;
+
+  const instance = await readProjectInstance(input.root, target.value);
+
+  if (!instance.ok) return instance;
+
+  const standard = await readStandard(input.root);
+
+  if (!standard.ok) return standard;
+
+  const resolved = await resolveProjectInputs(
+    input.root,
+    standard.value,
+    instance.value,
+  );
+
+  if (!resolved.ok) return resolved;
+
+  const lock = buildProjectLock(instance.value, resolved.value);
+
+  if (!lock.ok) return lock;
+
+  const candidate: ProjectInstance = { ...instance.value, lock: lock.value };
+  const validated = validateProject(candidate);
+
+  if (!validated.ok) return err({ tag: "Issues", issues: validated.error });
+
+  const path = join(target.value, "assurance.lock.yaml");
+
+  try {
+    await writeFile(path, renderProjectLock(lock.value), "utf8");
+  } catch (error) {
+    return err({
+      tag: "Write",
+      file: path,
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+
+  return ok({
+    target: target.value,
+    inputCount: resolved.value.inputs.length,
+    checksum: lock.value.sras.checksum,
+  });
 };
 
 const writeProjectFiles = async (
@@ -369,27 +784,11 @@ const currentDate = (): Result<IsoDate, InitShellError> => {
 export const initProject = async (
   input: InitProjectInput,
 ): Promise<Result<InitResult, InitShellError>> => {
-  if (input.target.trim() === "") {
-    return err({
-      tag: "InvalidTarget",
-      target: input.target,
-      message: "target directory is required",
-    });
-  }
+  const resolved = projectTarget(input.root, input.target);
 
-  if (input.target.includes("\0")) {
-    return err({
-      tag: "InvalidTarget",
-      target: input.target,
-      message: "target directory contains a NUL byte",
-    });
-  }
+  if (!resolved.ok) return err(initTargetError(resolved.error));
 
-  if (hasTraversal(input.target)) {
-    return err({ tag: "PathTraversal", target: input.target });
-  }
-
-  const target = targetPath(input.root, input.target);
+  const target = resolved.value;
   const name = basename(target);
 
   if (name === "" || name === "." || name === "/") {

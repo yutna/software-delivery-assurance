@@ -15,7 +15,8 @@ repository มี template โปรเจกต์ที่คัดลอก�
 placeholder ใช้ profile คำนวณ lockfile ตรวจสอบผลลัพธ์ และเขียนไฟล์
 
 อ่าน[คู่มือ template โปรเจกต์](project.md) สำหรับรายละเอียดไฟล์ placeholder
-และกฎการตรวจสอบ
+และกฎการตรวจสอบ หลังแก้ instance ให้รัน `npm run sras -- project validate <dir>`
+และหลังเปลี่ยน selection ให้รัน `npm run sras -- project refresh <dir>`
 
 ## ตัวอย่าง synthetic
 

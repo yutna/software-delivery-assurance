@@ -269,4 +269,10 @@ export type ProjectIssue =
       readonly tag: "Lockfile";
       readonly file: string;
       readonly message: string;
+    }
+  | {
+      readonly tag: "UnknownSelection";
+      readonly file: string;
+      readonly kind: "profile" | "module" | "overlay";
+      readonly id: string;
     };

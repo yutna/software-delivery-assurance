@@ -35,9 +35,9 @@ created project instance at /Users/you/sras-demo
 files: README.md, assurance.yaml, assessment.yaml, evidence-index.yaml, claims.yaml, risk-register.yaml, assurance.lock.yaml
 next steps:
 1. Edit assurance.yaml and assessment.yaml to set the project scope, assessor, and sign-off.
-2. Select the modules and overlays that match the product, then refresh the lockfile.
+2. Select the modules and overlays that match the product, then run npm run sras -- project refresh <dir> from the library repository.
 3. Assess the resolved requirements and record evidence in the private evidence store.
-4. Run npm run sras -- validate --all, render --check, and guard from the library repository.
+4. Run npm run sras -- project validate <dir>, validate --all, render --check, and guard from the library repository.
 ```
 
 `init` จะปฏิเสธ directory ที่มีไฟล์อยู่แล้วและ path ที่มี `..` และจะไม่เรียก network
@@ -79,7 +79,33 @@ requirements:
 
 คู่มือไฟล์ทั้งหมดอยู่ที่ [templates/project.md](templates/project.md)
 
-## ขั้นที่ 3 — ตรวจสอบ library
+## ขั้นที่ 3 — ตรวจ instance และ refresh lockfile
+
+```bash
+npm run sras -- project validate ~/sras-demo
+```
+
+ผลลัพธ์ที่คาดหวัง:
+
+```text
+project valid: /Users/you/sras-demo; 12 resolved standard inputs; lockfile current
+```
+
+`project validate` parse ไฟล์โปรเจกต์ทุกไฟล์ ใช้กฎเดียวกับ `init` resolve
+selection ปัจจุบัน และล้มเหลวพร้อมรายการปัญหาที่อ่านได้เมื่อ lockfile ล้า
+คำสั่งนี้ไม่เขียนไฟล์
+
+หลังเปลี่ยน module หรือ overlay ที่เลือก ให้ refresh lockfile
+
+```bash
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project refresh` คำนวณ `assurance.lock.yaml` ใหม่จาก selection ปัจจุบันและ
+standard input เขียนเฉพาะไฟล์นั้น และปฏิเสธการเขียนเมื่อกฎโปรเจกต์ข้ออื่น
+ล้มเหลว
+
+## ขั้นที่ 4 — ตรวจสอบ library
 
 ```bash
 npm run sras -- validate --all
@@ -93,9 +119,11 @@ validated 53 files
 
 คำสั่งนี้ตรวจเนื้อหา SRAS standard ใน library ซึ่งประกอบด้วย requirement, module, overlay, register และ crosswalk โดยใช้ JSON Schema 2020-12 ใต้ `schemas/` และ domain rule ใน `src/sras/standard/`
 
-> **การตรวจ project instance:** v0.9.0 ตรวจ project instance ตอนที่ `init` สร้างมันขึ้นมา ไฟล์ที่วางแผนไว้จะถูกตรวจด้วย schema และ project parser เดียวกันก่อนเขียนลง disk ยังไม่มีคำสั่งตรวจ project instance แยกใน v0.9.0
+`validate --all` ครอบคลุม library ไม่ใช่ project instance ใช้
+`project validate <dir>` สำหรับ instance และ `project refresh <dir>` เพื่อ
+อัปเดต lockfile
 
-## ขั้นที่ 4 — Render และตรวจหน้า reference
+## ขั้นที่ 5 — Render และตรวจหน้า reference
 
 ```bash
 npm run sras -- render
@@ -111,7 +139,7 @@ render check passed: 154 pages; 154 files
 
 คำสั่งนี้ deterministic: ลำดับหน้า ลำดับรายการ และเนื้อหาไม่มี timestamp หรือข้อมูล environment
 
-## ขั้นที่ 5 — Guard เนื้อหาสาธารณะ
+## ขั้นที่ 6 — Guard เนื้อหาสาธารณะ
 
 ```bash
 npm run sras -- guard
@@ -147,6 +175,7 @@ npm run sras -- guard --annotations
 - `guard` พบคำต้องห้ามหรือ unsafe claim
 - `render --check` พบหน้าที่หายไป เปลี่ยน หรือเกิน
 - `validate --all` พบปัญหา schema หรือ domain
+- `project validate` พบ lockfile ที่ล้า ไฟล์หาย หรือกฎโปรเจกต์ที่ล้มเหลว
 - `init` ไปที่ directory ที่ไม่ว่างหรือ path ที่มี `..`
 
 ## Command reference
@@ -156,6 +185,8 @@ npm run sras -- guard --annotations
 - `npm run sras -- validate --all` — ตรวจเนื้อหา standard ใน library
 - `npm run sras -- init <dir> --profile lite` — สร้าง project instance แบบ lite
 - `npm run sras -- init <dir> --profile full` — สร้าง project instance แบบ full
+- `npm run sras -- project validate <dir>` — ตรวจ project instance ที่มีอยู่
+- `npm run sras -- project refresh <dir>` — คำนวณ lockfile ของโปรเจกต์ใหม่
 - `npm run sras -- render` — เขียนหน้า reference
 - `npm run sras -- render --check` — ตรวจหน้า reference โดยไม่เขียน
 - `npm run sras -- guard` — สแกนเนื้อหาสาธารณะ

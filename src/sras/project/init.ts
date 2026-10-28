@@ -1,9 +1,8 @@
-import { stringify } from "yaml";
 import { err, ok, type Result } from "../foundation/result.js";
 import type { SourceFile } from "../standard/dto.js";
 import type { IsoDate, Version } from "../standard/primitives.js";
 import type { ProfileId } from "../standard/types.js";
-import { createProjectLock } from "./lockfile.js";
+import { createProjectLock, renderProjectLock } from "./lockfile.js";
 import type { ProjectIssue, ProjectLock } from "./types.js";
 
 export const TEMPLATE_FILES = [
@@ -51,9 +50,9 @@ const TEMPLATE_MARKER = /__[A-Z][A-Z0-9_]*__/;
 
 const NEXT_STEPS = [
   "Edit assurance.yaml and assessment.yaml to set the project scope, assessor, and sign-off.",
-  "Select the modules and overlays that match the product. This version does not refresh an existing lockfile; create a new instance when the selection or the SRAS version changes.",
+  "Select the modules and overlays that match the product, then run npm run sras -- project refresh <dir> from the library repository.",
   "Assess the resolved requirements and record evidence in the private evidence store.",
-  "Run npm run sras -- validate --all, render --check, and guard from the library repository.",
+  "Run npm run sras -- project validate <dir>, validate --all, render --check, and guard from the library repository.",
 ] as const;
 
 const replaceAll = (text: string, from: string, to: string): string =>
@@ -66,28 +65,6 @@ const projectNameError = (name: string): string | null => {
   }
   return null;
 };
-
-const lockDocument = (
-  lock: ProjectLock,
-): Readonly<Record<string, unknown>> => ({
-  lockfile_version: 1,
-  sras: {
-    version: lock.sras.version,
-    checksum: lock.sras.checksum,
-  },
-  modules: lock.modules.map((module) => ({
-    id: module.id,
-    version: module.version,
-  })),
-  overlays: lock.overlays.map((overlay) => ({
-    id: overlay.id,
-    version: overlay.version,
-  })),
-  inputs: lock.inputs.map((input) => ({
-    path: input.path,
-    sha256: input.sha256,
-  })),
-});
 
 const templateText = (
   file: SourceFile,
@@ -195,7 +172,7 @@ export const planProjectInit = (
       path,
       text:
         path === "assurance.lock.yaml"
-          ? stringify(lockDocument(lock.value), { lineWidth: 0 })
+          ? renderProjectLock(lock.value)
           : templateText(file, input, description),
     });
   }

@@ -16,6 +16,8 @@ instance
 - `npm run sras -- validate --all` — ตรวจสอบไฟล์ YAML มาตรฐานทั้งหมด
 - `npm run sras -- init <dir> --profile lite` — สร้าง project instance แบบ lite
 - `npm run sras -- init <dir> --profile full` — สร้าง project instance แบบ full
+- `npm run sras -- project validate <dir>` — ตรวจ project instance ที่มีอยู่
+- `npm run sras -- project refresh <dir>` — คำนวณ lockfile ของโปรเจกต์ใหม่
 - `npm run sras -- render` — เขียน reference pages ภาษาอังกฤษ
 - `npm run sras -- render --check` — ตรวจ reference pages โดยไม่เขียน
 - `npm run sras -- guard` — สแกนเนื้อหาสาธารณะ
@@ -30,6 +32,18 @@ instance
 `validate --all` ตรวจ requirements, modules, overlays, registers และ
 crosswalks เทียบกับ JSON Schema 2020-12 และกฎของโดเมน รายงานจำนวนไฟล์ที่
 ตรวจสอบ ปัญหา schema หรือโดเมนจะออกด้วย exit code 1
+
+## Project validate และ refresh
+
+`project validate <dir>` อ่าน project instance ที่มีอยู่ parse ไฟล์โปรเจกต์
+ทุกไฟล์ด้วย schema และ parser เดียวกับ `init` ใช้กฎของโปรเจกต์ resolve
+selection เทียบกับ library และตรวจ checksum ของ lockfile คำสั่งนี้อ่านอย่างเดียว
+และออกด้วย exit code 1 เมื่อพบปัญหา
+
+`project refresh <dir>` สร้าง `assurance.lock.yaml` ใหม่จาก selection ใน
+manifest ปัจจุบันและ standard input ที่ resolve แล้ว ตรวจ instance ที่จะเขียน
+ก่อน เขียนเฉพาะ lockfile และไม่แก้ไฟล์อื่น module, overlay หรือ profile ที่
+ไม่รู้จักจะถูกรายงานแทนการเขียน
 
 ## Render
 
