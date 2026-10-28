@@ -51,7 +51,7 @@ const TEMPLATE_MARKER = /__[A-Z][A-Z0-9_]*__/;
 
 const NEXT_STEPS = [
   "Edit assurance.yaml and assessment.yaml to set the project scope, assessor, and sign-off.",
-  "Select the modules and overlays that match the product, then refresh the lockfile.",
+  "Select the modules and overlays that match the product. This version does not refresh an existing lockfile; create a new instance when the selection or the SRAS version changes.",
   "Assess the resolved requirements and record evidence in the private evidence store.",
   "Run npm run sras -- validate --all, render --check, and guard from the library repository.",
 ] as const;

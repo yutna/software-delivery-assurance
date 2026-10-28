@@ -155,6 +155,26 @@ const compareSelection = (
   }
 };
 
+const compareFreshness = (
+  issues: ProjectIssue[],
+  instance: ProjectInstance,
+): void => {
+  const { assessment, evidence } = instance;
+
+  for (const entry of evidence.entries) {
+    if (entry.freshness !== "current") continue;
+    if (entry.expiresAt >= assessment.assessedAt) continue;
+
+    mismatch(
+      issues,
+      evidence.sourceFile,
+      `entries/${entry.id}/freshness_status`,
+      `current evidence on ${assessment.assessedAt}`,
+      `expires_at ${entry.expiresAt}`,
+    );
+  }
+};
+
 const compareEvidence = (
   issues: ProjectIssue[],
   instance: ProjectInstance,
@@ -269,6 +289,7 @@ export const validateProject = (
     instance.assessment.project,
   );
   compareSelection(issues, instance);
+  compareFreshness(issues, instance);
   compareEvidence(issues, instance);
   compareClaims(issues, instance);
   compareRisks(issues, instance);

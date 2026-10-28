@@ -358,20 +358,34 @@ const exampleTest = (spec: ExampleSpec): void => {
     const lockOverlays = array(lockfile["overlays"], "assurance.lock.overlays");
 
     expect(sras["version"]).toBe(VERSION);
+    const moduleVersions = new Map<string, string>();
+    for (const module of standard.modules) {
+      moduleVersions.set(module.id, module.version);
+    }
+    const overlayVersions = new Map<string, string>();
+    for (const overlay of standard.overlays) {
+      overlayVersions.set(overlay.id, overlay.version);
+    }
     expect(
       lockModules
         .map((item, index) => {
           const entry = record(item, `lock.modules/${String(index)}`);
-          expect(entry["version"], "lock module version").toBe(VERSION);
-          return string(entry["id"], `lock.modules/${String(index)}/id`);
+          const id = string(entry["id"], `lock.modules/${String(index)}/id`);
+          expect(entry["version"], `lock module version ${id}`).toBe(
+            moduleVersions.get(id),
+          );
+          return id;
         })
         .sort(),
     ).toEqual(selectedModules);
     expect(
       lockOverlays.map((item, index) => {
         const entry = record(item, `lock.overlays/${String(index)}`);
-        expect(entry["version"], "lock overlay version").toBe(VERSION);
-        return string(entry["id"], `lock.overlays/${String(index)}/id`);
+        const id = string(entry["id"], `lock.overlays/${String(index)}/id`);
+        expect(entry["version"], `lock overlay version ${id}`).toBe(
+          overlayVersions.get(id),
+        );
+        return id;
       }),
     ).toEqual(selectedOverlays);
 

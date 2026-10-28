@@ -1,0 +1,12 @@
+project:
+  name: Finance synthetic example
+  description: Synthetic example for the Thailand finance overlay.
+  owner: Example team
+  confidentiality: synthetic
+sras_version: 0.8.0
+profile: full
+tier: 2
+modules: [SRAS-AI, SRAS-INT, SRAS-RGD, SRAS-CLD]
+overlays: [TH-FIN]
+created_at: "2026-10-27"
+updated_at: "2026-10-27"

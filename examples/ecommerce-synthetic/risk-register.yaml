@@ -1,0 +1,27 @@
+risks:
+  - id: RSK-ECM-001
+    requirement_ids: [TH-ECM-007]
+    description: The synthetic account-recovery test is incomplete.
+    severity: high
+    likelihood: medium
+    impact: high
+    remediation: Complete the recovery test and record the result.
+    owner: Example security owner
+    due_date: "2027-03-31"
+    status: open
+    acceptance_id: null
+    customer_disclosure: conditional
+    notes: Synthetic example only; the gap is intentional.
+  - id: RSK-ECM-002
+    requirement_ids: [TH-ECM-010]
+    description: The synthetic accessibility review has open actions.
+    severity: medium
+    likelihood: medium
+    impact: medium
+    remediation: Close the accessibility actions and retest the journeys.
+    owner: Example product owner
+    due_date: "2027-06-30"
+    status: open
+    acceptance_id: null
+    customer_disclosure: yes
+    notes: Synthetic example only; the review is not about a real service.

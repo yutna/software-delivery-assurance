@@ -1,0 +1,27 @@
+risks:
+  - id: RSK-LOG-001
+    requirement_ids: [SRAS-INC-005]
+    description: The synthetic continuity exercise is not complete.
+    severity: high
+    likelihood: medium
+    impact: high
+    remediation: Complete the exercise and record the result.
+    owner: Example operations owner
+    due_date: "2027-03-31"
+    status: open
+    acceptance_id: null
+    customer_disclosure: yes
+    notes: Synthetic example only; the gap is intentional.
+  - id: RSK-LOG-002
+    requirement_ids: [TH-LOG-005]
+    description: The synthetic carrier access revocation evidence is incomplete.
+    severity: medium
+    likelihood: medium
+    impact: high
+    remediation: Record the revocation test and attach the result.
+    owner: Example carrier owner
+    due_date: "2027-06-30"
+    status: open
+    acceptance_id: null
+    customer_disclosure: conditional
+    notes: Synthetic example only; no real carrier is named.

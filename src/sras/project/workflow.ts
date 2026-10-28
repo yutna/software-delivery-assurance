@@ -356,7 +356,10 @@ const writeProjectFiles = async (
 };
 
 const currentDate = (): Result<IsoDate, InitShellError> => {
-  const parsed = isoDate(new Date().toISOString().slice(0, 10));
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const parsed = isoDate(`${String(now.getFullYear())}-${month}-${day}`);
 
   return parsed.ok
     ? ok(parsed.value)

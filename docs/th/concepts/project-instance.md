@@ -38,7 +38,8 @@ readiness index และ evidence coverage
 - `claims.yaml` — ถ้อยคำสาธารณะที่อนุญาตและห้ามใช้
 - `risk-register.yaml` — ช่องว่างและความเสี่ยงพร้อม owner, due date และการ
   เปิดเผย
-- `assurance.lock.yaml` — มาตรฐาน module overlay checksum และ generator ที่ pin
+- `assurance.lock.yaml` — standard input, version ของ module และ overlay และ
+  checksum ที่ pin
 
 คู่มือรายละเอียดไฟล์อยู่ใน [คู่มือ template โปรเจกต์](../templates/project.md)
 
@@ -84,8 +85,11 @@ impact, remediation, owner, due date, status, acceptance ID และการ�
 ## Lockfile
 
 `assurance.lock.yaml` ทำให้การประเมินทำซ้ำได้ pin version และ checksum ของ
-SRAS, module และ overlay ที่เลือก, generator และเวลาที่สร้าง ให้ refresh เมื่อ
-มาตรฐานหรือการเลือกเปลี่ยน
+SRAS, version ของ module และ overlay ที่เลือก และ SHA-256 ของ standard input
+ทุกไฟล์ที่ resolve แล้ว ไม่บันทึก timestamp, generator หรือข้อมูลสภาพแวดล้อม
+ไฟล์จึงเหมือนเดิมทุกครั้งที่ input เหมือนกัน เวอร์ชันนี้ยัง refresh lockfile ที่มีอยู่
+ไม่ได้ ให้สร้าง instance ใหม่เมื่อมาตรฐานหรือการเลือกเปลี่ยน คำสั่ง refresh
+ติดตามอยู่ใน #127
 
 ## สิ่งที่ต้องเป็นส่วนตัว
 

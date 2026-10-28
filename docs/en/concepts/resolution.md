@@ -73,18 +73,19 @@ Switching profile does not add or remove requirements.
 - the SRAS version and the standard checksum,
 - selected module IDs and versions,
 - selected overlay IDs and versions,
-- the generator and generation time.
+- the SHA-256 of every resolved standard input.
 
 A project assessment must be reproducible from the lockfile even after the
-library changes. When the library version changes, refresh the lockfile and
-review the resolved requirements before assessing again.
+library changes. When the library version changes, create a new instance and
+review the resolved requirements before assessing again. This version does not
+refresh an existing lockfile; a refresh command is tracked in #127.
 
 ## Worked example
 
 `examples/e2e-project/` is a synthetic full-profile project with the AI module
-and the Thailand finance overlay. Its lockfile pins SRAS 0.5.0, `SRAS-AI`, and
-`TH-FIN`. It exercises Core, module, and overlay requirements without any real
-customer data.
+and the Thailand finance overlay. Its lockfile pins the current SRAS version,
+`SRAS-AI`, and `TH-FIN`. It exercises Core, module, and overlay requirements
+without any real customer data.
 
 ## Related pages
 
