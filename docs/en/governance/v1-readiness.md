@@ -5,14 +5,17 @@ machine_translated: false
 
 # v1.0.0 readiness review
 
-**Status:** draft. External review pending. Owner sign-off pending.
+**Status:** reviewed by the AI execution agent on 2026-10-28; owner-signed on
+2026-10-28. This is not an external, independent, human, or legal review.
 **Version reviewed:** SRAS 0.9.0.
 **Date:** 2026-10-28.
 **Owner:** `@yutna`, maintainer.
 
 This review states whether the library is ready for v1.0.0. It does not claim
-external review, legal review, or certification. Where a reviewer is missing,
-the item is recorded as pending instead of being marked complete.
+external review, legal review, independence, or certification. The review was
+performed by the AI execution agent under owner direction because no external
+reviewer was available. Where a reviewer is missing, the item is recorded as
+missing instead of being marked complete.
 
 ## Inputs
 
@@ -25,19 +28,19 @@ the item is recorded as pending instead of being marked complete.
 
 ## Readiness by area
 
-| Area                     | Status                                       | Evidence                                 | Ready for v1.0.0 |
-| ------------------------ | -------------------------------------------- | ---------------------------------------- | ---------------- |
-| Core requirements        | 70 active, all `translation_status: partial` | `validate --all`, `render --check`       | No               |
-| Technical modules        | 52 active, all `translation_status: partial` | `validate --all`, `render --check`       | No               |
-| Sector overlays          | 45 active, all `translation_status: partial` | `validate --all`, `render --check`       | No               |
-| Registers                | 27 entries, all `review_status: unverified`  | Official sources, review dates           | No               |
-| Crosswalks               | 7 informative mappings                       | `validate --all`                         | Yes              |
-| Project template and CLI | Complete at the documented scope             | Tests, `init`, `render --check`, `guard` | Partial          |
-| Bilingual site           | 181 English and 28 Thai pages                | `docs:build`, `check:docs`, link check   | Partial          |
-| FDS and TypeScript       | 43 skills pinned at 3.3.0, commit `4d3875c`  | `check:fds`, `typecheck`, `lint`         | Yes              |
-| CI and repository        | All gates green; doctor reports no drift     | CI run, `oss-kit doctor`                 | Yes              |
-| Pilots                   | Two completed, 18 findings dispositioned     | Pilot reports and summary                | Yes              |
-| External review          | Not started                                  | This page                                | No               |
+| Area                     | Status                                        | Evidence                                 | Ready for v1.0.0 |
+| ------------------------ | --------------------------------------------- | ---------------------------------------- | ---------------- |
+| Core requirements        | 70 active, all `translation_status: partial`  | `validate --all`, `render --check`       | No               |
+| Technical modules        | 52 active, all `translation_status: partial`  | `validate --all`, `render --check`       | No               |
+| Sector overlays          | 45 active, all `translation_status: partial`  | `validate --all`, `render --check`       | No               |
+| Registers                | 27 entries, all `review_status: unverified`   | Official sources, review dates           | No               |
+| Crosswalks               | 7 informative mappings                        | `validate --all`                         | Yes              |
+| Project template and CLI | Complete at the documented scope              | Tests, `init`, `render --check`, `guard` | Partial          |
+| Bilingual site           | 181 English and 28 Thai pages                 | `docs:build`, `check:docs`, link check   | Partial          |
+| FDS and TypeScript       | 43 skills pinned at 3.3.0, commit `4d3875c`   | `check:fds`, `typecheck`, `lint`         | Yes              |
+| CI and repository        | All gates green; doctor reports no drift      | CI run, `oss-kit doctor`                 | Yes              |
+| Pilots                   | Two completed, 18 findings dispositioned      | Pilot reports and summary                | Yes              |
+| External review          | No external reviewer; AI self-review recorded | This page                                | No               |
 
 ## What is ready
 
@@ -60,16 +63,15 @@ the item is recorded as pending instead of being marked complete.
    `machine_translated: true`. v1.0.0 requires complete Thai and English
    content for active Core and module requirements. A named Thai reviewer must
    review and mark them complete.
-2. **External review has not started.** No external reviewer has been engaged.
-   The v0.9.0 exit criteria require external review notes, and the v1.0.0
-   review needs them triaged.
+2. **External human review has not happened.** No external reviewer has been
+   engaged. The AI self-review recorded on this page is not independent, not
+   human, and not a substitute for the external review that v1.0.0 needs. The
+   owner accepted it for the v0.9.0 review step only.
 3. **Two high findings remain deferred.** #127 (validate and refresh a project
    instance) and #132 (record the contracting authority) affect the claim that
    the template and CLI are stable. Both need a design cycle or an explicit
    accepted limitation before v1.0.0.
-4. **The readiness sign-off is pending.** The maintainer must sign this review
-   after the items above are resolved or explicitly accepted.
-5. **The remaining v1.0.0 issues are open.** SRAS 1.0 is not frozen, governance
+4. **The remaining v1.0.0 issues are open.** SRAS 1.0 is not frozen, governance
    is not final, the final audit and doctor run has not been archived, and the
    release notes and announcement do not exist.
 
@@ -84,37 +86,58 @@ the item is recorded as pending instead of being marked complete.
 
 ## v0.9.0 release readiness
 
-| v0.9.0 exit criterion                       | Status                            |
-| ------------------------------------------- | --------------------------------- |
-| Two pilots completed                        | Met                               |
-| External review notes collected and triaged | **Not met — no reviewer engaged** |
-| Findings fixed or deferred with rationale   | Met                               |
-| v1.0.0 readiness signed off by the owner    | **Pending — owner sign-off**      |
-| `oss-kit doctor` no drift                   | Met                               |
-| Release created                             | Not started                       |
+| v0.9.0 exit criterion                       | Status                                                              |
+| ------------------------------------------- | ------------------------------------------------------------------- |
+| Two pilots completed                        | Met                                                                 |
+| External review notes collected and triaged | Not met as written; owner accepted the AI self-review on 2026-10-28 |
+| Findings fixed or deferred with rationale   | Met                                                                 |
+| v1.0.0 readiness signed off by the owner    | Met — owner signed 2026-10-28                                       |
+| `oss-kit doctor` no drift                   | Met                                                                 |
+| Release created                             | Pending milestone close                                             |
 
-The v0.9.0 milestone stays open until an external reviewer is engaged and the
-owner signs the readiness review. The version bump and release notes are ready
-in the pull request, but the milestone is not closed.
+The owner signed this review on 2026-10-28 and directed that the AI self-review
+satisfy the v0.9.0 review step. The milestone can close. An external human
+review remains a blocker for v1.0.0 and is not claimed here.
 
-## External review notes
+## AI review notes
 
-No external reviewer has been engaged as of 2026-10-28. No name, affiliation,
-date, or sign-off is recorded because none exists.
+**Reviewer:** AI execution agent, DeepSeek V4.1 Flash via OpenCode. Not an
+external reviewer, not a human reviewer, and not a qualified legal reviewer.
 
-When a reviewer is engaged, the note will record:
+**Date:** 2026-10-28. **Version:** SRAS 0.9.0.
 
-- name and relevant qualification, with consent,
-- scope reviewed,
-- review date and version,
-- each comment with severity and disposition,
-- conflict of interest.
+**Scope reviewed:** the two pilot reports and their findings, the 18
+dispositions, the readiness evidence, the release metadata, and the docs and
+content gates.
+
+**What was checked:**
+
+- Every pilot finding has an owner and a disposition; the fixed findings have
+  tests, and the deferred findings have an issue.
+- The examples parse as project instances, their lockfiles verify, and the
+  README coverage numbers match the resolved set recomputed from the YAML.
+- The version is consistent across `package.json`, `package-lock.json`,
+  `src/sras/version.ts`, `CITATION.cff`, `core/sras.yaml`, and the docs config.
+- The content guard, schema validation, render check, docs build, doc QA, link
+  check, FDS check, lint, typecheck, and tests pass.
+- The register entries cite official sources; the legal questions remain open
+  and are not answered in the repository.
+
+**Result:** no new release-blocking defect was found in v0.9.0. The v1.0.0
+blockers listed above remain.
+
+**Limitations:** the review is not independent. It cannot verify the legal
+meaning or current status of an official source, and it does not replace a
+qualified legal or external review. It records consistency and test evidence,
+not legal correctness.
 
 ## Owner sign-off
 
-**Pending.** The maintainer has not signed this review. The signature block
-will record the name, role, date, and the version reviewed after the blocking
-items are resolved or explicitly accepted.
+Signed: **Yutthana Siphuengchai (`@yutna`), maintainer, 2026-10-28.**
+
+Scope: this readiness assessment for SRAS 0.9.0, including the v1.0.0 blockers
+listed above. The sign-off does not claim v1.0.0 readiness, external review, or
+legal review.
 
 ## Related pages
 
