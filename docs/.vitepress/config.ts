@@ -52,6 +52,10 @@ const enNav: DefaultTheme.NavItem[] = [
         text: "v1.0.0 release notes",
         link: "/en/releases/v1.0.0",
       },
+      {
+        text: "v1.0.0 announcement",
+        link: "/en/announcements/v1.0.0",
+      },
     ],
   },
   { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
@@ -105,6 +109,10 @@ const thNav: DefaultTheme.NavItem[] = [
         text: "Release notes v1.0.0",
         link: "/th/releases/v1.0.0",
       },
+      {
+        text: "Announcement v1.0.0",
+        link: "/th/announcements/v1.0.0",
+      },
     ],
   },
   { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
@@ -157,6 +165,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "v1.0.0 release notes",
         link: "/en/releases/v1.0.0",
+      },
+      {
+        text: "v1.0.0 announcement",
+        link: "/en/announcements/v1.0.0",
       },
     ],
   },
@@ -271,6 +283,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       {
         text: "Release notes v1.0.0",
         link: "/th/releases/v1.0.0",
+      },
+      {
+        text: "Announcement v1.0.0",
+        link: "/th/announcements/v1.0.0",
       },
     ],
   },
