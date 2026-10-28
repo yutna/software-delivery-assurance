@@ -3,15 +3,24 @@ translation_status: partial
 machine_translated: true
 ---
 
+<!-- markdownlint-disable MD060: Prettier wraps Thai tables by code point; MD060 expects display width. -->
+
 # เริ่มต้นอย่างรวดเร็ว
 
-คู่มือนี้พาผู้ใช้ใหม่จาก checkout ที่สะอาดไปจนถึง project instance ที่สร้างแล้วและ library gate ที่ผ่านภายในเวลาประมาณ 15 นาที ให้รันทุกคำสั่งจาก repository root
+คู่มือนี้พาไปจาก checkout ที่สะอาดไปจนถึง project instance ที่สร้างแล้วและ
+library gate ที่ผ่าน ใช้เวลาประมาณ 15 นาที ให้รันทุกคำสั่งจาก repository root
+
+> หน้านี้เป็นฉบับภาษาไทยที่แปลโดยเครื่องและปรับถ้อยคำเพื่อให้อ่านง่ายขึ้น
+> ยังไม่ผ่านการตรวจทานโดยมนุษย์ จึงยังคง `translation_status: partial` และ
+> `machine_translated: true` ก่อนใช้ตัดสินใจจริง อ่าน
+> [ความพร้อมของ template](governance/template-readiness.md) และยอมรับข้อจำกัด
 
 ## ก่อนเริ่ม
 
 - Node.js 24 LTS และ npm 11
 - clone ของ `yutna/software-delivery-assurance`
-- ต้องไม่มี customer data, secret หรือ evidence จริงใน repository นี้
+- ไม่มี customer data, secret หรือหลักฐานจริงใน repository นี้
+- เข้าใจว่ากำลังใช้ template track ซึ่งเป็นเส้นทางหลัก ไม่ใช่การรับรอง
 
 ```bash
 git clone https://github.com/yutna/software-delivery-assurance.git
@@ -20,7 +29,7 @@ npm ci
 npm run typecheck
 ```
 
-คำสั่ง `npm run sras -- ...` จะ build `dist/` ก่อนรัน
+คำสั่ง `npm run sras -- ...` จะ build `dist/` ก่อนรันคำสั่ง
 
 ## ขั้นที่ 1 — สร้าง project instance
 
@@ -28,7 +37,7 @@ npm run typecheck
 npm run sras -- init ~/sras-demo --profile lite
 ```
 
-ผลลัพธ์ที่คาดหวัง:
+ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
 created project instance at /Users/you/sras-demo
@@ -40,19 +49,23 @@ next steps:
 4. Run npm run sras -- project validate <dir>, validate --all, render --check, and guard from the library repository.
 ```
 
-`init` จะปฏิเสธ directory ที่มีไฟล์อยู่แล้วและ path ที่มี `..` และจะไม่เรียก network
+`init` จะปฏิเสธ directory ที่ไม่ว่างและ path ที่มี `..` ไม่เขียนทับไฟล์เดิม
+และไม่เรียก network
 
-ใช้ `--profile full` เมื่อต้องใช้ maturity L0–L4, readiness index และ evidence coverage ทั้งสอง profile ใช้ requirement ID ชุดเดียวกัน
+เลือก `--profile full` เมื่อต้องใช้ maturity L0–L4, readiness index และ
+evidence coverage ทั้งสอง profile ใช้ requirement ID ชุดเดียวกัน
 
-## ขั้นที่ 2 — ประเมินโปรเจกต์
+## ขั้นที่ 2 — กรอกข้อมูลโปรเจกต์
 
-แก้ไฟล์เหล่านี้ใน project instance ใหม่:
+แก้ไฟล์เหล่านี้ใน instance ที่สร้างใหม่:
 
-- `assurance.yaml` — ชื่อโปรเจกต์ คำอธิบาย owner confidentiality และ selection
-- `assessment.yaml` — scope assessor requirement ที่ประเมิน gate summary และ sign-off
-- `evidence-index.yaml` — evidence ส่วนตัวและ freshness
-- `claims.yaml` — ถ้อยคำที่อนุญาตและห้ามใช้
-- `risk-register.yaml` — gap และความเสี่ยงพร้อม owner และ due date
+| ไฟล์                  | สิ่งที่ต้องแก้                                                     |
+| --------------------- | ------------------------------------------------------------------ |
+| `assurance.yaml`      | ชื่อโปรเจกต์ คำอธิบาย owner confidentiality และ selection          |
+| `assessment.yaml`     | scope, assessor, requirement ที่ประเมิน, gate summary และ sign-off |
+| `evidence-index.yaml` | รายการหลักฐานส่วนตัวและ freshness                                  |
+| `claims.yaml`         | ถ้อยคำที่อนุญาตและห้ามใช้                                          |
+| `risk-register.yaml`  | ช่องว่างและความเสี่ยงพร้อม owner และ due date                      |
 
 requirement ที่ประเมินแล้วมีรูปแบบดังนี้:
 
@@ -67,19 +80,22 @@ requirements:
     due_date: null
 ```
 
-กฎที่ project parser บังคับ:
+กฎที่ parser บังคับ:
 
 - `full` ต้องมี maturity ทุก requirement และ `summary.index` อยู่ระหว่าง 0 ถึง 1
 - `lite` ต้องมี `maturity: null` ทุก requirement และ `summary.index: null`
 - `summary.counts` ต้องตรงกับสถานะของ requirement
-- `assurance.yaml` และ `assessment.yaml` ต้องตรงกันในเรื่อง project identity, SRAS version, profile, tier, modules และ overlays
-- claim ที่เป็น `verified` หรือ `partial` ต้องมี evidence ที่ยัง current มีผู้อนุมัติ และมีวันหมดอายุ
+- `assurance.yaml` และ `assessment.yaml` ต้องตรงกันในเรื่อง project identity,
+  SRAS version, profile, tier, modules และ overlays
+- claim ที่เป็น `verified` หรือ `partial` ต้องมีหลักฐานที่ยังใช้ได้ มีผู้อนุมัติ
+  และมีวันหมดอายุ
 - risk ที่เป็น `accepted` ต้องมี acceptance ID
 - public sector instance ที่ประเมิน `TH-PUB-001` ต้องมี `scope.public_sector`
   พร้อม `contracting_authority` และ `contract_reference`
-- location ของ evidence ต้องเป็น private reference เช่น `evidence/synthetic-policy.md` ห้ามเป็น public URL
+- location ของหลักฐานต้องเป็น private reference เช่น
+  `evidence/synthetic-policy.md` ห้ามเป็น public URL
 
-คู่มือไฟล์ทั้งหมดอยู่ที่ [templates/project.md](templates/project.md)
+คู่มือไฟล์ทั้งหมดอยู่ที่ [คู่มือ template โปรเจกต์](templates/project.md)
 
 ## ขั้นที่ 3 — ตรวจ instance และ refresh lockfile
 
@@ -87,7 +103,7 @@ requirements:
 npm run sras -- project validate ~/sras-demo
 ```
 
-ผลลัพธ์ที่คาดหวัง:
+ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
 project valid: /Users/you/sras-demo; 12 resolved standard inputs; lockfile current
@@ -95,9 +111,9 @@ project valid: /Users/you/sras-demo; 12 resolved standard inputs; lockfile curre
 
 `project validate` parse ไฟล์โปรเจกต์ทุกไฟล์ ใช้กฎเดียวกับ `init` resolve
 selection ปัจจุบัน และล้มเหลวพร้อมรายการปัญหาที่อ่านได้เมื่อ lockfile ล้า
-คำสั่งนี้ไม่เขียนไฟล์
+คำสั่งนี้อ่านอย่างเดียว ไม่เขียนไฟล์
 
-หลังเปลี่ยน module หรือ overlay ที่เลือก ให้ refresh lockfile
+หลังเปลี่ยน module หรือ overlay ที่เลือก ให้ refresh lockfile:
 
 ```bash
 npm run sras -- project refresh ~/sras-demo
@@ -107,21 +123,22 @@ npm run sras -- project refresh ~/sras-demo
 standard input เขียนเฉพาะไฟล์นั้น และปฏิเสธการเขียนเมื่อกฎโปรเจกต์ข้ออื่น
 ล้มเหลว
 
-## ขั้นที่ 4 — ตรวจสอบ library
+## ขั้นที่ 4 — ตรวจเนื้อหามาตรฐานใน library
 
 ```bash
 npm run sras -- validate --all
 ```
 
-ผลลัพธ์ที่คาดหวัง:
+ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
 validated 53 files
 ```
 
-คำสั่งนี้ตรวจเนื้อหา SRAS standard ใน library ซึ่งประกอบด้วย requirement, module, overlay, register และ crosswalk โดยใช้ JSON Schema 2020-12 ใต้ `schemas/` และ domain rule ใน `src/sras/standard/`
+คำสั่งนี้ตรวจ requirement, module, overlay, register และ crosswalk ใน library
+ด้วย JSON Schema 2020-12 ใต้ `schemas/` และ domain rule ใน `src/sras/standard/`
 
-`validate --all` ครอบคลุม library ไม่ใช่ project instance ใช้
+`validate --all` ตรวจ library ไม่ใช่ project instance ใช้
 `project validate <dir>` สำหรับ instance และ `project refresh <dir>` เพื่อ
 อัปเดต lockfile
 
@@ -133,13 +150,15 @@ npm run sras -- render --check
 ```
 
 `render` เขียนหน้า reference ภาษาอังกฤษใต้ `docs/en/reference/`
-`render --check` คำนวณใหม่และรายงานหน้าที่หายไป เปลี่ยน หรือเกิน โดยไม่เขียนไฟล์ ผลลัพธ์ที่คาดหวัง:
+`render --check` คำนวณใหม่และรายงานหน้าที่หายไป เปลี่ยน หรือเกิน โดยไม่เขียนไฟล์
+ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
 render check passed: 154 pages; 154 files
 ```
 
-คำสั่งนี้ deterministic: ลำดับหน้า ลำดับรายการ และเนื้อหาไม่มี timestamp หรือข้อมูล environment
+คำสั่งนี้ deterministic: ลำดับหน้า ลำดับรายการ และเนื้อหาไม่มี timestamp หรือ
+ข้อมูล environment
 
 ## ขั้นที่ 6 — Guard เนื้อหาสาธารณะ
 
@@ -147,13 +166,17 @@ render check passed: 154 pages; 154 files
 npm run sras -- guard
 ```
 
-ผลลัพธ์ที่คาดหวัง:
+ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-guard passed: scanned 344 files; excluded 0
+guard passed: scanned 354 files; excluded 0
 ```
 
-guard สแกน path เนื้อหาสาธารณะเพื่อหา คำที่อยู่นอกขอบเขตด้านสุขภาพและ sector, secret, private network identifier, personal data, ชื่อลูกค้าจาก private override และ unsafe claim ส่วน FDS pack, `vendor/`, `tests/` และ seed ชั่วคราว `internal/` ถูกยกเว้น
+จำนวนไฟล์อาจเปลี่ยนเมื่อเพิ่มหรือลบไฟล์ สิ่งสำคัญคือผลผ่านหรือไม่ผ่าน
+
+guard สแกนเนื้อหาสาธารณะเพื่อหาคำศัพท์นอกขอบเขต, secret, private network
+identifier, personal data, ชื่อลูกค้าจาก private override และ unsafe claim
+ส่วน FDS pack, `vendor/`, `tests/` และ `internal/` ถูกยกเว้น
 
 รูปแบบ machine-readable และ CI annotation:
 
@@ -168,9 +191,11 @@ npm run sras -- guard --annotations
 
 ## Exit code
 
-- `0` — คำสั่งเสร็จและ check ผ่าน
-- `1` — พบ finding, validation ล้มเหลว, render drift หรือ `init` ปฏิเสธตามที่คาด
-- `2` — usage error: command/flag ไม่รู้จัก, argument หาย, ค่าไม่ถูกต้อง
+| Code | ความหมาย                                                                 |
+| ---- | ------------------------------------------------------------------------ |
+| `0`  | คำสั่งเสร็จและการตรวจผ่าน                                                |
+| `1`  | พบ finding, validation ล้มเหลว, render drift หรือ `init` ปฏิเสธตามที่คาด |
+| `2`  | usage error: command/flag ไม่รู้จัก, argument หาย หรือค่าไม่ถูกต้อง      |
 
 ตัวอย่างที่คืน `1`:
 
@@ -182,28 +207,39 @@ npm run sras -- guard --annotations
 
 ## Command reference
 
-- `npm run sras -- --version` — แสดง SRAS version
-- `npm run sras -- --help` — แสดงรายการคำสั่ง
-- `npm run sras -- validate --all` — ตรวจเนื้อหา standard ใน library
-- `npm run sras -- init <dir> --profile lite` — สร้าง project instance แบบ lite
-- `npm run sras -- init <dir> --profile full` — สร้าง project instance แบบ full
-- `npm run sras -- project validate <dir>` — ตรวจ project instance ที่มีอยู่
-- `npm run sras -- project refresh <dir>` — คำนวณ lockfile ของโปรเจกต์ใหม่
-- `npm run sras -- render` — เขียนหน้า reference
-- `npm run sras -- render --check` — ตรวจหน้า reference โดยไม่เขียน
-- `npm run sras -- guard` — สแกนเนื้อหาสาธารณะ
-- `npm run sras -- guard --format json` — แสดง guard report version 1
-- `npm run sras -- guard --annotations` — แสดง GitHub Actions annotation
+| คำสั่ง                                      | ใช้ทำอะไร                       |
+| ------------------------------------------- | ------------------------------- |
+| `npm run sras -- --version`                 | แสดง SRAS version               |
+| `npm run sras -- --help`                    | แสดงรายการคำสั่ง                |
+| `npm run sras -- validate --all`            | ตรวจเนื้อหามาตรฐานใน library    |
+| `npm run sras -- init <dir> --profile lite` | สร้าง project instance แบบ lite |
+| `npm run sras -- init <dir> --profile full` | สร้าง project instance แบบ full |
+| `npm run sras -- project validate <dir>`    | ตรวจ project instance ที่มีอยู่ |
+| `npm run sras -- project refresh <dir>`     | คำนวณ lockfile ของโปรเจกต์ใหม่  |
+| `npm run sras -- render`                    | เขียนหน้า reference             |
+| `npm run sras -- render --check`            | ตรวจหน้า reference โดยไม่เขียน  |
+| `npm run sras -- guard`                     | สแกนเนื้อหาสาธารณะ              |
+| `npm run sras -- guard --format json`       | แสดง guard report version 1     |
+| `npm run sras -- guard --annotations`       | แสดง GitHub Actions annotation  |
 
 ## แก้ปัญหา
 
-- **`init` บอกว่า target ไม่ว่าง** เลือก directory ใหม่หรือย้ายไฟล์ที่ไม่ต้องใช้ออก `init` ไม่เขียนทับ
-- **`init` ปฏิเสธชื่อโปรเจกต์** ใช้ชื่อ directory ที่ขึ้นต้นด้วยตัวอักษรหรือตัวเลข และมีเฉพาะตัวอักษร ตัวเลข ช่องว่าง จุด hyphen และ underscore
-- **`render --check` รายงาน drift** รัน `npm run sras -- render` ตรวจหน้าที่เปลี่ยน แล้ว commit ทั้ง source และ output
-- **`guard` พบชื่อส่วนตัว** ใส่ชื่อใน private override แล้วชี้ `SRAS_DENYLIST_PATH` ไปที่ไฟล์นั้น ห้าม commit override
+- **`init` บอกว่า target ไม่ว่าง** เลือก directory ใหม่หรือย้ายไฟล์ที่ไม่ต้องใช้
+  ออก `init` ไม่เขียนทับ
+- **`init` ปฏิเสธชื่อโปรเจกต์** ใช้ชื่อ directory ที่ขึ้นต้นด้วยตัวอักษรหรือ
+  ตัวเลข และมีเฉพาะตัวอักษร ตัวเลข ช่องว่าง จุด hyphen และ underscore
+- **`render --check` รายงาน drift** รัน `npm run sras -- render` ตรวจหน้าที่
+  เปลี่ยน แล้ว commit ทั้ง source และ output
+- **`guard` พบชื่อส่วนตัว** ใส่ชื่อใน private override แล้วชี้
+  `SRAS_DENYLIST_PATH` ไปที่ไฟล์นั้น ห้าม commit override
+- **`project validate` บอก lockfile stale** ตรวจว่า selection เปลี่ยนหรือไม่
+  แล้วรัน `project refresh <dir>` อย่าแก้ lockfile ด้วยมือ
 
 ## ขั้นต่อไป
 
-- อ่าน [คู่มือ project template](templates/project.md)
-- ดู [reference index](../en/reference/index.md)
+- อ่าน [ความพร้อมของ template](governance/template-readiness.md)
+- มอบหมายบทบาทตาม [owner map](templates/owner-map.md)
+- อ่าน [คู่มือ template โปรเจกต์](templates/project.md)
+- ดู [reference index](reference/index.md)
+- สำหรับงานภาครัฐ อ่าน [overlay ภาครัฐ](sectors/public-sector.md)
 - อ่าน `SCOPE.md`, `GOVERNANCE.md` และ `CONTRIBUTING.md` ก่อนประเมินจริง

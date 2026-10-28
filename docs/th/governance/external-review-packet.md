@@ -8,6 +8,13 @@ machine_translated: true
 **สถานะ: template เท่านั้น ยังไม่มีผู้ตรวจที่ระบุชื่อ ได้รับการติดต่อ หรือบันทึกผล
 ยังไม่มีการตรวจสอบจากภายนอกเกิดขึ้น**
 
+**เครื่องมือทางเลือกสำหรับ formal-standard track** packet นี้เป็นของ
+formal-standard track ซึ่งเป็นทางเลือก template / starter-kit track ไม่จำเป็น
+ต้องใช้ packet นี้ และใช้ได้โดยมีข้อจำกัดตาม
+[ความพร้อมของ template](template-readiness.md) ใช้ packet นี้เมื่อองค์กรต้องการ
+อ้างอิงระดับ formal-standard จัดให้มีการทบทวนภายนอก หรือเตรียม candidate ของ
+v1.0.0 เท่านั้น
+
 **จัดทำ:** 2026-10-28 **เป้าหมาย:** SRAS 1.0.0 candidate ซึ่งอิงจาก SRAS 0.9.0
 **ผู้ตรวจ:** _รอระบุชื่อ_ **วันที่ตรวจ:** _รอบันทึก_
 
@@ -20,6 +27,7 @@ machine_translated: true
 
 - ไม่ใช่ผลการตรวจ การอนุมัติ การรับรอง หรือความเห็นทางกฎหมาย
 - ไม่ใช่สิ่งทดแทนผู้ตรวจกฎหมายที่มีคุณสมบัติ
+- ไม่ใช่ข้อบังคับก่อนใช้ starter kit หรือคัดลอก template
 - ไม่ได้อนุญาตให้ผู้ตรวจแก้ requirement โดยไม่มีหลักฐาน
 - ไม่ได้อ้างว่าผู้ดูแลมีความเป็นอิสระจากงานนี้
 
@@ -206,6 +214,7 @@ Signature or verifiable approval:
 
 ## หน้าที่เกี่ยวข้อง
 
+- [ความพร้อมของ template](template-readiness.md)
 - [v1.0.0 readiness review](v1-readiness.md)
 - [Pilot summary and triage](../pilots/summary.md)
 - [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

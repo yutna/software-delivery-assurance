@@ -56,6 +56,18 @@ missing instead of being marked complete.
   framework is present.
 - `oss-kit doctor` reports no drift.
 
+## Template track status
+
+The template / starter-kit track is usable with limitations. It is separate
+from this v1.0.0 readiness review. The template track does not require the
+external review, the complete human Thai review, or the SRAS 1.0 freeze listed
+below. Its limitations are recorded in
+[template readiness](template-readiness.md).
+
+This v1.0.0 review remains the readiness record for the optional formal-standard
+track. A team may copy the template and run an assessment now; it may not claim
+that the standard is v1.0.0-ready.
+
 ## Blocking items for v1.0.0
 
 1. **Thai translation is not human-reviewed.** All 70 Core, 52 module, and 45
@@ -67,10 +79,11 @@ missing instead of being marked complete.
    engaged. The AI self-review recorded on this page is not independent, not
    human, and not a substitute for the external review that v1.0.0 needs. The
    owner accepted it for the v0.9.0 review step only.
-3. **Two high findings remain deferred.** #127 (validate and refresh a project
-   instance) and #132 (record the contracting authority) affect the claim that
-   the template and CLI are stable. Both need a design cycle or an explicit
-   accepted limitation before v1.0.0.
+3. **Two high findings were deferred at the time of this review.** #127
+   (validate and refresh a project instance) and #132 (record the contracting
+   authority) affect the claim that the template and CLI are stable. Both were
+   fixed after the review by #140 and #141; see the addendum. The formal-standard
+   claim still needs the remaining review and freeze work.
 4. **The remaining v1.0.0 issues are open.** SRAS 1.0 is not frozen, governance
    is not final, the final audit and doctor run has not been archived, and the
    release notes and announcement do not exist.
@@ -165,6 +178,7 @@ remain `unverified`, and legal questions #128–#131 remain open.
 
 ## Related pages
 
+- [Template readiness](template-readiness.md)
 - [Pilot summary](../pilots/summary.md)
 - [Execution status](https://github.com/yutna/software-delivery-assurance/issues/67)
 - [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

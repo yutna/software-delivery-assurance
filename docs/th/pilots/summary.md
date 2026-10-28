@@ -13,12 +13,17 @@ machine_translated: true
 
 - การนำร่องเสร็จ: 2 ครั้ง (การเงินและภาครัฐ)
 - Findings: 18 — high 6, medium 8, low 4
-- แก้ใน #59: 9
-- เลื่อนพร้อม issue ติดตาม: 5
+- แก้ ณ v0.9.0 ใน #59: 9
+- เลื่อน ณ v0.9.0 พร้อม issue ติดตาม: 5
 - คำถามกฎหมายที่เปิดอยู่: 4
 - การทบทวนภายนอก: ไม่มี ยังไม่มีผู้ตรวจทานภายนอก
 - การตรวจที่ทำ: AI ตรวจเองเมื่อ 2026-10-28 owner ยอมรับสำหรับขั้นตอนการทบทวนของ
   v0.9.0 ไม่ใช่การทบทวนอิสระ โดยมนุษย์ หรือทางกฎหมาย
+
+หลัง release v0.9.0 มีการแก้ finding ที่เลื่อนไว้สองรายการ: PF-02 โดย #140 และ
+PS-04 โดย #141 สถานะปัจจุบันคือแก้แล้ว 11 รายการ ยังเลื่อน 3 รายการ และเป็น
+คำถามกฎหมายที่เปิดอยู่ 4 รายการ การเลื่อนเดิมยังคงอยู่ด้านล่างเป็นประวัติ
+ไม่ถูกเขียนใหม่
 
 owner ยืนยันว่าไม่มีผู้ตรวจทานภายนอก หน้านี้บันทึกข้อเท็จจริงนั้นแทนการสร้างชื่อ
 วันที่ หรือการ sign-off ที่ไม่มีจริง
@@ -41,7 +46,7 @@ issue หรือ `open legal question` พร้อม issue
 ## Findings
 
 - **PF-01 — Finance, High.** ตัวอย่างด้านการเงินไม่ใช่ project instance ที่ถูกต้อง: ไม่มี manifest ไม่มี risk register และ lockfile เป็นรูปแบบเก่า. Owner @yutna. Disposition: แก้ใน #59
-- **PF-02 — Finance, High.** ไม่มีคำสั่ง validate instance ที่แก้ไขแล้วหรือ refresh lockfile แม้เอกสารจะบอกให้ทำทั้งสองอย่าง. Owner @yutna. Disposition: เลื่อนไป #127
+- **PF-02 — Finance, High.** ไม่มีคำสั่ง validate instance ที่แก้ไขแล้วหรือ refresh lockfile แม้เอกสารจะบอกให้ทำทั้งสองอย่าง. Owner @yutna. Disposition: เลื่อนไป #127; แก้แล้วใน #140
 - **PF-03 — Finance, Medium.** ไม่มี CLI สำหรับ requirement resolution. Owner @yutna. Disposition: เลื่อนไป #126
 - **PF-04 — Finance, High.** ตัวอย่างรายงานว่าประเมิน 8 ข้อกำหนดและ 6 gates แต่ selection resolve ได้ 122 ข้อกำหนดและ 46 gates. Owner @yutna. Disposition: แก้ใน #59
 - **PF-05 — Finance, Medium.** freshness ของ evidence เป็นการประกาศเองและขัดกับ `expires_at` ได้. Owner @yutna. Disposition: แก้ใน #59
@@ -54,7 +59,7 @@ issue หรือ `open legal question` พร้อม issue
 - **PS-01 — Public, High.** ตัวอย่างภาครัฐไม่ใช่ project instance ที่ถูกต้อง: ไม่มี manifest ไม่มี risk register และ lockfile เป็นรูปแบบเก่า. Owner @yutna. Disposition: แก้ใน #59
 - **PS-02 — Public, High.** ตัวอย่างรายงานว่าประเมิน 7 ข้อกำหนดและ 6 gates แต่ selection resolve ได้ 112 ข้อกำหนดและ 47 gates. Owner @yutna. Disposition: แก้ใน #59
 - **PS-03 — Public, Medium.** `TH-PUB-003` ไม่มีเป้าหมาย accessibility ขั้นต่ำ และไม่มีฟิลด์บันทึกเป้าหมายที่ตกลง. Owner @yutna. Disposition: คำถามกฎหมาย #131
-- **PS-04 — Public, High.** schema ไม่มีฟิลด์สำหรับหน่วยงานผู้ว่าจ้างหรือเลขที่สัญญา. Owner @yutna. Disposition: เลื่อนไป #132
+- **PS-04 — Public, High.** schema ไม่มีฟิลด์สำหรับหน่วยงานผู้ว่าจ้างหรือเลขที่สัญญา. Owner @yutna. Disposition: เลื่อนไป #132; แก้แล้วใน #141
 - **PS-05 — Public, Medium.** `TH-PUB-005` ไม่ได้ระบุชุด licence ที่ยอมรับสำหรับ open data. Owner @yutna. Disposition: คำถามกฎหมาย #130
 - **PS-06 — Public, Low.** WCAG 2.2 ถูกอ้างโดย gate แต่ไม่มีรายการในทะเบียน. Owner @yutna. Disposition: เลื่อนไป #134
 - **PS-07 — Public, Medium.** ไม่มีการตรวจความครบของประเภท evidence; gate เป็น `verified` ด้วย document เดียวได้. Owner @yutna. Disposition: เลื่อนไป #135
@@ -75,21 +80,25 @@ issue หรือ `open legal question` พร้อม issue
 - PF-08: ใช้วันตามปฏิทินท้องถิ่นเมื่อสร้าง instance
 - PF-09: แก้รายการแหล่งอ้างอิงในหน้ากาศการเงิน
 
-### เลื่อน
+### เลื่อน ณ v0.9.0
 
 - **PF-02 → #127:** คำสั่ง validate และ lock refresh เป็น CLI surface ใหม่ ต้องมี
-  design note, tests และ docs
+  design note, tests และ docs — **แก้แล้วใน #140**
 - **PF-03 → #126:** resolution output และ coverage ต้องมี output contract และ
-  ข้อสรุปเรื่อง gate failure
+  ข้อสรุปเรื่อง gate failure — ยังเลื่อนอยู่
 - **PS-04 → #132:** ฟิลด์หน่วยงานผู้ว่าจ้างเป็น schema change ที่ต้องมี migration
-  note และรอบทบทวนของตัวเอง
+  note และรอบทบทวนของตัวเอง — **แก้แล้วใน #141**
 - **PS-06 → #134:** รายการทะเบียนสำหรับมาตรฐานภายนอกที่สมัครใจต้องมีการตัดสิน
-  นโยบายและแหล่งที่ตรวจสอบได้
+  นโยบายและแหล่งที่ตรวจสอบได้ — ยังเลื่อนอยู่
 - **PS-07 → #135:** evidence type coverage ต้องใช้ evidence map ของข้อกำหนดตอน
-  validation และกฎเรื่องประเภททดแทน
+  validation และกฎเรื่องประเภททดแทน — ยังเลื่อนอยู่
 
-ทุก finding ที่เลื่อนยังปรากฏในรายงานการนำร่อง ไม่มีข้อใดบล็อก release v0.9.0 และ
-ไม่มีข้อใดเป็นการยกเว้น gate
+รายการนี้เก็บ disposition ณ v0.9.0 ไว้ PF-02 และ PS-04 แก้หลัง release โดย #140
+และ #141 การแก้ไม่ได้ลบการเลื่อนเดิมหรือข้อจำกัดของ v0.9.0 แต่บันทึกการแก้ไขที่
+เกิดขึ้นภายหลัง หน้า pilot รายละเอียดยังคง disposition เดิมเป็นประวัติ
+
+finding ที่ยังเลื่อนยังปรากฏในรายงานการนำร่อง ไม่มีข้อใดบล็อก template track
+และไม่มีข้อใดเป็นการยกเว้น gate
 
 ## บันทึกการตรวจ
 

@@ -8,6 +8,13 @@ machine_translated: false
 **Status: kit only. No Thai review has been performed. No requirement has been
 marked complete, and no `machine_translated` value has been changed.**
 
+**Optional formal-standard tool.** This kit belongs to the optional
+formal-standard track. The template / starter-kit track does not require a
+complete human Thai review and can be used with the limitations in
+[template readiness](template-readiness.md). Use this kit when an organisation
+intends to claim a reviewed standard, publish official Thai content, or prepare
+the v1.0.0 candidate.
+
 **Prepared:** 2026-10-28. **Scope:** all 167 active requirements — 70 Core, 52
 module, and 45 overlay requirements. Every one is currently
 `translation_status: partial` with `machine_translated: true`.
@@ -17,6 +24,11 @@ reviewer. A named human must read the English and Thai text, decide each
 requirement, and record the decision. The AI execution agent must not mark a
 requirement complete or set `machine_translated: false` on the reviewer's
 behalf.
+
+Using the template track does not require this kit. The kit is for the
+formal-standard track, where complete Thai content is part of the claim. The
+template track keeps every page `partial` and states that limitation to its
+readers.
 
 ## Who may review
 
@@ -358,6 +370,7 @@ is finished.
 
 ## Related pages
 
+- [Template readiness](template-readiness.md)
 - [External review packet](external-review-packet.md)
 - [v1.0.0 readiness review](v1-readiness.md)
 - [Thai glossary](../glossary.md)

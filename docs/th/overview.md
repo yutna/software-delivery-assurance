@@ -3,18 +3,42 @@ translation_status: partial
 machine_translated: true
 ---
 
+<!-- markdownlint-disable MD060: Prettier wraps Thai tables by code point; MD060 expects display width. -->
+
 # ภาพรวม
 
-Software Delivery Assurance Library เป็นคลังอ้างอิงแบบเปิดที่อิงหลักฐานสำหรับ
-การรับประกันการส่งมอบซอฟต์แวร์ คลังนี้ประกอบด้วย SRAS Core, โมดูลทางเทคนิคที่
-เลือกได้, overlay ภาคธุรกิจของประเทศไทย, ทะเบียนกฎระเบียบ, template สำหรับ
-project instance และเครื่องมือ TypeScript ที่ตรวจสอบ render และ guard เนื้อหา
+Software Delivery Assurance Starter Kit เป็นวิธีแบบเปิดที่อิงหลักฐานสำหรับ
+วางระบบการรับประกันการส่งมอบซอฟต์แวร์ของโปรเจกต์หนึ่ง ๆ ออกแบบมาสำหรับงานใน
+อนาคต โดยเฉพาะการส่งมอบซอฟต์แวร์ภาครัฐของไทย และมีมาตรฐานอ้างอิง SRAS,
+overlay ภาคธุรกิจของประเทศไทย, ทะเบียนกฎระเบียบ, template โปรเจกต์ และเครื่องมือ
+TypeScript สำหรับตรวจสอบ render และ guard เนื้อหาให้พร้อมใช้
 
-ไซต์นี้อธิบาย SRAS v0.9.0
+ไซต์นี้อธิบาย SRAS v0.9.0 milestone v0.10.0 กำลังปรับตำแหน่งของ repository
+ให้เป็น starter kit โดยไม่ bump version ไม่ cut release และไม่ปิด track
+formal-standard ของ v1.0.0
+
+> หน้านี้เป็นฉบับภาษาไทยที่แปลโดยเครื่องและปรับถ้อยคำเพื่อให้อ่านง่ายขึ้น
+> ยังไม่ผ่านการตรวจทานโดยมนุษย์ จึงยังคง `translation_status: partial` และ
+> `machine_translated: true`
+
+## สองเส้นทางที่ใช้ repository นี้
+
+repository นี้ใช้ได้สองแบบ เส้นทางหลักคือ template track
+
+| เส้นทาง                   | ใช้เมื่อ                                                                       | สถานะ                          |
+| ------------------------- | ------------------------------------------------------------------------------ | ------------------------------ |
+| Template / starter kit    | เริ่มโปรเจกต์และต้องการบันทึก assurance อย่างเป็นระบบตอนนี้                    | ใช้ได้โดยมีข้อจำกัด            |
+| Formal-standard reference | ต้องการมาตรฐานที่ผ่านการทบทวน การทบทวนภายนอก หรือข้ออ้างความเสถียรระดับ v1.0.0 | ยังไม่พร้อม v1.0.0 ยังถูกบล็อก |
+
+template track ไม่ต้องมีผู้ตรวจทานภายนอก และไม่ได้ให้การรับรองใด ๆ
+formal-standard track เป็นทางเลือกแยกต่างหาก ต้องมีการทบทวนภาษาไทยโดยมนุษย์
+การทบทวนภายนอกโดยมนุษย์ และงาน v1.0.0 ที่เหลือ อ่าน
+[ความพร้อมของ template](governance/template-readiness.md) ก่อนนำไปใช้ตัดสินใจ
+ส่งมอบจริง
 
 ## สี่คำถาม
 
-ทุกส่วนของคลังมีอยู่เพื่อตอบคำถามหนึ่งในสี่ข้อนี้
+ทุกส่วนของ kit มีอยู่เพื่อตอบคำถามหนึ่งในสี่ข้อนี้
 
 1. **อะไรต้องเป็นจริงก่อนส่งมอบซอฟต์แวร์?**
    SRAS Core, module และ overlay ระบุข้อกำหนดที่ทดสอบได้
@@ -27,7 +51,7 @@ project instance และเครื่องมือ TypeScript ที่ต
 
 ## ชั้นของเนื้อหา
 
-คลังนี้มีหลายชั้น แต่ละชั้นเพิ่มความเฉพาะเจาะจง ไม่มีชั้นใดแทนที่ชั้นล่าง
+เนื้อหามีหลายชั้น แต่ละชั้นเพิ่มความเฉพาะเจาะจง ไม่มีชั้นใดแทนที่ชั้นล่าง
 
 ```text
 ทะเบียนกฎระเบียบ     ข้อเท็จจริงและแหล่งอ้างอิงทางการ
@@ -41,23 +65,26 @@ SRAS Core            baseline ที่ทุกผลิตภัณฑ์ถ�
 project instance     scope, assessment, evidence, claims, risk
 ```
 
-repository สาธารณะเป็นเจ้าของฝั่งซ้ายของโมเดล project instance ส่วนตัวเป็นเจ้าของ
-ฝั่งขวา ได้แก่ scope, assessment ที่กรอกแล้ว, evidence index, claims, risk
-register และ sign-off หลักฐานจริงและข้อมูลลูกค้าไม่เคยอยู่ใน repository นี้
+repository สาธารณะเป็นเจ้าของฝั่งอ้างอิงของโมเดล ส่วน project instance ส่วนตัว
+เป็นเจ้าของฝั่งการประเมิน ได้แก่ scope, assessment ที่กรอกแล้ว, evidence index,
+claims, risk register และ sign-off หลักฐานจริงและข้อมูลลูกค้าไม่เคยอยู่ใน
+repository นี้
 
 ## สิ่งที่มีในรุ่นนี้
 
-- โดเมน Core 7 โดเมน ใน `core/domains/`
-- ข้อกำหนด Core 70 ข้อ ใน `core/domains/`
-- โมดูลทางเทคนิค 5 โมดูล ใน `modules/`
-- ข้อกำหนดในโมดูล 52 ข้อ ใน `modules/`
-- overlay ภาคธุรกิจ 4 ชุด ใน `overlays/industries/`
-- ข้อกำหนดใน overlay 45 ข้อ ใน `overlays/industries/`
-- ทะเบียนประเทศไทย 12 รายการ ใน `registers/th/`
-- crosswalk 7 ชุด ใน `mappings/`
-- profile 2 แบบ ใน `core/profiles/`
-- template โปรเจกต์ 1 ชุด ใน `templates/project/`
-- ตัวอย่าง synthetic 5 ชุด ใน `examples/`
+| เนื้อหา            | จำนวน | ตำแหน่ง                |
+| ------------------ | ----: | ---------------------- |
+| โดเมน Core         |     7 | `core/domains/`        |
+| ข้อกำหนด Core      |    70 | `core/domains/`        |
+| โมดูลทางเทคนิค     |     5 | `modules/`             |
+| ข้อกำหนดในโมดูล    |    52 | `modules/`             |
+| overlay ภาคธุรกิจ  |     4 | `overlays/industries/` |
+| ข้อกำหนดใน overlay |    45 | `overlays/industries/` |
+| ทะเบียนประเทศไทย   |    12 | `registers/th/`        |
+| crosswalk          |     7 | `mappings/`            |
+| profile            |     2 | `core/profiles/`       |
+| template โปรเจกต์  |     1 | `templates/project/`   |
+| ตัวอย่าง synthetic |     5 | `examples/`            |
 
 สัญญาแบบ machine-readable อยู่ใน `schemas/` เป็น JSON Schema 2020-12
 เครื่องมือ TypeScript อยู่ใน `src/sras/` และเปิดใช้ CLI ชื่อ `sras`
@@ -66,6 +93,7 @@ register และ sign-off หลักฐานจริงและข้อ�
 
 - ไม่ใช่การรับรอง (certification) การให้ accreditation หรือ audit attestation
 - ไม่ใช่คำแนะนำทางกฎหมายหรือข้อสรุปว่าผลิตภัณฑ์ปฏิบัติตามกฎหมาย
+- ไม่ใช่มาตรฐานที่เผยแพร่แล้วและผ่านการลงนามจากภายนอก
 - ไม่ใช่การประเมินเฉพาะลูกค้า ชุดหลักฐาน สัญญา หรือความเห็นทางกฎหมาย
 - ไม่ใช่ผลิตภัณฑ์แบบ hosted, dashboard หรือแพลตฟอร์ม multi-tenant
 - ไม่ใช่สิ่งทดแทนโปรแกรม security, privacy หรือ quality ขององค์กรเอง
@@ -78,12 +106,13 @@ repository ยังเผยแพร่
 ## ภาคธุรกิจและตลาดที่รองรับ
 
 ภาคธุรกิจที่รองรับคือ การเงิน อีคอมเมิร์ซ โลจิสติกส์ และภาครัฐ
+ภาครัฐเป็นเส้นทางหลักสำหรับหน่วยงานรัฐและผู้ขายที่ส่งมอบบริการดิจิทัลของไทย
 
 ประเทศไทยมี overlay ภาคธุรกิจครบและมีทะเบียนกฎระเบียบที่ดูแลต่อเนื่อง
 อาเซียนมี[รายการทะเบียนหกรายการ](registers/index.md)และ
-[หน้าการเปรียบเทียบ](registers/asean-comparison.md) ทะเบียน EU มีแผนใน
-v0.9.0 รายการเหล่านี้เป็นเพียงรายการอ้างอิง ไม่ใช่ overlay สำหรับการปฏิบัติตาม
-กฎหมาย
+[หน้าการเปรียบเทียบ](registers/asean-comparison.md) สหภาพยุโรปมีทะเบียนเก้า
+รายการและ[หน้าการเปรียบเทียบของตนเอง](registers/eu-comparison.md)
+รายการเหล่านี้เป็นเพียงรายการอ้างอิง ไม่ใช่ overlay สำหรับการปฏิบัติตามกฎหมาย
 
 ## สถานะการตรวจทานและการแปล
 
@@ -97,16 +126,24 @@ v0.9.0 รายการเหล่านี้เป็นเพียงร�
 `translation_status: partial` และ `machine_translated: true` จนกว่าผู้ตรวจทาน
 ที่เป็นมนุษย์จะยืนยัน
 
+[confidence labels](governance/confidence-labels.md) เป็นข้อตกลงสำหรับเอกสาร
+เท่านั้น ใช้อ่านข้อความ เช่น "checked", "documented", "provisional" หรือ
+"planned" ไม่ใช่การรับรอง และไม่ใช่ฟิลด์ใน schema
+
 ## กลุ่มผู้อ่าน
 
-product owner, engineering lead, ทีม security และ privacy, ทีม operations,
-ผู้ประเมิน และทีม bid ที่ต้องการวิธีอ้างอิงหลักฐานที่ใช้ซ้ำได้ เพื่อพูดคุยเรื่อง
-ความพร้อมของซอฟต์แวร์โดยไม่ต้องสร้าง checklist ใหม่สำหรับลูกค้าแต่ละราย
+ทีมดิจิทัลของหน่วยงานรัฐ รัฐวิสาหกิจ ผู้ขายที่ส่งมอบบริการสาธารณะ product owner
+engineering lead ทีม security และ privacy ทีม operations ผู้ประเมิน และทีม bid
+ที่ต้องการวิธีอ้างอิงหลักฐานที่ใช้ซ้ำได้ เพื่อพูดคุยเรื่องความพร้อมของซอฟต์แวร์
+โดยไม่ต้องสร้าง checklist ใหม่สำหรับลูกค้าแต่ละราย
 
 ## ขั้นตอนถัดไป
 
-- เริ่มที่ [เริ่มต้นอย่างรวดเร็ว](quick-start.md)
+- เริ่มที่ [ความพร้อมของ template](governance/template-readiness.md)
+- ทำตาม [เริ่มต้นอย่างรวดเร็ว](quick-start.md)
+- มอบหมายบทบาทตาม [owner map](templates/owner-map.md)
 - อ่าน [แนวคิด](concepts/index.md) ก่อนทำการประเมินจริง
 - เลือก [module และ overlay](concepts/modules-and-overlays.md) ที่ตรงกับ
   ผลิตภัณฑ์
+- สำหรับงานภาครัฐ อ่าน [overlay ภาครัฐ](sectors/public-sector.md)
 - ดู [reference](reference/index.md) ที่ generate ไว้

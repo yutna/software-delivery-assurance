@@ -5,8 +5,8 @@ machine_translated: true
 
 hero:
   name: Software Delivery Assurance
-  text: การรับประกันการส่งมอบซอฟต์แวร์ด้วยหลักฐาน
-  tagline: คลังสาธารณะของข้อกำหนด ทะเบียน แบบฟอร์มโปรเจกต์ และเครื่องมือ สำหรับตอบคำถามว่าอะไรต้องเป็นจริงก่อนส่งมอบซอฟต์แวร์ หลักฐานใดพิสูจน์ได้ และอะไรคือสิ่งที่ควรหรือไม่ควรกล่าวอ้าง
+  text: starter kit สำหรับการส่งมอบซอฟต์แวร์ที่อิงหลักฐาน
+  tagline: คัดลอก template โปรเจกต์ ประเมินโปรเจกต์จริง และเก็บหลักฐานไว้ในที่ส่วนตัว ออกแบบสำหรับงานในอนาคต โดยเฉพาะภาครัฐของไทย พร้อมมาตรฐานอ้างอิง SRAS และเครื่องมือ
   actions:
     - theme: brand
       text: เริ่มต้นอย่างรวดเร็ว
@@ -32,14 +32,21 @@ features:
 
 ## เริ่มต้นที่นี่
 
+template / starter-kit track เป็นเส้นทางหลักและใช้ได้โดยมีข้อจำกัด
+formal-standard track เป็นทางเลือกและยังอยู่ในเส้นทาง v1.0.0
+
+- [ความพร้อมของ template](governance/template-readiness.md) — วันนี้ใช้อะไรได้
+  และยังมีข้อจำกัดอะไร
 - [เริ่มต้นอย่างรวดเร็ว](quick-start.md) — จาก clone ที่สะอาดไปจนถึง project
   instance ที่สร้างแล้วและ library gate ที่ผ่าน
-- [ภาพรวม](overview.md) — คลังนี้มีอะไรและไม่มีอะไร
+- [Owner map](templates/owner-map.md) — ใครรับผิดชอบกิจกรรมใด
+- [ภาพรวม](overview.md) — kit มีอะไรและไม่มีอะไร
 - [แนวคิด](concepts/index.md) — ข้อกำหนด profile module overlay การ resolve
   project instance claim และเครื่องมือ
 - [ภาคธุรกิจ](sectors/index.md) — overlay สี่ชุดของประเทศไทย
 - [ทะเบียน](registers/index.md) — ดัชนีข้อเท็จจริงของกฎหมายและกฎระเบียบไทย อาเซียน และสหภาพยุโรป พร้อมหน้าการเปรียบเทียบอาเซียนและสหภาพยุโรป
 - [Reference](reference/index.md) — หน้าที่ generate จากข้อกำหนด overlay และทะเบียน
+- [Confidence labels](governance/confidence-labels.md) — วิธีติดป้ายข้อความ
 - [อภิธานศัพท์](glossary.md) — คำศัพท์ที่ใช้ร่วมกันทั้งไซต์
 
 หน้าภาษาอังกฤษเป็นฉบับหลักสำหรับ identifier, schema key และชื่อไฟล์

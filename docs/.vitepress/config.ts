@@ -17,6 +17,14 @@ const enNav: DefaultTheme.NavItem[] = [
       { text: "Quick start", link: "/en/quick-start" },
       { text: "Glossary", link: "/en/glossary" },
       {
+        text: "Template readiness",
+        link: "/en/governance/template-readiness",
+      },
+      {
+        text: "Confidence labels",
+        link: "/en/governance/confidence-labels",
+      },
+      {
         text: "v1.0.0 readiness",
         link: "/en/governance/v1-readiness",
       },
@@ -46,6 +54,14 @@ const thNav: DefaultTheme.NavItem[] = [
       { text: "เริ่มต้นอย่างรวดเร็ว", link: "/th/quick-start" },
       { text: "อภิธานศัพท์", link: "/th/glossary" },
       {
+        text: "ความพร้อมของ template",
+        link: "/th/governance/template-readiness",
+      },
+      {
+        text: "Confidence labels",
+        link: "/th/governance/confidence-labels",
+      },
+      {
         text: "ความพร้อม v1.0.0",
         link: "/th/governance/v1-readiness",
       },
@@ -74,6 +90,14 @@ const enSidebar: DefaultTheme.Sidebar = [
       { text: "Overview", link: "/en/overview" },
       { text: "Quick start", link: "/en/quick-start" },
       { text: "Glossary", link: "/en/glossary" },
+      {
+        text: "Template readiness",
+        link: "/en/governance/template-readiness",
+      },
+      {
+        text: "Confidence labels",
+        link: "/en/governance/confidence-labels",
+      },
       {
         text: "v1.0.0 readiness",
         link: "/en/governance/v1-readiness",
@@ -139,6 +163,7 @@ const enSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "Templates overview", link: "/en/templates/" },
       { text: "Project template", link: "/en/templates/project" },
+      { text: "Owner map", link: "/en/templates/owner-map" },
     ],
   },
   {
@@ -163,6 +188,14 @@ const thSidebar: DefaultTheme.Sidebar = [
       { text: "ภาพรวม", link: "/th/overview" },
       { text: "เริ่มต้นอย่างรวดเร็ว", link: "/th/quick-start" },
       { text: "อภิธานศัพท์", link: "/th/glossary" },
+      {
+        text: "ความพร้อมของ template",
+        link: "/th/governance/template-readiness",
+      },
+      {
+        text: "Confidence labels",
+        link: "/th/governance/confidence-labels",
+      },
       {
         text: "ความพร้อม v1.0.0",
         link: "/th/governance/v1-readiness",
@@ -228,6 +261,7 @@ const thSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "ภาพรวม templates", link: "/th/templates/" },
       { text: "Template โปรเจกต์", link: "/th/templates/project" },
+      { text: "Owner map", link: "/th/templates/owner-map" },
     ],
   },
   {

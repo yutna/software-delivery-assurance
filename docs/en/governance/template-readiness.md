@@ -1,0 +1,137 @@
+---
+translation_status: complete
+machine_translated: false
+---
+
+# Template readiness
+
+**Track:** template / starter kit. **Status:** usable with limitations.
+**Content version:** SRAS 0.9.0. **Positioning milestone:** v0.10.0 (no release
+cut, no version bump). **Recorded:** 2026-10-28.
+
+This page states what a team can rely on today and what it must not claim. It is
+the entry point for the template track. The formal-standard track has a separate
+[v1.0.0 readiness review](v1-readiness.md).
+
+## What "usable with limitations" means
+
+The starter kit is suitable for internal planning, project assessment, evidence
+tracking, gap management, and preparing a private assurance record. It is not
+suitable as the sole basis for a procurement award, a certification, a legal
+compliance statement, a public-launch approval, or an external assurance
+opinion.
+
+"Usable with limitations" is a positioning statement, not a certification. It
+does not mean the standard is stable, the Thai translation is complete, or an
+external reviewer has approved the content.
+
+## Ready now
+
+| Capability                        | Status  | What supports it                                                   |
+| --------------------------------- | ------- | ------------------------------------------------------------------ |
+| Clone, build, and run the checks  | Ready   | CI and the local verification commands in the README               |
+| Create a lite or full instance    | Ready   | `sras init`, schema validation, and tests                          |
+| Validate an edited instance       | Ready   | `sras project validate <dir>`; read-only and fails on a stale lock |
+| Refresh a project lockfile        | Ready   | `sras project refresh <dir>`; writes only the lockfile             |
+| Record a public-sector authority  | Ready   | `scope.public_sector` with contracting authority and contract      |
+| Core, modules, and overlays       | Present | 70 Core, 52 module, and 45 overlay requirements at SRAS 0.9.0      |
+| Thailand registers and crosswalks | Present | 12 Thailand register entries and 7 informative crosswalks          |
+| Deterministic reference pages     | Ready   | `sras render --check`                                              |
+| Public-content guard              | Ready   | `sras guard` and CI annotations                                    |
+
+## Limitations you must plan for
+
+| Limitation                       | Effect on a project                                                                  | Owner action                                                         |
+| -------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| Thai translation is partial      | All 167 active requirements remain machine-assisted and not human-reviewed.          | Use English as canonical; arrange human Thai review for external use |
+| Registers are unverified         | The entries index official sources but are not legal advice or a compliance finding. | Consult a qualified legal or regulatory focal point                  |
+| No external review               | No independent reviewer has validated the standard or the template.                  | Do not claim external review or independent validation               |
+| Four legal questions are open    | Retention, BOT cloud approval, WCAG level, and open-data licence remain unanswered.  | Resolve them for your project and record the answer privately        |
+| Evidence type coverage is absent | A gate can be marked verified with one document; coverage is not checked.            | Review the evidence set manually before sign-off                     |
+| Resolution output is not in CLI  | The CLI does not print the full resolved requirement and gate set.                   | Use the generated reference and the project lockfile                 |
+| No WCAG register entry           | WCAG 2.2 is cited by a gate but is not a register entry.                             | Treat the citation as informative, not legally verified              |
+| Template is generic              | It does not encode agency-specific procurement, records, or approval rules.          | Add local rules in the private instance, not in this repository      |
+
+The open legal questions are `#128`, `#129`, `#130`, and `#131`. The remaining
+deferred findings are `#126`, `#134`, and `#135`. The high findings `#127` and
+`#132` were fixed by `#140` and `#141`.
+
+## Minimum conditions before a real use
+
+1. A named executive sponsor accepts the scope and residual risk.
+2. The [owner map](../templates/owner-map.md) is filled with real role names.
+3. The project instance is private and the evidence stays outside this
+   repository.
+4. A legal or regulatory focal point reviews the registers and the open legal
+   questions that affect the project.
+5. A human Thai reviewer checks any Thai content that will be published or
+   used in an official decision.
+6. The team records claims, gaps, owners, and due dates in the instance, not
+   only in meeting notes.
+
+## Adoption path
+
+```text
+Read this page
+    -> assign owners (owner map)
+    -> create the instance (quick start)
+    -> set scope and selection
+    -> assess and attach evidence references
+    -> validate and refresh the lockfile
+    -> review claims and risks
+    -> sign off in the private instance
+```
+
+The template track ends at the private sign-off. It does not produce a public
+certificate or a standard-level approval.
+
+## When to use the formal-standard track instead
+
+Use the optional formal-standard track if you need one of these:
+
+- a reviewed SRAS standard rather than a starter kit;
+- an external, independent review record;
+- a v1.0.0 stability claim;
+- complete, human-reviewed Thai content for all active requirements;
+- a formal statement that the standard itself, not only your project, has been
+  reviewed.
+
+The formal-standard track is not ready. The
+[v1.0.0 readiness review](v1-readiness.md) lists the blockers. The
+[external review packet](external-review-packet.md) and the
+[Thai review kit](thai-review-kit.md) are optional tools for that track, not
+requirements for the template track.
+
+## Safe wording
+
+Use:
+
+- "We used the SRAS starter kit to structure our assurance assessment. The
+  assessment and its evidence are our own records. The kit is usable with
+  limitations, and those limitations are recorded in our risk register."
+
+Do not use:
+
+- "Our service is SRAS certified, accredited, or compliant."
+- "The SRAS standard has been externally reviewed."
+- "The Thai translation is complete."
+- "The template guarantees a successful procurement or public launch."
+
+## Confidence labels on this page
+
+- The command and count statements are **checked** by the repository
+  verification commands. Rerun them at your commit; exact counts may change.
+- The content descriptions are **documented** from the repository.
+- The suitability judgement is **provisional** until a real project uses it.
+- The v0.10.0 repositioning work is **planned** and not a release.
+
+Read [confidence labels](confidence-labels.md) for the convention.
+
+## Related pages
+
+- [Owner map](../templates/owner-map.md)
+- [Quick start](../quick-start.md)
+- [Project template](../templates/project.md)
+- [Public sector](../sectors/public-sector.md)
+- [v1.0.0 readiness review](v1-readiness.md)
+- [Confidence labels](confidence-labels.md)

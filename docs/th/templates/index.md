@@ -18,6 +18,10 @@ placeholder ใช้ profile คำนวณ lockfile ตรวจสอบผ�
 และกฎการตรวจสอบ หลังแก้ instance ให้รัน `npm run sras -- project validate <dir>`
 และหลังเปลี่ยน selection ให้รัน `npm run sras -- project refresh <dir>`
 
+ก่อนคัดลอก ให้มอบหมายบทบาทตาม [owner map](owner-map.md) และอ่าน
+[ความพร้อมของ template](../governance/template-readiness.md) ว่าวันนี้ kit
+รองรับอะไรได้และยังรองรับอะไรไม่ได้
+
 ## ตัวอย่าง synthetic
 
 - `examples/e2e-project/` — Core + module AI + overlay การเงินประเทศไทย

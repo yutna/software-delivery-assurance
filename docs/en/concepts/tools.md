@@ -9,6 +9,11 @@ The `sras` CLI is a thin shell over a pure TypeScript core. It validates the
 standard content, renders the reference pages, guards public content, and
 creates project instances.
 
+The tools support the template track. They check consistency and public
+content; they do not replace human review, legal advice, or a certification.
+Read [template readiness](../governance/template-readiness.md) for the current
+limitations.
+
 ## Commands
 
 | Command                                     | What it does                               |

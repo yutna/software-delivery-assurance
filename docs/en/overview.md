@@ -5,16 +5,34 @@ machine_translated: false
 
 # Overview
 
-The Software Delivery Assurance Library is an open, evidence-based reference
-for software delivery assurance. It provides the SRAS Core, optional technical
-modules, Thailand sector overlays, regulatory registers, project-instance
-templates, and TypeScript tools that validate, render, and guard the content.
+The Software Delivery Assurance Starter Kit is an open, evidence-based way to
+set up assurance for a software project. It is built for future projects,
+especially Thai public-sector delivery, and it includes the SRAS reference
+standard, Thailand sector overlays, regulatory registers, project templates,
+and TypeScript tools that validate, render, and guard the content.
 
-This site documents SRAS v0.9.0.
+This site documents SRAS v0.9.0. The v0.10.0 milestone repositions the
+repository as a starter kit. It does not bump the version, cut a release, or
+close the v1.0.0 formal-standard track.
+
+## Two tracks
+
+The repository is used in one of two ways. The default is the template track.
+
+| Track                     | What it means                                                                     | Status                            |
+| ------------------------- | --------------------------------------------------------------------------------- | --------------------------------- |
+| Template / starter kit    | Copy the template, assess a project, and keep the record in a private repository. | Usable with limitations           |
+| Formal-standard reference | Use SRAS as a reviewed standard, with external review and a v1.0.0 claim.         | Not ready; v1.0.0 remains blocked |
+
+The template track does not need an external reviewer and does not produce a
+certification. The formal-standard track is optional. It needs a human Thai
+review, an external human review, and the remaining v1.0.0 work. Read
+[template readiness](governance/template-readiness.md) before relying on the kit
+for a real delivery decision.
 
 ## The four questions
 
-Every part of the library exists to answer one of four questions:
+Every part of the kit exists to answer one of four questions:
 
 1. **What must be true before software is delivered?**
    The SRAS Core, modules, and overlays state testable requirements.
@@ -27,7 +45,7 @@ Every part of the library exists to answer one of four questions:
 
 ## Layers
 
-The library is layered. Each layer adds specificity; none replaces the layer
+The content is layered. Each layer adds specificity; none replaces the layer
 below it.
 
 ```text
@@ -42,8 +60,8 @@ SRAS Core              the baseline every product is assessed against
 Project instance       scope, assessment, evidence, claims, risk
 ```
 
-The public repository owns the left side of the model. A private project
-instance owns the right side: its scope, filled assessment, evidence index,
+The public repository owns the reference side of the model. A private project
+instance owns the assessment: its scope, filled assessment, evidence index,
 claims, risk register, and sign-off. Real evidence and customer data never
 belong in this repository.
 
@@ -68,9 +86,9 @@ TypeScript tools live in `src/sras/` and expose the `sras` CLI.
 
 ## What the library is not
 
-- Not a certification, accreditation, audit attestation, or regulatory
-  approval.
+- Not a certification, accreditation, audit attestation, or regulatory approval.
 - Not legal advice or a definitive statement of legal compliance.
+- Not a published standard with external sign-off.
 - Not a customer-specific assessment, evidence pack, contract, or legal
   opinion.
 - Not a hosted product, dashboard, or multi-tenant platform.
@@ -84,6 +102,8 @@ The repository also publishes
 ## Supported sectors and markets
 
 The supported sectors are finance, e-commerce, logistics, and public sector.
+Public sector is the primary adoption path for Thai government teams and their
+vendors.
 
 Thailand has full sector overlays and a maintained regulatory register. ASEAN
 has six [register-only entries](registers/index.md) and a
@@ -103,17 +123,25 @@ first-class content language. Machine-assisted Thai pages are marked
 `translation_status: partial` and `machine_translated: true` until a human
 reviewer confirms them.
 
+The docs-only [confidence labels](governance/confidence-labels.md) explain how
+to read a claim such as "checked", "documented", "provisional", or "planned".
+They are not a certification and not a schema field.
+
 ## Who it is for
 
-Product owners, engineering leads, security and privacy teams, operations
-teams, assessors, and bid teams that need a reusable, evidence-based way to
-discuss software readiness without inventing a new checklist for every
+Thai government digital teams, state enterprises, vendors delivering public
+services, product owners, engineering leads, security and privacy teams,
+operations teams, assessors, and bid teams that need a reusable, evidence-based
+way to discuss software readiness without inventing a new checklist for every
 customer.
 
 ## Next steps
 
-- Start with the [quick start](quick-start.md).
+- Start with [template readiness](governance/template-readiness.md).
+- Follow the [quick start](quick-start.md).
+- Assign the roles in the [owner map](templates/owner-map.md).
 - Read the [concepts](concepts/index.md) before running a real assessment.
 - Pick the [modules and overlays](concepts/modules-and-overlays.md) that match
   the product.
+- For public-sector work, read the [public sector overlay](sectors/public-sector.md).
 - Browse the generated [reference](reference/index.md).
