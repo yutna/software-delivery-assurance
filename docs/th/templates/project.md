@@ -237,6 +237,10 @@ npm run sras -- project refresh ~/sras-demo
 `project validate ~/sras-demo` ตรวจ instance โดยไม่เขียน รายงาน lockfile ที่ล้า
 ไฟล์โปรเจกต์ที่หาย selection ที่มาตรฐานไม่รู้จัก และกฎโปรเจกต์ข้ออื่นที่ล้มเหลว
 
+`project resolve ~/sras-demo` แสดงชุด requirement ที่ resolve ได้และทุก gate
+ที่ยังไม่ถูกประเมิน เป็นคำสั่งอ่านอย่างเดียว และออกด้วย exit code 1 ตราบใดที่
+gate ยังต้องประเมินหรือต้องตัดสิน `not_applicable` อย่างเป็นลายลักษณ์อักษร
+
 ```yaml
 lockfile_version: 1
 sras:

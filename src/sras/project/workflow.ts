@@ -14,6 +14,10 @@ import { err, ok, type Result } from "../foundation/result.js";
 import type { SourceFile } from "../standard/dto.js";
 import { isoDate, version, type IsoDate } from "../standard/primitives.js";
 import type {
+  ResolutionConflict,
+  ResolutionIssue,
+} from "../standard/resolve.js";
+import type {
   ProfileId,
   Requirement,
   ValidatedStandard,
@@ -50,6 +54,7 @@ import type {
   ProjectLock,
 } from "./types.js";
 import { validateProject, validateEvidenceTypeCoverage } from "./validate.js";
+import { resolveProject, type ProjectResolution } from "./resolution.js";
 
 export type InitProjectInput = {
   readonly root: string;
@@ -114,6 +119,11 @@ export type ProjectDirectoryError =
   | {
       readonly tag: "Lockfile";
       readonly issues: readonly ProjectIssue[];
+    }
+  | { readonly tag: "Resolution"; readonly issues: readonly ResolutionIssue[] }
+  | {
+      readonly tag: "Conflicts";
+      readonly conflicts: readonly ResolutionConflict[];
     }
   | { readonly tag: "Write"; readonly file: string; readonly message: string };
 
@@ -760,6 +770,30 @@ export const refreshProjectLock = async (
     inputCount: resolved.value.inputs.length,
     checksum: lock.value.sras.checksum,
   });
+};
+
+export const resolveProjectDirectory = async (
+  input: ProjectDirectoryInput,
+): Promise<Result<ProjectResolution, ProjectDirectoryError>> => {
+  const target = projectTarget(input.root, input.target);
+
+  if (!target.ok) return target;
+
+  const directory = await ensureProjectDirectory(target.value);
+
+  if (!directory.ok) return directory;
+
+  const instance = await readProjectInstance(input.root, target.value);
+
+  if (!instance.ok) return instance;
+
+  const standard = await readStandard(input.root);
+
+  if (!standard.ok) return standard;
+
+  const resolution = resolveProject(instance.value, standard.value);
+
+  return resolution.ok ? ok(resolution.value) : err(resolution.error);
 };
 
 const writeProjectFiles = async (

@@ -24,7 +24,7 @@ export type CliCommand =
 
 export type GuardFormat = "text" | "json";
 
-export type ProjectAction = "validate" | "refresh";
+export type ProjectAction = "validate" | "refresh" | "resolve";
 
 export type ArgsError =
   | { readonly tag: "UnknownArgument"; readonly value: string }
@@ -111,6 +111,7 @@ const parseInit = (
 const PROJECT_ACTIONS = [
   "validate",
   "refresh",
+  "resolve",
 ] as const satisfies readonly ProjectAction[];
 
 const parseProject = (
@@ -120,7 +121,7 @@ const parseProject = (
   const [action, directory, ...rest] = values;
 
   if (action === undefined) {
-    return err({ tag: "MissingArgument", value: "validate|refresh" });
+    return err({ tag: "MissingArgument", value: "validate|refresh|resolve" });
   }
 
   const parsed = PROJECT_ACTIONS.find((candidate) => candidate === action);

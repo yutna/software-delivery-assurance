@@ -29,6 +29,7 @@ instance
 | `npm run sras -- init <dir> --profile full` | สร้าง project instance แบบ full  | ต้องใช้ maturity และ readiness index                          |
 | `npm run sras -- project validate <dir>`    | ตรวจ project instance ที่มีอยู่  | หลังแก้ไฟล์โปรเจกต์                                           |
 | `npm run sras -- project refresh <dir>`     | คำนวณ lockfile ของโปรเจกต์ใหม่   | หลังเปลี่ยน module, overlay หรือมาตรฐาน                       |
+| `npm run sras -- project resolve <dir>`     | แสดง resolution และ coverage     | ก่อน sign-off เพื่อดู gate ที่ยังไม่ถูกประเมิน                |
 | `npm run sras -- render`                    | เขียน reference pages ภาษาอังกฤษ | หลังแก้ YAML ต้นทาง                                           |
 | `npm run sras -- render --check`            | ตรวจ reference pages โดยไม่เขียน | ก่อน commit หรือใน CI                                         |
 | `npm run sras -- guard`                     | สแกนเนื้อหาสาธารณะ               | ก่อน commit เนื้อหาสาธารณะ                                    |
@@ -61,6 +62,17 @@ manifest ปัจจุบันและ standard input ที่ resolve แ�
 ไม่รู้จักจะถูกรายงานแทนการเขียน
 
 อย่าแก้ `assurance.lock.yaml` ด้วยมือ ให้ refresh จาก CLI เสมอ
+
+## Project resolve
+
+`project resolve <dir>` เป็นคำสั่งอ่านอย่างเดียว แสดงชุด requirement ที่
+resolve ได้ตามลำดับชั้นที่จัดทำเอกสาร พร้อม criticality ของแต่ละข้อ และสรุป
+coverage โดยแสดงทุก gate ที่ยังไม่มีบันทึกการประเมินหรือเป็น `not_assessed`
+gate ที่บันทึกเป็น `not_applicable` จะไม่ถูกนับว่ายังไม่ถูกประเมิน
+
+คำสั่งออกด้วย exit code 1 ตราบใดที่ยังมี gate ที่ไม่ถูกประเมิน ใช้ก่อน sign-off
+เพื่อดูตัวหารและช่องว่างที่ต้องประเมินหรือตัดสิน `not_applicable` อย่างเป็น
+ลายลักษณ์อักษร
 
 ## Render
 

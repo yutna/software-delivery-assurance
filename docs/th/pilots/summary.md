@@ -20,9 +20,9 @@ machine_translated: true
 - การตรวจที่ทำ: AI ตรวจเองเมื่อ 2026-10-28 owner ยอมรับสำหรับขั้นตอนการทบทวนของ
   v0.9.0 ไม่ใช่การทบทวนอิสระ โดยมนุษย์ หรือทางกฎหมาย
 
-หลัง release v0.9.0 มีการแก้ finding ที่เลื่อนไว้สี่รายการ: PF-02 โดย #140,
-PS-04 โดย #141, PS-06 โดย #135 และ PS-07 โดย #134 สถานะปัจจุบันคือแก้แล้ว
-13 รายการ ยังเลื่อน 1 รายการ และเป็นคำถามกฎหมายที่เปิดอยู่ 4 รายการ
+หลัง release v0.9.0 มีการแก้ finding ที่เลื่อนไว้ทั้งห้ารายการ: PF-02 โดย #140,
+PF-03 โดย #126, PS-04 โดย #141, PS-06 โดย #135 และ PS-07 โดย #134 สถานะปัจจุบัน
+คือแก้แล้ว 14 รายการ ยังเลื่อน 0 รายการ และเป็นคำถามกฎหมายที่เปิดอยู่ 4 รายการ
 การเลื่อนเดิมยังคงอยู่ด้านล่างเป็นประวัติ ไม่ถูกเขียนใหม่
 
 owner ยืนยันว่าไม่มีผู้ตรวจทานภายนอก หน้านี้บันทึกข้อเท็จจริงนั้นแทนการสร้างชื่อ
@@ -47,7 +47,7 @@ issue หรือ `open legal question` พร้อม issue
 
 - **PF-01 — Finance, High.** ตัวอย่างด้านการเงินไม่ใช่ project instance ที่ถูกต้อง: ไม่มี manifest ไม่มี risk register และ lockfile เป็นรูปแบบเก่า. Owner @yutna. Disposition: แก้ใน #59
 - **PF-02 — Finance, High.** ไม่มีคำสั่ง validate instance ที่แก้ไขแล้วหรือ refresh lockfile แม้เอกสารจะบอกให้ทำทั้งสองอย่าง. Owner @yutna. Disposition: เลื่อนไป #127; แก้แล้วใน #140
-- **PF-03 — Finance, Medium.** ไม่มี CLI สำหรับ requirement resolution. Owner @yutna. Disposition: เลื่อนไป #126
+- **PF-03 — Finance, Medium.** ไม่มี CLI สำหรับ requirement resolution. Owner @yutna. Disposition: แก้ใน #126
 - **PF-04 — Finance, High.** ตัวอย่างรายงานว่าประเมิน 8 ข้อกำหนดและ 6 gates แต่ selection resolve ได้ 122 ข้อกำหนดและ 46 gates. Owner @yutna. Disposition: แก้ใน #59
 - **PF-05 — Finance, Medium.** freshness ของ evidence เป็นการประกาศเองและขัดกับ `expires_at` ได้. Owner @yutna. Disposition: แก้ใน #59
 - **PF-06 — Finance, Medium.** หน้า concept ระบุว่า lockfile pin generator และ generation time แต่ไม่ได้เก็บทั้งสอง. Owner @yutna. Disposition: แก้ใน #59
@@ -85,7 +85,7 @@ issue หรือ `open legal question` พร้อม issue
 - **PF-02 → #127:** คำสั่ง validate และ lock refresh เป็น CLI surface ใหม่ ต้องมี
   design note, tests และ docs — **แก้แล้วใน #140**
 - **PF-03 → #126:** resolution output และ coverage ต้องมี output contract และ
-  ข้อสรุปเรื่อง gate failure — ยังเลื่อนอยู่
+  ข้อสรุปเรื่อง gate failure — แก้แล้วใน #126 (`project resolve`)
 - **PS-04 → #132:** ฟิลด์หน่วยงานผู้ว่าจ้างเป็น schema change ที่ต้องมี migration
   note และรอบทบทวนของตัวเอง — **แก้แล้วใน #141**
 - **PS-06 → #135:** รายการทะเบียนสำหรับมาตรฐานภายนอกที่สมัครใจต้องมีการตัดสิน
@@ -93,13 +93,12 @@ issue หรือ `open legal question` พร้อม issue
 - **PS-07 → #134:** evidence type coverage ต้องใช้ evidence map ของข้อกำหนดตอน
   validation และกฎเรื่องประเภททดแทน — แก้แล้วใน #134 (ไม่มีการใช้ประเภททดแทน)
 
-รายการนี้เก็บ disposition ณ v0.9.0 ไว้ PF-02, PS-04, PS-06 และ PS-07 แก้หลัง
-release โดย #140, #141, #135 และ #134 การแก้ไม่ได้ลบการเลื่อนเดิมหรือข้อจำกัด
-ของ v0.9.0 แต่บันทึกการแก้ไขที่เกิดขึ้นภายหลัง หน้า pilot รายละเอียดยังคง
-disposition เดิมเป็นประวัติ
+รายการนี้เก็บ disposition ณ v0.9.0 ไว้ PF-02, PF-03, PS-04, PS-06 และ PS-07
+แก้หลัง release โดย #140, #126, #141, #135 และ #134 การแก้ไม่ได้ลบการเลื่อนเดิม
+หรือข้อจำกัดของ v0.9.0 แต่บันทึกการแก้ไขที่เกิดขึ้นภายหลัง หน้า pilot รายละเอียด
+ยังคง disposition เดิมเป็นประวัติ
 
-finding ที่ยังเลื่อนยังปรากฏในรายงานการนำร่อง ไม่มีข้อใดบล็อก template track
-และไม่มีข้อใดเป็นการยกเว้น gate
+finding ที่เลื่อนทั้งห้ารายการมี resolution แล้ว ไม่มีข้อใดเป็นการยกเว้น gate
 
 ## บันทึกการตรวจ
 

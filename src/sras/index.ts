@@ -50,6 +50,7 @@ export {
   initProject,
   readStandardInputs,
   refreshProjectLock,
+  resolveProjectDirectory,
   validateProjectDirectory,
   type InitProjectInput,
   type InitResult,
@@ -59,6 +60,14 @@ export {
   type ProjectDirectoryResult,
   type ProjectRefreshResult,
 } from "./project/workflow.js";
+export {
+  resolveProject,
+  type ProjectCoverage,
+  type ProjectResolution,
+  type ProjectResolutionError,
+  type UnassessedGate,
+  type UnassessedGateStatus,
+} from "./project/resolution.js";
 export {
   validateEvidenceTypeCoverage,
   validateProject,

@@ -20,10 +20,10 @@ SRAS 0.8.0 and the synthetic projects only.
 - Review performed: AI self-review on 2026-10-28, accepted by the owner for the
   v0.9.0 review step. It is not independent, human, or legal review.
 
-After the v0.9.0 release, four deferred findings were fixed: PF-02 by #140,
-PS-04 by #141, PS-06 by #135, and PS-07 by #134. The current disposition is 13
-fixed, 1 deferred, and 4 open legal questions. The earlier deferral is kept
-below as history, not rewritten.
+After the v0.9.0 release, all five deferred findings were fixed: PF-02 by #140,
+PF-03 by #126, PS-04 by #141, PS-06 by #135, and PS-07 by #134. The current
+disposition is 14 fixed, 0 deferred, and 4 open legal questions. The earlier
+deferral is kept below as history, not rewritten.
 
 The owner confirmed that no external reviewer is available. This page records
 that fact instead of inventing a name, a date, or a sign-off.
@@ -49,7 +49,7 @@ with an issue, or an `open legal question` with an issue.
 | ----- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------- |
 | PF-01 | Finance | High     | The finance example is not a valid project instance: no manifest, no risk register, legacy lockfile.              | @yutna | Fixed in #59                    |
 | PF-02 | Finance | High     | No command validates an edited instance or refreshes its lockfile, although the docs instruct both.               | @yutna | Deferred to #127; fixed in #140 |
-| PF-03 | Finance | Medium   | Requirement resolution is not exposed in the CLI.                                                                 | @yutna | Deferred to #126                |
+| PF-03 | Finance | Medium   | Requirement resolution is not exposed in the CLI.                                                                 | @yutna | Fixed in #126                   |
 | PF-04 | Finance | High     | The example reports 8 assessed requirements and 6 gates; the selection resolves to 122 requirements and 46 gates. | @yutna | Fixed in #59                    |
 | PF-05 | Finance | Medium   | Evidence freshness is self-declared and can contradict `expires_at`.                                              | @yutna | Fixed in #59                    |
 | PF-06 | Finance | Medium   | Concept pages say the lockfile pins a generator and generation time; it stores neither.                           | @yutna | Fixed in #59                    |
@@ -89,18 +89,19 @@ pipeline:
 | Finding | Issue | Why it was deferred                                                                                        | Resolution now                    |
 | ------- | ----- | ---------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | PF-02   | #127  | A project validate and lock refresh command is a new CLI surface. It needs a design note, tests, and docs. | Fixed by #140                     |
-| PF-03   | #126  | Resolution output and coverage reporting need an output contract and a decision on gate failure semantics. | Still deferred                    |
+| PF-03   | #126  | Resolution output and coverage reporting need an output contract and a decision on gate failure semantics. | Fixed by #126 (project resolve)   |
 | PS-04   | #132  | A contracting-authority field is a schema change with a migration note, so it needs its own review cycle.  | Fixed by #141                     |
 | PS-06   | #135  | Register entries for voluntary external standards need a policy decision and verified sources.             | Fixed by #135 (policy documented) |
 | PS-07   | #134  | Evidence type coverage needs the requirement evidence map at validation time and a substitute-type rule.   | Fixed by #134 (no substitution)   |
 
-This table preserves the v0.9.0 disposition. PF-02, PS-04, PS-06, and PS-07 were
-fixed after the release by #140, #141, #135, and #134. The fix does not erase the
-original deferral or the v0.9.0 limitation; it records the later resolution. The
-detailed pilot pages keep their original disposition as a historical record.
+This table preserves the v0.9.0 disposition. PF-02, PF-03, PS-04, PS-06, and
+PS-07 were fixed after the release by #140, #126, #141, #135, and #134. The fix
+does not erase the original deferral or the v0.9.0 limitation; it records the
+later resolution. The detailed pilot pages keep their original disposition as a
+historical record.
 
-Each remaining deferred finding stays visible in the pilot reports. None of them
-blocks the template track, and none is a gate waiver.
+All five deferred findings now have a resolution. None of them was a gate
+waiver.
 
 ## Review notes
 

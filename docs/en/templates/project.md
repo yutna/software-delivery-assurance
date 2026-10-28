@@ -236,6 +236,10 @@ npm run sras -- project refresh ~/sras-demo
 stale lockfile, a missing project file, a selection that the standard does not
 define, and any other project rule that fails.
 
+`project resolve ~/sras-demo` shows the resolved requirement set and every
+unassessed gate. It is read-only and exits with code 1 while a gate still needs
+an assessment or a documented `not_applicable` decision.
+
 ```yaml
 lockfile_version: 1
 sras:

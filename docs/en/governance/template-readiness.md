@@ -34,6 +34,7 @@ external reviewer has approved the content.
 | Validate an edited instance       | Ready   | `sras project validate <dir>`; read-only and fails on a stale lock |
 | Check evidence type coverage      | Ready   | A `verified` requirement must cover every expected evidence type   |
 | Refresh a project lockfile        | Ready   | `sras project refresh <dir>`; writes only the lockfile             |
+| Inspect resolution and coverage   | Ready   | `sras project resolve <dir>`; lists every unassessed gate          |
 | Record a public-sector authority  | Ready   | `scope.public_sector` with contracting authority and contract      |
 | Core, modules, and overlays       | Present | 70 Core, 52 module, and 45 overlay requirements at SRAS 0.9.0      |
 | Thailand registers and crosswalks | Present | 12 Thailand register entries and 7 informative crosswalks          |
@@ -42,19 +43,17 @@ external reviewer has approved the content.
 
 ## Limitations you must plan for
 
-| Limitation                      | Effect on a project                                                                  | Owner action                                                         |
-| ------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| Thai translation is partial     | All 167 active requirements remain machine-assisted and not human-reviewed.          | Use English as canonical; arrange human Thai review for external use |
-| Registers are unverified        | The entries index official sources but are not legal advice or a compliance finding. | Consult a qualified legal or regulatory focal point                  |
-| No external review              | No independent reviewer has validated the standard or the template.                  | Do not claim external review or independent validation               |
-| Four legal questions are open   | Retention, BOT cloud approval, WCAG level, and open-data licence remain unanswered.  | Resolve them for your project and record the answer privately        |
-| Resolution output is not in CLI | The CLI does not print the full resolved requirement and gate set.                   | Use the generated reference and the project lockfile (#126)          |
-| Template is generic             | It does not encode agency-specific procurement, records, or approval rules.          | Add local rules in the private instance, not in this repository      |
+| Limitation                    | Effect on a project                                                                  | Owner action                                                         |
+| ----------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| Thai translation is partial   | All 167 active requirements remain machine-assisted and not human-reviewed.          | Use English as canonical; arrange human Thai review for external use |
+| Registers are unverified      | The entries index official sources but are not legal advice or a compliance finding. | Consult a qualified legal or regulatory focal point                  |
+| No external review            | No independent reviewer has validated the standard or the template.                  | Do not claim external review or independent validation               |
+| Four legal questions are open | Retention, BOT cloud approval, WCAG level, and open-data licence remain unanswered.  | Resolve them for your project and record the answer privately        |
+| Template is generic           | It does not encode agency-specific procurement, records, or approval rules.          | Add local rules in the private instance, not in this repository      |
 
-The open legal questions are `#128`, `#129`, `#130`, and `#131`. The remaining
-deferred finding is `#126`. The high findings `#127` and `#132` were fixed by
-`#140` and `#141`; the external-standards rule was recorded in `#135`, and
-evidence type coverage was added in `#134`.
+The open legal questions are `#128`, `#129`, `#130`, and `#131`. All five
+deferred findings from the v0.9.0 pilots are now fixed: `#127`, `#132`, `#135`,
+`#134`, and `#126`.
 
 WCAG 2.2 and the NIST AI Risk Management Framework 1.0 are external standards,
 not register entries. The rule and official sources are in

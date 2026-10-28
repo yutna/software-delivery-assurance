@@ -87,6 +87,20 @@ npm run sras -- project refresh ~/sras-demo
 lockfile and exits non-zero when the checked-in lock no longer matches the
 resolved inputs.
 
+## Inspect the resolved set
+
+```bash
+npm run sras -- project resolve ~/sras-demo
+```
+
+The command prints each resolved requirement with its layer and criticality,
+then the coverage summary and every unassessed gate. It is read-only. It exits
+with code 1 while a gate has no assessment record or is `not_assessed`. A gate
+recorded as `not_applicable` is not counted as unassessed.
+
+Use this output before sign-off. It shows the denominator the assessment should
+cover, not only the requirements the team happened to record.
+
 ## Worked example
 
 `examples/e2e-project/` is a synthetic full-profile project with the AI module

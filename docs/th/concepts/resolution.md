@@ -85,6 +85,21 @@ npm run sras -- project refresh ~/sras-demo
 ที่ล้าและออกด้วย exit code ที่ไม่ใช่ศูนย์เมื่อ lock ที่ commit ไว้ไม่ตรงกับ input
 ที่ resolve แล้ว
 
+## ดูชุดที่ resolve ได้
+
+```bash
+npm run sras -- project resolve ~/sras-demo
+```
+
+คำสั่งนี้แสดง requirement ที่ resolve ทั้งหมดพร้อม layer และ criticality
+จากนั้นสรุป coverage และทุก gate ที่ยังไม่ถูกประเมิน เป็นคำสั่งอ่านอย่างเดียว
+และออกด้วย exit code 1 ตราบใดที่ gate ยังไม่มีบันทึกการประเมินหรือเป็น
+`not_assessed` ส่วน gate ที่บันทึกเป็น `not_applicable` จะไม่ถูกนับว่ายังไม่ถูก
+ประเมิน
+
+ใช้ผลลัพธ์นี้ก่อน sign-off เพื่อดูตัวหารที่ assessment ต้องครอบคลุม ไม่ใช่เพียง
+requirement ที่ทีมบันทึกไว้
+
 ## ตัวอย่างที่ทำไว้
 
 `examples/e2e-project/` เป็นโปรเจกต์ synthetic แบบ full profile ที่ใช้ module
