@@ -5,8 +5,8 @@ machine_translated: true
 
 # อภิธานศัพท์
 
-คำศัพท์เดียวกันใช้ทั้งภาษาอังกฤษและภาษาไทย identifier, schema key และชื่อไฟล์
-คงเป็นภาษาอังกฤษ
+คำศัพท์เดียวกันใช้ทั้งภาษาอังกฤษและภาษาไทย ส่วน identifier, schema key และ
+ชื่อไฟล์คงเป็นภาษาอังกฤษ
 
 ## คำศัพท์หลัก
 
@@ -43,7 +43,7 @@ machine_translated: true
 - **module** ไม่ใช่ **sector overlay**
 - **assessment** ไม่ใช่ **certification**
 - **claim** ไม่ใช่ **evidence**
-- **gate** ถูก **waive** ไม่ได้
+- **gate** ยกเว้นไม่ได้
 - **project instance** ไม่ใช่ repository สาธารณะนี้
 
 ## หน้าที่เกี่ยวข้อง

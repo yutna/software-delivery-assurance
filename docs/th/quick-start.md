@@ -7,7 +7,7 @@ machine_translated: true
 
 # เริ่มต้นอย่างรวดเร็ว
 
-คู่มือนี้พาไปจาก checkout ที่สะอาดไปจนถึง project instance ที่สร้างแล้วและ
+คู่มือนี้พาจาก checkout ที่สะอาดไปจนถึง project instance ที่สร้างแล้วและ
 library gate ที่ผ่าน ใช้เวลาประมาณ 15 นาที ให้รันทุกคำสั่งจาก repository root
 
 > หน้านี้เป็นฉบับภาษาไทยที่แปลโดยเครื่องและปรับถ้อยคำเพื่อให้อ่านง่ายขึ้น
@@ -29,7 +29,7 @@ npm ci
 npm run typecheck
 ```
 
-คำสั่ง `npm run sras -- ...` จะ build `dist/` ก่อนรันคำสั่ง
+คำสั่ง `npm run sras -- ...` จะ build `dist/` ก่อนรัน
 
 ## ขั้นที่ 1 — สร้าง project instance
 
