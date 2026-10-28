@@ -168,7 +168,8 @@ request, CI, and squash-merge path.
 The maintainer supports the latest v1.x line on a best-effort basis. There is no
 service-level agreement and no guarantee that an external source remains current
 between review dates. The detailed rules are in
-[GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md#maintenance-and-deprecation).
+[GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
+under "Maintenance and deprecation".
 
 ## Review cadence
 

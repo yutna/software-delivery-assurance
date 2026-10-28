@@ -172,7 +172,8 @@ deprecation notice มาก่อน Security และ correctness fix ออ�
 maintainer ดูแลสาย v1.x ล่าสุดแบบ best effort ไม่มี service-level agreement
 และไม่รับประกันว่าแหล่งอ้างอิงภายนอกจะยังเป็นปัจจุบันระหว่างรอบทบทวน
 กฎฉบับละเอียดอยู่ใน
-[GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md#maintenance-and-deprecation)
+[GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
+หัวข้อ "Maintenance and deprecation"
 
 ## รอบการทบทวน
 
