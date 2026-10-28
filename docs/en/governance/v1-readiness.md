@@ -155,8 +155,9 @@ revise the review and does not claim v1.0.0 readiness.
   The [external review packet](external-review-packet.md) is a template and is
   not a review result.
 - **Thai review is still a blocker.** All 167 active requirements remain
-  `translation_status: partial` with `machine_translated: true`. The review kit
-  is tracked in #143.
+  `translation_status: partial` with `machine_translated: true`. The
+  [Thai review kit](thai-review-kit.md) is ready, but no reviewer has used it
+  and no requirement has been marked complete.
 
 The remaining blockers are items 1, 2, and 4 from the list above: the Thai human
 review, the external human review, and the open v1.0.0 issues. The registers
