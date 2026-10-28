@@ -143,7 +143,9 @@ v1.0.0 และไม่ได้ถูกอ้างในที่นี้
 - **External review ยังไม่มี** ยังไม่มีผู้ตรวจที่ระบุชื่อหรือได้รับการติดต่อ
   [external review packet](external-review-packet.md) เป็น template ไม่ใช่ผลการตรวจ
 - **การตรวจภาษาไทยยังเป็น blocker** requirement ที่ active ทั้ง 167 ข้อยังเป็น
-  `translation_status: partial` และ `machine_translated: true` ชุดตรวจติดตามใน #143
+  `translation_status: partial` และ `machine_translated: true`
+  [Thai review kit](thai-review-kit.md) พร้อมใช้ แต่ยังไม่มีผู้ตรวจใช้และยังไม่มี
+  requirement ใดถูกทำเครื่องหมาย complete
 
 blocker ที่เหลือคือข้อ 1, 2 และ 4 ในรายการข้างต้น: การตรวจภาษาไทยโดยมนุษย์
 การตรวจภายนอกโดยมนุษย์ และ issue v1.0.0 ที่ยังเปิด register ยังเป็น `unverified`
