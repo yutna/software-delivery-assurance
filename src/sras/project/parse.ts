@@ -60,6 +60,7 @@ import type {
   ProjectLock,
   ProjectManifest,
   ProjectScope,
+  PublicSectorScope,
   Risk,
   RiskLevel,
   RiskRegister,
@@ -821,6 +822,40 @@ export const parseProjectManifestFile = (
   });
 };
 
+const parsePublicSectorScope = (
+  value: unknown,
+  file: string,
+  path: string,
+  issues: Issues,
+): PublicSectorScope | null | undefined => {
+  if (value === undefined || value === null) return null;
+
+  const object = readObject(value, file, path, issues);
+
+  if (object === undefined) return undefined;
+
+  const contractingAuthority = readNonEmptyString(
+    object,
+    "contracting_authority",
+    file,
+    path,
+    issues,
+  );
+  const contractReference = readNonEmptyString(
+    object,
+    "contract_reference",
+    file,
+    path,
+    issues,
+  );
+
+  if (contractingAuthority === undefined || contractReference === undefined) {
+    return undefined;
+  }
+
+  return { contractingAuthority, contractReference };
+};
+
 const parseScope = (
   value: unknown,
   file: string,
@@ -841,17 +876,24 @@ const parseScope = (
     path,
     issues,
   );
+  const publicSector = parsePublicSectorScope(
+    object["public_sector"],
+    file,
+    `${path}/public_sector`,
+    issues,
+  );
 
   if (
     systems === undefined ||
     data === undefined ||
     users === undefined ||
-    jurisdictions === undefined
+    jurisdictions === undefined ||
+    publicSector === undefined
   ) {
     return undefined;
   }
 
-  return { systems, data, users, jurisdictions };
+  return { systems, data, users, jurisdictions, publicSector };
 };
 
 const parseAssessedRequirement = (

@@ -203,6 +203,8 @@ const renderProjectIssue = (issue: ProjectIssue): string => {
       return `${issue.file}: lockfile: ${issue.message}`;
     case "UnknownSelection":
       return `${issue.file}: ${issue.kind}: unknown selection: ${issue.id}`;
+    case "MissingField":
+      return `${issue.file}: ${issue.field}: ${issue.message}`;
     default:
       return assertNever(issue);
   }

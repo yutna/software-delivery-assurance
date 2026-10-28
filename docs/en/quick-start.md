@@ -87,6 +87,8 @@ Rules that the project parsers enforce:
 - A `verified` or `partial` claim needs current evidence, an approver, and an
   expiry date.
 - An `accepted` risk needs an acceptance ID.
+- A public sector instance that assesses `TH-PUB-001` records
+  `scope.public_sector` with `contracting_authority` and `contract_reference`.
 - Evidence locations are private references such as
   `evidence/synthetic-policy.md`, never a public URL.
 

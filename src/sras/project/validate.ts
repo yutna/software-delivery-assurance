@@ -254,6 +254,39 @@ const compareClaims = (
   }
 };
 
+const PUBLIC_SECTOR_OVERLAY = "TH-PUB";
+const CONTRACTING_AUTHORITY_REQUIREMENT = "TH-PUB-001";
+
+const comparePublicSectorScope = (
+  issues: ProjectIssue[],
+  instance: ProjectInstance,
+): void => {
+  const { assessment } = instance;
+
+  if (!assessment.overlays.some((id) => id === PUBLIC_SECTOR_OVERLAY)) return;
+
+  const requirement = assessment.requirements.find(
+    (candidate) => candidate.id === CONTRACTING_AUTHORITY_REQUIREMENT,
+  );
+
+  if (requirement === undefined) return;
+  if (
+    requirement.status === "not_assessed" ||
+    requirement.status === "not_applicable"
+  ) {
+    return;
+  }
+
+  if (assessment.scope.publicSector !== null) return;
+
+  issues.push({
+    tag: "MissingField",
+    file: assessment.sourceFile,
+    field: "scope/public_sector",
+    message: `an assessed ${CONTRACTING_AUTHORITY_REQUIREMENT} requires scope.public_sector with contracting_authority and contract_reference`,
+  });
+};
+
 const compareRisks = (
   issues: ProjectIssue[],
   instance: ProjectInstance,
@@ -292,6 +325,7 @@ export const validateProject = (
   compareFreshness(issues, instance);
   compareEvidence(issues, instance);
   compareClaims(issues, instance);
+  comparePublicSectorScope(issues, instance);
   compareRisks(issues, instance);
 
   if (issues.length > 0) return err(issues);

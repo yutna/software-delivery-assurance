@@ -95,6 +95,7 @@ describe("project parsers", () => {
     expect(assessment.requirements[0]?.maturity).toBe("L3");
     expect(assessment.summary.counts.verified).toBe(1);
     expect(assessment.summary.index).toBe(0.9);
+    expect(assessment.scope.publicSector).toBeNull();
   });
 
   test("the valid evidence, claims, risks, and lockfile parse", () => {

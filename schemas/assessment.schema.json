@@ -164,6 +164,30 @@
         },
         "jurisdictions": {
           "$ref": "#/$defs/stringList"
+        },
+        "public_sector": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["contracting_authority", "contract_reference"],
+              "properties": {
+                "contracting_authority": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "contract_reference": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                }
+              }
+            }
+          ]
         }
       }
     },

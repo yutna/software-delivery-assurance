@@ -1,6 +1,6 @@
 # Public sector synthetic example
 
-This is a synthetic example for the Thailand public sector overlay (`TH-PUB`). It is not an assessment of a real agency, service, or supplier, and it contains no real evidence.
+This is a synthetic example for the Thailand public sector overlay (`TH-PUB`). It is not an assessment of a real agency, service, or supplier, and it contains no real evidence. The contracting authority is a synthetic placeholder.
 
 ## Selection
 
@@ -11,6 +11,7 @@ This is a synthetic example for the Thailand public sector overlay (`TH-PUB`). I
 ## What it demonstrates
 
 - A complete project instance with a manifest, assessment, evidence index, claims, risk register, and lockfile
+- A synthetic contracting authority and contract reference in `scope.public_sector`, so `TH-PUB-001` is tied to the body that awarded the contract
 - 7 assessed requirements, including 6 gates
 - 6 evidence index entries pointing to synthetic evidence files
 - 2 claims, one verified and one partial with an explicit limitation

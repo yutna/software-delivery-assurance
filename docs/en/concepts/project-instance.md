@@ -59,6 +59,12 @@ The assessment records the systems, data, users, and jurisdictions in scope.
 The scope is the first thing an assessor reads: an assessment without an
 approved scope is not valid.
 
+A public sector instance also records `scope.public_sector`, with the
+contracting authority and the contract reference. The field is `null` for other
+instances. It is required when the instance selects `TH-PUB` and assesses
+`TH-PUB-001`, so the evidence set can be tied to the body that awarded the
+contract. Use a synthetic authority in a public example.
+
 Scope changes are recorded as changes, not quietly edited. A material scope
 change triggers a new review of the affected requirements.
 
