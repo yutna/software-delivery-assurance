@@ -124,6 +124,29 @@ Gate ทางเทคนิคผ่านที่ `6d88c10` concern template
 1.0.0 template release เป็นขั้นถัดไปภายใต้ #61 และ #66 ส่วน release notes และ
 announcement กำลังปรับใน #174
 
+## การตรวจครั้งสุดท้ายของ 0.10.0
+
+**วันที่:** 2026-10-28 **Commit:** `9922f84`
+
+การ re-scope 0.10.0 ลบ formal-standard track และเงื่อนไข human/external review
+(PR #175, #176, #177) ที่ commit นี้:
+
+- `npm run typecheck`, `npm run lint` และ `npm run format:check` ผ่าน
+- `npm run lint:md` ผ่าน 280 ไฟล์
+- `npm test` ผ่าน 40 ไฟล์ 339 tests
+- `npm run check:docs` ผ่าน 191 หน้า English และ 38 หน้า Thai
+- `npm run check:fds` ผ่าน pack ที่ pin ไว้
+- `npm run sras -- validate --all` ผ่าน 53 ไฟล์
+- `npm run sras -- render --check` ผ่าน 154 หน้า
+- `npm run sras -- guard` ผ่าน 365 ไฟล์
+- `npm run docs:build` ผ่าน
+- `oss-kit doctor` รายงานว่าไม่มีความคลาดเคลื่อน
+
+ทุกหน้าไทยยังเป็น `translation_status: partial` และ `machine_translated: true`
+ไม่มีการเพิ่ม `review_status: reviewed` เวอร์ชันยังเป็น 0.9.0 ใน minor นี้
+งานที่เหลือคือ #61 (เวอร์ชัน 1.0.0 และ release metadata) และ #66 (cleanup และ
+template release 1.0.0)
+
 ## หน้าที่เกี่ยวข้อง
 
 - [การทบทวนความพร้อม v1.0.0](v1-readiness.md)

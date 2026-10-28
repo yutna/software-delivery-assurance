@@ -118,6 +118,29 @@ documented limitations. No standard, certification, human review, or external
 review is claimed. Issues #61 and #66 own the later 1.0.0 template release; the
 release notes and announcement are reframed in #174.
 
+## 0.10.0 final check
+
+**Date:** 2026-10-28. **Commit:** `9922f84`.
+
+The 0.10.0 re-scope removed the formal-standard track and the human/external
+review gates (PRs #175, #176, #177). On this commit:
+
+- `npm run typecheck`, `npm run lint`, and `npm run format:check` pass.
+- `npm run lint:md` passes on 280 files.
+- `npm test` passes on 40 files and 339 tests.
+- `npm run check:docs` passes on 191 English and 38 Thai pages.
+- `npm run check:fds` passes on the pinned pack.
+- `npm run sras -- validate --all` passes on 53 files.
+- `npm run sras -- render --check` passes on 154 pages.
+- `npm run sras -- guard` passes on 365 files.
+- `npm run docs:build` passes.
+- `oss-kit doctor` reports no drift.
+
+Every Thai page still has `translation_status: partial` and
+`machine_translated: true`. No `review_status: reviewed` is introduced. The
+version stays 0.9.0 in this minor. The remaining work is #61 (version 1.0.0 and
+release metadata) and #66 (cleanup and the 1.0.0 template release).
+
 ## Related pages
 
 - [v1.0.0 readiness review](v1-readiness.md)
