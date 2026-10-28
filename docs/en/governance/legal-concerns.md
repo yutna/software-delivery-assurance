@@ -152,8 +152,7 @@ source?
   use and attribution to the source. It excludes prohibited data, official
   symbols, military insignia, and third-party intellectual property that DGA
   cannot license.
-  [English terms](https://data.go.th/uploads/page_images/2021-06-11-053225.908526Terms-and-Conditions-for-DGA-Open-Government-LicenseEN04062021.pdf),
-  [Thai terms](https://data.go.th/uploads/page_images/2021-06-11-053145.086775Terms-and-Conditions-for-DGA-Open-Government-LicenseTH04062021.pdf).
+  [DGA Open Government License](https://data.go.th/en/pages/dga-open-government-license).
 - The DGA open-data metadata guidance defines licence categories **G0–G5**:
   Open Data Common, Creative Commons Attribution, Attribution-NonCommercial,
   Attribution-ShareAlike, Attribution-NonCommercial-ShareAlike,

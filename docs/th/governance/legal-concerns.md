@@ -137,8 +137,7 @@ data และมีรายการ licence ที่เผยแพร่โ
   ในการใช้ คัดลอก เผยแพร่ แจกจ่าย และประมวลผลข้อมูล ภายใต้วัตถุประสงค์ที่ชอบด้วย
   กฎหมายและการอ้างอิงแหล่งที่มา โดยมีข้อยกเว้นสำหรับข้อมูลที่ห้ามเปิดเผย
   ตราสัญลักษณ์ทางการ เครื่องหมายทหาร และทรัพย์สินทางปัญญาของบุคคลภายนอก
-  [ข้อกำหนดภาษาอังกฤษ](https://data.go.th/uploads/page_images/2021-06-11-053225.908526Terms-and-Conditions-for-DGA-Open-Government-LicenseEN04062021.pdf),
-  [ข้อกำหนดภาษาไทย](https://data.go.th/uploads/page_images/2021-06-11-053145.086775Terms-and-Conditions-for-DGA-Open-Government-LicenseTH04062021.pdf)
+  [ข้อกำหนด DGA Open Government License](https://data.go.th/th/pages/dga-open-government-license)
 - แนวทาง metadata ของ DGA กำหนดหมวด licence **G0–G5** ได้แก่ Open Data Common,
   Creative Commons Attribution, Attribution-NonCommercial,
   Attribution-ShareAlike, Attribution-NonCommercial-ShareAlike,
