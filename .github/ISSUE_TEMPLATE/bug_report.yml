@@ -24,15 +24,33 @@ body:
     id: expected
     attributes:
       label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
   - type: textarea
     id: actual
     attributes:
       label: Actual behavior
+      description: What happened instead? Include the error text or the output.
+    validations:
+      required: true
   - type: input
     id: version
     attributes:
       label: Version
-      placeholder: e.g. v1.2.0
+      description: The release tag or commit where the problem occurs.
+      placeholder: e.g. v1.0.0 or 23ae0a9
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: What command or check confirms the fix?
+      placeholder: |
+        e.g. npm run sras -- project validate <dir>
+    validations:
+      required: true
   - type: textarea
     id: environment
     attributes:
