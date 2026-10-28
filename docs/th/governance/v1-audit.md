@@ -152,9 +152,9 @@ template release 1.0.0)
 ## การตรวจ AI audit ครั้งสุดท้ายของ 1.0.0
 
 **สถานะ:** AI audit ฉบับสุดท้ายสำหรับ template release 1.0.0 **วันที่:**
-2026-10-28 **Commit ที่ตรวจ:** commit บน `main` ที่ปิด #66 ส่วน SHA และผลคำสั่ง
-แบบเต็มอยู่ใน comment บน dashboard **ผู้ตรวจ:** AI execution agent ภายใต้
-ทิศทางของเจ้าของ repository
+2026-10-28 **Commit ที่ตรวจ:** `23ae0a9ebd7a7d77e47f0d0f6bb8c6f6d571c0d9`
+(`main` หลัง #182) **ผู้ตรวจ:** AI execution agent ภายใต้ทิศทางของเจ้าของ
+repository
 
 นี่เป็น template release ไม่ใช่ standard release ส่วนการตรวจนี้ไม่ใช่การทบทวน
 โดยมนุษย์ การทบทวนภายนอก การทบทวนทางกฎหมาย หรือการรับรอง
@@ -189,7 +189,7 @@ template release 1.0.0)
 นำไปใช้ตัดสินใจเองว่าข้อกังวลใดใช้กับบริบทของตน และบันทึกการทบทวนหรือการอนุมัติ
 ของตนเอง
 
-gate ทางเทคนิคผ่านและ release พร้อม ส่วน repository ไม่ได้อ้างมาตรฐาน การรับรอง
+gate ทางเทคนิคผ่านและ release ถูกสร้างเมื่อ 2026-10-28 ส่วน repository ไม่ได้อ้างมาตรฐาน การรับรอง
 compliance การทบทวนภายนอก หรือการทบทวนโดยมนุษย์ comment บน dashboard บันทึก
 commit และผลคำสั่ง: <https://github.com/yutna/software-delivery-assurance/issues/67>
 

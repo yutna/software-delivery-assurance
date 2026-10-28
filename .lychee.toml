@@ -29,10 +29,6 @@ exclude = [
   "^https://www\\.sec\\.or\\.th/",
   "^https://publish\\.sec\\.or\\.th/",
   "^https://data\\.go\\.th/",
-  # The v1.0.0 announcement is prepared before the tag exists. The tag is
-  # created when the v1.0.0 milestone closes (#66). Remove this exclusion in
-  # #66 after the release page exists.
-  "^https://github\\.com/yutna/software-delivery-assurance/releases/tag/v1\\.0\\.0$",
 ]
 
 # Generated output, vendored material, and caches are not authored content.
