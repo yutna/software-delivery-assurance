@@ -48,6 +48,10 @@ const enNav: DefaultTheme.NavItem[] = [
         text: "v1.0.0 audit",
         link: "/en/governance/v1-audit",
       },
+      {
+        text: "v1.0.0 release notes",
+        link: "/en/releases/v1.0.0",
+      },
     ],
   },
   { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
@@ -97,6 +101,10 @@ const thNav: DefaultTheme.NavItem[] = [
         text: "การตรวจ v1.0.0",
         link: "/th/governance/v1-audit",
       },
+      {
+        text: "Release notes v1.0.0",
+        link: "/th/releases/v1.0.0",
+      },
     ],
   },
   { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
@@ -145,6 +153,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "v1.0.0 audit",
         link: "/en/governance/v1-audit",
+      },
+      {
+        text: "v1.0.0 release notes",
+        link: "/en/releases/v1.0.0",
       },
     ],
   },
@@ -255,6 +267,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       {
         text: "การตรวจ v1.0.0",
         link: "/th/governance/v1-audit",
+      },
+      {
+        text: "Release notes v1.0.0",
+        link: "/th/releases/v1.0.0",
       },
     ],
   },
