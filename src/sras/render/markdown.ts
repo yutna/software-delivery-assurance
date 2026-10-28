@@ -1,11 +1,15 @@
 import type { ProjectInstance } from "../project/types.js";
 import type {
+  AssessmentGuidance,
   CoreRequirement,
+  Crosswalk,
+  CrosswalkMapping,
   EvidenceExpectation,
   LocalizedText,
   ModuleRequirement,
   Overlay,
   RegisterEntry,
+  RequirementReference,
   ValidatedStandard,
 } from "../standard/types.js";
 import type { RenderPage } from "./types.js";
@@ -37,6 +41,42 @@ const requirementTitle = (
 const evidenceLine = (evidence: EvidenceExpectation): string =>
   `- **${evidence.type}** (max ${String(evidence.maxAgeDays)} days): ${evidence.description}`;
 
+const assessmentLines = (assessment: AssessmentGuidance): string =>
+  [
+    `- Lite pass: ${clean(assessment.lite.pass)}`,
+    `- Lite partial: ${clean(assessment.lite.partial)}`,
+    `- Full L2: ${clean(assessment.full.l2)}`,
+    `- Full L3: ${clean(assessment.full.l3)}`,
+  ].join("\n");
+
+const referenceLine = (reference: RequirementReference): string =>
+  `- [${reference.title}](${reference.url}) — ${code(reference.type)}`;
+
+const referenceLines = (references: readonly RequirementReference[]): string =>
+  references.length === 0
+    ? `- ${NONE}`
+    : references.map(referenceLine).join("\n");
+
+const crosswalkLines = (
+  requirementId: string,
+  crosswalks: readonly Crosswalk[],
+): string => {
+  const lines: string[] = [];
+
+  for (const crosswalk of [...crosswalks].sort(byId)) {
+    for (const mapping of crosswalk.mappings) {
+      if (mapping.requirement !== requirementId) continue;
+
+      const notes = mapping.notes === null ? "" : ` — ${clean(mapping.notes)}`;
+      lines.push(
+        `- [${crosswalk.id} — ${clean(crosswalk.title.en)}](../crosswalks/${crosswalk.id}.md): ${code(mapping.external)} (${mapping.relationship})${notes}`,
+      );
+    }
+  }
+
+  return lines.length === 0 ? `- ${NONE}` : lines.join("\n");
+};
+
 const reviewLines = (
   reviewedBy: string | null,
   reviewedAt: string | null,
@@ -67,6 +107,7 @@ const translationLines = (
 
 export const renderRequirementPage = (
   requirement: CoreRequirement | ModuleRequirement,
+  crosswalks: readonly Crosswalk[] = [],
 ): RenderPage => {
   const lines: string[] = [requirementTitle(requirement), ""];
 
@@ -90,6 +131,10 @@ export const renderRequirementPage = (
     "",
     localized(requirement.description),
     "",
+    "## Rationale",
+    "",
+    localized(requirement.rationale),
+    "",
     "## Applicability",
     "",
     `- Tiers: ${joinValues(requirement.applicability.tiers.map(String))}`,
@@ -100,6 +145,18 @@ export const renderRequirementPage = (
     "## Evidence",
     "",
     requirement.evidence.map(evidenceLine).join("\n"),
+    "",
+    "## Assessment",
+    "",
+    assessmentLines(requirement.assessment),
+    "",
+    "## References",
+    "",
+    referenceLines(requirement.references),
+    "",
+    "## Crosswalks",
+    "",
+    crosswalkLines(requirement.id, crosswalks),
     "",
     "## Review",
     "",
@@ -127,24 +184,44 @@ export const renderRequirementPage = (
 
 const overlayRequirementSection = (
   requirement: Overlay["adds"][number],
+  crosswalks: readonly Crosswalk[],
 ): string => {
   const lines = [
     `### ${requirement.id} — ${clean(requirement.title.en)}`,
     "",
     localized(requirement.description),
     "",
+    "Rationale:",
+    "",
+    localized(requirement.rationale),
+    "",
     `- Criticality: ${code(requirement.criticality)}`,
     `- Status: ${code(requirement.status)}`,
+    "",
+    "Assessment:",
+    "",
+    assessmentLines(requirement.assessment),
     "",
     "Evidence:",
     "",
     requirement.evidence.map(evidenceLine).join("\n"),
+    "",
+    "References:",
+    "",
+    referenceLines(requirement.references),
+    "",
+    "Crosswalks:",
+    "",
+    crosswalkLines(requirement.id, crosswalks),
   ];
 
   return lines.join("\n");
 };
 
-export const renderOverlayPage = (overlay: Overlay): RenderPage => {
+export const renderOverlayPage = (
+  overlay: Overlay,
+  crosswalks: readonly Crosswalk[] = [],
+): RenderPage => {
   const lines: string[] = [
     `# ${overlay.id} — ${clean(overlay.title.en)}`,
     "",
@@ -166,7 +243,11 @@ export const renderOverlayPage = (overlay: Overlay): RenderPage => {
     "",
     overlay.adds.length === 0
       ? NONE
-      : overlay.adds.map(overlayRequirementSection).join("\n\n"),
+      : overlay.adds
+          .map((requirement) =>
+            overlayRequirementSection(requirement, crosswalks),
+          )
+          .join("\n\n"),
     "",
     "## Overrides",
     "",
@@ -214,6 +295,76 @@ export const renderOverlayPage = (overlay: Overlay): RenderPage => {
 
   return {
     path: `overlays/${overlay.id}.md`,
+    text: lines.join("\n"),
+  };
+};
+
+const crosswalkMappingLine = (mapping: CrosswalkMapping): string => {
+  const notes = mapping.notes === null ? "" : ` — ${clean(mapping.notes)}`;
+
+  return `- ${code(mapping.requirement)} — ${code(mapping.external)} (${mapping.relationship})${notes}`;
+};
+
+const byCrosswalkMapping = (
+  left: CrosswalkMapping,
+  right: CrosswalkMapping,
+): number => {
+  if (left.requirement !== right.requirement) {
+    return left.requirement < right.requirement ? -1 : 1;
+  }
+
+  return left.external < right.external
+    ? -1
+    : left.external > right.external
+      ? 1
+      : 0;
+};
+
+export const renderCrosswalkPage = (crosswalk: Crosswalk): RenderPage => {
+  const mappings = [...crosswalk.mappings].sort(byCrosswalkMapping);
+  const lines: string[] = [
+    `# ${crosswalk.id} — ${clean(crosswalk.title.en)}`,
+    "",
+    `- Version: ${code(crosswalk.version)}`,
+    `- Source standard: ${crosswalk.sourceStandard}`,
+    `- Source URL: [${crosswalk.sourceUrl}](${crosswalk.sourceUrl})`,
+    `- Status: ${code(crosswalk.status)}`,
+    `- Deprecated in: ${crosswalk.deprecatedIn === null ? "not deprecated" : code(crosswalk.deprecatedIn)}`,
+    `- Replaced by: ${crosswalk.replacedBy === null ? NONE : code(crosswalk.replacedBy)}`,
+    `- Review status: ${code(crosswalk.reviewStatus)}`,
+    `- Translation status: ${code(crosswalk.translationStatus)}`,
+    `- Source: ${code(crosswalk.sourceFile)}`,
+    "",
+    "## Description",
+    "",
+    localized(crosswalk.description),
+    "",
+    "This crosswalk is informative. It is not an equivalence, a certification, or a compliance claim.",
+    "",
+    "## Mappings",
+    "",
+    mappings.map(crosswalkMappingLine).join("\n"),
+    "",
+    "## Review",
+    "",
+    reviewLines(
+      crosswalk.reviewedBy,
+      crosswalk.reviewedAt,
+      crosswalk.reviewScope,
+    ),
+    "",
+    "## Translation",
+    "",
+    translationLines(
+      crosswalk.machineTranslated,
+      crosswalk.translationReviewedBy,
+      crosswalk.translationReviewedAt,
+    ),
+    "",
+  ];
+
+  return {
+    path: `crosswalks/${crosswalk.id}.md`,
     text: lines.join("\n"),
   };
 };
@@ -293,6 +444,7 @@ export const renderIndexPage = (standard: ValidatedStandard): RenderPage => {
   ].sort(byId);
   const overlays = [...standard.overlays].sort(byId);
   const registers = [...standard.registers].sort(byId);
+  const crosswalks = [...standard.crosswalks].sort(byId);
 
   const lines: string[] = [
     "# SRAS reference",
@@ -320,6 +472,15 @@ export const renderIndexPage = (standard: ValidatedStandard): RenderPage => {
       (entry) =>
         `- [${entry.id} — ${clean(entry.instrument)}](registers/${entry.id}.md)`,
     ),
+    "",
+    "## Crosswalks",
+    "",
+    ...(crosswalks.length === 0
+      ? [`- ${NONE}`]
+      : crosswalks.map(
+          (crosswalk) =>
+            `- [${crosswalk.id} — ${clean(crosswalk.title.en)}](crosswalks/${crosswalk.id}.md)`,
+        )),
     "",
   ];
 
@@ -384,11 +545,15 @@ export const renderStandard = (
   ].sort(byId);
   const overlays = [...standard.overlays].sort(byId);
   const registers = [...standard.registers].sort(byId);
+  const crosswalks = [...standard.crosswalks].sort(byId);
 
   return [
     renderIndexPage(standard),
-    ...requirements.map(renderRequirementPage),
-    ...overlays.map(renderOverlayPage),
+    ...requirements.map((requirement) =>
+      renderRequirementPage(requirement, crosswalks),
+    ),
+    ...overlays.map((overlay) => renderOverlayPage(overlay, crosswalks)),
+    ...crosswalks.map(renderCrosswalkPage),
     ...registers.map(renderRegisterPage),
   ].sort((left, right) =>
     left.path < right.path ? -1 : left.path > right.path ? 1 : 0,

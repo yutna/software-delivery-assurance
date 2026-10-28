@@ -16,6 +16,12 @@ For every cloud or SaaS service in use, the provider and the product must have a
 
 **Thai:** สำหรับ cloud หรือ SaaS ทุกบริการที่ใช้งาน ผู้ให้บริการและผลิตภัณฑ์ต้องมีเอกสารแบ่งความรับผิดชอบด้าน identity configuration ข้อมูล การเข้ารหัส logging การแพตช์ และการตอบสนองเหตุการณ์ ควบคุมที่ไม่มีการมอบหมาย owner ไม่ถือว่าอยู่ในขอบเขต
 
+## Rationale
+
+A control that both sides assume the other owns is owned by neither.
+
+**Thai:** ควบคุมที่ทั้งสองฝ่ายคิดว่าอีกฝ่ายรับผิดชอบจะไม่มีใครรับผิดชอบจริง
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ For every cloud or SaaS service in use, the provider and the product must have a
 
 - **document** (max 365 days): Shared responsibility matrix with named owners
 - **contract** (max 365 days): Provider terms covering security and incident duties
+
+## Assessment
+
+- Lite pass: Responsibilities are documented and assigned for every service.
+- Lite partial: A matrix exists but some controls have no owner.
+- Full L2: The matrix is current and matches the deployed services.
+- Full L3: Responsibilities are reviewed when services or terms change.
+
+## References
+
+- [ISO/IEC 27017:2015](https://www.iso.org/standard/43757.html) — `standard`
+- [NIST SP 800-144](https://csrc.nist.gov/pubs/sp/800/144/final) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

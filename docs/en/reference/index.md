@@ -164,3 +164,13 @@ run `npm run sras -- render`.
 - [TH-PROC-001 — Public Procurement Act B.E. 2560 (2017)](registers/TH-PROC-001.md)
 - [TH-TECH-001 — Emergency Decree on Measures to Prevent and Suppress Technology Crimes B.E. 2566 (2023)](registers/TH-TECH-001.md)
 - [VN-PDPD-001 — Decree No. 13/2023/ND-CP on Personal Data Protection](registers/VN-PDPD-001.md)
+
+## Crosswalks
+
+- [MAP-ASVS — SRAS Core and Integration to OWASP ASVS 5.0](crosswalks/MAP-ASVS.md)
+- [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](crosswalks/MAP-ISO27001.md)
+- [MAP-ISO42001 — SRAS AI to ISO/IEC 42001:2023](crosswalks/MAP-ISO42001.md)
+- [MAP-NISTAIRMF — SRAS AI to NIST AI RMF 1.0](crosswalks/MAP-NISTAIRMF.md)
+- [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](crosswalks/MAP-NISTCSF.md)
+- [MAP-PCIDSS — SRAS Core to PCI DSS 4.0.1](crosswalks/MAP-PCIDSS.md)
+- [MAP-WCAG22 — SRAS Core to WCAG 2.2 Level AA](crosswalks/MAP-WCAG22.md)

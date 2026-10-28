@@ -15,6 +15,7 @@ import {
 } from "../../src/sras/project/parse.js";
 import type { ProjectInstance } from "../../src/sras/project/types.js";
 import {
+  renderCrosswalkPage,
   renderOverlayPage,
   renderProjectReadme,
   renderRegisterPage,
@@ -30,6 +31,10 @@ import {
   loadStandardFromRoot,
   type StandardLoadError,
 } from "../../src/sras/standard/workflow.js";
+import type {
+  NonEmpty,
+  RequirementReference,
+} from "../../src/sras/standard/types.js";
 import { parse } from "yaml";
 import { readFileSync } from "node:fs";
 import { isoDate } from "../../src/sras/standard/primitives.js";
@@ -152,7 +157,7 @@ describe("render golden pages", () => {
     expect(requirement).toBeDefined();
     if (requirement === undefined) return;
 
-    const page = renderRequirementPage(requirement);
+    const page = renderRequirementPage(requirement, loaded.standard.crosswalks);
 
     expect(page.path).toBe("requirements/SRAS-GOV-001.md");
     expect(page.text).toBe(fixture("requirement-SRAS-GOV-001.md"));
@@ -167,10 +172,25 @@ describe("render golden pages", () => {
     expect(overlay).toBeDefined();
     if (overlay === undefined) return;
 
-    const page = renderOverlayPage(overlay);
+    const page = renderOverlayPage(overlay, loaded.standard.crosswalks);
 
     expect(page.path).toBe("overlays/TH-FIN.md");
     expect(page.text).toBe(fixture("overlay-TH-FIN.md"));
+  });
+
+  test("a crosswalk page matches the golden output", async () => {
+    const loaded = must(await loadStandardFromRoot(process.cwd()));
+    const crosswalk = loaded.standard.crosswalks.find(
+      (candidate) => candidate.id === "MAP-NISTCSF",
+    );
+
+    expect(crosswalk).toBeDefined();
+    if (crosswalk === undefined) return;
+
+    const page = renderCrosswalkPage(crosswalk);
+
+    expect(page.path).toBe("crosswalks/MAP-NISTCSF.md");
+    expect(page.text).toBe(fixture("crosswalk-MAP-NISTCSF.md"));
   });
 
   test("a register page matches the golden output", async () => {
@@ -196,18 +216,19 @@ describe("render golden pages", () => {
 });
 
 describe("render bundle", () => {
-  test("renders 154 unique pages in deterministic path order", async () => {
+  test("renders 161 unique pages in deterministic path order", async () => {
     const loaded = must(await loadStandardFromRoot(process.cwd()));
     const pages = renderStandard(loaded.standard);
     const paths = pages.map((page) => page.path);
 
-    expect(pages).toHaveLength(154);
+    expect(pages).toHaveLength(161);
     expect(new Set(paths).size).toBe(paths.length);
     expect(paths).toEqual([...paths].sort());
     expect(paths).toContain("index.md");
     expect(paths).toContain("requirements/SRAS-GOV-001.md");
     expect(paths).toContain("overlays/TH-FIN.md");
     expect(paths).toContain("registers/TH-PDPA-001.md");
+    expect(paths).toContain("crosswalks/MAP-NISTCSF.md");
     expect(renderStandard(loaded.standard)).toEqual(pages);
   });
 });
@@ -274,7 +295,7 @@ describe("sras render", () => {
     const first = makeIo();
 
     expect(await run(["render"], first.io, root)).toBe(0);
-    expect(first.stdout.join("")).toContain("rendered 154 pages");
+    expect(first.stdout.join("")).toContain("rendered 161 pages");
 
     const check = makeIo();
 
@@ -308,6 +329,27 @@ describe("sras render", () => {
 });
 
 describe("render edge branches", () => {
+  test("a requirement with no crosswalk or references shows none", async () => {
+    const loaded = must(await loadStandardFromRoot(process.cwd()));
+    const requirement = loaded.standard.modules
+      .flatMap((module) => module.requirements)
+      .find((candidate) => candidate.id === "SRAS-CLD-001");
+
+    expect(requirement).toBeDefined();
+    if (requirement === undefined) return;
+
+    const page = renderRequirementPage(
+      {
+        ...requirement,
+        references: [] as unknown as NonEmpty<RequirementReference>,
+      },
+      loaded.standard.crosswalks,
+    );
+
+    expect(page.text).toContain("## References\n\n- none");
+    expect(page.text).toContain("## Crosswalks\n\n- none");
+  });
+
   test("a module requirement page includes review and translation details", async () => {
     const loaded = must(await loadStandardFromRoot(process.cwd()));
     const module = loaded.standard.modules[0];

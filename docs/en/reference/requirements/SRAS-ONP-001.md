@@ -16,6 +16,12 @@ Every server, appliance, endpoint, and network device that supports the product 
 
 **Thai:** server appliance endpoint และอุปกรณ์เครือข่ายทุกชิ้นที่สนับสนุนผลิตภัณฑ์ต้องถูกบันทึกพร้อมวัตถุประสงค์ สถานที่ owner ระบบปฏิบัติการหรือ firmware version network zone และสถานะการสนับสนุน asset ที่ไม่อยู่ในทะเบียนไม่ถือว่าอยู่ในขอบเขต
 
+## Rationale
+
+An asset that is not inventoried is not patched, backed up, or decommissioned.
+
+**Thai:** asset ที่ไม่อยู่ในทะเบียนจะไม่ถูกแพตช์ สำรองข้อมูล หรือปลดระวาง
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ Every server, appliance, endpoint, and network device that supports the product 
 
 - **document** (max 180 days): Asset inventory with owner, location, version, and network zone
 - **report** (max 180 days): Inventory reconciliation with discovered assets
+
+## Assessment
+
+- Lite pass: Every on-premises asset is inventoried with an owner.
+- Lite partial: An inventory exists but ownership or network zone is incomplete.
+- Full L2: The inventory is current and reconciled with discovery.
+- Full L3: Inventory changes are reviewed with change records.
+
+## References
+
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001) — `standard`
+- [NIST SP 800-53 Rev. 5](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

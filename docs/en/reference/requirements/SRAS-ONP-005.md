@@ -16,6 +16,12 @@ The on-premises network must define zones for management, application, data, and
 
 **Thai:** เครือข่าย on-premises ต้องกำหนด zone สำหรับ management application data และ external access พร้อมกฎที่จัดทำเอกสารระหว่างกัน เครือข่ายแบนหรือชุดกฎที่ไม่มีเอกสารไม่เป็นไปตามข้อกำหนด
 
+## Rationale
+
+Without segmentation, one compromised host reaches every other host.
+
+**Thai:** หากไม่มีการแบ่งส่วน host ที่ถูกยึดหนึ่งเครื่องจะเข้าถึง host อื่นทุกเครื่องได้
+
 ## Applicability
 
 - Tiers: 2, 3
@@ -28,6 +34,22 @@ The on-premises network must define zones for management, application, data, and
 - **diagram** (max 365 days): Network zone diagram with allowed flows
 - **configuration** (max 180 days): Firewall and routing rules between zones
 - **test_result** (max 180 days): Segmentation test for a denied flow
+
+## Assessment
+
+- Lite pass: Zones and rules are documented and a denied flow is tested.
+- Lite partial: Zones exist but rules or tests are incomplete.
+- Full L2: Segmentation is enforced and tested for sensitive zones.
+- Full L3: Rule changes are reviewed and tested after change.
+
+## References
+
+- [NIST SP 800-53 Rev. 5](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final) — `standard`
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

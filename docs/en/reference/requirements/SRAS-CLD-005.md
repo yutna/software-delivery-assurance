@@ -16,6 +16,12 @@ The product must define how a customer exits the service, including data export,
 
 **Thai:** ผลิตภัณฑ์ต้องกำหนดวิธีการที่ลูกค้าออกจากบริการ รวมถึงการส่งออกข้อมูล การลบ การทำลาย key การสนับสนุนการย้าย และระยะเวลาสูงสุดของแต่ละขั้นตอน แผนออกที่ยังไม่เคยทดสอบไม่ถือว่าเสร็จสมบูรณ์
 
+## Rationale
+
+Exit terms discovered during an exit are constraints, not options.
+
+**Thai:** เงื่อนไขการออกที่เพิ่งทราบตอนออกจากบริการเป็นข้อจำกัด ไม่ใช่ทางเลือก
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ The product must define how a customer exits the service, including data export,
 
 - **document** (max 365 days): Exit plan with export, deletion, and transition steps
 - **test_result** (max 365 days): Exit or restoration test result
+
+## Assessment
+
+- Lite pass: Exit steps, owners, and periods are documented.
+- Lite partial: An exit plan exists but has not been tested.
+- Full L2: The exit plan is tested and its results are recorded.
+- Full L3: The test covers data return, deletion, and key destruction.
+
+## References
+
+- [ISO/IEC 27018:2019](https://www.iso.org/standard/76559.html) — `standard`
+- [ISO/IEC 27017:2015](https://www.iso.org/standard/43757.html) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

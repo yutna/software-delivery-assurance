@@ -23,12 +23,19 @@ include_fragments = "anchor-only"
 # data.go.th serves the DGA Open Government License page to browsers but
 # returns HTTP 403 to the automated checker. The page remains the public entry
 # point for the licence terms.
+#
+# ISO pages and the Philippine Data Privacy Commission return HTTP 403 to
+# automated clients. Requirement reference URLs were previously visible only in
+# YAML; generated requirement pages now link them, so the same official pages
+# are excluded from the automated check and stay linked for readers.
 exclude = [
   "https://example.com",
   "^https://www\\.officialgazette\\.gov\\.ph/",
   "^https://www\\.sec\\.or\\.th/",
   "^https://publish\\.sec\\.or\\.th/",
   "^https://data\\.go\\.th/",
+  "^https://www\\.iso\\.org/",
+  "^https://www\\.pdpc\\.or\\.th/",
 ]
 
 # Generated output, vendored material, and caches are not authored content.

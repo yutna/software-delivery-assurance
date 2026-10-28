@@ -16,6 +16,12 @@ A processor that handles regulated data must have a written agreement covering s
 
 **Thai:** processor ที่จัดการข้อมูลที่มีข้อกำหนดกำกับต้องมีข้อตกลงเป็นลายลักษณ์อักษรครอบคลุมขอบเขต คำสั่ง การรักษาความลับ ความปลอดภัย subprocessor การแจ้งเหตุละเมิด การคืนหรือลบข้อมูล และสิทธิในการตรวจสอบ ต้องไม่เริ่มประมวลผลก่อนข้อตกลงมีผล
 
+## Rationale
+
+A processor without agreed obligations leaves the product accountable for work it does not control.
+
+**Thai:** processor ที่ไม่มีข้อตกลงหน้าที่ทำให้ผลิตภัณฑ์ต้องรับผิดชอบงานที่ตนเองไม่ได้ควบคุม
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ A processor that handles regulated data must have a written agreement covering s
 
 - **contract** (max 365 days): Processor agreement with security and breach terms
 - **document** (max 365 days): Processor register with scope and subprocessors
+
+## Assessment
+
+- Lite pass: Every processor has a current written agreement.
+- Lite partial: An agreement exists but required terms are incomplete.
+- Full L2: Agreements cover scope, security, breach, and audit.
+- Full L3: Agreements are reviewed when the service or subprocessors change.
+
+## References
+
+- [ISO/IEC 27701:2019](https://www.iso.org/standard/71670.html) — `standard`
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

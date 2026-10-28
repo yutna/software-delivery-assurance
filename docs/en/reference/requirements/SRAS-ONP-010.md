@@ -16,6 +16,12 @@ An asset removed from service must have its data securely erased or destroyed, i
 
 **Thai:** asset ที่ถูกถอดออกจากบริการต้องมีข้อมูลถูกลบอย่างปลอดภัยหรือทำลาย ข้อมูลรับรองและสิทธิ์การเข้าถึงเครือข่ายถูกเพิกถอน และบันทึกในทะเบียนถูกปิดพร้อมหลักฐาน asset ที่ปิดเครื่องแต่ยังมีข้อมูลรับรองไม่ถือว่าปลดระวางแล้ว
 
+## Rationale
+
+A forgotten asset keeps its credentials and its data.
+
+**Thai:** asset ที่ถูกลืมยังคงมีข้อมูลรับรองและข้อมูลของตน
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ An asset removed from service must have its data securely erased or destroyed, i
 
 - **ticket** (max 365 days): Decommissioning record with data erasure and access revocation
 - **attestation** (max 365 days): Destruction or secure erasure attestation
+
+## Assessment
+
+- Lite pass: Decommissioned assets have data erased and access revoked.
+- Lite partial: The record exists but erasure or revocation is unverified.
+- Full L2: Erasure, revocation, and inventory closure are evidenced.
+- Full L3: Decommissioning is sampled and reconciled with the inventory.
+
+## References
+
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001) — `standard`
+- [NIST SP 800-53 Rev. 5](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final) — `standard`
+
+## Crosswalks
+
+- none
 
 ## Review
 

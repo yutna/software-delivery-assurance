@@ -63,6 +63,25 @@ export type EvidenceExpectation = {
 
 export type CrosswalkRelationship = "supports" | "partial" | "related";
 
+export type ReferenceType = "standard" | "regulation" | "guidance" | "source";
+
+export type RequirementReference = {
+  readonly title: string;
+  readonly url: string;
+  readonly type: ReferenceType;
+};
+
+export type AssessmentGuidance = {
+  readonly lite: {
+    readonly pass: string;
+    readonly partial: string;
+  };
+  readonly full: {
+    readonly l2: string;
+    readonly l3: string;
+  };
+};
+
 export type LocalizedText = {
   readonly en: string;
   readonly th: string;
@@ -107,6 +126,9 @@ export type CoreRequirement = StandardMetadata & {
   readonly evidence: NonEmpty<EvidenceExpectation>;
   readonly title: LocalizedText;
   readonly description: LocalizedText;
+  readonly rationale: LocalizedText;
+  readonly assessment: AssessmentGuidance;
+  readonly references: NonEmpty<RequirementReference>;
   readonly introducedIn: Version;
   readonly deprecatedIn: Version | null;
   readonly replacedBy: RequirementId | null;
@@ -121,6 +143,9 @@ export type ModuleRequirement = StandardMetadata & {
   readonly evidence: NonEmpty<EvidenceExpectation>;
   readonly title: LocalizedText;
   readonly description: LocalizedText;
+  readonly rationale: LocalizedText;
+  readonly assessment: AssessmentGuidance;
+  readonly references: NonEmpty<RequirementReference>;
   readonly introducedIn: Version;
   readonly deprecatedIn: Version | null;
   readonly replacedBy: RequirementId | null;
@@ -135,6 +160,9 @@ export type OverlayRequirement = StandardMetadata & {
   readonly evidence: NonEmpty<EvidenceExpectation>;
   readonly title: LocalizedText;
   readonly description: LocalizedText;
+  readonly rationale: LocalizedText;
+  readonly assessment: AssessmentGuidance;
+  readonly references: NonEmpty<RequirementReference>;
   readonly introducedIn: Version;
   readonly deprecatedIn: Version | null;
   readonly replacedBy: OverlayRequirementId | null;

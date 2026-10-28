@@ -16,6 +16,12 @@ An API error must return a stable code, a safe message, and a correlation identi
 
 **Thai:** Error ของ API ต้องคืน code ที่คงที่ ข้อความที่ปลอดภัย และ correlation identifier และต้องไม่เปิดเผย stack trace hostname ภายใน ข้อมูลรับรอง หรือข้อมูลของผู้ใช้บริการรายอื่น code ของ error ที่จัดทำเอกสารต้องตรงกับ contract ที่เผยแพร่
 
+## Rationale
+
+Verbose errors leak system detail and leave consumers unable to handle failures deterministically.
+
+**Thai:** error ที่ละเอียดเกินไปรั่วไหลรายละเอียดระบบ และทำให้ผู้ใช้บริการจัดการความล้มเหลวได้ไม่แน่นอน
+
 ## Applicability
 
 - Tiers: 1, 2, 3
@@ -27,6 +33,22 @@ An API error must return a stable code, a safe message, and a correlation identi
 
 - **document** (max 365 days): Error code catalogue and safe error format
 - **test_result** (max 180 days): Negative tests for error content and correlation identifiers
+
+## Assessment
+
+- Lite pass: Errors use stable codes and do not expose internal detail.
+- Lite partial: Errors are safe but codes or documentation are inconsistent.
+- Full L2: Error behaviour is documented, tested, and matches the contract.
+- Full L3: Error rates and codes are reviewed for consumer impact.
+
+## References
+
+- [IETF RFC 9457 Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html) — `standard`
+- [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) — `standard`
+
+## Crosswalks
+
+- [MAP-ASVS — SRAS Core and Integration to OWASP ASVS 5.0](../crosswalks/MAP-ASVS.md): `v5.0.0-16.5` (supports) — Error handling.
 
 ## Review
 
