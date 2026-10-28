@@ -1,7 +1,7 @@
 lockfile_version: 1
 sras:
-  version: 0.9.0
-  checksum: sha256:349f5225ae3fed48701cfd2fa22937a953f9cecd39208dd85fd72229cbbb4a09
+  version: 1.0.0
+  checksum: sha256:a3cf883ff058f6780a980dd620658d6933966384036b79e9133427cdc2917486
 modules:
   - id: SRAS-INT
     version: 0.1.0
@@ -30,7 +30,7 @@ inputs:
   - path: core/profiles/full.yaml
     sha256: 66158613036aefa83c83fa4714c39a06bf0f7312e24199daea675c83d1c24bbd
   - path: core/sras.yaml
-    sha256: 4213a2b78a9eab6efac06fe393a3fc310f9ebbc6ac85cd5a267755b2b39e3d60
+    sha256: ba108fba9bb4e2c9a8ee8bd979eb3af98cee62b03777fd0d5503b26a1d6ca971
   - path: modules/cloud-saas/module.yaml
     sha256: 8edb84b507cc23ed27e841e12feb3985cc8d3f82d02e3bcff45fc7bc8800f6ca
   - path: modules/integration/module.yaml
@@ -38,4 +38,4 @@ inputs:
   - path: modules/regulated-data/module.yaml
     sha256: 0104c12b84fd71860d39e0c8b7e28ef1e961380d2d38bad5f09900ef684db631
   - path: overlays/industries/public-sector/overlay.yaml
-    sha256: 3f92d3b799ec9c0f9332bb67cd15f34a2ecbd2b59d6f9135f027ed9e52c4164f
+    sha256: 46bcee1e3afdfed48dfaa6f63938f3d21086bf6e7e5c65c38c743b69f936c90f

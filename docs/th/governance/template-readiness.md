@@ -8,8 +8,8 @@ machine_translated: true
 # ความพร้อมของ template
 
 **เส้นทาง:** template / starter kit **สถานะ:** ใช้ได้โดยมีข้อจำกัด
-**เนื้อหาเวอร์ชัน:** SRAS 0.9.0 **milestone การปรับตำแหน่ง:** v0.10.0
-(ยังไม่ cut release และไม่ bump version) **บันทึกเมื่อ:** 2026-10-28
+**เนื้อหาเวอร์ชัน:** SRAS 1.0.0 **release:** v1.0.0 template release
+2026-10-28 **บันทึกเมื่อ:** 2026-10-28
 
 หน้านี้บอกว่าวันนี้ทีมใช้ส่วนใดได้จริง และต้องไม่กล่าวอ้างอะไร เป็นจุดเริ่มต้น
 ของ template บันทึก AI audit มีการตรวจและข้อจำกัดที่เกี่ยวข้อง
@@ -39,7 +39,7 @@ starter kit เหมาะกับการวางแผนภายใน �
 | Refresh lockfile                  | พร้อม  | `sras project refresh <dir>` เขียนเฉพาะ lockfile                     |
 | ดู resolution และ coverage        | พร้อม  | `sras project resolve <dir>` แสดงทุก gate ที่ยังไม่ถูกประเมิน        |
 | บันทึกหน่วยงานผู้ว่าจ้างภาครัฐ    | พร้อม  | `scope.public_sector` พร้อม contracting authority และ contract       |
-| Core, module และ overlay          | มีอยู่ | ข้อกำหนด Core 70, module 52 และ overlay 45 ใน SRAS 0.9.0             |
+| Core, module และ overlay          | มีอยู่ | ข้อกำหนด Core 70, module 52 และ overlay 45 ใน SRAS 1.0.0             |
 | ทะเบียนและ crosswalk ไทย          | มีอยู่ | ทะเบียนไทย 12 รายการและ crosswalk 7 ชุด                              |
 | Reference pages แบบ deterministic | พร้อม  | `sras render --check`                                                |
 | Content guard สาธารณะ             | พร้อม  | `sras guard` และ CI annotations                                      |
@@ -126,7 +126,8 @@ library นี้ไม่ได้ให้มาตรฐาน การร�
   ให้รันใหม่ ณ commit ของคุณ จำนวนอาจเปลี่ยน
 - คำอธิบายเนื้อหาเป็น **documented** จาก repository
 - การตัดสินว่าหมาะสมเป็น **provisional** จนกว่าโปรเจกต์จริงจะใช้งาน
-- งานปรับตำแหน่ง v0.10.0 เป็น **planned** และยังไม่ใช่ release
+- template release v1.0.0 เป็น **published** และการตัดสินว่าหมาะสมยังเป็น
+  **provisional**
 
 อ่าน [confidence labels](confidence-labels.md) สำหรับข้อตกลงนี้
 

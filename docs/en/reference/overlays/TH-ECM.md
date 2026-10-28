@@ -4,7 +4,7 @@
 - Jurisdiction: `TH`
 - Industry: `ecommerce`
 - Version: `0.4.0`
-- Extends: `>=0.3.0 <1.0.0`
+- Extends: `>=0.3.0 <2.0.0`
 - Requires: SRAS-INT, SRAS-RGD, SRAS-CLD
 - Review status: `draft`
 - Translation status: `partial`

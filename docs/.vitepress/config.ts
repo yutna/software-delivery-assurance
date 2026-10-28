@@ -365,7 +365,7 @@ const thSidebar: DefaultTheme.Sidebar = [
  * literal on its own line; the version checker reads it from this file.
  */
 const config = {
-  version: "0.9.0",
+  version: "1.0.0",
   title: "Software Delivery Assurance",
   description:
     "Open, evidence-based assurance for software delivery: SRAS standards, registers, and tools.",

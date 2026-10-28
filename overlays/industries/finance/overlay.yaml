@@ -9,7 +9,7 @@ description:
   en: Assurance deltas for banks, insurers, payment providers, fintech, and financial software vendors operating in Thailand.
   th: ส่วนเพิ่ม assurance สำหรับธนาคาร ประกันภัย ผู้ให้บริการชำระเงิน fintech และผู้ขายซอฟต์แวร์การเงินที่ดำเนินงานในประเทศไทย
 version: 0.4.0
-extends: ">=0.3.0 <1.0.0"
+extends: ">=0.3.0 <2.0.0"
 requires:
   - SRAS-AI
   - SRAS-INT

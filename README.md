@@ -46,8 +46,8 @@ See [SCOPE.md](SCOPE.md) for the full boundary and exclusions.
 
 ## Current status
 
-**Content version: SRAS 0.9.0. Template positioning: v0.10.0 milestone in
-progress, no release cut and no version bump.**
+**Content version: SRAS 1.0.0. Template release: v1.0.0, published
+2026-10-28. This is a template release, not a standard.**
 
 The template is usable with limitations. The project template, `init`,
 `project validate`, `project refresh`, deterministic rendering, and the content
@@ -136,9 +136,8 @@ Then read, in this order:
 
 The published site is
 [yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
-Follow [ROADMAP.md](ROADMAP.md) for the planned milestones. The 0.10.0 minor
-finishes the concern-template positioning. A 1.0.0 template release is planned
-after that work is complete; it is not a standard release.
+Follow [ROADMAP.md](ROADMAP.md) for the released milestones. The 1.0.0
+template release publishes the concern template. It is not a standard release.
 
 ## Repository map
 

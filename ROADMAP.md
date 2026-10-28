@@ -69,13 +69,13 @@ This milestone does not bump the library version, freeze SRAS 1.0, close the
 v1.0.0 milestone, or cut a release. The content remains SRAS 0.9.0, and the
 template track remains usable with limitations.
 
-## v1.0.0 — Template release (planned)
+## v1.0.0 — Template release
 
-Publish the concern template as a 1.0.0 template release after the 0.10.0 work
-is complete. The release notes state what the library is, what it is not, and
-the limitations (partial Thai translation, unverified registers, no human or
-external review). It does not freeze a standard, does not require a human Thai
-review or an external review, and does not claim certification or compliance.
+Published the concern template as a 1.0.0 template release on 2026-10-28. The
+release notes state what the library is, what it is not, and the limitations
+(partial Thai translation, unverified registers, no human or external review).
+It does not freeze a standard, does not require a human Thai review or an
+external review, and does not claim certification or compliance.
 
 An adopting project that needs a formal review runs it in its own context. The
 library only points at the concerns and keeps the synthetic examples.

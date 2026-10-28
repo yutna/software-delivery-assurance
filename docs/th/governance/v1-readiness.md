@@ -6,7 +6,7 @@ machine_translated: true
 # AI audit และข้อจำกัด
 
 **สถานะ:** บันทึก AI audit **ผู้ตรวจ:** AI execution agent (DeepSeek V4.1 Flash
-ผ่าน OpenCode) **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 0.9.0
+ผ่าน OpenCode) **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 1.0.0
 
 นี่ไม่ใช่การทบทวนโดยมนุษย์ การทบทวนภายนอก การทบทวนทางกฎหมาย หรือการรับรอง
 ไม่มี human sign-off ที่บันทึกไว้ และ repository ไม่ได้อ้างว่ามี
@@ -37,7 +37,7 @@ repository นี้เป็น concern template ไม่ใช่มาตร
 - **Docs QA และ build:** `npm run check:docs` และ `npm run docs:build` ผ่าน
 - **Tests และ types:** `npm test`, `npm run typecheck`, `npm run lint` และ
   `npm run format:check` ผ่าน
-- **Version consistency:** ไฟล์เวอร์ชันทั้งห้าตรงกันที่ 0.9.0
+- **Version consistency:** ไฟล์เวอร์ชันทั้งห้าตรงกันที่ 1.0.0
 - **FDS pack:** `npm run check:fds` ผ่าน pack ที่ pin ไว้
 - **จำนวน:** Core 70, module 52, overlay 45, register 27 และ crosswalk 7
 - **Claims:** ไม่มีหน้าใดอ้างการรับรอง ข้อสรุปทางกฎหมาย การทบทวนภายนอก หรือ

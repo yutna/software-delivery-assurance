@@ -11,9 +11,9 @@ especially Thai public-sector delivery, and it includes the SRAS reference
 standard, Thailand sector overlays, regulatory registers, project templates,
 and TypeScript tools that validate, render, and guard the content.
 
-This site documents SRAS v0.9.0. The v0.10.0 milestone repositions the
-repository as a concern template. It does not bump the version, cut a release, or
-claim a standard status.
+This site documents SRAS 1.0.0. The v1.0.0 template release positions the
+repository as a concern template. It does not claim a standard status,
+certification, or external review.
 
 ## How it is used
 
@@ -113,7 +113,7 @@ register-only references, not compliance overlays.
 
 Content is marked `draft`, `unverified`, or `reviewed`. `reviewed` requires a
 named reviewer, a review date, and a scope. Legal content stays `unverified`
-until a qualified legal reviewer signs off. The v0.9.0 standard content is
+until a qualified legal reviewer signs off. The SRAS content is
 draft or unverified; no external reviewer has signed it off.
 
 English is canonical for identifiers, schema keys, and file names. Thai is a

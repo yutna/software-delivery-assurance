@@ -9,7 +9,7 @@ description:
   en: Assurance deltas for transport management, warehouse management, tracking, customs integration, and delivery platforms operating in Thailand.
   th: ส่วนเพิ่ม assurance สำหรับระบบบริหารการขนส่ง คลังสินค้า การติดตาม การเชื่อมต่อศุลกากร และแพลตฟอร์มจัดส่งที่ดำเนินงานในประเทศไทย
 version: 0.4.0
-extends: ">=0.3.0 <1.0.0"
+extends: ">=0.3.0 <2.0.0"
 requires:
   - SRAS-INT
   - SRAS-RGD
