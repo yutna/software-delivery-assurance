@@ -23,8 +23,8 @@ jobs:
           const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
           const milestone = (process.env.MILESTONE || "").replace(/^v/, "");
           const release = milestone === pkg.version;
-          console.log(`milestone=${milestone} package=${pkg.version} release=${release}`);
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `release=${release}\n`);
+          console.log("milestone=" + milestone + " package=" + pkg.version + " release=" + release);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, "release=" + release + "\n");
           '
   release:
     needs: guard
