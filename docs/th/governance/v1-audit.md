@@ -3,21 +3,20 @@ translation_status: partial
 machine_translated: true
 ---
 
-# การตรวจประเมินและ gap report สำหรับ v1.0.0
+# บันทึก AI audit 0.10.0
 
-**สถานะ:** การตรวจทางเทคนิคเสร็จ แต่ความพร้อมของ release ยังไม่ผ่าน
+**สถานะ:** AI audit เสร็จ ข้อจำกัดของ template ถูกบันทึกไว้
 **commit ที่ตรวจ:** `6d88c1019b90e2a2e5cdbec4dab50713294af6ea` (`main` หลัง #62)
 **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 0.9.0 **ผู้ตรวจ:** AI execution
 agent ภายใต้การกำกับของเจ้าของ repository
 
-หน้านี้บันทึกหลักฐานจากคำสั่งสำหรับการตรวจ v1.0.0 และ gap ที่ยังเหลือ
-ไม่ใช่ release sign-off ไม่ freeze SRAS 1.0 ไม่ bump version ไม่ปิด milestone
-และไม่ cut release หน้า audit ถูกเพิ่มโดย PR หลังจาก commit ที่ตรวจ
-เนื้อหาที่ตรวจคือ commit ข้างต้น
+หน้านี้บันทึกหลักฐานจากคำสั่งสำหรับ AI audit 0.10.0 และข้อจำกัดที่ยังเหลือ
+ไม่ใช่ release sign-off ไม่ใช่ human review หรือ external review ไม่ freeze
+มาตรฐาน ไม่ bump version ไม่ปิด milestone และไม่ cut release หน้า audit ถูกเพิ่ม
+โดย PR หลังจาก commit ที่ตรวจ เนื้อหาที่ตรวจคือ commit ข้างต้น
 
-repository ยังอยู่บน template / starter-kit track
-formal-standard track ยังถูกบล็อกด้วยรายการใน
-[การทบทวนความพร้อม v1.0.0](v1-readiness.md) และ gap ด้านล่าง
+repository นี้เป็น concern template ข้อจำกัดด้านล่างถูกบันทึกสำหรับโปรเจกต์ที่
+นำไปใช้ และไม่บล็อก template release
 
 ## สภาพแวดล้อม
 
@@ -66,30 +65,30 @@ VitePress build แสดง warning ที่รู้กันอยู่แ�
 VitePress ไม่รู้จัก target ES2024 configuration ใช้ target ES2022 สำหรับ
 esbuild และ `npm run docs:build` สำเร็จ warning นี้ไม่ใช่ gate failure
 
-## Gap ที่ยังเหลือก่อน release
+## ข้อจำกัดและรายการที่ยังเปิด
 
-- **เวอร์ชันเนื้อหายังเป็น 0.9.0 ไม่ใช่ 1.0.0** — `node tools/check-version.ts 0.9.0`
-  ผ่าน แต่การตรวจ 1.0.0 จะไม่ผ่าน เจ้าของ #61
+- **เวอร์ชันเนื้อหายังเป็น 0.9.0 และ 1.0.0 template release วางแผนไว้ภายหลัง** —
+  `node tools/check-version.ts 0.9.0` ผ่าน แต่การตรวจ 1.0.0 จะไม่ผ่านจนกว่าจะถึง
+  งาน release เจ้าของ #61
 - **ข้อกำหนด active 167 ข้อเป็น `translation_status: partial`** — `validate --all`
   และ YAML ยังมี `machine_translated: true` เจ้าของ #61
 - **ยังไม่มีผู้ทบทวนภาษาไทยที่มีชื่อยืนยันคำแปล** — [Thai review kit](thai-review-kit.md)
-  เตรียมไว้แต่ยังไม่มีผู้ใช้ เจ้าของ #61
-- **ยังไม่มีการทบทวนภายนอกโดยมนุษย์** — [การทบทวนความพร้อม v1.0.0](v1-readiness.md)
-  และ [external review packet](external-review-packet.md) เป็น template เจ้าของ #61
-- **ทะเบียนยัง `unverified`** — 27 register entries เป็นข้อจำกัดของ
-  formal-standard track
+  เตรียมไว้แต่ยังไม่มีผู้ใช้ เป็นข้อจำกัดที่บันทึกไว้
+- **ไม่มีการอ้างการทบทวนภายนอก** — [AI audit และข้อจำกัด](v1-readiness.md)
+  โปรเจกต์ที่นำไปใช้อาจจัดให้มีการทบทวนของตนเอง
+- **ทะเบียนยัง `unverified`** — 27 register entries เป็นข้อจำกัดที่บันทึกไว้
 - **ข้อกังวลทางกฎหมายสี่ข้อเป็น desk research ไม่ใช่ legal review** —
   [ข้อกังวลทางกฎหมาย](legal-concerns.md) และ #128–#131 เป็นการตัดสินใจของแต่ละโปรเจกต์
-- **Release notes ยังเป็น draft** — เตรียมใน #64 แต่ยังไม่เผยแพร่
-- **Announcement ยังเป็น draft** — เตรียมใน #65 แต่ยังไม่เผยแพร่
+- **Release notes ยังเป็น draft** — กำลังปรับเป็น template release ใน #174
+- **Announcement ยังเป็น draft** — กำลังปรับเป็น template release ใน #174
 - **Temporary internal seed ยังอยู่** — `internal/` ใน repository เจ้าของ #66
-- **Milestone ยังเปิดและ final release audit ยังไม่รัน** — v1.0.0 milestone
-  เจ้าของ #66
+- **งาน 0.10.0 ยังทำอยู่และ 1.0.0 release อยู่ภายหลัง** — 0.10.0 milestone
+  เจ้าของ #171, #66
 - **Metadata วันที่ release ยังไม่อัปเดต** — `CITATION.cff` และ `core/sras.yaml`
   ยังใช้วันที่ของ v0.9.0 เจ้าของ #66
 
-release notes และ announcement เตรียมใน #64 และ #65 แต่ ณ เวลาที่ตรวจยังเป็น
-draft และไม่ได้อ้างว่ามี release
+release notes และ announcement กำลังปรับใน #174 ณ เวลาที่ตรวจยังเป็น draft
+และไม่ได้อ้างว่ามี release
 
 ## สิ่งที่ผ่าน
 
@@ -105,8 +104,9 @@ draft และไม่ได้อ้างว่ามี release
 
 ## ข้อยกเว้นและเหตุผล
 
-- **การตรวจนี้ไม่ใช่ release audit** — เนื้อหายังเป็น 0.9.0 และ milestone
-  ยังเปิด ต้องมี final audit หลัง #64, #65 และ #66
+- **การตรวจนี้ไม่ใช่ human review** — ตรวจความสอดคล้อง coverage ลิงก์ และความ
+  ปลอดภัย ไม่ได้ตรวจความหมายทางกฎหมาย สถานะปัจจุบันของแหล่ง หรือการนำไปใช้กับ
+  โปรเจกต์เฉพาะ
 - **คำแปลยังไม่ถูกทบทวน** — ข้อกำหนด active 167 ข้อเป็น machine-assisted
   และ `partial` การตรวจนี้ตั้งเป็น complete ไม่ได้
 - **ไม่มีการทบทวนภายนอก** — การตรวจบันทึกว่าไม่มี แทนการสร้างผู้ทบทวน
@@ -119,10 +119,10 @@ draft และไม่ได้อ้างว่ามี release
 
 ## สรุป
 
-Gate ทางเทคนิคผ่านที่ `6d88c10` แต่ v1.0.0 ยังไม่พร้อม release
-release ยังถูกบล็อกด้วย #61 (freeze, human Thai review และ external human
-review) release notes และ announcement ฉบับ draft ใน #64 และ #65
-และ final cleanup/release issue #66
+Gate ทางเทคนิคผ่านที่ `6d88c10` concern template ใช้ได้โดยมีข้อจำกัดที่บันทึกไว้
+ไม่มีการอ้างมาตรฐาน การรับรอง human review หรือ external review
+1.0.0 template release เป็นขั้นถัดไปภายใต้ #61 และ #66 ส่วน release notes และ
+announcement กำลังปรับใน #174
 
 ## หน้าที่เกี่ยวข้อง
 

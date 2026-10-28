@@ -3,26 +3,24 @@ translation_status: complete
 machine_translated: false
 ---
 
-# External review packet
+# External review packet (adopter tool)
 
-**Status: template only. No reviewer has been named, engaged, or recorded.
-No external review has taken place.**
+**Status: optional adopter tool. The library has no external review.**
 
-**Optional formal-standard tool.** This packet belongs to the optional
-formal-standard track. The template / starter-kit track does not require it and
-can be used with the limitations in
-[template readiness](template-readiness.md). Use this packet only when an
-organisation intends to make a formal-standard claim, commission an external
-review, or prepare the v1.0.0 candidate.
+**Optional adopter tool.** An adopting project may use this packet if it decides
+to commission an external review for its own scope or delivery. The library does
+not require it and does not claim one. The template is usable with limitations
+under [template readiness](template-readiness.md).
 
-**Prepared:** 2026-10-28. **Target:** the SRAS 1.0.0 candidate, based on
-SRAS 0.9.0. **Reviewer:** _to be named_. **Review date:** _to be recorded_.
+**Prepared:** 2026-10-28. **Target:** the adopting project's scope, based on the
+SRAS 0.9.0 concern template. **Reviewer:** _to be named by the project_.
+**Review date:** _to be recorded by the project_.
 
-This page is a working packet for a future external reviewer. It states what to
-review, the questions to answer, the evidence to inspect, and how to record a
-result. The repository owner must name the reviewer and the reviewer must write
-the result. Until that happens, every external-review claim in this repository
-remains unticked, and this page is not evidence that a review occurred.
+This page is a working packet for a project that commissions an external review.
+It states what to review, the questions to answer, the evidence to inspect, and
+how to record a result. The project names the reviewer and the reviewer writes
+the result. The library itself does not claim an external review, and this page
+is not evidence that a review occurred.
 
 ## What this packet is not
 
@@ -161,7 +159,7 @@ review.
 | Project examples         | `npm run sras -- project validate examples/<name>`                                 | 5 of 5 valid                              |
 | Pilot reports            | `docs/en/pilots/`                                                                  | two synthetic pilots                      |
 | Finding triage           | `docs/en/pilots/summary.md`                                                        | 18 findings dispositioned                 |
-| Readiness review         | `docs/en/governance/v1-readiness.md`                                               | not ready for v1.0.0                      |
+| AI audit                 | `docs/en/governance/v1-readiness.md`                                               | limitations documented                    |
 | Legal concerns           | issues #128, #129, #130, #131; `docs/en/governance/legal-concerns.md`              | research notes; project decision required |
 | Remaining release issues | issues #61, #62, #63, #64, #65, #66                                                | open                                      |
 | Release under review     | [v0.9.0](https://github.com/yutna/software-delivery-assurance/releases/tag/v0.9.0) | published                                 |
@@ -216,7 +214,7 @@ Signature or verifiable approval:
 
 - [Template readiness](template-readiness.md)
 - [Legal concerns](legal-concerns.md)
-- [v1.0.0 readiness review](v1-readiness.md)
+- [AI audit and limitations](v1-readiness.md)
 - [Pilot summary and triage](../pilots/summary.md)
 - [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
 - [Execution status](https://github.com/yutna/software-delivery-assurance/issues/67)

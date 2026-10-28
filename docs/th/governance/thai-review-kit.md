@@ -3,17 +3,15 @@ translation_status: partial
 machine_translated: true
 ---
 
-# Thai review kit
+# Thai review kit (adopter tool)
 
-**สถานะ: เป็น kit เท่านั้น ยังไม่มีการตรวจภาษาไทย ไม่มี requirement ใดถูกทำ
-เครื่องหมาย complete และไม่มีค่า `machine_translated` ใดถูกเปลี่ยน**
+**สถานะ: เครื่องมือทางเลือกสำหรับโปรเจกต์ที่นำไปใช้ เนื้อหาไทยของ library
+เขียนโดย AI และยัง partial ยังไม่มีการตรวจภาษาไทยโดยมนุษย์**
 
-**เครื่องมือทางเลือกสำหรับ formal-standard track** kit นี้เป็นของ
-formal-standard track ซึ่งเป็นทางเลือก ส่วน template / starter-kit track
-ไม่จำเป็นต้องมีการตรวจภาษาไทยโดยมนุษย์ครบทั้งหมด และใช้ได้โดยมีข้อจำกัดตาม
-[ความพร้อมของ template](template-readiness.md) ใช้ kit นี้เมื่อองค์กรต้องการ
-อ้างอิงมาตรฐานที่ผ่านการทบทวน เผยแพร่เนื้อหาภาษาไทยทางการ หรือเตรียม candidate
-ของ v1.0.0
+**เครื่องมือทางเลือกสำหรับโปรเจกต์ที่นำไปใช้** โปรเจกต์อาจใช้ kit นี้หากตัดสินใจ
+ให้มีการตรวจภาษาไทยโดยมนุษย์สำหรับการเผยแพร่หรือการตัดสินใจทางการของตนเอง
+library ไม่จำเป็นต้องใช้และไม่ได้อ้างว่ามีการตรวจนั้น template ใช้ได้โดยมี
+ข้อจำกัดตาม[ความพร้อมของ template](template-readiness.md)
 
 **จัดทำ:** 2026-10-28 **ขอบเขต:** requirement ที่ active ทั้ง 167 ข้อ — Core 70,
 module 52 และ overlay 45 ทุกข้อยังเป็น `translation_status: partial` และ
@@ -24,13 +22,13 @@ kit นี้ทำให้การตรวจภาษาไทยโดย�
 requirement และบันทึกผล AI execution agent ต้องไม่ทำเครื่องหมาย complete หรือ
 ตั้ง `machine_translated: false` แทนผู้ตรวจ
 
-template track ไม่จำเป็นต้องใช้ kit นี้ kit นี้มีไว้สำหรับ formal-standard
-track เพราะเนื้อหาภาษาไทยที่ครบถ้วนเป็นส่วนหนึ่งของข้ออ้าง
-template track เก็บทุกหน้าเป็น `partial` และบอกข้อจำกัดนั้นให้ผู้อ่านทราบ
+การใช้ template ไม่จำเป็นต้องใช้ kit นี้ kit นี้มีไว้สำหรับ formal process ของ
+โปรเจกต์ ซึ่งเนื้อหาภาษาไทยที่ครบถ้วนอาจเป็นส่วนหนึ่งของข้ออ้างของโปรเจกต์นั้น
+library เก็บทุกหน้าเป็น `partial` และบอกข้อจำกัดนั้นให้ผู้อ่านทราบ
 
 ## ผู้ที่ตรวจได้
 
-ผู้ตรวจต้อง
+โปรเจกต์ที่ใช้ kit นี้ควรใช้ผู้ตรวจที่
 
 - เป็นมนุษย์ที่ระบุชื่อ อ่านภาษาไทยและอังกฤษได้
 - เข้าใจคำศัพท์ด้านการส่งมอบ ความเสี่ยง และกฎหมายของ requirement หรือทำงาน
@@ -359,6 +357,6 @@ kit นี้ไม่ปิด milestone ไม่ตัด release และ�
 
 - [ความพร้อมของ template](template-readiness.md)
 - [External review packet](external-review-packet.md)
-- [v1.0.0 readiness review](v1-readiness.md)
+- [AI audit และข้อจำกัด](v1-readiness.md)
 - [อภิธานศัพท์ภาษาไทย](../glossary.md)
 - [สถานะการดำเนินงาน](https://github.com/yutna/software-delivery-assurance/issues/67)

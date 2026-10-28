@@ -3,185 +3,93 @@ translation_status: complete
 machine_translated: false
 ---
 
-# v1.0.0 readiness review
+# AI audit and limitations
 
-**Status:** reviewed by the AI execution agent on 2026-10-28; owner-signed on
-2026-10-28. This is not an external, independent, human, or legal review.
-**Version reviewed:** SRAS 0.9.0.
-**Date:** 2026-10-28.
-**Owner:** `@yutna`, maintainer.
+**Status:** AI audit record. **Auditor:** the AI execution agent (DeepSeek V4.1
+Flash via OpenCode). **Date:** 2026-10-28. **Content version:** SRAS 0.9.0.
 
-This review states whether the library is ready for v1.0.0. It does not claim
-external review, legal review, independence, or certification. The review was
-performed by the AI execution agent under owner direction because no external
-reviewer was available. Where a reviewer is missing, the item is recorded as
-missing instead of being marked complete.
+This is not a human review, an external review, a legal review, or a
+certification. No human sign-off is recorded, and the repository does not claim
+that one exists. The AI researched, drafted, wrote, and audited the content.
+This page records what it checked and what remains a limitation.
 
-## Inputs
+The repository is a concern template. It is not a standard. An adopting project
+decides which concerns apply, how to implement them, and what formal documents
+to produce.
 
-- [Pilot A — finance](../pilots/finance.md) and
-  [pilot B — public sector](../pilots/public-sector.md).
-- [Pilot summary and triage](../pilots/summary.md): 18 findings, each with an
-  owner and a disposition.
-- The v0.9.0 CI gates, the docs build, and `oss-kit doctor`.
-- The review status of the Core, modules, overlays, and registers.
+## Scope
 
-## Readiness by area
+The audit covers:
 
-| Area                     | Status                                        | Evidence                                 | Ready for v1.0.0 |
-| ------------------------ | --------------------------------------------- | ---------------------------------------- | ---------------- |
-| Core requirements        | 70 active, all `translation_status: partial`  | `validate --all`, `render --check`       | No               |
-| Technical modules        | 52 active, all `translation_status: partial`  | `validate --all`, `render --check`       | No               |
-| Sector overlays          | 45 active, all `translation_status: partial`  | `validate --all`, `render --check`       | No               |
-| Registers                | 27 entries, all `review_status: unverified`   | Official sources, review dates           | No               |
-| Crosswalks               | 7 informative mappings                        | `validate --all`                         | Yes              |
-| Project template and CLI | Complete at the documented scope              | Tests, `init`, `render --check`, `guard` | Partial          |
-| Bilingual site           | 181 English and 28 Thai pages                 | `docs:build`, `check:docs`, link check   | Partial          |
-| FDS and TypeScript       | 43 skills pinned at 3.3.0, commit `4d3875c`   | `check:fds`, `typecheck`, `lint`         | Yes              |
-| CI and repository        | All gates green; doctor reports no drift      | CI run, `oss-kit doctor`                 | Yes              |
-| Pilots                   | Two completed, 18 findings dispositioned      | Pilot reports and summary                | Yes              |
-| External review          | No external reviewer; AI self-review recorded | This page                                | No               |
+- the SRAS Core, the technical modules, and the Thailand sector overlays;
+- the registers, crosswalks, project template, CLI, and synthetic examples;
+- the English and Thai documentation, the content guard, and the repository
+  checks;
+- the claims, limitations, and status fields.
 
-## What is ready
+It does not decide whether a source applies to a project, whether a project is
+compliant, or whether a Thai translation is ready for a formal publication.
 
-- The Core, modules, overlays, registers, crosswalks, schemas, template, and
-  CLI validate and render deterministically.
-- The two pilots completed with synthetic data only, and every finding has an
-  owner and a disposition.
-- Nine findings are fixed and verified by tests. Five are deferred with a
-  follow-up issue. Four are open legal questions with an issue.
-- The bilingual site builds, the internal links resolve, and the content guard
-  passes.
-- The FDS pack is pinned and verified, and no Python tooling or second docs
-  framework is present.
-- `oss-kit doctor` reports no drift.
+## What the AI checked
 
-## Template track status
+- **Schema and domain validation:** `npm run sras -- validate --all` passes on
+  53 files.
+- **Deterministic reference pages:** `npm run sras -- render --check` passes on
+  154 pages.
+- **Content guard:** `npm run sras -- guard` passes on the public content.
+- **Docs QA and build:** `npm run check:docs` and `npm run docs:build` pass.
+- **Tests and types:** `npm test`, `npm run typecheck`, `npm run lint`, and
+  `npm run format:check` pass.
+- **Version consistency:** the five version files agree at 0.9.0.
+- **FDS pack:** `npm run check:fds` passes on the pinned pack.
+- **Counts:** the Core has 70 active requirements, the modules 52, the overlays
+  45, the registers 27, and the crosswalks 7.
+- **Claims:** no page claims a certification, a legal conclusion, an external
+  review, or a human sign-off.
+- **Defects:** the historical pilot findings that affected the template and the
+  CLI were fixed by #140, #141, #126, #134, and #135; the four legal questions
+  stay as desk research notes.
 
-The template / starter-kit track is usable with limitations. It is separate
-from this v1.0.0 readiness review. The template track does not require the
-external review, the complete human Thai review, or the SRAS 1.0 freeze listed
-below. Its limitations are recorded in
-[template readiness](template-readiness.md).
+## What remains a limitation
 
-This v1.0.0 review remains the readiness record for the optional formal-standard
-track. A team may copy the template and run an assessment now; it may not claim
-that the standard is v1.0.0-ready.
+- **Thai translation is partial.** All 167 active requirements are
+  `translation_status: partial` with `machine_translated: true`. A human Thai
+  review has not happened and is not claimed.
+- **Registers are unverified.** The 27 entries cite official sources but are not
+  legal advice and have no qualified legal review.
+- **Legal concerns are desk research.** #128–#131 collect sources and questions.
+  They do not decide whether a source applies to a project.
+- **No external or human review.** No external reviewer, legal reviewer, or
+  certification body has been engaged.
+- **The examples are synthetic.** The pilots used one assessor and synthetic
+  data. They do not measure the effort on a real project.
+- **The template is generic.** It does not encode agency-specific procurement,
+  records, or approval rules.
 
-## Blocking items for v1.0.0
+These are documented limitations of a concern template, not a claim that the
+template is a standard. A project that needs a formal review, a human Thai
+review, a legal opinion, or a certification runs that work in its own context.
 
-1. **Thai translation is not human-reviewed.** All 70 Core, 52 module, and 45
-   overlay requirements are `translation_status: partial` with
-   `machine_translated: true`. v1.0.0 requires complete Thai and English
-   content for active Core and module requirements. A named Thai reviewer must
-   review and mark them complete.
-2. **External human review has not happened.** No external reviewer has been
-   engaged. The AI self-review recorded on this page is not independent, not
-   human, and not a substitute for the external review that v1.0.0 needs. The
-   owner accepted it for the v0.9.0 review step only.
-3. **Two high findings were deferred at the time of this review.** #127
-   (validate and refresh a project instance) and #132 (record the contracting
-   authority) affect the claim that the template and CLI are stable. Both were
-   fixed after the review by #140 and #141; see the addendum. The formal-standard
-   claim still needs the remaining review and freeze work.
-4. **The remaining v1.0.0 issues are open.** SRAS 1.0 is not frozen, governance
-   is not final, the final audit and doctor run has not been archived, and the
-   release notes and announcement do not exist.
+## What an adopting project must do
 
-## Limitations
+1. Decide which concerns and overlays apply to its scope.
+2. Decide whether it needs a human Thai review, a legal review, an external
+   review, or a certification for its own publication or delivery.
+3. Record its own scope, evidence, claims, risks, and approvals in its private
+   project instance.
+4. Keep the limitations visible in its own documents.
+5. Not describe this repository as a standard, a certification, or an external
+   review.
 
-- The registers stay `unverified`. Without a qualified legal reviewer, the
-  library may describe sources and obligations but may not claim compliance.
-- The [legal concerns](legal-concerns.md) page is desk research, not a legal
-  opinion for any project.
-- The overlays and requirements remain `review_status: draft`.
-- One assessor ran both pilots, and both used synthetic data.
-- The pilot coverage counts describe the examples, not a production
-  assessment.
-
-## v0.9.0 release readiness
-
-| v0.9.0 exit criterion                       | Status                                                              |
-| ------------------------------------------- | ------------------------------------------------------------------- |
-| Two pilots completed                        | Met                                                                 |
-| External review notes collected and triaged | Not met as written; owner accepted the AI self-review on 2026-10-28 |
-| Findings fixed or deferred with rationale   | Met                                                                 |
-| v1.0.0 readiness signed off by the owner    | Met — owner signed 2026-10-28                                       |
-| `oss-kit doctor` no drift                   | Met                                                                 |
-| Release created                             | Pending milestone close                                             |
-
-The owner signed this review on 2026-10-28 and directed that the AI self-review
-satisfy the v0.9.0 review step. The milestone can close. An external human
-review remains a blocker for v1.0.0 and is not claimed here.
-
-## AI review notes
-
-**Reviewer:** AI execution agent, DeepSeek V4.1 Flash via OpenCode. Not an
-external reviewer, not a human reviewer, and not a qualified legal reviewer.
-
-**Date:** 2026-10-28. **Version:** SRAS 0.9.0.
-
-**Scope reviewed:** the two pilot reports and their findings, the 18
-dispositions, the readiness evidence, the release metadata, and the docs and
-content gates.
-
-**What was checked:**
-
-- Every pilot finding has an owner and a disposition; the fixed findings have
-  tests, and the deferred findings have an issue.
-- The examples parse as project instances, their lockfiles verify, and the
-  README coverage numbers match the resolved set recomputed from the YAML.
-- The version is consistent across `package.json`, `package-lock.json`,
-  `src/sras/version.ts`, `CITATION.cff`, `core/sras.yaml`, and the docs config.
-- The content guard, schema validation, render check, docs build, doc QA, link
-  check, FDS check, lint, typecheck, and tests pass.
-- The register entries cite official sources; the legal questions remain open
-  and are not answered in the repository.
-
-**Result:** no new release-blocking defect was found in v0.9.0. The v1.0.0
-blockers listed above remain.
-
-**Limitations:** the review is not independent. It cannot verify the legal
-meaning or current status of an official source, and it does not replace a
-qualified legal or external review. It records consistency and test evidence,
-not legal correctness.
-
-## Owner sign-off
-
-Signed: **Yutthana Siphuengchai (`@yutna`), maintainer, 2026-10-28.**
-
-Scope: this readiness assessment for SRAS 0.9.0, including the v1.0.0 blockers
-listed above. The sign-off does not claim v1.0.0 readiness, external review, or
-legal review.
-
-## Status update after the signed review
-
-Recorded 2026-10-28 after the review and sign-off above. This addendum does not
-revise the review and does not claim v1.0.0 readiness.
-
-- **#127 is fixed** by PR #140, merge commit
-  `aaaa04eb196c485bd53251556c417c03a006561f`. `project validate <dir>` checks an
-  edited instance and its lockfile; `project refresh <dir>` recomputes the
-  lockfile.
-- **#132 is fixed** by PR #141, merge commit
-  `22fd3a5d97eab45d32b1662c387c3e9d1b8d0ddf`. A public sector instance records
-  `scope.public_sector` and validation requires it for an assessed `TH-PUB-001`.
-- **External review is still absent.** No reviewer has been named or engaged.
-  The [external review packet](external-review-packet.md) is a template and is
-  not a review result.
-- **Thai review is still a blocker.** All 167 active requirements remain
-  `translation_status: partial` with `machine_translated: true`. The
-  [Thai review kit](thai-review-kit.md) is ready, but no reviewer has used it
-  and no requirement has been marked complete.
-
-The remaining blockers are items 1, 2, and 4 from the list above: the Thai human
-review, the external human review, and the open v1.0.0 issues. The registers
-remain `unverified`, and legal questions #128–#131 remain open.
+The [external review packet](external-review-packet.md) and the
+[Thai review kit](thai-review-kit.md) are optional tools for step 2. They are not
+requirements for using the template.
 
 ## Related pages
 
+- [AI audit record](v1-audit.md)
 - [Template readiness](template-readiness.md)
+- [Review policy](review-policy.md)
 - [Legal concerns](legal-concerns.md)
 - [Pilot summary](../pilots/summary.md)
 - [Execution status](https://github.com/yutna/software-delivery-assurance/issues/67)
-- [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

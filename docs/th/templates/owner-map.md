@@ -27,11 +27,11 @@ machine_translated: true
 | Procurement และ contract manager | หน่วยงานผู้ว่าจ้าง เลขที่สัญญา หน้าที่ของผู้ขาย และบันทึกการเปลี่ยนแปลง       | Procurement lead, contract manager     | ยอมรับความเสี่ยงทางเทคนิคแทน sponsor                   |
 | Operations และ service owner     | ความต่อเนื่อง การตอบสนองเหตุการณ์ runbook และการดำเนินงานหลังเปิดบริการ       | Service owner, operations lead         | อนุมัติขอบเขตก่อนเปิดตัวเพียงลำพัง                     |
 | Evidence custodian               | evidence index การเข้าถึง การเก็บรักษา redaction และ freshness                | Evidence librarian, records officer    | เป็นผู้อนุมัติ claim เพียงคนเดียว                      |
-| Independent reviewer             | การทบทวน formal-standard เท่านั้น: ขอบเขต finding และข้อสรุป                  | External reviewer                      | ทบทวนงานของตนเองหรืองานของ maintainer                  |
-| Thai content reviewer            | ถ้อยคำและความหมายภาษาไทย และการทำ translation ให้ complete ใน formal-standard | ผู้ตรวจทานภาษาไทย, native-speaking SME | เป็น AI agent หรือผู้ตรวจทานที่ไม่มีชื่อ               |
+| Independent reviewer             | บทบาททางเลือกของโปรเจกต์: external review สำหรับขอบเขตของโปรเจกต์             | External reviewer                      | ทบทวนงานของตนเองหรืองานของ maintainer                  |
+| Thai content reviewer            | บทบาททางเลือกของโปรเจกต์: human Thai review สำหรับการเผยแพร่ของโปรเจกต์       | ผู้ตรวจทานภาษาไทย, native-speaking SME | เป็น AI agent หรือผู้ตรวจทานที่ไม่มีชื่อ               |
 
-Independent reviewer และ Thai content reviewer เป็นทางเลือกสำหรับ template track
-แต่จำเป็นสำหรับ formal-standard track
+ทั้งสองบทบาทเป็นทางเลือก library ไม่ได้ใช้บทบาทเหล่านี้ โปรเจกต์ที่นำไปใช้อาจ
+เพิ่มสำหรับ formal process ของตนเอง
 
 ## กิจกรรมและเจ้าของ
 

@@ -23,11 +23,11 @@ translation.
 | Procurement and contract manager | Contracting authority, contract reference, vendor obligations, change record     | Procurement lead, contract manager  | Accept technical risk on the sponsor's behalf  |
 | Operations and service owner     | Continuity, incident response, runbooks, and post-launch operation               | Service owner, operations lead      | Approve the pre-launch scope alone             |
 | Evidence custodian               | Evidence index, access, retention, redaction, and freshness                      | Evidence librarian, records officer | Be the sole approver of a claim                |
-| Independent reviewer             | Formal-standard review only: scope, findings, verdict                            | External reviewer                   | Review their own work or the maintainer's work |
-| Thai content reviewer            | Thai wording and meaning; formal-standard translation completion                 | Thai reviewer, native-speaking SME  | Be an AI agent or an unnamed reviewer          |
+| Independent reviewer             | Optional project role: an external review for the project's own scope            | External reviewer                   | Review their own work or the maintainer's work |
+| Thai content reviewer            | Optional project role: a human Thai review for the project's own publication     | Thai reviewer, native-speaking SME  | Be an AI agent or an unnamed reviewer          |
 
-The independent reviewer and the Thai content reviewer are optional for the
-template track. They are required for the formal-standard track.
+Both roles are optional. The library does not use them; an adopting project may
+add them for its own formal process.
 
 ## Who owns which activity
 
