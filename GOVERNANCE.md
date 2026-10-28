@@ -6,9 +6,43 @@ The repository has a solo maintainer, `@yutna`. The maintainer makes the final
 decision on scope, releases, and breaking changes. Every change still goes
 through an issue, a pull request, CI, and a squash merge.
 
+## Two tracks
+
+The repository has two tracks with different evidence requirements.
+
+### Template / starter-kit track (default)
+
+The template track is for projects that copy the template and build a private
+assurance record. It is usable now with limitations.
+
+- The maintainer owns the template, docs, examples, and tooling.
+- A change needs an issue, a pull request, CI, and a squash merge.
+- An external reviewer is not required.
+- The maintainer may describe the track as "usable with limitations" but not as
+  stable, certified, externally reviewed, or legally reviewed.
+- The limitations in
+  [template readiness](docs/en/governance/template-readiness.md) apply to every
+  adoption and must stay visible.
+
+### Formal-standard track (optional)
+
+The formal-standard track is for an organisation that needs a reviewed SRAS
+standard, external review, or a v1.0.0 stability claim.
+
+- It follows the v1.0.0 milestone and the
+  [readiness review](docs/en/governance/v1-readiness.md).
+- It needs a named human Thai reviewer for the 167 active requirements and a
+  named external reviewer for the formal-standard scope.
+- It needs the final audit, release notes, announcement, and cleanup issues.
+- It is not a prerequisite for using the starter kit.
+- The [external review packet](docs/en/governance/external-review-packet.md) and
+  the [Thai review kit](docs/en/governance/thai-review-kit.md) are optional tools
+  for this track. Neither is a review result.
+
 ## Decision process
 
 - Small changes: issue with context and acceptance criteria, then a pull request.
+- Template changes: the same issue and pull request path; no external reviewer.
 - Schema or Core changes: issue with rationale, migration note, and at least one
   review cycle.
 - Breaking changes: major version, deprecation notice, migration guide, and a
@@ -31,6 +65,11 @@ content requires a Thai reviewer before `translation_status: complete`.
 Machine translation is marked `machine_translated: true` and remains `partial`
 until a human reviewer confirms it.
 
+The review status fields describe content review and translation review. They
+are not certification and not a confidence label. The docs-only
+[confidence labels](docs/en/governance/confidence-labels.md) are separate and
+do not change a structured object.
+
 ## Release cadence
 
 One milestone is one release. A version milestone contains 3 to 7 issues. A
@@ -38,6 +77,9 @@ release requires all milestone issues closed, `ci-ok` and `pr-check / check`
 green on `main`, `oss-kit doctor` with no drift, a passing release preflight,
 and the completed audit checklist. GitHub Releases is the changelog; there is
 no `CHANGELOG.md`.
+
+A positioning or template milestone may close without a release or a version
+bump when its own scope says so. It must not be presented as a standard release.
 
 ## Adding a module
 

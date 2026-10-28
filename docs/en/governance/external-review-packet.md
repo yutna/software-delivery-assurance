@@ -8,6 +8,13 @@ machine_translated: false
 **Status: template only. No reviewer has been named, engaged, or recorded.
 No external review has taken place.**
 
+**Optional formal-standard tool.** This packet belongs to the optional
+formal-standard track. The template / starter-kit track does not require it and
+can be used with the limitations in
+[template readiness](template-readiness.md). Use this packet only when an
+organisation intends to make a formal-standard claim, commission an external
+review, or prepare the v1.0.0 candidate.
+
 **Prepared:** 2026-10-28. **Target:** the SRAS 1.0.0 candidate, based on
 SRAS 0.9.0. **Reviewer:** _to be named_. **Review date:** _to be recorded_.
 
@@ -21,6 +28,7 @@ remains unticked, and this page is not evidence that a review occurred.
 
 - It is not a review result, an approval, a certification, or a legal opinion.
 - It is not a substitute for a qualified legal reviewer.
+- It is not a prerequisite for using the starter kit or copying the template.
 - It does not authorise a reviewer to change a requirement without evidence.
 - It does not claim that the maintainer is independent of the work.
 
@@ -204,6 +212,7 @@ Signature or verifiable approval:
 
 ## Related pages
 
+- [Template readiness](template-readiness.md)
 - [v1.0.0 readiness review](v1-readiness.md)
 - [Pilot summary and triage](../pilots/summary.md)
 - [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

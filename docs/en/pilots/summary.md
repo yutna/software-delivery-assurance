@@ -13,12 +13,16 @@ SRAS 0.8.0 and the synthetic projects only.
 
 - Pilots complete: 2 (finance and public sector).
 - Findings: 18 — 6 high, 8 medium, 4 low.
-- Fixed in #59: 9.
-- Deferred with a follow-up issue: 5.
+- Fixed at v0.9.0 in #59: 9.
+- Deferred at v0.9.0 with a follow-up issue: 5.
 - Open legal questions: 4.
 - External review: none. No external reviewer has been engaged.
 - Review performed: AI self-review on 2026-10-28, accepted by the owner for the
   v0.9.0 review step. It is not independent, human, or legal review.
+
+After the v0.9.0 release, two deferred findings were fixed: PF-02 by #140 and
+PS-04 by #141. The current disposition is 11 fixed, 3 deferred, and 4 open legal
+questions. The earlier deferral is kept below as history, not rewritten.
 
 The owner confirmed that no external reviewer is available. This page records
 that fact instead of inventing a name, a date, or a sign-off.
@@ -40,26 +44,26 @@ with an issue, or an `open legal question` with an issue.
 
 ## Findings
 
-| ID    | Pilot   | Severity | Finding                                                                                                           | Owner  | Disposition         |
-| ----- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------- | ------ | ------------------- |
-| PF-01 | Finance | High     | The finance example is not a valid project instance: no manifest, no risk register, legacy lockfile.              | @yutna | Fixed in #59        |
-| PF-02 | Finance | High     | No command validates an edited instance or refreshes its lockfile, although the docs instruct both.               | @yutna | Deferred to #127    |
-| PF-03 | Finance | Medium   | Requirement resolution is not exposed in the CLI.                                                                 | @yutna | Deferred to #126    |
-| PF-04 | Finance | High     | The example reports 8 assessed requirements and 6 gates; the selection resolves to 122 requirements and 46 gates. | @yutna | Fixed in #59        |
-| PF-05 | Finance | Medium   | Evidence freshness is self-declared and can contradict `expires_at`.                                              | @yutna | Fixed in #59        |
-| PF-06 | Finance | Medium   | Concept pages say the lockfile pins a generator and generation time; it stores neither.                           | @yutna | Fixed in #59        |
-| PF-07 | Finance | Low      | The resolution worked example says the e2e lockfile pins 0.5.0; it pins 0.8.0.                                    | @yutna | Fixed in #59        |
-| PF-08 | Finance | Low      | `init` records UTC dates, so a Bangkok user before 07:00 gets the previous day.                                   | @yutna | Fixed in #59        |
-| PF-09 | Finance | Low      | The finance page understates the overlay's register references.                                                   | @yutna | Fixed in #59        |
-| PF-10 | Finance | Medium   | `TH-FIN-004` requires a retention period but does not state one.                                                  | @yutna | Legal question #129 |
-| PF-11 | Finance | Medium   | The overlay does not say whether material cloud outsourcing needs prior BOT approval.                             | @yutna | Legal question #128 |
-| PS-01 | Public  | High     | The public sector example is not a valid project instance: no manifest, no risk register, legacy lockfile.        | @yutna | Fixed in #59        |
-| PS-02 | Public  | High     | The example reports 7 assessed requirements and 6 gates; the selection resolves to 112 requirements and 47 gates. | @yutna | Fixed in #59        |
-| PS-03 | Public  | Medium   | `TH-PUB-003` has no minimum accessibility target, and no field records the agreed target.                         | @yutna | Legal question #131 |
-| PS-04 | Public  | High     | The schema has no field for the contracting authority or contract reference.                                      | @yutna | Deferred to #132    |
-| PS-05 | Public  | Medium   | `TH-PUB-005` does not name an acceptable open-data licence set.                                                   | @yutna | Legal question #130 |
-| PS-06 | Public  | Low      | WCAG 2.2 is cited by a gate but has no register entry.                                                            | @yutna | Deferred to #134    |
-| PS-07 | Public  | Medium   | Evidence type coverage is not checked; a gate can be `verified` with one document.                                | @yutna | Deferred to #135    |
+| ID    | Pilot   | Severity | Finding                                                                                                           | Owner  | Disposition                     |
+| ----- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------- |
+| PF-01 | Finance | High     | The finance example is not a valid project instance: no manifest, no risk register, legacy lockfile.              | @yutna | Fixed in #59                    |
+| PF-02 | Finance | High     | No command validates an edited instance or refreshes its lockfile, although the docs instruct both.               | @yutna | Deferred to #127; fixed in #140 |
+| PF-03 | Finance | Medium   | Requirement resolution is not exposed in the CLI.                                                                 | @yutna | Deferred to #126                |
+| PF-04 | Finance | High     | The example reports 8 assessed requirements and 6 gates; the selection resolves to 122 requirements and 46 gates. | @yutna | Fixed in #59                    |
+| PF-05 | Finance | Medium   | Evidence freshness is self-declared and can contradict `expires_at`.                                              | @yutna | Fixed in #59                    |
+| PF-06 | Finance | Medium   | Concept pages say the lockfile pins a generator and generation time; it stores neither.                           | @yutna | Fixed in #59                    |
+| PF-07 | Finance | Low      | The resolution worked example says the e2e lockfile pins 0.5.0; it pins 0.8.0.                                    | @yutna | Fixed in #59                    |
+| PF-08 | Finance | Low      | `init` records UTC dates, so a Bangkok user before 07:00 gets the previous day.                                   | @yutna | Fixed in #59                    |
+| PF-09 | Finance | Low      | The finance page understates the overlay's register references.                                                   | @yutna | Fixed in #59                    |
+| PF-10 | Finance | Medium   | `TH-FIN-004` requires a retention period but does not state one.                                                  | @yutna | Legal question #129             |
+| PF-11 | Finance | Medium   | The overlay does not say whether material cloud outsourcing needs prior BOT approval.                             | @yutna | Legal question #128             |
+| PS-01 | Public  | High     | The public sector example is not a valid project instance: no manifest, no risk register, legacy lockfile.        | @yutna | Fixed in #59                    |
+| PS-02 | Public  | High     | The example reports 7 assessed requirements and 6 gates; the selection resolves to 112 requirements and 47 gates. | @yutna | Fixed in #59                    |
+| PS-03 | Public  | Medium   | `TH-PUB-003` has no minimum accessibility target, and no field records the agreed target.                         | @yutna | Legal question #131             |
+| PS-04 | Public  | High     | The schema has no field for the contracting authority or contract reference.                                      | @yutna | Deferred to #132; fixed in #141 |
+| PS-05 | Public  | Medium   | `TH-PUB-005` does not name an acceptable open-data licence set.                                                   | @yutna | Legal question #130             |
+| PS-06 | Public  | Low      | WCAG 2.2 is cited by a gate but has no register entry.                                                            | @yutna | Deferred to #134                |
+| PS-07 | Public  | Medium   | Evidence type coverage is not checked; a gate can be `verified` with one document.                                | @yutna | Deferred to #135                |
 
 ## Disposition detail
 
@@ -79,18 +83,23 @@ pipeline:
 - PF-08: use the local calendar date when creating an instance.
 - PF-09: correct the finance page source list.
 
-### Deferred
+### Deferred at v0.9.0
 
-| Finding | Issue | Why it is deferred                                                                                         |
-| ------- | ----- | ---------------------------------------------------------------------------------------------------------- |
-| PF-02   | #127  | A project validate and lock refresh command is a new CLI surface. It needs a design note, tests, and docs. |
-| PF-03   | #126  | Resolution output and coverage reporting need an output contract and a decision on gate failure semantics. |
-| PS-04   | #132  | A contracting-authority field is a schema change with a migration note, so it needs its own review cycle.  |
-| PS-06   | #134  | Register entries for voluntary external standards need a policy decision and verified sources.             |
-| PS-07   | #135  | Evidence type coverage needs the requirement evidence map at validation time and a substitute-type rule.   |
+| Finding | Issue | Why it was deferred                                                                                        | Resolution now |
+| ------- | ----- | ---------------------------------------------------------------------------------------------------------- | -------------- |
+| PF-02   | #127  | A project validate and lock refresh command is a new CLI surface. It needs a design note, tests, and docs. | Fixed by #140  |
+| PF-03   | #126  | Resolution output and coverage reporting need an output contract and a decision on gate failure semantics. | Still deferred |
+| PS-04   | #132  | A contracting-authority field is a schema change with a migration note, so it needs its own review cycle.  | Fixed by #141  |
+| PS-06   | #134  | Register entries for voluntary external standards need a policy decision and verified sources.             | Still deferred |
+| PS-07   | #135  | Evidence type coverage needs the requirement evidence map at validation time and a substitute-type rule.   | Still deferred |
 
-Each deferred finding stays visible in the pilot reports. None of them blocks
-the v0.9.0 release, and none is a gate waiver.
+This table preserves the v0.9.0 disposition. PF-02 and PS-04 were fixed after
+the release by #140 and #141. The fix does not erase the original deferral or
+the v0.9.0 limitation; it records the later resolution. The detailed pilot pages
+keep their original disposition as a historical record.
+
+Each remaining deferred finding stays visible in the pilot reports. None of them
+blocks the template track, and none is a gate waiver.
 
 ## Review notes
 

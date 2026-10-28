@@ -13,6 +13,10 @@ the result, and writes the files.
 The template is synthetic. It contains no customer name, real evidence,
 production identifier, or secret.
 
+This guide describes the template track. Read
+[template readiness](../governance/template-readiness.md) first, and assign the
+roles in the [owner map](owner-map.md) before a real use.
+
 ## Files
 
 | File                  | Purpose                                                            |

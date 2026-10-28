@@ -5,8 +5,8 @@ machine_translated: false
 
 hero:
   name: Software Delivery Assurance
-  text: Evidence-based assurance for software delivery
-  tagline: A public library of requirements, registers, templates, and tools for answering what must be true before software is delivered, what evidence proves it, and what may be claimed.
+  text: A starter kit for evidence-based software delivery
+  tagline: Copy the project template, assess a real project, and keep the evidence private. Built for future projects, especially Thai public-sector delivery, with the SRAS reference standard and tools included.
   actions:
     - theme: brand
       text: Quick start
@@ -32,15 +32,22 @@ features:
 
 ## Start here
 
+The template / starter-kit track is the default and is usable with limitations.
+The formal-standard track is optional and remains on the v1.0.0 path.
+
+- [Template readiness](governance/template-readiness.md) — what works today and
+  what is still limited.
 - [Quick start](quick-start.md) — from a clean clone to a created project
   instance and a passing library gate.
-- [Overview](overview.md) — what the library contains and what it does not do.
+- [Owner map](templates/owner-map.md) — who owns each activity.
+- [Overview](overview.md) — what the kit contains and what it does not do.
 - [Concepts](concepts/index.md) — requirements, profiles, modules, overlays,
   resolution, project instances, claims, and tools.
 - [Sectors](sectors/index.md) — the four Thailand sector overlays.
 - [Registers](registers/index.md) — the factual index of Thailand, ASEAN, and EU instruments, with ASEAN and EU comparison pages.
 - [Reference](reference/index.md) — generated requirement, overlay, and register
   pages.
+- [Confidence labels](governance/confidence-labels.md) — how claims are labelled.
 - [Glossary](glossary.md) — the shared vocabulary used across the site.
 
 The English pages are canonical for identifiers, schema keys, and file names.

@@ -8,6 +8,13 @@ machine_translated: true
 **สถานะ: เป็น kit เท่านั้น ยังไม่มีการตรวจภาษาไทย ไม่มี requirement ใดถูกทำ
 เครื่องหมาย complete และไม่มีค่า `machine_translated` ใดถูกเปลี่ยน**
 
+**เครื่องมือทางเลือกสำหรับ formal-standard track** kit นี้เป็นของ
+formal-standard track ซึ่งเป็นทางเลือก template / starter-kit track ไม่จำเป็น
+ต้องมีการตรวจภาษาไทยโดยมนุษย์ครบทั้งหมด และใช้ได้โดยมีข้อจำกัดตาม
+[ความพร้อมของ template](template-readiness.md) ใช้ kit นี้เมื่อองค์กรต้องการ
+อ้างอิงมาตรฐานที่ผ่านการทบทวน เผยแพร่เนื้อหาภาษาไทยทางการ หรือเตรียม candidate
+ของ v1.0.0
+
 **จัดทำ:** 2026-10-28 **ขอบเขต:** requirement ที่ active ทั้ง 167 ข้อ — Core 70,
 module 52 และ overlay 45 ทุกข้อยังเป็น `translation_status: partial` และ
 `machine_translated: true`
@@ -16,6 +23,10 @@ kit นี้ทำให้การตรวจภาษาไทยโดย�
 ผู้ตรวจที่เป็นมนุษย์และระบุชื่อต้องอ่านภาษาอังกฤษและภาษาไทย ตัดสินแต่ละ
 requirement และบันทึกผล AI execution agent ต้องไม่ทำเครื่องหมาย complete หรือ
 ตั้ง `machine_translated: false` แทนผู้ตรวจ
+
+การใช้ template track ไม่จำเป็นต้องใช้ kit นี้ kit นี้มีไว้สำหรับ
+formal-standard track ซึ่งเนื้อหาภาษาไทยที่ครบถ้วนเป็นส่วนหนึ่งของข้ออ้าง
+template track เก็บทุกหน้าเป็น `partial` และบอกข้อจำกัดนั้นให้ผู้อ่านทราบ
 
 ## ผู้ที่ตรวจได้
 
@@ -345,6 +356,7 @@ kit นี้ไม่ปิด milestone ไม่ตัด release และ�
 
 ## หน้าที่เกี่ยวข้อง
 
+- [ความพร้อมของ template](template-readiness.md)
 - [External review packet](external-review-packet.md)
 - [v1.0.0 readiness review](v1-readiness.md)
 - [อภิธานศัพท์ภาษาไทย](../glossary.md)

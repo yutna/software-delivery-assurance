@@ -10,6 +10,11 @@ selected scope, the assessment, the evidence index, claims, and the risk
 register. It lives in a private or separate repository, never in this public
 library.
 
+This is the template track. The instance is the authoritative record for your
+project; the public repository is the template and reference. Read
+[template readiness](../governance/template-readiness.md) for the limitations
+that still apply.
+
 ## What `init` creates
 
 ```bash

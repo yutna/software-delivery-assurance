@@ -52,6 +52,17 @@ agent ภายใต้คำสั่งของ owner เนื่องจ�
 - FDS pack ถูก pin และตรวจสอบ ไม่มี Python tooling หรือ docs framework ที่สอง
 - `oss-kit doctor` ไม่มี drift
 
+## สถานะ template track
+
+template / starter-kit track ใช้ได้โดยมีข้อจำกัด และแยกจากรายการทบทวน
+ความพร้อม v1.0.0 นี้ template track ไม่ต้องมีการทบทวนภายนอก การทบทวนภาษาไทย
+โดยมนุษย์ครบทั้งหมด หรือการ freeze SRAS 1.0 ตามรายการด้านล่าง ข้อจำกัดอยู่ใน
+[ความพร้อมของ template](template-readiness.md)
+
+การทบทวน v1.0.0 นี้ยังเป็นบันทึกความพร้อมของ formal-standard track ซึ่งเป็น
+ทางเลือก ทีมสามารถคัดลอก template และเริ่มประเมินได้ตอนนี้ แต่ยังอ้างไม่ได้ว่า
+มาตรฐานพร้อมระดับ v1.0.0
+
 ## รายการที่บล็อก v1.0.0
 
 1. **การแปลไทยยังไม่ผ่านการทบทวนโดยมนุษย์** ข้อกำหนด Core 70, module 52 และ
@@ -63,10 +74,10 @@ agent ภายใต้คำสั่งของ owner เนื่องจ�
    โดย AI ที่บันทึกในหน้านี้ไม่ใช่การทบทวนอิสระ ไม่ใช่โดยมนุษย์ และไม่ใช่สิ่งทดแทน
    การทบทวนภายนอกที่ v1.0.0 ต้องการ owner ยอมรับการตรวจนี้เฉพาะขั้นตอนการทบทวน
    ของ v0.9.0
-3. **Finding ระดับ high สองรายการยังเลื่อนอยู่** #127 (validate และ refresh
-   project instance) และ #132 (บันทึกหน่วยงานผู้ว่าจ้าง) กระทบข้ออ้างว่า template
-   และ CLI stable ทั้งสองต้องมี design cycle หรือข้อจำกัดที่ยอมรับอย่างชัดเจนก่อน
-   v1.0.0
+3. **Finding ระดับ high สองรายการถูกเลื่อน ณ เวลาที่ทบทวน** #127 (validate และ
+   refresh project instance) และ #132 (บันทึกหน่วยงานผู้ว่าจ้าง) กระทบข้ออ้างว่า
+   template และ CLI stable ทั้งสองแก้แล้วหลังการทบทวนโดย #140 และ #141 ดู
+   addendum ข้ออ้าง formal-standard ยังต้องทำงานทบทวนและ freeze ที่เหลือ
 4. **Issue ที่เหลือของ v1.0.0 ยังเปิดอยู่** SRAS 1.0 ยังไม่ freeze governance ยัง
    ไม่ final audit และ doctor รอบสุดท้ายยังไม่ถูกเก็บถาวร และ release notes กับ
    announcement ยังไม่มี
@@ -153,6 +164,7 @@ blocker ที่เหลือคือข้อ 1, 2 และ 4 ในรา
 
 ## หน้าที่เกี่ยวข้อง
 
+- [ความพร้อมของ template](template-readiness.md)
 - [สรุปการนำร่อง](../pilots/summary.md)
 - [สถานะการดำเนินงาน](https://github.com/yutna/software-delivery-assurance/issues/67)
 - [นโยบาย governance](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

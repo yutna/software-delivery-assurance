@@ -9,6 +9,10 @@ This guide takes a new user from a clean checkout to a created project instance
 and a passing library gate in about 15 minutes. Run every command from the
 repository root.
 
+This is the template track. Read
+[template readiness](governance/template-readiness.md) first; the kit is usable
+with limitations and does not produce a certification.
+
 ## Before you start
 
 - Node.js 24 LTS and npm 11.
@@ -167,8 +171,11 @@ npm run sras -- guard
 Expected output:
 
 ```text
-guard passed: scanned 344 files; excluded 0
+guard passed: scanned 354 files; excluded 0
 ```
+
+The count changes as files are added or removed; the pass/fail result is what
+matters.
 
 The guard scans the public content paths for out-of-scope health and sector
 terms, secrets, private network identifiers, personal data, customer names from

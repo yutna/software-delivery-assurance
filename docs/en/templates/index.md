@@ -20,6 +20,10 @@ the placeholders, and the validation rules. After editing an instance, run
 `npm run sras -- project validate <dir>`; after changing the selection, run
 `npm run sras -- project refresh <dir>`.
 
+Before copying, assign the roles in the [owner map](owner-map.md). Read
+[template readiness](../governance/template-readiness.md) for what the kit can
+and cannot support today.
+
 ## Synthetic examples
 
 | Example                             | Scope                                       |

@@ -3,41 +3,54 @@ translation_status: partial
 machine_translated: true
 ---
 
-# Project template
+<!-- markdownlint-disable MD060: Prettier wraps Thai tables by code point; MD060 expects display width. -->
 
-`templates/project/` เป็นจุดเริ่มต้นที่คัดลอกได้สำหรับ SRAS project instance แบบส่วนตัว คำสั่ง `npm run sras -- init <dir> --profile lite|full` จะคัดลอก template แทน placeholder ใช้ profile ที่เลือก คำนวณ lockfile ตรวจสอบผลลัพธ์ และเขียนไฟล์
+# Template โปรเจกต์
 
-template เป็น synthetic ไม่มีชื่อลูกค้า evidence จริง production identifier หรือ secret
+`templates/project/` เป็นจุดเริ่มต้นที่คัดลอกได้สำหรับ SRAS project instance
+แบบส่วนตัว คำสั่ง `npm run sras -- init <dir> --profile lite|full` จะคัดลอก
+template แทน placeholder ใช้ profile ที่เลือก คำนวณ lockfile ตรวจสอบผลลัพธ์
+และเขียนไฟล์ให้
 
-## ไฟล์
+template เป็นข้อมูล synthetic ไม่มีชื่อลูกค้า หลักฐานจริง production
+identifier หรือ secret
 
-- `assurance.yaml` — ข้อมูลโปรเจกต์และ profile, tier, modules, overlays ที่เลือก
-- `assessment.yaml` — การประเมิน ณ เวลาหนึ่งของ requirement ที่เลือก
-- `evidence-index.yaml` — ดัชนี evidence ที่เก็บไว้นอก project instance
-- `claims.yaml` — ถ้อยคำที่อนุญาตและห้ามใช้สำหรับ claim ของโปรเจกต์
-- `risk-register.yaml` — gap และความเสี่ยงพร้อม owner, due date และการเปิดเผยต่อลูกค้า
-- `assurance.lock.yaml` — pin standard input และ checksum เพื่อ reproducibility
+> หน้านี้เป็นฉบับภาษาไทยที่แปลโดยเครื่องและปรับถ้อยคำ ยังไม่ผ่านการตรวจทาน
+> โดยมนุษย์ จึงยังคง `translation_status: partial` และ `machine_translated: true`
+
+## ไฟล์ใน template
+
+| ไฟล์                  | หน้าที่                                                     |
+| --------------------- | ----------------------------------------------------------- |
+| `assurance.yaml`      | ข้อมูลโปรเจกต์และ profile, tier, modules, overlays ที่เลือก |
+| `assessment.yaml`     | การประเมิน ณ เวลาหนึ่งของ requirement ที่เลือก              |
+| `evidence-index.yaml` | ดัชนีหลักฐานที่เก็บไว้นอก project instance                  |
+| `claims.yaml`         | ถ้อยคำที่อนุญาตและห้ามใช้สำหรับ claim ของโปรเจกต์           |
+| `risk-register.yaml`  | ช่องว่างและความเสี่ยงพร้อม owner, due date และการเปิดเผย    |
+| `assurance.lock.yaml` | standard input และ checksum ที่ pin เพื่อ reproducibility   |
+
+`README.md` ของ instance ถูกสร้างโดย renderer ไม่ได้คัดลอกจาก template
 
 ## Placeholder
 
 `init` แทนค่าเหล่านี้ template ยังคง schema-valid เพื่อให้ตรวจสอบได้ก่อนคัดลอก
 
-- `__PROJECT_NAME__` — ชื่อ directory ของ target
-- `__PROJECT_DESCRIPTION__` — คำอธิบายที่สร้างขึ้น
-- `__PROJECT_OWNER__` — `Project owner`
-- `__ASSESSOR__` — `Project team`
-- `__SIGNOFF_NAME__` — `Project owner`
-- `__SIGNOFF_ROLE__` — `Project owner`
-- `0.0.0` — SRAS version ปัจจุบัน
-- `1970-01-01` — วันที่ปัจจุบัน
-- `full` — profile ที่เลือก
-- `2` — Tier 2
-- `modules: []` — ไม่เลือก module
-- `overlays: []` — ไม่เลือก overlay
-- `sha256:000...` — checksum ที่คำนวณจาก input
-- ค่า SHA-256 ศูนย์ — SHA-256 ของไฟล์ input ที่ resolve แล้ว
-
-`README.md` ที่สร้างขึ้นมาจาก renderer ไม่ได้คัดลอกจาก template
+| Placeholder               | แทนด้วย                                |
+| ------------------------- | -------------------------------------- |
+| `__PROJECT_NAME__`        | ชื่อ directory ของ target              |
+| `__PROJECT_DESCRIPTION__` | คำอธิบายที่สร้างขึ้น                   |
+| `__PROJECT_OWNER__`       | `Project owner`                        |
+| `__ASSESSOR__`            | `Project team`                         |
+| `__SIGNOFF_NAME__`        | `Project owner`                        |
+| `__SIGNOFF_ROLE__`        | `Project owner`                        |
+| `0.0.0`                   | SRAS version ปัจจุบัน                  |
+| `1970-01-01`              | วันที่ปัจจุบัน                         |
+| `full`                    | profile ที่เลือก                       |
+| `2`                       | Tier 2                                 |
+| `modules: []`             | ไม่เลือก module                        |
+| `overlays: []`            | ไม่เลือก overlay                       |
+| `sha256:000...`           | checksum ที่คำนวณจาก input             |
+| ค่า SHA-256 ศูนย์         | SHA-256 ของไฟล์ input ที่ resolve แล้ว |
 
 ## `assurance.yaml`
 
@@ -58,11 +71,16 @@ created_at: "2026-10-27"
 updated_at: "2026-10-27"
 ```
 
-`confidentiality` เป็น `public`, `internal`, `confidential`, `restricted` หรือ `synthetic` ใช้ `synthetic` เฉพาะตัวอย่างสาธารณะ
+`confidentiality` เป็น `public`, `internal`, `confidential`, `restricted` หรือ
+`synthetic` ใช้ `synthetic` เฉพาะตัวอย่างสาธารณะ
+
+ชื่อโปรเจกต์เป็นป้ายภายใน ห้ามใส่ชื่อลูกค้า ชื่อระบบจริง hostname หรือ
+production identifier ใน repository สาธารณะ
 
 ## `assessment.yaml`
 
-assessment record ซ้ำข้อมูลโปรเจกต์และ selection แล้วเพิ่ม scope, assessor, requirement ที่ประเมิน, gate summary, readiness summary และ sign-off
+assessment record ซ้ำข้อมูลโปรเจกต์และ selection แล้วเพิ่ม scope, assessor,
+requirement ที่ประเมิน, gate summary, readiness summary และ sign-off
 
 ```yaml
 scope:
@@ -93,12 +111,15 @@ summary:
   index: null
 ```
 
-สถานะคือ `not_assessed`, `gap`, `partial`, `implemented`, `verified` และ `not_applicable` จำนวนใน counts ต้องตรงกับรายการ requirement
+สถานะคือ `not_assessed`, `gap`, `partial`, `implemented`, `verified` และ
+`not_applicable` จำนวนใน counts ต้องตรงกับรายการ requirement
 
-`full` ต้องมี `maturity` ทุก requirement และ `summary.index` เป็นตัวเลข
-`lite` ต้องมี `maturity: null` และ `summary.index: null`
+- `full` ต้องมี `maturity` ทุก requirement และ `summary.index` เป็นตัวเลข
+- `lite` ต้องมี `maturity: null` และ `summary.index: null`
 
-`scope.public_sector` เป็นฟิลด์เสริม ค่าเป็น `null` หรือ object ที่มีทั้ง
+### `scope.public_sector`
+
+ฟิลด์นี้เป็นฟิลด์เสริม ค่าเป็น `null` หรือ object ที่มีทั้ง
 `contracting_authority` และ `contract_reference` ต้องตั้งค่าเมื่อ instance
 เลือก `TH-PUB` และประเมิน `TH-PUB-001`; validation จะรายงานค่าที่หายในกรณีนั้น
 ตัวอย่างสาธารณะต้องใช้หน่วยงาน synthetic เท่านั้น ห้ามใส่ชื่อหน่วยงานจริง
@@ -110,11 +131,11 @@ scope:
     contract_reference: SYNTH-CONTRACT-001
 ```
 
-## Migration note: `scope.public_sector`
+### Migration note: `scope.public_sector`
 
 ฟิลด์นี้เพิ่มแบบเสริมและไม่บังคับ instance เดิมยังใช้ได้: ถ้าไม่มี
-`public_sector` จะอ่านเป็น `null` ไม่ต้องเปลี่ยน lockfile เพราะ assessment ไม่ใช่
-lock input
+`public_sector` จะอ่านเป็น `null` ไม่ต้องเปลี่ยน lockfile เพราะ assessment
+ไม่ใช่ lock input
 
 การย้าย public sector instance:
 
@@ -128,7 +149,8 @@ validation ไม่ผ่านพร้อม issue `scope/public_sector`
 
 ## `evidence-index.yaml`
 
-evidence เก็บใน private store ดัชนีบันทึกเฉพาะ reference, owner, วันที่, freshness, redaction และ checksum ที่ไม่บังคับ
+หลักฐานเก็บใน private store ดัชนีบันทึกเฉพาะ reference, owner, วันที่,
+freshness, redaction และ checksum ที่ไม่บังคับ
 
 ```yaml
 entries:
@@ -147,13 +169,15 @@ entries:
     notes: The record is held in the private evidence store.
 ```
 
-`location` ต้องเป็น private reference ห้ามเป็น public URL
-`hash` เป็น `null` หรือ digest `sha256:`
+- `location` ต้องเป็น private reference ห้ามเป็น public URL
+- `hash` เป็น `null` หรือ digest ที่ขึ้นต้นด้วย `sha256:`
+- `freshness_status: current` ต้องไม่ขัดกับ `expires_at`
+- หลักฐานจริงและ customer data อยู่นอก repository นี้เสมอ
 
 ## `claims.yaml`
 
-claim ที่ไม่มี evidence ที่ยัง current คือ `not_claimed` ไม่ใช่ “น่าจะจริง”
-claim ที่มี evidence บางส่วนเป็น `partial` และต้องระบุข้อจำกัด
+claim ที่ไม่มีหลักฐานที่ยังใช้ได้คือ `not_claimed` ไม่ใช่ "น่าจะจริง"
+claim ที่มีหลักฐานบางส่วนเป็น `partial` และต้องระบุข้อจำกัด
 
 ```yaml
 claims:
@@ -170,11 +194,13 @@ claims:
     notes: The claim is limited to the recorded evidence.
 ```
 
-claim ที่เป็น `verified` หรือ `partial` ต้องมี evidence ID อย่างน้อยหนึ่งรายการ มีผู้อนุมัติ วันอนุมัติ และวันหมดอายุ และ evidence ต้องยัง current
+claim ที่เป็น `verified` หรือ `partial` ต้องมี evidence ID อย่างน้อยหนึ่งรายการ
+มีผู้อนุมัติ วันอนุมัติ และวันหมดอายุ และหลักฐานต้องยังใช้ได้
 
 ## `risk-register.yaml`
 
-gap หรือความเสี่ยงต้องมี owner, severity, remediation, due date และการตัดสินใจเรื่องการเปิดเผยต่อลูกค้าอย่างชัดเจน
+ช่องว่างหรือความเสี่ยงต้องมี owner, severity, remediation, due date และการ
+ตัดสินใจเรื่องการเปิดเผยต่อลูกค้าอย่างชัดเจน
 
 ```yaml
 risks:
@@ -193,7 +219,8 @@ risks:
     notes: The review is part of the annual assurance cycle.
 ```
 
-risk ที่เป็น `accepted` ต้องมี `acceptance_id`
+risk ที่เป็น `accepted` ต้องมี `acceptance_id` ความเสี่ยงที่ปิดแล้วยังเก็บ
+ประวัติ
 
 ## `assurance.lock.yaml`
 
@@ -223,18 +250,26 @@ inputs:
     sha256: ...
 ```
 
-checksum คือ SHA-256 ของ canonical JSON array ของ `{ path, sha256 }` เรียงตาม path รูปแบบ canonical ไม่มี whitespace ไม่มี timestamp ไม่มี generator และไม่มีข้อมูล environment input เดียวกันให้ checksum เดียวกันทุกเครื่อง
+checksum คือ SHA-256 ของ canonical JSON array ของ `{ path, sha256 }` เรียงตาม
+path รูปแบบ canonical ไม่มี whitespace ไม่มี timestamp ไม่มี generator และไม่มี
+ข้อมูล environment input เดียวกันให้ checksum เดียวกันทุกเครื่อง
 
 ## กฎความปลอดภัย
 
-- เก็บ evidence จริงและ customer data ไว้นอก repository นี้
-- ห้ามใส่ชื่อลูกค้าจริง production hostname private address หรือ secret ใน project instance สาธารณะ
+- เก็บหลักฐานจริงและ customer data ไว้นอก repository นี้
+- ห้ามใส่ชื่อลูกค้าจริง production hostname private address หรือ secret ใน
+  project instance สาธารณะ
 - ทำเครื่องหมายตัวอย่างสาธารณะด้วย `confidentiality: synthetic`
 - ห้าม waive gate requirement และ overlay ไม่สามารถ waive gate ได้
-- ห้ามกล่าวอ้าง certification, approval หรือ compliance โดยไม่มี evidence ที่ระบุชื่อและผู้ตรวจที่มีคุณสมบัติ
+- ห้ามกล่าวอ้าง certification, approval หรือ compliance โดยไม่มีหลักฐานที่ระบุ
+  ชื่อและผู้ตรวจที่มีคุณสมบัติ
+- AI agent เตรียมไฟล์และรันการตรวจได้ แต่ลงนาม ยอมรับความเสี่ยง หรืออนุมัติ
+  การแปลแทนมนุษย์ไม่ได้
 
-## เนื้อหาที่เกี่ยวข้อง
+## หน้าที่เกี่ยวข้อง
 
 - [เริ่มต้นอย่างรวดเร็ว](../quick-start.md)
-- [Reference index](../../en/reference/index.md)
+- [Owner map](owner-map.md)
+- [ความพร้อมของ template](../governance/template-readiness.md)
+- [Reference index](../reference/index.md)
 - `SCOPE.md`, `GOVERNANCE.md` และ `CONTRIBUTING.md` ใน repository root

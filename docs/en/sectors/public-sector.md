@@ -8,6 +8,10 @@ machine_translated: false
 The `TH-PUB` overlay adds 12 assurance requirements for government agencies,
 state enterprises, and vendors delivering digital public services in Thailand.
 
+It is a template-track overlay, not procurement law or legal advice. Read
+[template readiness](../governance/template-readiness.md) before relying on it
+for a real delivery decision.
+
 ## What it covers
 
 - Procurement and contract evidence for each service.
