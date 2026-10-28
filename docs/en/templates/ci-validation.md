@@ -34,7 +34,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     env:
-      SRAS_REF: v1.0.0
+      SRAS_REF: v1.1.0
     steps:
       - name: Check out the project instance
         uses: actions/checkout@v7
@@ -88,7 +88,7 @@ and use the matching tag:
 rg '^sras_version:' assurance.yaml
 ```
 
-At the time of writing, `v1.0.0` is the published tag. Replace it with the
+At the time of writing, `v1.1.0` is the published tag. Replace it with the
 release that matches the instance. `project refresh` writes the same version
 into `assurance.lock.yaml`, so the lockfile names the inputs that produced it.
 

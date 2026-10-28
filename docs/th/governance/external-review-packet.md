@@ -15,7 +15,7 @@ machine_translated: true
 จัดให้มีการทบทวนภายนอกสำหรับขอบเขตหรือการส่งมอบของตนหรือไม่
 
 **จัดทำ:** 2026-10-28 **เป้าหมาย:** ขอบเขตของโปรเจกต์ที่นำไปใช้ ซึ่งอิงจาก
-concern template SRAS 1.0.0 **ผู้ตรวจ:** _ให้โปรเจกต์ระบุชื่อ_
+concern template SRAS 1.1.0 **ผู้ตรวจ:** _ให้โปรเจกต์ระบุชื่อ_
 **วันที่ตรวจ:** _ให้โปรเจกต์บันทึก_
 
 หน้านี้เป็น packet สำหรับผู้ตรวจภายนอกในอนาคต ระบุขอบเขต คำถาม หลักฐาน และวิธี
@@ -167,8 +167,8 @@ concern template SRAS 1.0.0 **ผู้ตรวจ:** _ให้โปรเจ
 - **AI audit:** `docs/en/governance/v1-readiness.md` — มีข้อจำกัดที่บันทึกไว้
 - **ข้อกังวลทางกฎหมาย:** issues #128, #129, #130, #131;
   `docs/en/governance/legal-concerns.md` — research notes; โปรเจกต์ต้องตัดสินใจเอง
-- **Release:** template release 1.0.0 (2026-10-28)
-- **Content version ที่ตรวจ:** SRAS 1.0.0
+- **Release:** template release 1.1.0 (2026-10-28)
+- **Content version ที่ตรวจ:** SRAS 1.1.0
 
 Repository: <https://github.com/yutna/software-delivery-assurance>
 

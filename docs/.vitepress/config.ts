@@ -49,6 +49,14 @@ const enNav: DefaultTheme.NavItem[] = [
         link: "/en/governance/v1-audit",
       },
       {
+        text: "v1.1.0 release notes",
+        link: "/en/releases/v1.1.0",
+      },
+      {
+        text: "v1.1.0 announcement",
+        link: "/en/announcements/v1.1.0",
+      },
+      {
         text: "v1.0.0 release notes",
         link: "/en/releases/v1.0.0",
       },
@@ -106,6 +114,14 @@ const thNav: DefaultTheme.NavItem[] = [
         link: "/th/governance/v1-audit",
       },
       {
+        text: "Release notes v1.1.0",
+        link: "/th/releases/v1.1.0",
+      },
+      {
+        text: "Announcement v1.1.0",
+        link: "/th/announcements/v1.1.0",
+      },
+      {
         text: "Release notes v1.0.0",
         link: "/th/releases/v1.0.0",
       },
@@ -161,6 +177,14 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "AI audit record",
         link: "/en/governance/v1-audit",
+      },
+      {
+        text: "v1.1.0 release notes",
+        link: "/en/releases/v1.1.0",
+      },
+      {
+        text: "v1.1.0 announcement",
+        link: "/en/announcements/v1.1.0",
       },
       {
         text: "v1.0.0 release notes",
@@ -284,6 +308,14 @@ const thSidebar: DefaultTheme.Sidebar = [
         link: "/th/governance/v1-audit",
       },
       {
+        text: "Release notes v1.1.0",
+        link: "/th/releases/v1.1.0",
+      },
+      {
+        text: "Announcement v1.1.0",
+        link: "/th/announcements/v1.1.0",
+      },
+      {
         text: "Release notes v1.0.0",
         link: "/th/releases/v1.0.0",
       },
@@ -371,7 +403,7 @@ const thSidebar: DefaultTheme.Sidebar = [
  * literal on its own line; the version checker reads it from this file.
  */
 const config = {
-  version: "1.0.0",
+  version: "1.1.0",
   title: "Software Delivery Assurance",
   description:
     "Open, evidence-based assurance for software delivery: SRAS reference requirements, registers, and tools.",

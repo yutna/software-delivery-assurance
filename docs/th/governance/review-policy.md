@@ -5,16 +5,16 @@ machine_translated: true
 
 # นโยบายการทบทวน
 
-**สถานะ:** นโยบาย governance สำหรับ template release 1.0.0, สายงานดูแล v1.x
+**สถานะ:** นโยบาย governance สำหรับ template release 1.1.0, สายงานดูแล v1.x
 และการเตรียม v2.0 **บันทึกเมื่อ:** 2026-10-28 **ใช้กับ:** เนื้อหา
-SRAS 1.0.0 เป็นต้นไป
+SRAS 1.1.0 เป็นต้นไป
 
 หน้านี้เป็นนโยบายการทบทวนฉบับละเอียด
 [GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
 เป็นฉบับสรุปที่มีผลบังคับ นโยบายนี้อธิบายวิธีบันทึกการทบทวน
 ไม่ได้สร้างการทบทวน ผู้ทบทวน วันที่ หรือ sign-off ที่ไม่มีอยู่จริง
 
-เนื้อหาเป็น 1.0.0 ส่วน repository นี้เป็น concern template ไม่ใช่มาตรฐาน
+เนื้อหาเป็น 1.1.0 ส่วน repository นี้เป็น concern template ไม่ใช่มาตรฐาน
 เนื้อหาเขียนและตรวจโดย AI ไม่มีการอ้าง human, external หรือ legal review
 [บันทึก AI audit](v1-audit.md) ระบุสิ่งที่ตรวจและข้อจำกัดที่ยังเหลือ
 
@@ -196,7 +196,7 @@ audit attestation การอนุมัติจากหน่วยงา�
 
 ## หน้าที่เกี่ยวข้อง
 
-- [การทบทวนความพร้อม v1.0.0](v1-readiness.md)
+- [การทบทวนความพร้อม v1.1.0](v1-readiness.md)
 - [ความพร้อมของ template](template-readiness.md)
 - [Confidence labels](confidence-labels.md)
 - [ข้อกังวลทางกฎหมาย](legal-concerns.md)

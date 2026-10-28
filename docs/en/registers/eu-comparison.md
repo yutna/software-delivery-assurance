@@ -256,7 +256,7 @@ This page does not:
 - state that an organisation, product, or service complies with any instrument;
 - create an EU overlay.
 
-An EU overlay does not exist in SRAS 1.0.0. A register entry does not add a
+An EU overlay does not exist in SRAS 1.1.0. A register entry does not add a
 requirement and does not replace an assessment of the specific product, service,
 or processing activity.
 
