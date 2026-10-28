@@ -223,6 +223,9 @@ const enSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "Templates overview", link: "/en/templates/" },
       { text: "Project template", link: "/en/templates/project" },
+      { text: "Validate in CI", link: "/en/templates/ci-validation" },
+      { text: "Upgrade a 1.x instance", link: "/en/templates/upgrade-1x" },
+      { text: "e2e walkthrough", link: "/en/templates/e2e-walkthrough" },
       { text: "Owner map", link: "/en/templates/owner-map" },
     ],
   },
@@ -341,6 +344,9 @@ const thSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: "ภาพรวม templates", link: "/th/templates/" },
       { text: "Template โปรเจกต์", link: "/th/templates/project" },
+      { text: "ตรวจสอบใน CI", link: "/th/templates/ci-validation" },
+      { text: "อัปเกรดอินสแตนซ์ 1.x", link: "/th/templates/upgrade-1x" },
+      { text: "ตัวอย่าง e2e", link: "/th/templates/e2e-walkthrough" },
       { text: "Owner map", link: "/th/templates/owner-map" },
     ],
   },

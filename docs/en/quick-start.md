@@ -43,7 +43,7 @@ Expected output:
 created project instance at /Users/you/sras-demo
 files: README.md, assurance.yaml, assessment.yaml, evidence-index.yaml, claims.yaml, risk-register.yaml, assurance.lock.yaml
 next steps:
-1. Edit assurance.yaml and assessment.yaml to set the project scope, assessor, and sign-off.
+1. Edit assurance.yaml and assessment.yaml to set the project scope and assessor, and replace the `Not signed` sign-off when a human approves the assessment.
 2. Select the modules and overlays that match the product, then run npm run sras -- project refresh <dir> from the library repository.
 3. Assess the resolved requirements and record evidence in the private evidence store.
 4. Run npm run sras -- project validate <dir>, validate --all, render --check, and guard from the library repository.
@@ -195,7 +195,7 @@ npm run sras -- guard
 Expected output:
 
 ```text
-guard passed: scanned 374 files; excluded 0
+guard passed: scanned 380 files; excluded 0
 ```
 
 The count changes as files are added or removed; the pass/fail result is what
@@ -265,6 +265,11 @@ Examples that return `1`:
 ## Next steps
 
 - Read the [project template guide](templates/project.md).
+- [Validate the instance in CI](templates/ci-validation.md) with a pinned
+  library tag.
+- Learn the [1.x upgrade procedure](templates/upgrade-1x.md) before the next
+  release.
+- Walk through the [end-to-end example](templates/e2e-walkthrough.md).
 - Browse the generated [reference index](reference/index.md).
 - Read `SCOPE.md`, `GOVERNANCE.md`, and `CONTRIBUTING.md` before a real
   assessment.
