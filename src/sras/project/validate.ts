@@ -4,6 +4,8 @@ import type {
   EvidenceEntry,
   ProjectInstance,
   ProjectIssue,
+  ProjectWarning,
+  SignoffField,
   ValidatedProject,
 } from "./types.js";
 
@@ -359,6 +361,25 @@ const compareRisks = (
       }
     }
   }
+};
+
+export const SIGNOFF_PLACEHOLDER = "Not signed";
+
+const isUnsigned = (value: string): boolean =>
+  value.trim().toLowerCase() === SIGNOFF_PLACEHOLDER.toLowerCase();
+
+export const projectWarnings = (
+  instance: ProjectInstance,
+): readonly ProjectWarning[] => {
+  const { signoff, sourceFile } = instance.assessment;
+  const fields: SignoffField[] = [];
+
+  if (isUnsigned(signoff.name)) fields.push("signoff.name");
+  if (isUnsigned(signoff.role)) fields.push("signoff.role");
+
+  return fields.length === 0
+    ? []
+    : [{ tag: "UnsignedSignoff", file: sourceFile, fields }];
 };
 
 export const validateProject = (

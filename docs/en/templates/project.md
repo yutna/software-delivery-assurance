@@ -39,8 +39,8 @@ be reviewed before it is copied.
 | `__PROJECT_DESCRIPTION__` | A generated description             |
 | `__PROJECT_OWNER__`       | `Project owner`                     |
 | `__ASSESSOR__`            | `Project team`                      |
-| `__SIGNOFF_NAME__`        | `Project owner`                     |
-| `__SIGNOFF_ROLE__`        | `Project owner`                     |
+| `__SIGNOFF_NAME__`        | `Not signed`                        |
+| `__SIGNOFF_ROLE__`        | `Not signed`                        |
 | `0.0.0`                   | Current SRAS version                |
 | `1970-01-01`              | Current date                        |
 | `full`                    | Selected profile                    |
@@ -126,11 +126,13 @@ Only `verified` has an enforced evidence-type rule. The other labels are an
 assessment convention; record the reason in `notes` so the next reader can see
 it.
 
-`init` writes `signoff` with `Project owner`, the role `Project owner`, and the
-creation date. The schema requires a sign-off object, so the placeholder keeps
-the generated file valid, but it is not an approval. Replace the name, role, and
+`init` writes `signoff.name` and `signoff.role` as `Not signed` and records the
+creation date. The schema requires a sign-off object, so the sentinel keeps the
+generated file valid, but it is not an approval. `project validate` prints a
+non-fatal warning while either field is still `Not signed` and exits 0, so a
+draft stays valid. Replace both fields and, when the approval date differs, the
 date with a named human decision before the instance is used for any delivery
-decision. `project validate` checks the structure, not who signed.
+decision. `project validate` still checks the structure, not who signed.
 
 `scope.public_sector` is optional and is either `null` or an object with both
 `contracting_authority` and `contract_reference`. Set it when the instance

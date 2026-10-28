@@ -231,6 +231,14 @@ export type ValidatedProject = ProjectInstance & {
   readonly [validatedProjectBrand]: "ValidatedProject";
 };
 
+export type SignoffField = "signoff.name" | "signoff.role";
+
+export type ProjectWarning = {
+  readonly tag: "UnsignedSignoff";
+  readonly file: string;
+  readonly fields: readonly SignoffField[];
+};
+
 export type ProjectIssue =
   | {
       readonly tag: "Parse";
