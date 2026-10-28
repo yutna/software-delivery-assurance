@@ -10,12 +10,12 @@ machine_translated: true
 **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 0.9.0 **ผู้ตรวจ:** AI execution
 agent ภายใต้การกำกับของเจ้าของ repository
 
-หน้านี้บันทึกหลักฐานคำสั่งสำหรับการตรวจ v1.0.0 และ gap ที่ยังเหลือ
-ไม่ใช่ release sign-off ไม่ได้ freeze SRAS 1.0 ไม่ได้ bump version
-ไม่ได้ปิด milestone และไม่ได้ cut release หน้า audit ถูกเพิ่มโดย PR หลังจาก
-commit ที่ตรวจ เนื้อหาที่ตรวจคือ commit ข้างต้น
+หน้านี้บันทึกหลักฐานจากคำสั่งสำหรับการตรวจ v1.0.0 และ gap ที่ยังเหลือ
+ไม่ใช่ release sign-off ไม่ freeze SRAS 1.0 ไม่ bump version ไม่ปิด milestone
+และไม่ cut release หน้า audit ถูกเพิ่มโดย PR หลังจาก commit ที่ตรวจ
+เนื้อหาที่ตรวจคือ commit ข้างต้น
 
-repository ยังอยู่ใน template / starter-kit track
+repository ยังอยู่บน template / starter-kit track
 formal-standard track ยังถูกบล็อกด้วยรายการใน
 [การทบทวนความพร้อม v1.0.0](v1-readiness.md) และ gap ด้านล่าง
 
@@ -62,7 +62,7 @@ formal-standard track ยังถูกบล็อกด้วยรายก�
 และ workflow นั้นเขียวที่ commit ที่ตรวจ นี่เป็นข้อยกเว้นด้านเครื่องมือ
 ไม่ใช่ gate ที่ถูกข้าม
 
-VitePress build แสดง warning ที่รู้อยู่แล้วว่า esbuild ที่ bundle มากับ
+VitePress build แสดง warning ที่รู้กันอยู่แล้วว่า esbuild ที่ bundle มากับ
 VitePress ไม่รู้จัก target ES2024 configuration ใช้ target ES2022 สำหรับ
 esbuild และ `npm run docs:build` สำเร็จ warning นี้ไม่ใช่ gate failure
 
@@ -80,16 +80,16 @@ esbuild และ `npm run docs:build` สำเร็จ warning นี้ไ�
   formal-standard track
 - **ข้อกังวลทางกฎหมายสี่ข้อเป็น desk research ไม่ใช่ legal review** —
   [ข้อกังวลทางกฎหมาย](legal-concerns.md) และ #128–#131 เป็นการตัดสินใจของแต่ละโปรเจกต์
-- **Release notes ยังเป็น draft** — เตรียมใน #64 และยังไม่เผยแพร่
-- **Announcement ยังเป็น draft** — เตรียมใน #65 และยังไม่เผยแพร่
+- **Release notes ยังเป็น draft** — เตรียมใน #64 แต่ยังไม่เผยแพร่
+- **Announcement ยังเป็น draft** — เตรียมใน #65 แต่ยังไม่เผยแพร่
 - **Temporary internal seed ยังอยู่** — `internal/` ใน repository เจ้าของ #66
 - **Milestone ยังเปิดและ final release audit ยังไม่รัน** — v1.0.0 milestone
   เจ้าของ #66
 - **Metadata วันที่ release ยังไม่อัปเดต** — `CITATION.cff` และ `core/sras.yaml`
   ยังใช้วันที่ของ v0.9.0 เจ้าของ #66
 
-release notes และ announcement เตรียมใน #64 และ #65 ณ เวลาที่ตรวจยังเป็น draft
-และไม่ได้อ้างว่ามี release
+release notes และ announcement เตรียมใน #64 และ #65 แต่ ณ เวลาที่ตรวจยังเป็น
+draft และไม่ได้อ้างว่ามี release
 
 ## สิ่งที่ผ่าน
 
