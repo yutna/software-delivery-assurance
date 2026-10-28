@@ -10,12 +10,18 @@ names stay in English.
 
 ## Core terms
 
+- **SRAS** — the reference requirements library in this repository. SRAS is a
+  product name, not a certification mark or a published standard. Commands and
+  pages may call this content "standard content"; that is shorthand for the
+  reference content, not a published standard.
 - **assurance** — การรับประกัน. The evidence-based work of showing that
   delivery claims are supported and limits are visible.
 - **assessment** — การประเมิน. A point-in-time evaluation of applicable
   requirements, statuses, gaps, and evidence.
 - **evidence** — หลักฐาน. A record that supports a requirement or a claim, with
   an owner and a freshness limit.
+- **evidence freshness** — ความสดของหลักฐาน. Whether evidence is inside its
+  maximum age at the assessment date.
 - **gate** — เกต. A requirement that must meet the minimum level before
   delivery and cannot be waived.
 - **module** — โมดูล. An optional technical extension selected by product
@@ -28,7 +34,13 @@ names stay in English.
   allowed and prohibited wording.
 - **project instance** — อินสแตนซ์โปรเจกต์. A private or separate repository
   holding scope, assessment, evidence index, claims, and risk.
+- **lockfile** — ไฟล์ lock. `assurance.lock.yaml`, which pins the resolved
+  inputs, their versions, and their SHA-256 checksums.
+- **resolution** — การ resolve. The computed requirement set for a project's
+  profile, tier, modules, and overlays.
 - **profile** — โปรไฟล์. The assessment mode: `lite` or `full`.
+- **tier** — ระดับ tier. The product risk tier (1–3) that decides which Core
+  requirements apply.
 - **maturity** — ระดับ maturity. The L0–L4 depth recorded on a requirement in
   the full profile.
 - **criticality** — ระดับความสำคัญ. The weight of a requirement: `gate`,
@@ -48,6 +60,7 @@ names stay in English.
 - A **claim** is not **evidence**.
 - A **gate** cannot be **waived**.
 - A **project instance** is not this public repository.
+- The **SRAS reference library** is not a **published standard**.
 
 ## Related pages
 

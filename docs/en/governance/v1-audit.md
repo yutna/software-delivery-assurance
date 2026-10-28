@@ -3,18 +3,24 @@ translation_status: complete
 machine_translated: false
 ---
 
-# 0.10.0 AI audit record
+# AI audit record
+
+This page records two AI audits: the 0.10.0 audit at commit `6d88c10` (content
+version SRAS 0.9.0), kept as history, and the final 1.0.0 audit at commit
+`23ae0a9`. The current limitations summary is
+[AI audit and limitations](v1-readiness.md).
 
 **Status:** AI audit complete; template limitations documented. **Audited
 commit:** `6d88c1019b90e2a2e5cdbec4dab50713294af6ea` (`main` after #62).
 **Date:** 2026-10-28. **Content version:** SRAS 0.9.0. **Auditor:** the AI
 execution agent under owner direction.
 
-This page records the command evidence for the 0.10.0 AI audit and the
-limitations that remain. It is not a release sign-off, a human review, or an
-external review. It does not freeze a standard, bump the version, close the
-milestone, or cut a release. The audit page is added by the audit pull request
-after the audited commit; the audited content is the commit above.
+This page records the command evidence for the 0.10.0 AI audit and the final
+1.0.0 audit, and the limitations that remain. It is not a release sign-off, a
+human review, or an external review. It does not freeze a standard, bump the
+version, close the milestone, or cut a release. The audit page is added by the
+audit pull request after the audited commit; the audited content is the commit
+above.
 
 The repository is a concern template. The limitations below are documented for
 an adopting project; they do not block a template release.

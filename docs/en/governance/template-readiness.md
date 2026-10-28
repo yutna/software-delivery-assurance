@@ -22,7 +22,7 @@ compliance statement, a public-launch approval, or an external assurance
 opinion.
 
 "Usable with limitations" is a positioning statement, not a certification. It
-does not mean the standard is stable, the Thai translation is complete, or an
+does not mean the content is stable, the Thai translation is complete, or an
 external reviewer has approved the content.
 
 ## Ready now
@@ -54,7 +54,7 @@ external reviewer has approved the content.
 The legal concern notes are `#128`, `#129`, `#130`, and `#131`. They collect
 official sources and questions; they are not legal opinions and do not decide a
 project. All five deferred findings from the v0.9.0 pilots are now fixed:
-`#127`, `#132`, `#135`, `#134`, and `#126`.
+`#140`, `#141`, `#135`, `#134`, and `#126`.
 
 WCAG 2.2 and the NIST AI Risk Management Framework 1.0 are external standards,
 not register entries. The rule and official sources are in

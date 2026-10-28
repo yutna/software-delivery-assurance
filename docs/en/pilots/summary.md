@@ -126,7 +126,10 @@ Limitations: the review is not independent and cannot verify the legal meaning
 or current status of an official source. It does not replace a qualified legal
 or external review. The register entries remain `unverified`, no page claims
 external review or independent validation, and the v0.9.0 release notes do not
-claim external review. An external human review remains a v1.0.0 blocker.
+claim external review. An external human review was recorded as a v1.0.0 blocker
+at the v0.9.0 review step. The 0.10.0 re-scope removed that gate (PRs #175, #176,
+and #177); the 1.0.0 template release does not require or claim an external
+review.
 
 ## Legal and regulatory concerns
 

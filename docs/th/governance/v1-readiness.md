@@ -37,7 +37,7 @@ repository นี้เป็น concern template ไม่ใช่มาตร
 - **Docs QA และ build:** `npm run check:docs` และ `npm run docs:build` ผ่าน
 - **Tests และ types:** `npm test`, `npm run typecheck`, `npm run lint` และ
   `npm run format:check` ผ่าน
-- **Version consistency:** ไฟล์เวอร์ชันทั้งห้าตรงกันที่ 1.0.0
+- **Version consistency:** ไฟล์เวอร์ชันทั้งหมดตรงกันที่ 1.0.0
 - **FDS pack:** `npm run check:fds` ผ่าน pack ที่ pin ไว้
 - **จำนวน:** Core 70, module 52, overlay 45, register 27 และ crosswalk 7
 - **Claims:** ไม่มีหน้าใดอ้างการรับรอง ข้อสรุปทางกฎหมาย การทบทวนภายนอก หรือ
