@@ -128,6 +128,57 @@ Machine translation is allowed for a first draft, but it stays
 `translation_status: partial` with `machine_translated: true` until a human
 reviewer confirms it. Do not mark a machine-only page `complete`.
 
+An AI execution agent may draft and edit either language, but it cannot set
+`translation_status: complete`, cannot set `machine_translated: false` on a
+page it produced, and cannot record itself as the human reviewer. The same rule
+applies to `review_status: reviewed`: a review record needs a named human
+reviewer, a date, a scope, and the version reviewed.
+
+## Review checklist
+
+The full status model and checklist are in the
+[review policy](docs/en/governance/review-policy.md). The short form below is
+required for the relevant pull request.
+
+### Content review
+
+- [ ] The issue, scope, and acceptance criteria are recorded.
+- [ ] The content is factual and testable, with a negative case where relevant.
+- [ ] Sources are official and the review scope is stated.
+- [ ] No certification, compliance, approval, or guarantee claim is added.
+- [ ] No customer name, real evidence, secret, or private endpoint is added.
+- [ ] A `reviewed` status has a named reviewer, date, scope, and version; if
+      not, the status stays `draft` or `unverified`.
+
+### Translation review
+
+- [ ] English remains canonical for identifiers, schema keys, and file names.
+- [ ] A named human Thai reviewer checked meaning, terminology, and the
+      glossary for the reviewed scope.
+- [ ] `translation_status` and `machine_translated` match that evidence.
+- [ ] No page is marked `complete` because a machine or an AI agent produced it.
+
+### External review
+
+- [ ] The reviewer is named, independent, and engaged for a recorded scope.
+- [ ] The record states what was reviewed and what was not.
+- [ ] A missing reviewer is recorded as missing; no name, date, or sign-off is
+      invented.
+
+### Release review
+
+- [ ] Every milestone issue is closed and the milestone scope is complete.
+- [ ] The version is consistent across `package.json`, `package-lock.json`,
+      `src/sras/version.ts`, `CITATION.cff`, `core/sras.yaml`, and the docs
+      config.
+- [ ] `ci-ok` and `pr-check / check` are green on `main`.
+- [ ] `oss-kit doctor` reports no drift.
+- [ ] The audit evidence is posted to the dashboard issue.
+- [ ] Translation and review statuses match the release scope, or the release
+      stays blocked.
+- [ ] The release notes and announcement link to the audit and make no
+      certification, legal-compliance, or out-of-scope claim.
+
 ## FDS design and review
 
 Before designing a new module, workflow, type, signature, or boundary, load

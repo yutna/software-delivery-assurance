@@ -6,6 +6,19 @@ The repository has a solo maintainer, `@yutna`. The maintainer makes the final
 decision on scope, releases, and breaking changes. Every change still goes
 through an issue, a pull request, CI, and a squash merge.
 
+## Policy version and applicability
+
+This policy applies from the v1.0.0 milestone onward. It also governs the v1.x
+maintenance line and the v2.0 preparation work.
+
+The policy is ready before the release is. Until the v1.0.0 milestone closes,
+the content version remains SRAS 0.9.0, the formal-standard track is not ready,
+and no page may describe the repository as a released v1.0.0 standard. The
+[readiness review](docs/en/governance/v1-readiness.md) lists the blockers.
+
+The policy cannot be satisfied by a document alone. A review status changes
+only when the named reviewer, the date, and the scope exist and are recorded.
+
 ## Two tracks
 
 The repository has two tracks with different evidence requirements.
@@ -53,29 +66,97 @@ standard, external review, or a v1.0.0 stability claim.
 
 ## Review status
 
-Every structured object carries `review_status` and `translation_status`.
+Every structured object carries `review_status` and `translation_status`. The
+two fields answer different questions and must not be substituted for each
+other.
 
-- `draft`: content is being written and is not ready to assess.
-- `unverified`: content is published as a reference but has not been reviewed by
-  a qualified reviewer.
-- `reviewed`: a named reviewer, review date, and scope are recorded.
+### Content review status
 
-Legal content stays `unverified` without a qualified legal reviewer. Thai
-content requires a Thai reviewer before `translation_status: complete`.
-Machine translation is marked `machine_translated: true` and remains `partial`
-until a human reviewer confirms it.
+| Status       | Meaning                                                                                           | Who may set it                                       | What it does not mean                                    |
+| ------------ | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- |
+| `draft`      | Content is being written and is not ready to assess.                                              | The author.                                          | Nothing is approved or usable.                           |
+| `unverified` | Content is published as a reference but has not been reviewed by a qualified reviewer.            | The maintainer, after the content and sources exist. | Not a review result, not legal advice, not compliance.   |
+| `reviewed`   | A named reviewer, review date, scope, and findings are recorded in the object or a linked record. | The named human reviewer; the maintainer records it. | Not certification, accreditation, or a legal conclusion. |
 
-Legal and regulatory concerns are documented as desk research with official
-sources, the limits of the research, and questions a project must answer. The
-library does not decide whether a source applies to a project. A project records
-its own decision in its private instance and obtains qualified advice when the
-risk or the law requires it. A desk note may be published without a legal
-reviewer; it is never a legal opinion.
+A review record identifies the reviewer by name, the date, the scope, the
+version reviewed, and any limitation. A review without those fields does not
+change `review_status`. An AI review is recorded as an AI review and never as
+`reviewed` on behalf of a human.
+
+### Translation review status
+
+| Status                     | Meaning                                                                                  | Who may set it                                       |
+| -------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `partial`                  | The translation is incomplete or machine-assisted and has not been confirmed by a human. | The author or maintainer.                            |
+| `complete`                 | A named human reviewer has confirmed the translation for the recorded scope.             | The named human reviewer; the maintainer records it. |
+| `machine_translated: true` | A machine produced or assisted the text. It stays `partial` until a human confirms it.   | The author or maintainer.                            |
+
+`translation_status: complete` and `machine_translated: false` require a named
+human reviewer, a date, and a scope. An AI execution agent may draft, edit, and
+review text, but it cannot mark a translation complete or claim to be the human
+reviewer. A Thai page that has not had a human review stays `partial` with
+`machine_translated: true`, even when the wording is polished.
+
+Legal content stays `unverified` without a qualified legal reviewer. Legal and
+regulatory concerns are documented as desk research with official sources, the
+limits of the research, and questions a project must answer. The library does
+not decide whether a source applies to a project. A project records its own
+decision in its private instance and obtains qualified advice when the risk or
+the law requires it. A desk note may be published without a legal reviewer; it
+is never a legal opinion.
 
 The review status fields describe content review and translation review. They
 are not certification and not a confidence label. The docs-only
 [confidence labels](docs/en/governance/confidence-labels.md) are separate and
 do not change a structured object.
+
+## Review checklists
+
+The detailed status model, review types, and checklists are in the
+[review policy](docs/en/governance/review-policy.md). The short form below is
+binding for every pull request that touches reviewed content.
+
+### Content review checklist
+
+- [ ] The change has an issue with scope and acceptance criteria.
+- [ ] The content is factual, testable where applicable, and has a negative case.
+- [ ] Sources are official and current enough for the stated review scope.
+- [ ] No certification, compliance, approval, or guarantee claim is added.
+- [ ] No customer name, real evidence, secret, or private endpoint is added.
+- [ ] The review record names the reviewer, date, scope, and version, or the
+      status stays `draft` or `unverified`.
+
+### Translation review checklist
+
+- [ ] English remains canonical for identifiers, schema keys, and file names.
+- [ ] The Thai page has a Thai reviewer for the reviewed scope.
+- [ ] The reviewer checked meaning, terminology, and the glossary, not only
+      grammar.
+- [ ] `translation_status` and `machine_translated` match the evidence.
+- [ ] No page is marked complete because a machine or an AI agent produced it.
+
+### External review checklist
+
+- [ ] The reviewer is named, independent of the maintainer, and engaged for a
+      recorded scope.
+- [ ] The review record states what was reviewed and what was not.
+- [ ] The review result is published with the reviewer's permission.
+- [ ] A missing reviewer is recorded as missing. No name, date, or sign-off is
+      invented.
+
+### Release review checklist
+
+- [ ] Every milestone issue is closed and the milestone scope is complete.
+- [ ] The version is consistent in `package.json`, `package-lock.json`,
+      `src/sras/version.ts`, `CITATION.cff`, `core/sras.yaml`, and the docs
+      config.
+- [ ] `ci-ok` and `pr-check / check` are green on `main`.
+- [ ] `oss-kit doctor` reports no drift.
+- [ ] The audit evidence is posted to the dashboard issue.
+- [ ] Translation and review statuses match the release scope, or the release
+      stays blocked.
+- [ ] The release notes and announcement link to the audit and make no
+      certification, legal-compliance, or out-of-scope claim.
 
 ## Release cadence
 
@@ -84,6 +165,12 @@ release requires all milestone issues closed, `ci-ok` and `pr-check / check`
 green on `main`, `oss-kit doctor` with no drift, a passing release preflight,
 and the completed audit checklist. GitHub Releases is the changelog; there is
 no `CHANGELOG.md`.
+
+A release also requires the version and the review status to match the release
+scope. If the translation is still `partial`, the milestone must record that as
+a documented blocker and must not cut a stable release. A draft release note or
+announcement is not a release, and merging the draft does not change the
+content version.
 
 A positioning or template milestone may close without a release or a version
 bump when its own scope says so. It must not be presented as a standard release.
@@ -121,11 +208,48 @@ gate requirements as external standards. They are not register entries because
 no Thailand instrument in this library gives them that status. A project may
 still use them as assessment guidance and record the version it selected.
 
-## Breaking changes and deprecation
+## Maintenance and deprecation
 
-Mark a deprecated requirement with `status: deprecated`, `deprecated_in`, and a
-replacement. Keep it visible for at least one minor release. Remove it only in
-a major release with a migration guide.
+The standard content, the schemas, the CLI, and the documentation version
+together. A version number is never used for content that has not met the
+release conditions.
+
+### v1.x maintenance
+
+- A minor release may add requirements, modules, overlays, registers,
+  crosswalks, commands, optional fields, and documentation.
+- A minor release must not remove a requirement, change a requirement ID, waive
+  a gate, or make an existing valid instance invalid without a migration note.
+  A schema addition is optional until a project enables it; a required field
+  needs a major release or an explicit migration path.
+- Deprecate a requirement with `status: deprecated`, `deprecated_in`, and a
+  replacement. Keep it visible for at least one minor release.
+- Security and correctness fixes may ship out of band. They still go through an
+  issue, a pull request, CI, and a squash merge.
+- The maintainer supports the latest v1.x line on a best-effort basis. There is
+  no service-level agreement, no certification maintenance, and no guarantee
+  that an external source remains current between review dates.
+
+### v2.0 preparation
+
+- A major release may remove deprecated content, change an ID or schema shape,
+  or change a gate. It needs a migration guide, a deprecation notice in at least
+  one prior minor release, and a review cycle.
+- A gate requirement is not removed silently. Record the replacement or the
+  explicit rationale, and keep the old requirement visible until the major
+  release.
+- The migration guide states the old version, the new version, the affected
+  IDs and fields, the required project-instance changes, and the validation
+  command a project runs after migrating.
+- v2.0 does not imply certification, external review, or legal approval. It is
+  a version boundary, not a compliance claim.
+
+### Review cadence
+
+Thailand register entries are reviewed at least every 6 months. ASEAN and EU
+entries are reviewed at least every 12 months. The Core is reviewed annually.
+Incidents, material architecture changes, new jurisdictions, and major releases
+trigger an earlier review.
 
 ## Security reports
 
@@ -156,10 +280,3 @@ patterns.
 public because the repository is public, excluded from the guard and docs, and
 deleted together with the source gists in the final v1.0.0 issue. Do not add
 customer data, secrets, or confidential material there.
-
-## Review cadence
-
-Thailand register entries are reviewed at least every 6 months. ASEAN and EU
-entries are reviewed at least every 12 months. The Core is reviewed annually.
-Incidents, material architecture changes, new jurisdictions, and major releases
-trigger an earlier review.

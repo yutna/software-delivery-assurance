@@ -40,6 +40,10 @@ const enNav: DefaultTheme.NavItem[] = [
         text: "Thai review kit",
         link: "/en/governance/thai-review-kit",
       },
+      {
+        text: "Review policy",
+        link: "/en/governance/review-policy",
+      },
     ],
   },
   { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
@@ -81,6 +85,10 @@ const thNav: DefaultTheme.NavItem[] = [
         text: "Thai review kit",
         link: "/th/governance/thai-review-kit",
       },
+      {
+        text: "นโยบายการทบทวน",
+        link: "/th/governance/review-policy",
+      },
     ],
   },
   { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
@@ -121,6 +129,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "Thai review kit",
         link: "/en/governance/thai-review-kit",
+      },
+      {
+        text: "Review policy",
+        link: "/en/governance/review-policy",
       },
     ],
   },
@@ -223,6 +235,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       {
         text: "Thai review kit",
         link: "/th/governance/thai-review-kit",
+      },
+      {
+        text: "นโยบายการทบทวน",
+        link: "/th/governance/review-policy",
       },
     ],
   },
