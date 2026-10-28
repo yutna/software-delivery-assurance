@@ -76,7 +76,7 @@ failure.
 | Four legal concerns are desk research, not legal review       | [Legal concerns](legal-concerns.md), #128–#131                                                 | Project-specific decision |
 | Release notes are a draft                                     | Being reframed as a template release                                                           | #174                      |
 | Announcement is a draft                                       | Being reframed as a template release                                                           | #174                      |
-| Temporary internal seed is still present                      | `internal/` in the repository                                                                  | #66                       |
+| Temporary bootstrap material removed                          | Removed in #66; no exclusion remains                                                           | Closed                    |
 | The 0.10.0 work is in progress and the 1.0.0 release is later | 0.10.0 milestone                                                                               | #171, #66                 |
 | Release-date metadata is not updated                          | `CITATION.cff` and `core/sras.yaml` still use the v0.9.0 date                                  | #66                       |
 
@@ -141,9 +141,54 @@ Every Thai page still has `translation_status: partial` and
 version stays 0.9.0 in this minor. The remaining work is #61 (version 1.0.0 and
 release metadata) and #66 (cleanup and the 1.0.0 template release).
 
+## 1.0.0 final AI audit
+
+**Status:** final AI audit for the 1.0.0 template release. **Date:** 2026-10-28.
+**Audited commit:** the `main` commit that closes #66; the exact SHA and command
+output are in the dashboard comment. **Auditor:** the AI execution agent under
+owner direction.
+
+This is a template release, not a standard release. This audit is not a human
+review, an external review, a legal review, or a certification.
+
+| Check                       | Command or evidence                                | Result                              |
+| --------------------------- | -------------------------------------------------- | ----------------------------------- |
+| Version consistency         | `node tools/check-version.ts 1.0.0`                | Pass                                |
+| Typecheck                   | `npm run typecheck`                                | Pass                                |
+| Lint and format             | `npm run lint`; `npm run format:check`             | Pass                                |
+| Markdown lint               | `npm run lint:md`                                  | Pass, 280 files                     |
+| Tests                       | `npm test`                                         | Pass, 40 files and 339 tests        |
+| Docs QA                     | `npm run check:docs`                               | Pass, 191 English and 38 Thai pages |
+| FDS check                   | `npm run check:fds`                                | Pass, 43 skills, pack 3.3.0         |
+| Schema validation           | `npm run sras -- validate --all`                   | Pass, 53 files                      |
+| Deterministic render        | `npm run sras -- render --check`                   | Pass, 154 pages                     |
+| Content guard               | `npm run sras -- guard`                            | Pass, 365 files, 0 excluded         |
+| Docs build                  | `npm run docs:build`                               | Pass                                |
+| Release metadata            | `CITATION.cff`; `core/sras.yaml`                   | `2026-10-28`                        |
+| Bootstrap cleanup           | `test ! -e internal`; exclusion grep               | Pass, no exclusion remains          |
+| Source gists                | `gh gist list`; access check                       | Deleted; not accessible             |
+| Production dependency audit | `npm audit --omit=dev --audit-level=high`          | Pass, 0 vulnerabilities             |
+| Repository doctor           | `oss-kit doctor yutna/software-delivery-assurance` | No drift                            |
+| CI                          | `ci-ok`, `pr-check / check`, `main` CI             | Green                               |
+
+The release keeps every Thai page at `translation_status: partial` with
+`machine_translated: true`. No `review_status: reviewed` is introduced. The 27
+register entries remain `review_status: unverified`. The four legal concerns
+remain desk research notes, not legal opinions.
+
+The limitations are part of the release: the Thai translation is partial, the
+registers are unverified, no external or human review is claimed, and the
+template is generic. An adopting project decides which concerns apply and
+records its own reviews and approvals.
+
+The technical gates pass and the release is ready. The repository does not
+claim a standard, a certification, legal compliance, external review, or human
+review. The dashboard comment records the exact commit and command output:
+<https://github.com/yutna/software-delivery-assurance/issues/67>.
+
 ## Related pages
 
-- [v1.0.0 readiness review](v1-readiness.md)
+- [AI audit and limitations](v1-readiness.md)
 - [Review policy](review-policy.md)
 - [Template readiness](template-readiness.md)
 - [Legal concerns](legal-concerns.md)

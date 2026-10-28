@@ -141,21 +141,20 @@ template release publishes the concern template. It is not a standard release.
 
 ## Repository map
 
-| Path         | Purpose                                                     |
-| ------------ | ----------------------------------------------------------- |
-| `core/`      | SRAS Core requirements and profiles                         |
-| `modules/`   | Optional technical modules                                  |
-| `overlays/`  | Sector and jurisdiction deltas                              |
-| `registers/` | Regulatory registers with official sources                  |
-| `mappings/`  | Informative crosswalks to external standards                |
-| `templates/` | Project-instance templates                                  |
-| `examples/`  | Synthetic examples only                                     |
-| `schemas/`   | JSON Schema 2020-12 contracts                               |
-| `src/sras/`  | TypeScript domain core, adapters, and CLI                   |
-| `tools/`     | Repository checks and the FDS sync/verify tools             |
-| `tests/`     | Unit, integration, golden, and content tests                |
-| `docs/`      | Bilingual docs site, guides, and generated reference pages  |
-| `internal/`  | Temporary bootstrap seed; deleted in the final v1.0.0 issue |
+| Path         | Purpose                                                    |
+| ------------ | ---------------------------------------------------------- |
+| `core/`      | SRAS Core requirements and profiles                        |
+| `modules/`   | Optional technical modules                                 |
+| `overlays/`  | Sector and jurisdiction deltas                             |
+| `registers/` | Regulatory registers with official sources                 |
+| `mappings/`  | Informative crosswalks to external standards               |
+| `templates/` | Project-instance templates                                 |
+| `examples/`  | Synthetic examples only                                    |
+| `schemas/`   | JSON Schema 2020-12 contracts                              |
+| `src/sras/`  | TypeScript domain core, adapters, and CLI                  |
+| `tools/`     | Repository checks and the FDS sync/verify tools            |
+| `tests/`     | Unit, integration, golden, and content tests               |
+| `docs/`      | Bilingual docs site, guides, and generated reference pages |
 
 ## Contributing
 

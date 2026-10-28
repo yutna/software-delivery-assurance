@@ -35,9 +35,8 @@ exclude = [
   "^https://github\\.com/yutna/software-delivery-assurance/releases/tag/v1\\.0\\.0$",
 ]
 
-# Generated output, vendored material, caches, and the temporary internal seed
-# are not authored content. Their links are checked through the source instead,
-# or excluded from the public content boundary by design.
+# Generated output, vendored material, and caches are not authored content.
+# Their links are checked through the source instead.
 exclude_path = [
   ".claude/skills",
   "vendor",
@@ -47,5 +46,4 @@ exclude_path = [
   "tests/fixtures/invalid",
   "docs/.vitepress/dist",
   "docs/.vitepress/cache",
-  "internal",
 ]

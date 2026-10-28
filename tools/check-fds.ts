@@ -15,7 +15,6 @@ const SKIP_DIRECTORIES = new Set([
   "node_modules",
   ".claude",
   "vendor",
-  "internal",
   "dist",
   "coverage",
 ]);
