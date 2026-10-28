@@ -1,10 +1,19 @@
 cff-version: 1.2.0
 message: "If you use this library, cite the repository and the SRAS version."
 title: "Software Delivery Assurance Library"
+type: software
 authors:
   - family-names: "Siphuengchai"
     given-names: "Yutthana"
+repository-code: "https://github.com/yutna/software-delivery-assurance"
+url: "https://github.com/yutna/software-delivery-assurance"
+abstract: "An AI-maintained, evidence-based software delivery assurance library with SRAS reference requirements, schemas, and TypeScript tools. It is a template release, not a published standard."
+keywords:
+  - software delivery assurance
+  - SRAS
+  - evidence
+  - risk management
+  - Thailand
+license: MIT
 version: 1.0.0
 date-released: "2026-10-28"
-url: "https://github.com/yutna/software-delivery-assurance"
-license: MIT
