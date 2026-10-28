@@ -61,13 +61,12 @@ The limitations are part of the product, not a footnote:
 - No external reviewer has been engaged. No page claims external review,
   certification, or legal approval.
 - Four legal questions (#128–#131) remain open.
-- Resolution output (#126) is not complete.
 - The template is a starting point for your own scope and local rules. It does
   not replace procurement advice, legal advice, or your organisation's quality
   and security programme.
 
-The v0.9.0 pilots produced 18 findings: 13 are now fixed, 1 remains deferred with
-an issue, and 4 are open legal questions. The [pilot summary](docs/en/pilots/summary.md)
+The v0.9.0 pilots produced 18 findings: 14 are now fixed, none remain deferred,
+and 4 are open legal questions. The [pilot summary](docs/en/pilots/summary.md)
 records each disposition. The [v1.0.0 readiness review](docs/en/governance/v1-readiness.md)
 records why the formal-standard track is not ready.
 
@@ -107,6 +106,12 @@ Create a project instance with:
 
 ```bash
 npm run sras -- init ~/sras-demo --profile lite
+```
+
+Inspect the resolved requirements and gate coverage with:
+
+```bash
+npm run sras -- project resolve ~/sras-demo
 ```
 
 Then read, in this order:

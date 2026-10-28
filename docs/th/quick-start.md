@@ -125,6 +125,17 @@ npm run sras -- project refresh ~/sras-demo
 standard input เขียนเฉพาะไฟล์นั้น และปฏิเสธการเขียนเมื่อกฎโปรเจกต์ข้ออื่น
 ล้มเหลว
 
+ดูชุด requirement ที่ resolve ได้และ gate ที่ยังไม่ถูกประเมิน:
+
+```bash
+npm run sras -- project resolve ~/sras-demo
+```
+
+คำสั่งนี้แสดง requirement ที่ resolve ทั้งหมดพร้อม layer และ criticality
+จากนั้นสรุป coverage และออกด้วย exit code 1 ตราบใดที่ gate ยังไม่มีบันทึก
+การประเมินหรือเป็น `not_assessed` ส่วน gate ที่บันทึกเป็น `not_applicable`
+จะไม่ถูกนับว่ายังไม่ถูกประเมิน
+
 ## ขั้นที่ 4 — ตรวจเนื้อหามาตรฐานใน library
 
 ```bash
@@ -209,20 +220,21 @@ npm run sras -- guard --annotations
 
 ## Command reference
 
-| คำสั่ง                                      | ใช้ทำอะไร                       |
-| ------------------------------------------- | ------------------------------- |
-| `npm run sras -- --version`                 | แสดง SRAS version               |
-| `npm run sras -- --help`                    | แสดงรายการคำสั่ง                |
-| `npm run sras -- validate --all`            | ตรวจเนื้อหามาตรฐานใน library    |
-| `npm run sras -- init <dir> --profile lite` | สร้าง project instance แบบ lite |
-| `npm run sras -- init <dir> --profile full` | สร้าง project instance แบบ full |
-| `npm run sras -- project validate <dir>`    | ตรวจ project instance ที่มีอยู่ |
-| `npm run sras -- project refresh <dir>`     | คำนวณ lockfile ของโปรเจกต์ใหม่  |
-| `npm run sras -- render`                    | เขียนหน้า reference             |
-| `npm run sras -- render --check`            | ตรวจหน้า reference โดยไม่เขียน  |
-| `npm run sras -- guard`                     | สแกนเนื้อหาสาธารณะ              |
-| `npm run sras -- guard --format json`       | แสดง guard report version 1     |
-| `npm run sras -- guard --annotations`       | แสดง GitHub Actions annotation  |
+| คำสั่ง                                      | ใช้ทำอะไร                         |
+| ------------------------------------------- | --------------------------------- |
+| `npm run sras -- --version`                 | แสดง SRAS version                 |
+| `npm run sras -- --help`                    | แสดงรายการคำสั่ง                  |
+| `npm run sras -- validate --all`            | ตรวจเนื้อหามาตรฐานใน library      |
+| `npm run sras -- init <dir> --profile lite` | สร้าง project instance แบบ lite   |
+| `npm run sras -- init <dir> --profile full` | สร้าง project instance แบบ full   |
+| `npm run sras -- project validate <dir>`    | ตรวจ project instance ที่มีอยู่   |
+| `npm run sras -- project refresh <dir>`     | คำนวณ lockfile ของโปรเจกต์ใหม่    |
+| `npm run sras -- project resolve <dir>`     | แสดง resolution และ gate coverage |
+| `npm run sras -- render`                    | เขียนหน้า reference               |
+| `npm run sras -- render --check`            | ตรวจหน้า reference โดยไม่เขียน    |
+| `npm run sras -- guard`                     | สแกนเนื้อหาสาธารณะ                |
+| `npm run sras -- guard --format json`       | แสดง guard report version 1       |
+| `npm run sras -- guard --annotations`       | แสดง GitHub Actions annotation    |
 
 ## แก้ปัญหา
 

@@ -139,12 +139,28 @@ describe("sras project", () => {
     expect(stderr.join("")).toContain("TH-PUB-001");
   });
 
+  test("resolves the selection and reports unassessed gates", async () => {
+    const target = await copyExample();
+    const { io, stdout, stderr } = makeIo();
+
+    expect(await run(["project", "resolve", target], io, process.cwd())).toBe(
+      1,
+    );
+
+    const text = stdout.join("");
+    expect(text).toContain("resolved: 90 requirements (38 gates)");
+    expect(text).toContain("coverage: 9 assessed, 81 not assessed");
+    expect(text).toContain("unassessed gates (32):");
+    expect(text).toContain("SRAS-CHG-001");
+    expect(stderr).toEqual([]);
+  });
+
   test("missing arguments are usage errors", async () => {
     const missingAction = makeIo();
 
     expect(await run(["project"], missingAction.io, process.cwd())).toBe(2);
     expect(missingAction.stderr.join("")).toContain(
-      "missing required argument: validate|refresh",
+      "missing required argument: validate|refresh|resolve",
     );
 
     const missingDirectory = makeIo();
@@ -164,7 +180,7 @@ describe("sras project", () => {
       await run(["project", "check", "example-project"], io, process.cwd()),
     ).toBe(2);
     expect(stderr.join("")).toContain(
-      "invalid project action: check; expected validate or refresh",
+      "invalid project action: check; expected validate, refresh, or resolve",
     );
   });
 });

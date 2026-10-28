@@ -126,6 +126,17 @@ npm run sras -- project refresh ~/sras-demo
 and the standard inputs, writes only that file, and refuses to write when
 another project rule fails.
 
+To see the resolved requirement set and the unassessed gates:
+
+```bash
+npm run sras -- project resolve ~/sras-demo
+```
+
+The command lists each resolved requirement with its layer and criticality,
+then the coverage summary. It exits with code 1 while a gate has no assessment
+record or is `not_assessed`. A gate recorded as `not_applicable` is not counted
+as unassessed.
+
 ## Step 4 — Validate the library
 
 ```bash
@@ -219,6 +230,9 @@ Examples that return `1`:
 | `npm run sras -- validate --all`            | Validate the library standard content.     |
 | `npm run sras -- init <dir> --profile lite` | Create a lite project instance.            |
 | `npm run sras -- init <dir> --profile full` | Create a full project instance.            |
+| `npm run sras -- project validate <dir>`    | Validate an existing project instance.     |
+| `npm run sras -- project refresh <dir>`     | Recompute a project lockfile.              |
+| `npm run sras -- project resolve <dir>`     | Print resolution and gate coverage.        |
 | `npm run sras -- render`                    | Write the reference pages.                 |
 | `npm run sras -- render --check`            | Check the reference pages without writing. |
 | `npm run sras -- guard`                     | Scan public content.                       |

@@ -25,6 +25,7 @@ limitations.
 | `npm run sras -- init <dir> --profile full` | Create a full project instance.            |
 | `npm run sras -- project validate <dir>`    | Validate an existing project instance.     |
 | `npm run sras -- project refresh <dir>`     | Recompute a project lockfile.              |
+| `npm run sras -- project resolve <dir>`     | Print resolution and gate coverage.        |
 | `npm run sras -- render`                    | Write the English reference pages.         |
 | `npm run sras -- render --check`            | Check the reference pages without writing. |
 | `npm run sras -- guard`                     | Scan public content.                       |
@@ -54,6 +55,17 @@ selection and the resolved standard inputs. It validates the candidate instance
 before writing, writes only the lockfile, and leaves every other file
 unchanged. An unknown module, overlay, or profile is reported instead of being
 written.
+
+## Project resolve
+
+`project resolve <dir>` is read-only. It prints the resolved requirement set in
+documented layer order, with each requirement's criticality, then a coverage
+summary. Every gate without an assessment record or recorded as `not_assessed`
+is listed. A gate recorded as `not_applicable` is not counted as unassessed.
+
+The command exits with code 1 while any unassessed gate remains. Use it before
+sign-off to see the denominator and the gaps that still need an assessment or a
+documented `not_applicable` decision.
 
 ## Render
 

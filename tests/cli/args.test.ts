@@ -203,10 +203,21 @@ describe("parseArgs", () => {
     });
   });
 
+  test("project accepts resolve", () => {
+    expect(parseArgs(["project", "resolve", "example-project"])).toEqual({
+      ok: true,
+      value: {
+        tag: "Project",
+        action: "resolve",
+        directory: "example-project",
+      },
+    });
+  });
+
   test("project requires an action and a directory", () => {
     expect(parseArgs(["project"])).toEqual({
       ok: false,
-      error: { tag: "MissingArgument", value: "validate|refresh" },
+      error: { tag: "MissingArgument", value: "validate|refresh|resolve" },
     });
     expect(parseArgs(["project", "validate"])).toEqual({
       ok: false,

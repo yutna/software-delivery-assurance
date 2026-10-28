@@ -18,7 +18,7 @@ const renderArgsError = (error: ArgsError): string => {
     case "InvalidFormat":
       return `invalid format: ${error.value}; expected text or json\n`;
     case "InvalidProjectAction":
-      return `invalid project action: ${error.value}; expected validate or refresh\n`;
+      return `invalid project action: ${error.value}; expected validate, refresh, or resolve\n`;
     case "ConflictingFlags":
       return `conflicting flags: ${error.values.join(" ")}\n`;
     default:

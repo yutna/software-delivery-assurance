@@ -16,13 +16,19 @@ import type { ProjectIssue } from "../project/types.js";
 import {
   initProject,
   refreshProjectLock,
+  resolveProjectDirectory,
   validateProjectDirectory,
   type InitShellError,
   type ProjectDirectoryError,
 } from "../project/workflow.js";
+import type { ProjectResolution } from "../project/resolution.js";
 import { renderCheckFromRoot, renderToRoot } from "../render/workflow.js";
 import type { RenderDriftIssue, RenderError } from "../render/types.js";
 import type { ValidationIssue } from "../standard/types.js";
+import type {
+  ResolutionConflict,
+  ResolutionIssue,
+} from "../standard/resolve.js";
 import { loadStandardFromRoot } from "../standard/workflow.js";
 import { VERSION } from "../version.js";
 import type { CliCommand } from "./args.js";
@@ -37,6 +43,7 @@ const HELP = [
   "  sras init <dir> --profile lite|full",
   "  sras project validate <dir>",
   "  sras project refresh <dir>",
+  "  sras project resolve <dir>",
   "  sras render [--check]",
   "  sras guard [--format text|json] [--annotations]",
   "",
@@ -254,6 +261,64 @@ const renderInitShellError = (error: InitShellError): string => {
   }
 };
 
+const renderResolutionIssue = (issue: ResolutionIssue): string => {
+  switch (issue.tag) {
+    case "UnknownModule":
+      return `resolution error: unknown module: ${issue.module}`;
+    case "UnknownOverlay":
+      return `resolution error: unknown overlay: ${issue.overlay}`;
+    case "GateWaiver":
+      return `resolution error: gate ${issue.requirement} cannot be waived (${issue.layer})`;
+    case "InvalidProjectId":
+      return `resolution error: invalid project requirement ID: ${issue.id}`;
+    case "DuplicateProjectId":
+      return `resolution error: duplicate project requirement ID: ${issue.id}`;
+    case "ProjectIdCollision":
+      return `resolution error: project requirement ID collides with the standard: ${issue.id}`;
+    case "UnresolvedWaiver":
+      return `resolution error: waiver does not name a resolved requirement: ${issue.requirement}`;
+    default:
+      return assertNever(issue);
+  }
+};
+
+const renderResolutionConflict = (conflict: ResolutionConflict): string =>
+  `resolution conflict: ${conflict.id}: ${conflict.message}`;
+
+const resolutionRow = (id: string, layer: string, value: string): string =>
+  `${id.padEnd(16)} ${layer.padEnd(14)} ${value}`;
+
+const renderProjectResolution = (resolution: ProjectResolution): string => {
+  const { coverage } = resolution;
+  const lines = [
+    `project: ${resolution.project}`,
+    `selection: profile=${resolution.profile} tier=${String(resolution.tier)} modules=${resolution.modules.length === 0 ? "-" : resolution.modules.join(", ")} overlays=${resolution.overlays.length === 0 ? "-" : resolution.overlays.join(", ")}`,
+    `resolved: ${String(coverage.resolved)} requirements (${String(coverage.gates)} gates)`,
+    `coverage: ${String(coverage.assessed)} assessed, ${String(coverage.notAssessed)} not assessed (${String(coverage.missingRecords)} missing records), ${String(coverage.notApplicable)} not applicable`,
+    "",
+    "requirements:",
+    resolutionRow("ID", "LAYER", "CRITICALITY"),
+    ...resolution.requirements.map((requirement) =>
+      resolutionRow(requirement.id, requirement.layer, requirement.criticality),
+    ),
+  ];
+
+  if (coverage.unassessedGates.length > 0) {
+    lines.push(
+      "",
+      `unassessed gates (${String(coverage.unassessedGates.length)}):`,
+      resolutionRow("ID", "LAYER", "STATUS"),
+      ...coverage.unassessedGates.map((gate) =>
+        resolutionRow(gate.id, gate.layer, gate.status),
+      ),
+    );
+  } else {
+    lines.push("", "unassessed gates: 0");
+  }
+
+  return `${lines.join("\n")}\n`;
+};
+
 const renderProjectDirectoryError = (error: ProjectDirectoryError): string => {
   switch (error.tag) {
     case "InvalidTarget":
@@ -272,6 +337,10 @@ const renderProjectDirectoryError = (error: ProjectDirectoryError): string => {
       return `project validation error:\n${error.issues.map(renderProjectIssue).join("\n")}`;
     case "Lockfile":
       return `project lockfile error:\n${error.issues.map(renderProjectIssue).join("\n")}`;
+    case "Resolution":
+      return `project resolution error:\n${error.issues.map(renderResolutionIssue).join("\n")}`;
+    case "Conflicts":
+      return `project resolution conflict:\n${error.conflicts.map(renderResolutionConflict).join("\n")}`;
     case "Write":
       return `project write error: ${error.file}: ${error.message}`;
     default:
@@ -299,6 +368,21 @@ const runProject = async (
       `project valid: ${result.value.target}; ${String(result.value.inputCount)} resolved standard inputs; lockfile current\n`,
     );
     return 0;
+  }
+
+  if (command.action === "resolve") {
+    const result = await resolveProjectDirectory({
+      root,
+      target: command.directory,
+    });
+
+    if (!result.ok) {
+      io.stderr(`${renderProjectDirectoryError(result.error)}\n`);
+      return 1;
+    }
+
+    io.stdout(renderProjectResolution(result.value));
+    return result.value.coverage.unassessedGates.length === 0 ? 0 : 1;
   }
 
   const result = await refreshProjectLock({
