@@ -60,15 +60,18 @@ The limitations are part of the product, not a footnote:
 - The 27 register entries are `review_status: unverified`.
 - No external reviewer has been engaged. No page claims external review,
   certification, or legal approval.
-- Four legal questions (#128–#131) remain open.
+- Four legal and regulatory concerns have desk research notes. The library does
+  not determine whether they apply to your project; see
+  [legal concerns](docs/en/governance/legal-concerns.md).
 - The template is a starting point for your own scope and local rules. It does
   not replace procurement advice, legal advice, or your organisation's quality
   and security programme.
 
 The v0.9.0 pilots produced 18 findings: 14 are now fixed, none remain deferred,
-and 4 are open legal questions. The [pilot summary](docs/en/pilots/summary.md)
-records each disposition. The [v1.0.0 readiness review](docs/en/governance/v1-readiness.md)
-records why the formal-standard track is not ready.
+and 4 are legal or regulatory concerns with desk research notes. The
+[pilot summary](docs/en/pilots/summary.md) records each disposition. The
+[v1.0.0 readiness review](docs/en/governance/v1-readiness.md) records why the
+formal-standard track is not ready.
 
 The repository also publishes an English and Thai VitePress site at
 [yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).

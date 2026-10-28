@@ -48,6 +48,8 @@ The formal-standard track is optional and remains on the v1.0.0 path.
 - [Reference](reference/index.md) — generated requirement, overlay, and register
   pages.
 - [Confidence labels](governance/confidence-labels.md) — how claims are labelled.
+- [Legal concerns](governance/legal-concerns.md) — sources and questions for
+  project-specific decisions.
 - [Glossary](glossary.md) — the shared vocabulary used across the site.
 
 The English pages are canonical for identifiers, schema keys, and file names.

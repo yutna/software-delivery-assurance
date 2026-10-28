@@ -14,9 +14,21 @@ include_fragments = "anchor-only"
 # The Philippine Official Gazette serves the canonical text of Republic Act
 # No. 10173 but returns HTTP 403 to automated clients. The page is reachable in
 # a browser and is the official source cited by the PH-DPA-001 register entry.
+#
+# The Thai Securities and Exchange Commission serves its news and notification
+# pages to browsers but returns HTTP 403 to automated clients. The official
+# sources remain linked for readers and are excluded only from the automated
+# check.
+#
+# data.go.th serves the DGA Open Government License page to browsers but
+# returns HTTP 403 to the automated checker. The page remains the public entry
+# point for the licence terms.
 exclude = [
   "https://example.com",
   "^https://www\\.officialgazette\\.gov\\.ph/",
+  "^https://www\\.sec\\.or\\.th/",
+  "^https://publish\\.sec\\.or\\.th/",
+  "^https://data\\.go\\.th/",
 ]
 
 # Generated output, vendored material, caches, and the temporary internal seed

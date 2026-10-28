@@ -47,6 +47,8 @@ formal-standard track เป็นทางเลือกและยังอ�
 - [ทะเบียน](registers/index.md) — ดัชนีข้อเท็จจริงของกฎหมายและกฎระเบียบไทย อาเซียน และสหภาพยุโรป พร้อมหน้าการเปรียบเทียบอาเซียนและสหภาพยุโรป
 - [Reference](reference/index.md) — หน้าที่ generate จากข้อกำหนด overlay และทะเบียน
 - [Confidence labels](governance/confidence-labels.md) — วิธีติดป้ายข้อความ
+- [ข้อกังวลทางกฎหมาย](governance/legal-concerns.md) — แหล่งอ้างอิงและคำถาม
+  สำหรับการตัดสินใจของแต่ละโปรเจกต์
 - [อภิธานศัพท์](glossary.md) — คำศัพท์ที่ใช้ร่วมกันทั้งไซต์
 
 หน้าภาษาอังกฤษเป็นฉบับหลักสำหรับ identifier, schema key และชื่อไฟล์

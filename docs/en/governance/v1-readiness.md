@@ -92,6 +92,8 @@ that the standard is v1.0.0-ready.
 
 - The registers stay `unverified`. Without a qualified legal reviewer, the
   library may describe sources and obligations but may not claim compliance.
+- The [legal concerns](legal-concerns.md) page is desk research, not a legal
+  opinion for any project.
 - The overlays and requirements remain `review_status: draft`.
 - One assessor ran both pilots, and both used synthetic data.
 - The pilot coverage counts describe the examples, not a production
@@ -179,6 +181,7 @@ remain `unverified`, and legal questions #128–#131 remain open.
 ## Related pages
 
 - [Template readiness](template-readiness.md)
+- [Legal concerns](legal-concerns.md)
 - [Pilot summary](../pilots/summary.md)
 - [Execution status](https://github.com/yutna/software-delivery-assurance/issues/67)
 - [Governance policy](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)

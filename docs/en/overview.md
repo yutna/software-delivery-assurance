@@ -127,6 +127,10 @@ The docs-only [confidence labels](governance/confidence-labels.md) explain how
 to read a claim such as "checked", "documented", "provisional", or "planned".
 They are not a certification and not a schema field.
 
+Legal and regulatory concerns are collected in
+[legal concerns](governance/legal-concerns.md). That page is desk research with
+official sources, not a legal opinion for any project.
+
 ## Who it is for
 
 Thai government digital teams, state enterprises, vendors delivering public
