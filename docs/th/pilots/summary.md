@@ -39,9 +39,9 @@ owner ยืนยันว่าไม่มีผู้ตรวจทาน�
   ระบุชื่อก่อน stable release
 - **Low:** เอกสารคลาดเคลื่อนหรือปัญหาเล็กที่มีทางแก้ชัดเจน
 
-ทุก finding มี owner หนึ่งคน เนื่องจากมี maintainer คนเดียว owner คือ `@yutna` ทั้ง
-18 finding finding จะไม่ถูกปิดด้วยความเงียบ: ต้องเป็น `fixed`, `deferred` พร้อม
-issue หรือ `open legal question` พร้อม issue
+ทุก finding มี owner หนึ่งคน เนื่องจากมี maintainer คนเดียว owner คือ `@yutna`
+ทั้ง 18 finding. finding จะไม่ถูกปิดด้วยความเงียบ: ต้องเป็น `fixed`, `deferred`
+พร้อม issue หรือ `open legal question` พร้อม issue
 
 ## Findings
 
@@ -124,7 +124,7 @@ blocker ของ v1.0.0
 
 ## ข้อกังวลทางกฎหมายและกฎระเบียบ
 
-ข้อกังวลเหล่านี้มาจากการนำร่อง repository บันทึกคำถาม แหล่งอ้างอิงทางการ และ
+ข้อกังวลเหล่านี้มาจากการนำร่อง. repository บันทึกคำถาม แหล่งอ้างอิงทางการ และ
 ประเด็นที่โปรเจกต์ต้องตัดสินใจ ไม่ได้ตอบแทนโปรเจกต์
 [ข้อกังวลทางกฎหมาย](../governance/legal-concerns.md) มี desk research note
 ข้อจำกัดของการวิจัย และ template บันทึกการตัดสินใจของโปรเจกต์
