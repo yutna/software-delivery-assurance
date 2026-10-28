@@ -5,17 +5,18 @@ machine_translated: true
 
 # นโยบายการทบทวน
 
-**สถานะ:** นโยบาย governance สำหรับ milestone v1.0.0, สายงานดูแล v1.x และการ
-เตรียม v2.0 **บันทึกเมื่อ:** 2026-10-28 **ใช้กับ:** เนื้อหา SRAS 0.9.0 เป็นต้นไป
+**สถานะ:** นโยบาย governance สำหรับ minor 0.10.0 ของ concern template สายงาน
+ดูแล v1.x และการเตรียม v2.0 **บันทึกเมื่อ:** 2026-10-28 **ใช้กับ:** เนื้อหา
+SRAS 0.9.0 เป็นต้นไป
 
 หน้านี้เป็นนโยบายการทบทวนฉบับละเอียด
 [GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
 เป็นฉบับสรุปที่มีผลบังคับ นโยบายนี้อธิบายวิธีบันทึกการทบทวน
 ไม่ได้สร้างการทบทวน ผู้ทบทวน วันที่ หรือ sign-off ที่ไม่มีอยู่จริง
 
-นโยบายพร้อมก่อน release แต่เนื้อหายังเป็น SRAS 0.9.0 milestone v1.0.0 ยังเปิดอยู่
-และ formal-standard track ยังไม่พร้อม
-[การทบทวนความพร้อม v1.0.0](v1-readiness.md) บันทึก blocker ไว้
+เนื้อหายังเป็น 0.9.0 repository นี้เป็น concern template ไม่ใช่มาตรฐาน
+เนื้อหาเขียนและตรวจโดย AI ไม่มีการอ้าง human, external หรือ legal review
+[บันทึก AI audit](v1-audit.md) ระบุสิ่งที่ตรวจและข้อจำกัดที่ยังเหลือ
 
 ## สามคำถามที่แตกต่างกัน
 
@@ -92,6 +93,10 @@ AI execution agent ร่าง แก้ไข ทดสอบ และ self-r
 
 การทบทวนที่ไม่มีอยู่บันทึกว่าไม่มี repository ไม่สร้างชื่อผู้ทบทวน วันที่ หรือ
 sign-off เพื่อให้ตารางครบ
+
+repository นี้ใช้แถว AI drafting และ self-review กับ release audit ส่วนแถว
+human Thai, legal และ external เป็นเครื่องมือที่โปรเจกต์ที่นำไปใช้เลือกใช้ใน
+บริบทของตนเอง และยังไม่ได้ทำสำหรับ repository นี้
 
 ## วิธีบันทึกการทบทวน
 

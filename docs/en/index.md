@@ -32,8 +32,9 @@ features:
 
 ## Start here
 
-The template / starter-kit track is the default and is usable with limitations.
-The formal-standard track is optional and remains on the v1.0.0 path.
+The repository is a concern template and is usable with limitations. It does not
+claim to be a standard. A project that needs a formal review, a human Thai
+review, or a certification runs that work in its own context.
 
 - [Template readiness](governance/template-readiness.md) — what works today and
   what is still limited.

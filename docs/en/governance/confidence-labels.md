@@ -69,15 +69,14 @@ template is certified" is never allowed.
 | v0.10.0 will add an owner map and confidence labels.             | `planned`     | The milestone is being implemented; it is not a release.    |
 | The public sector overlay covers procurement law advice.         | not allowed   | It does not cover legal advice; the statement is false.     |
 
-## Relation to the two tracks
+## Relation to the AI audit
 
-The template track uses confidence labels to keep its claims honest. The
-formal-standard track uses review records and sign-offs. A formal review can
-raise confidence, but it does not turn a confidence label into a certification.
+Confidence labels keep the template's claims honest. The repository does not use
+a formal review or a sign-off. An adopting project may add its own review; that
+review does not turn a confidence label into a certification.
 
 The [template readiness](template-readiness.md) page uses all four labels. The
-[v1.0.0 readiness review](v1-readiness.md) remains a review record, not a
-confidence label.
+[AI audit record](v1-audit.md) is an audit record, not a confidence label.
 
 ## Scope of this convention
 
