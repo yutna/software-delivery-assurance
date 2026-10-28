@@ -19,11 +19,16 @@ include_fragments = "anchor-only"
 # pages to browsers but returns HTTP 403 to automated clients. The official
 # sources remain linked for readers and are excluded only from the automated
 # check.
+#
+# data.go.th serves the DGA Open Government License page to browsers but
+# returns HTTP 403 to the automated checker. The page remains the public entry
+# point for the licence terms.
 exclude = [
   "https://example.com",
   "^https://www\\.officialgazette\\.gov\\.ph/",
   "^https://www\\.sec\\.or\\.th/",
   "^https://publish\\.sec\\.or\\.th/",
+  "^https://data\\.go\\.th/",
 ]
 
 # Generated output, vendored material, caches, and the temporary internal seed
