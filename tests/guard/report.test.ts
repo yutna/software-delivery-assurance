@@ -149,10 +149,10 @@ describe("guard reports", () => {
     expect(report.findings[0]?.rule_id).not.toContain("acme-corp");
   });
 
-  test("the FDS pack and temporary internal seed are never reported", async () => {
+  test("skips the FDS pack and reports a denylisted term in content", async () => {
     const root = await makeRoot();
     await write(root, ".claude/skills/a.md", "hospital\n");
-    await write(root, "internal/a.md", "hospital\n");
+    await write(root, "core/a.yaml", "description: hospital\n");
     await write(root, "README.md", "clean\n");
     const result = await scanContent(
       root,
@@ -162,11 +162,14 @@ describe("guard reports", () => {
     expect(result.ok).toBe(true);
     if (!result.ok) return;
 
-    const json = renderGuardJson(toGuardReport(result.value));
+    const report = toGuardReport(result.value);
+    const json = renderGuardJson(report);
 
-    expect(result.value.scanned).toBe(1);
+    expect(report.scanned).toBe(2);
+    expect(report.findings).toHaveLength(1);
+    expect(report.findings[0]?.file).toBe("core/a.yaml");
     expect(json).not.toContain(".claude");
-    expect(json).not.toContain("internal/");
+    expect(json).toContain("core/a.yaml");
     expect(json).not.toContain("hospital");
   });
 });

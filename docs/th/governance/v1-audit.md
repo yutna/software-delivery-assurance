@@ -3,6 +3,8 @@ translation_status: partial
 machine_translated: true
 ---
 
+<!-- markdownlint-disable MD060: Prettier wraps Thai tables by code point; MD060 expects display width. -->
+
 # บันทึก AI audit 0.10.0
 
 **สถานะ:** AI audit เสร็จ ข้อจำกัดของ template ถูกบันทึกไว้
@@ -81,7 +83,7 @@ esbuild และ `npm run docs:build` สำเร็จ warning นี้ไ�
   [ข้อกังวลทางกฎหมาย](legal-concerns.md) และ #128–#131 เป็นการตัดสินใจของแต่ละโปรเจกต์
 - **Release notes ยังเป็น draft** — กำลังปรับเป็น template release ใน #174
 - **Announcement ยังเป็น draft** — กำลังปรับเป็น template release ใน #174
-- **Temporary internal seed ยังอยู่** — `internal/` ใน repository เจ้าของ #66
+- **วัสดุ bootstrap ชั่วคราวถูกลบแล้ว** — ลบใน #66 และไม่มี exclusion เหลือ
 - **งาน 0.10.0 ยังทำอยู่และ 1.0.0 release อยู่ภายหลัง** — 0.10.0 milestone
   เจ้าของ #171, #66
 - **Metadata วันที่ release ยังไม่อัปเดต** — `CITATION.cff` และ `core/sras.yaml`
@@ -147,9 +149,53 @@ announcement กำลังปรับใน #174
 งานที่เหลือคือ #61 (เวอร์ชัน 1.0.0 และ release metadata) และ #66 (cleanup และ
 template release 1.0.0)
 
+## การตรวจ AI audit ครั้งสุดท้ายของ 1.0.0
+
+**สถานะ:** AI audit ฉบับสุดท้ายสำหรับ template release 1.0.0 **วันที่:**
+2026-10-28 **Commit ที่ตรวจ:** commit บน `main` ที่ปิด #66 ส่วน SHA และผลคำสั่ง
+แบบเต็มอยู่ใน comment บน dashboard **ผู้ตรวจ:** AI execution agent ภายใต้
+ทิศทางของเจ้าของ repository
+
+นี่เป็น template release ไม่ใช่ standard release ส่วนการตรวจนี้ไม่ใช่การทบทวน
+โดยมนุษย์ การทบทวนภายนอก การทบทวนทางกฎหมาย หรือการรับรอง
+
+| การตรวจ             | คำสั่งหรือหลักฐาน                                  | ผล                         |
+| ------------------- | -------------------------------------------------- | -------------------------- |
+| Version consistency | `node tools/check-version.ts 1.0.0`                | ผ่าน                       |
+| Typecheck           | `npm run typecheck`                                | ผ่าน                       |
+| Lint และ format     | `npm run lint`; `npm run format:check`             | ผ่าน                       |
+| Markdown lint       | `npm run lint:md`                                  | ผ่าน 280 ไฟล์              |
+| Tests               | `npm test`                                         | ผ่าน 40 ไฟล์ 339 tests     |
+| Docs QA             | `npm run check:docs`                               | ผ่าน 191 EN / 38 TH        |
+| FDS                 | `npm run check:fds`                                | ผ่าน 43 skills, 3.3.0      |
+| Schema              | `npm run sras -- validate --all`                   | ผ่าน 53 ไฟล์               |
+| Render              | `npm run sras -- render --check`                   | ผ่าน 154 หน้า              |
+| Guard               | `npm run sras -- guard`                            | ผ่าน 365 ไฟล์              |
+| Docs build          | `npm run docs:build`                               | ผ่าน                       |
+| Metadata            | `CITATION.cff`; `core/sras.yaml`                   | `2026-10-28`               |
+| Bootstrap cleanup   | `test ! -e internal`; grep exclusion               | ผ่าน ไม่มี exclusion เหลือ |
+| Source gists        | `gh gist list`; access check                       | ลบแล้ว เข้าถึงไม่ได้       |
+| Dependency audit    | `npm audit --omit=dev --audit-level=high`          | ผ่าน 0 ช่องโหว่            |
+| Doctor              | `oss-kit doctor yutna/software-delivery-assurance` | no drift                   |
+| CI                  | `ci-ok`, `pr-check / check`, CI บน `main`          | เขียว                      |
+
+ทุกหน้าไทยยังเป็น `translation_status: partial` และ `machine_translated: true`
+ไม่มี `review_status: reviewed` เพิ่มเข้ามา ส่วน register 27 รายการยังเป็น
+`review_status: unverified` ข้อกังวลทางกฎหมายทั้งสี่ยังเป็น desk research note
+ไม่ใช่ legal opinion
+
+ข้อจำกัดเป็นส่วนหนึ่งของ release: คำแปลไทยยัง partial ทะเบียนยัง unverified
+ไม่มีการอ้างการทบทวนภายนอกหรือโดยมนุษย์ และ template เป็นแบบกลาง โปรเจกต์ที่
+นำไปใช้ตัดสินใจเองว่าข้อกังวลใดใช้กับบริบทของตน และบันทึกการทบทวนหรือการอนุมัติ
+ของตนเอง
+
+gate ทางเทคนิคผ่านและ release พร้อม ส่วน repository ไม่ได้อ้างมาตรฐาน การรับรอง
+compliance การทบทวนภายนอก หรือการทบทวนโดยมนุษย์ comment บน dashboard บันทึก
+commit และผลคำสั่ง: <https://github.com/yutna/software-delivery-assurance/issues/67>
+
 ## หน้าที่เกี่ยวข้อง
 
-- [การทบทวนความพร้อม v1.0.0](v1-readiness.md)
+- [AI audit และข้อจำกัด](v1-readiness.md)
 - [นโยบายการทบทวน](review-policy.md)
 - [ความพร้อมของ template](template-readiness.md)
 - [ข้อกังวลทางกฎหมาย](legal-concerns.md)

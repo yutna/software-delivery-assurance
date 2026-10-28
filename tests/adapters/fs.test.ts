@@ -34,7 +34,7 @@ describe("content discovery and reading", () => {
       "registers/th/pdpa.yaml",
       "mappings/iso-27001.yaml",
       "core/domains/readme.txt",
-      "internal/secret.yaml",
+      "vendor/secret.yaml",
       "docs/page.yaml",
       "tests/fixture.yaml",
     ];

@@ -13,8 +13,6 @@ exclude:
     reason: negative fixtures and generated test data
   - path: guard/denylist.yaml
     reason: the denylist itself contains the patterns
-  - path: internal/**
-    reason: temporary bootstrap seed; deleted in the final v1.0.0 issue
 allow:
   - path: SCOPE.md
     text: "Healthcare is out of scope"

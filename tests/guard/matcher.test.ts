@@ -25,7 +25,7 @@ const rules: GuardRuleSet = {
   ],
   exclude: [
     { path: "tests/**", reason: "fixtures" },
-    { path: "internal/**", reason: "seed" },
+    { path: "seed/**", reason: "seed" },
   ],
   allow: [
     {
@@ -44,7 +44,7 @@ describe("path matching", () => {
   test("matches exact paths, single stars, and double stars", () => {
     expect(pathMatches("SCOPE.md", "SCOPE.md")).toBe(true);
     expect(pathMatches("SCOPE.md", "README.md")).toBe(false);
-    expect(pathMatches("internal/**", "internal/seed/a.md")).toBe(true);
+    expect(pathMatches("seed/**", "seed/a.md")).toBe(true);
     expect(pathMatches("tests/**", "tests/guard/a.yaml")).toBe(true);
     expect(pathMatches("core/*.yaml", "core/sras.yaml")).toBe(true);
     expect(pathMatches("core/*.yaml", "core/domains/security.yaml")).toBe(
@@ -54,7 +54,7 @@ describe("path matching", () => {
 
   test("filters excluded paths", () => {
     expect(isExcluded("tests/guard/a.yaml", rules)).toBe(true);
-    expect(isExcluded("internal/seed/a.md", rules)).toBe(true);
+    expect(isExcluded("seed/a.md", rules)).toBe(true);
     expect(isExcluded("core/sras.yaml", rules)).toBe(false);
   });
 });

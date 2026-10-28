@@ -146,12 +146,12 @@ describe("scanContent", () => {
     }
   });
 
-  test("skips the FDS pack, vendor, tests, and the temporary internal seed", async () => {
+  test("skips the FDS pack, vendor, and tests, and reports a denylisted term in content", async () => {
     const root = await makeRoot();
     await write(root, ".claude/skills/a.md", "hospital\n");
     await write(root, "vendor/a.md", "hospital\n");
     await write(root, "tests/a.md", "hospital\n");
-    await write(root, "internal/a.md", "hospital\n");
+    await write(root, "core/a.yaml", "description: hospital\n");
     await write(root, "README.md", "clean\n");
 
     const result = await scanContent(
@@ -161,8 +161,10 @@ describe("scanContent", () => {
 
     expect(result.ok).toBe(true);
     if (result.ok) {
-      expect(result.value.findings).toEqual([]);
-      expect(result.value.scanned).toBe(1);
+      expect(result.value.scanned).toBe(2);
+      expect(result.value.findings).toHaveLength(1);
+      expect(result.value.findings[0]?.file).toBe("core/a.yaml");
+      expect(result.value.findings[0]?.category).toBe("healthcare");
     }
   });
 

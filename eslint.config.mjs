@@ -15,7 +15,6 @@ export default tseslint.config(
       "node_modules/**",
       ".claude/skills/**",
       "vendor/**",
-      "internal/**",
       "docs/.vitepress/dist/**",
       "docs/.vitepress/cache/**",
     ],

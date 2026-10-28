@@ -18,7 +18,6 @@ const SKIP_DIRECTORIES = new Set([
   "coverage",
   ".claude",
   "vendor",
-  "internal",
   "tests",
   "docs",
 ]);

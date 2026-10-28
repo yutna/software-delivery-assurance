@@ -189,7 +189,7 @@ guard passed: scanned 354 files; excluded 0
 
 guard สแกนเนื้อหาสาธารณะเพื่อหาคำศัพท์นอกขอบเขต, secret, private network
 identifier, personal data, ชื่อลูกค้าจาก private override และ unsafe claim
-ส่วน FDS pack, `vendor/`, `tests/` และ `internal/` ถูกยกเว้น
+ส่วน FDS pack, `vendor/` และ `tests/` ถูกยกเว้น
 
 รูปแบบ machine-readable และ CI annotation:
 

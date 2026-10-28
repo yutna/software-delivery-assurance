@@ -263,10 +263,3 @@ The pack is updated only by `npm run sync:fds` after reviewing the upstream
 diff. Do not hand-edit `.claude/skills/`. `npm run check:fds` verifies the pack,
 lockfile, notice, settings, compiler options, pure modules, and forbidden
 patterns.
-
-## Temporary internal seed
-
-`internal/` holds the two private source documents imported at bootstrap. It is
-public because the repository is public, excluded from the guard and docs, and
-deleted together with the source gists in the final v1.0.0 issue. Do not add
-customer data, secrets, or confidential material there.

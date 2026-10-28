@@ -241,14 +241,6 @@ issue is unfinished and post a handoff comment with:
 Do not leave uncommitted work or a required local-only file. The private
 denylist is optional and is never committed.
 
-## Temporary internal seed
-
-The `internal/` directory contains the two private source documents imported at
-bootstrap. It is public because the repository is public, excluded from the
-content guard and docs, and deleted together with the source gists in the final
-v1.0.0 issue. Do not add customer data, secrets, or confidential material
-there, and do not copy its content into SRAS-owned paths.
-
 ## Security
 
 Follow [SECURITY.md](SECURITY.md). Report vulnerabilities privately, never in a

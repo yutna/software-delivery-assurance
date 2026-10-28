@@ -192,8 +192,8 @@ matters.
 
 The guard scans the public content paths for out-of-scope health and sector
 terms, secrets, private network identifiers, personal data, customer names from
-the private override, and unsafe claims. The FDS pack, `vendor/`, `tests/`, and
-the temporary `internal/` seed are excluded.
+the private override, and unsafe claims. The FDS pack, `vendor/`, and `tests/`
+are excluded.
 
 Machine-readable output and CI annotations:
 
