@@ -16,7 +16,9 @@ placeholders, applies the profile, computes the lockfile, validates the result,
 and writes the files.
 
 Read the [project template guide](project.md) for the file-by-file reference,
-the placeholders, and the validation rules.
+the placeholders, and the validation rules. After editing an instance, run
+`npm run sras -- project validate <dir>`; after changing the selection, run
+`npm run sras -- project refresh <dir>`.
 
 ## Synthetic examples
 

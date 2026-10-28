@@ -186,9 +186,16 @@ An `accepted` risk requires an `acceptance_id`.
 ## `assurance.lock.yaml`
 
 The lockfile pins the resolved standard inputs and their checksums. Do not edit
-it by hand. This version does not refresh an existing lockfile; create a new
-instance and copy the assessment when the selection or the SRAS version changes.
-A refresh command is tracked in #127.
+it by hand. After changing the selection or updating the library, refresh it
+from the project directory:
+
+```bash
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project validate ~/sras-demo` checks the instance without writing. It reports a
+stale lockfile, a missing project file, a selection that the standard does not
+define, and any other project rule that fails.
 
 ```yaml
 lockfile_version: 1

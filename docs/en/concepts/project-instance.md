@@ -90,9 +90,21 @@ keeps its history.
 `assurance.lock.yaml` makes the assessment reproducible. It pins the SRAS
 version and checksum, the selected module and overlay versions, and the SHA-256
 of every resolved standard input. It records no timestamp, generator, or
-environment data, so the same inputs produce the same file. This version does
-not refresh an existing lockfile; create a new instance when the standard or
-the selection changes. A refresh command is tracked in #127.
+environment data, so the same inputs produce the same file.
+
+Validate the instance after editing it, and refresh the lockfile after changing
+the selection or the standard:
+
+```bash
+npm run sras -- project validate ~/sras-demo
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project validate` is read-only. It parses every project file, applies the
+project rules, resolves the current selection, and fails when the lockfile is
+stale. `project refresh` recomputes `assurance.lock.yaml` from the current
+selection, writes only that file, and refuses to write when another project
+rule fails. Neither command calls the network.
 
 ## What stays private
 

@@ -18,6 +18,8 @@ creates project instances.
 | `npm run sras -- validate --all`            | Validate every standard YAML file.         |
 | `npm run sras -- init <dir> --profile lite` | Create a lite project instance.            |
 | `npm run sras -- init <dir> --profile full` | Create a full project instance.            |
+| `npm run sras -- project validate <dir>`    | Validate an existing project instance.     |
+| `npm run sras -- project refresh <dir>`     | Recompute a project lockfile.              |
 | `npm run sras -- render`                    | Write the English reference pages.         |
 | `npm run sras -- render --check`            | Check the reference pages without writing. |
 | `npm run sras -- guard`                     | Scan public content.                       |
@@ -33,6 +35,19 @@ once and calls `node dist/cli.js` directly.
 crosswalks against the JSON Schema 2020-12 contracts and the domain rules. It
 reports the number of files validated. A schema or domain issue exits with
 code 1.
+
+## Project validate and refresh
+
+`project validate <dir>` reads an existing project instance, parses every
+project file with the same schemas and parsers as `init`, applies the project
+rules, resolves the selection against the library, and verifies the lockfile
+checksum. It is read-only and exits with code 1 on any issue.
+
+`project refresh <dir>` rebuilds `assurance.lock.yaml` from the current manifest
+selection and the resolved standard inputs. It validates the candidate instance
+before writing, writes only the lockfile, and leaves every other file
+unchanged. An unknown module, overlay, or profile is reported instead of being
+written.
 
 ## Render
 

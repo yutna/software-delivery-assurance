@@ -184,6 +184,52 @@ describe("parseArgs", () => {
     });
   });
 
+  test("project accepts validate and refresh with a directory", () => {
+    expect(parseArgs(["project", "validate", "example-project"])).toEqual({
+      ok: true,
+      value: {
+        tag: "Project",
+        action: "validate",
+        directory: "example-project",
+      },
+    });
+    expect(parseArgs(["project", "refresh", "example-project"])).toEqual({
+      ok: true,
+      value: {
+        tag: "Project",
+        action: "refresh",
+        directory: "example-project",
+      },
+    });
+  });
+
+  test("project requires an action and a directory", () => {
+    expect(parseArgs(["project"])).toEqual({
+      ok: false,
+      error: { tag: "MissingArgument", value: "validate|refresh" },
+    });
+    expect(parseArgs(["project", "validate"])).toEqual({
+      ok: false,
+      error: { tag: "MissingArgument", value: "<dir>" },
+    });
+  });
+
+  test("project rejects an unknown action and extra arguments", () => {
+    expect(parseArgs(["project", "check", "example-project"])).toEqual({
+      ok: false,
+      error: { tag: "InvalidProjectAction", value: "check" },
+    });
+    expect(
+      parseArgs(["project", "validate", "example-project", "extra"]),
+    ).toEqual({
+      ok: false,
+      error: {
+        tag: "TooManyArguments",
+        values: ["project", "validate", "example-project", "extra"],
+      },
+    });
+  });
+
   test("an unknown command is rejected", () => {
     expect(parseArgs(["nope"])).toEqual({
       ok: false,

@@ -168,7 +168,15 @@ risk ที่เป็น `accepted` ต้องมี `acceptance_id`
 
 ## `assurance.lock.yaml`
 
-lockfile pin standard input ที่ resolve แล้วและ checksum ห้ามแก้ด้วยมือ เวอร์ชันนี้ยัง refresh lockfile ที่มีอยู่ไม่ได้ ให้สร้าง instance ใหม่และคัดลอก assessment เมื่อการเลือกหรือ version ของ SRAS เปลี่ยน คำสั่ง refresh ติดตามอยู่ใน #127
+lockfile pin standard input ที่ resolve แล้วและ checksum ห้ามแก้ด้วยมือ เมื่อ
+เปลี่ยน selection หรืออัปเดตคลัง ให้ refresh จาก directory ของโปรเจกต์
+
+```bash
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project validate ~/sras-demo` ตรวจ instance โดยไม่เขียน รายงาน lockfile ที่ล้า
+ไฟล์โปรเจกต์ที่หาย selection ที่มาตรฐานไม่รู้จัก และกฎโปรเจกต์ข้ออื่นที่ล้มเหลว
 
 ```yaml
 lockfile_version: 1

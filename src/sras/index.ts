@@ -36,6 +36,7 @@ export {
   computeChecksum,
   createProjectLock,
   lockInputs,
+  renderProjectLock,
   verifyProjectLock,
 } from "./project/lockfile.js";
 export {
@@ -48,9 +49,15 @@ export {
 export {
   initProject,
   readStandardInputs,
+  refreshProjectLock,
+  validateProjectDirectory,
   type InitProjectInput,
   type InitResult,
   type InitShellError,
+  type ProjectDirectoryError,
+  type ProjectDirectoryInput,
+  type ProjectDirectoryResult,
+  type ProjectRefreshResult,
 } from "./project/workflow.js";
 export { validateProject } from "./project/validate.js";
 export {

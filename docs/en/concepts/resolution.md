@@ -76,9 +76,16 @@ Switching profile does not add or remove requirements.
 - the SHA-256 of every resolved standard input.
 
 A project assessment must be reproducible from the lockfile even after the
-library changes. When the library version changes, create a new instance and
-review the resolved requirements before assessing again. This version does not
-refresh an existing lockfile; a refresh command is tracked in #127.
+library changes. Review the resolved requirements before assessing again, then
+refresh the lockfile:
+
+```bash
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project validate ~/sras-demo` is the read-only check. It reports a stale
+lockfile and exits non-zero when the checked-in lock no longer matches the
+resolved inputs.
 
 ## Worked example
 

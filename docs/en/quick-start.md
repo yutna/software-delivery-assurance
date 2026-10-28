@@ -37,9 +37,9 @@ created project instance at /Users/you/sras-demo
 files: README.md, assurance.yaml, assessment.yaml, evidence-index.yaml, claims.yaml, risk-register.yaml, assurance.lock.yaml
 next steps:
 1. Edit assurance.yaml and assessment.yaml to set the project scope, assessor, and sign-off.
-2. Select the modules and overlays that match the product, then refresh the lockfile.
+2. Select the modules and overlays that match the product, then run npm run sras -- project refresh <dir> from the library repository.
 3. Assess the resolved requirements and record evidence in the private evidence store.
-4. Run npm run sras -- validate --all, render --check, and guard from the library repository.
+4. Run npm run sras -- project validate <dir>, validate --all, render --check, and guard from the library repository.
 ```
 
 `init` refuses an existing non-empty directory and any path containing `..`.
@@ -92,7 +92,33 @@ Rules that the project parsers enforce:
 
 The full file-by-file guide is in [templates/project.md](templates/project.md).
 
-## Step 3 — Validate the library
+## Step 3 — Validate the instance and refresh the lockfile
+
+```bash
+npm run sras -- project validate ~/sras-demo
+```
+
+Expected output:
+
+```text
+project valid: /Users/you/sras-demo; 12 resolved standard inputs; lockfile current
+```
+
+`project validate` parses every project file, applies the same rules as `init`,
+resolves the current selection, and fails with a readable issue list when the
+lockfile is stale. It never writes.
+
+After changing the module or overlay selection, refresh the lockfile:
+
+```bash
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project refresh` recomputes `assurance.lock.yaml` from the current selection
+and the standard inputs, writes only that file, and refuses to write when
+another project rule fails.
+
+## Step 4 — Validate the library
 
 ```bash
 npm run sras -- validate --all
@@ -108,12 +134,11 @@ This command validates the SRAS standard content in the library: requirements,
 modules, overlays, registers, and crosswalks. It runs the JSON Schema 2020-12
 contracts under `schemas/` and the domain rules in `src/sras/standard/`.
 
-> **Project instance validation:** v0.9.0 validates a project instance when
-> `init` creates it. The planned files are checked with the same schemas and
-> project parsers before anything is written. A standalone project validator is
-> not part of v0.9.0.
+`validate --all` covers the library, not a project instance. Use
+`project validate <dir>` for an instance and `project refresh <dir>` to update
+its lockfile.
 
-## Step 4 — Render and check the reference pages
+## Step 5 — Render and check the reference pages
 
 ```bash
 npm run sras -- render
@@ -131,7 +156,7 @@ render check passed: 154 pages; 154 files
 The command is deterministic: page order, list order, and content contain no
 timestamp or environment data.
 
-## Step 5 — Guard the public content
+## Step 6 — Guard the public content
 
 ```bash
 npm run sras -- guard

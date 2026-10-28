@@ -67,5 +67,8 @@ template are placeholders only.
 4. Record evidence in the private evidence store and index it here.
 5. Approve claims only when current evidence supports them.
 6. Record gaps and risks with an owner and a due date.
-7. Run `npm run sras -- validate --all`, `render --check`, and `guard` from the
+7. Run `npm run sras -- project validate <dir>` after every edit, and
+   `npm run sras -- project refresh <dir>` after changing the selection or
+   updating the library.
+8. Run `npm run sras -- validate --all`, `render --check`, and `guard` from the
    library repository before publishing any project output.

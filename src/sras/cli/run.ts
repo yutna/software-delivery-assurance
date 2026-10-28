@@ -17,6 +17,8 @@ const renderArgsError = (error: ArgsError): string => {
       return `invalid profile: ${error.value}; expected lite or full\n`;
     case "InvalidFormat":
       return `invalid format: ${error.value}; expected text or json\n`;
+    case "InvalidProjectAction":
+      return `invalid project action: ${error.value}; expected validate or refresh\n`;
     case "ConflictingFlags":
       return `conflicting flags: ${error.values.join(" ")}\n`;
     default:

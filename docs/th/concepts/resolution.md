@@ -74,9 +74,16 @@ gate ไม่ถูกยกเว้น ทางเดียวคือ `not
 - overlay ที่เลือกและ version
 - SHA-256 ของ standard input ทุกไฟล์ที่ resolve แล้ว
 
-การประเมินโปรเจกต์ต้องทำซ้ำได้จาก lockfile แม้คลังจะเปลี่ยน เมื่อ version ของ
-คลังเปลี่ยน ให้สร้าง instance ใหม่และทบทวนข้อกำหนดที่ resolve ก่อนประเมินใหม่
-เวอร์ชันนี้ยัง refresh lockfile ที่มีอยู่ไม่ได้ คำสั่ง refresh ติดตามอยู่ใน #127
+การประเมินโปรเจกต์ต้องทำซ้ำได้จาก lockfile แม้คลังจะเปลี่ยน ให้ทบทวนข้อกำหนด
+ที่ resolve ก่อนประเมินใหม่ แล้ว refresh lockfile
+
+```bash
+npm run sras -- project refresh ~/sras-demo
+```
+
+`project validate ~/sras-demo` เป็นการตรวจแบบอ่านอย่างเดียว รายงาน lockfile
+ที่ล้าและออกด้วย exit code ที่ไม่ใช่ศูนย์เมื่อ lock ที่ commit ไว้ไม่ตรงกับ input
+ที่ resolve แล้ว
 
 ## ตัวอย่างที่ทำไว้
 
