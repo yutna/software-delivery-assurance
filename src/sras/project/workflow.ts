@@ -52,8 +52,13 @@ import type {
   ProjectInstance,
   ProjectIssue,
   ProjectLock,
+  ProjectWarning,
 } from "./types.js";
-import { validateProject, validateEvidenceTypeCoverage } from "./validate.js";
+import {
+  projectWarnings,
+  validateProject,
+  validateEvidenceTypeCoverage,
+} from "./validate.js";
 import { resolveProject, type ProjectResolution } from "./resolution.js";
 
 export type InitProjectInput = {
@@ -92,6 +97,10 @@ export type ProjectDirectoryInput = {
 export type ProjectDirectoryResult = {
   readonly target: string;
   readonly inputCount: number;
+};
+
+export type ProjectValidationResult = ProjectDirectoryResult & {
+  readonly warnings: readonly ProjectWarning[];
 };
 
 export type ProjectRefreshResult = ProjectDirectoryResult & {
@@ -661,7 +670,7 @@ const buildProjectLock = (
 
 export const validateProjectDirectory = async (
   input: ProjectDirectoryInput,
-): Promise<Result<ProjectDirectoryResult, ProjectDirectoryError>> => {
+): Promise<Result<ProjectValidationResult, ProjectDirectoryError>> => {
   const target = projectTarget(input.root, input.target);
 
   if (!target.ok) return target;
@@ -707,6 +716,7 @@ export const validateProjectDirectory = async (
   return ok({
     target: target.value,
     inputCount: resolved.value.inputs.length,
+    warnings: projectWarnings(instance.value),
   });
 };
 

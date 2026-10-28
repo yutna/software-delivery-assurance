@@ -12,7 +12,8 @@ import {
 import type { GuardError, GuardFinding } from "../guard/types.js";
 import { scanContent } from "../guard/workflow.js";
 import type { InitIssue } from "../project/init.js";
-import type { ProjectIssue } from "../project/types.js";
+import type { ProjectIssue, ProjectWarning } from "../project/types.js";
+import { SIGNOFF_PLACEHOLDER } from "../project/validate.js";
 import {
   initProject,
   refreshProjectLock,
@@ -219,6 +220,9 @@ const renderProjectIssue = (issue: ProjectIssue): string => {
   }
 };
 
+const renderProjectWarning = (warning: ProjectWarning): string =>
+  `${warning.file}: sign-off is unsigned (${warning.fields.join(" and ")} = "${SIGNOFF_PLACEHOLDER}"); a draft may stay unsigned, but do not treat it as an approval`;
+
 const renderInitIssue = (issue: InitIssue): string => {
   switch (issue.tag) {
     case "InvalidProjectName":
@@ -362,6 +366,10 @@ const runProject = async (
     if (!result.ok) {
       io.stderr(`${renderProjectDirectoryError(result.error)}\n`);
       return 1;
+    }
+
+    for (const warning of result.value.warnings) {
+      io.stderr(`warning: ${renderProjectWarning(warning)}\n`);
     }
 
     io.stdout(

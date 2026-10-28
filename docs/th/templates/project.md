@@ -41,8 +41,8 @@ identifier หรือ secret
 | `__PROJECT_DESCRIPTION__` | คำอธิบายที่สร้างขึ้น                   |
 | `__PROJECT_OWNER__`       | `Project owner`                        |
 | `__ASSESSOR__`            | `Project team`                         |
-| `__SIGNOFF_NAME__`        | `Project owner`                        |
-| `__SIGNOFF_ROLE__`        | `Project owner`                        |
+| `__SIGNOFF_NAME__`        | `Not signed`                           |
+| `__SIGNOFF_ROLE__`        | `Not signed`                           |
 | `0.0.0`                   | SRAS version ปัจจุบัน                  |
 | `1970-01-01`              | วันที่ปัจจุบัน                         |
 | `full`                    | profile ที่เลือก                       |
@@ -126,11 +126,13 @@ summary:
 เฉพาะ `verified` เท่านั้นที่มีกฎบังคับเรื่องประเภทหลักฐาน สถานะอื่นเป็นแนวปฏิบัติใน
 การประเมิน ให้บันทึกเหตุผลใน `notes` เพื่อให้ผู้อ่านคนถัดไปเห็น
 
-`init` เขียน `signoff` ด้วย `Project owner` บทบาท `Project owner` และวันที่สร้าง
-เพราะ schema กำหนดให้ต้องมีออบเจกต์ sign-off ไฟล์ที่สร้างจึงยัง valid แต่ไม่ใช่
-การอนุมัติ ให้เปลี่ยนชื่อ บทบาท และวันที่เป็นการตัดสินใจของมนุษย์ที่ระบุชื่อได้ก่อนใช้
-อินสแตนซ์เพื่อการตัดสินใจส่งมอบใด ๆ `project validate` ตรวจโครงสร้าง ไม่ได้ตรวจว่า
-ใครลงนาม
+`init` เขียน `signoff.name` และ `signoff.role` เป็น `Not signed` พร้อมวันที่สร้าง
+เพราะ schema กำหนดให้ต้องมีออบเจกต์ sign-off ไฟล์ที่สร้างจึงยัง valid แต่ sentinel นี้
+ไม่ใช่การอนุมัติ `project validate` จะเตือนแบบไม่ทำให้ validation fail ตราบใดที่ฟิลด์
+ใดฟิลด์หนึ่งยังเป็น `Not signed` และยัง exit 0 เพื่อให้ draft ยังใช้งานได้ ให้เปลี่ยน
+ทั้งสองฟิลด์และวันที่ (เมื่อวันอนุมัติจริงต่างจากวันที่สร้าง) เป็นการตัดสินใจของมนุษย์
+ที่ระบุชื่อได้ก่อนใช้อินสแตนซ์เพื่อการตัดสินใจส่งมอบใด ๆ `project validate` ยังตรวจ
+โครงสร้าง ไม่ได้ตรวจว่าใครลงนาม
 
 - `full` ต้องมี `maturity` ทุก requirement และ `summary.index` เป็นตัวเลข
 - `lite` ต้องมี `maturity: null` และ `summary.index: null`

@@ -49,7 +49,7 @@ const PROJECT_NAME = /^[\p{L}\p{N}][\p{L}\p{N} ._-]{0,119}$/u;
 const TEMPLATE_MARKER = /__[A-Z][A-Z0-9_]*__/;
 
 const NEXT_STEPS = [
-  "Edit assurance.yaml and assessment.yaml to set the project scope, assessor, and sign-off.",
+  "Edit assurance.yaml and assessment.yaml to set the project scope and assessor, and replace the `Not signed` sign-off when a human approves the assessment.",
   "Select the modules and overlays that match the product, then run npm run sras -- project refresh <dir> from the library repository.",
   "Assess the resolved requirements and record evidence in the private evidence store.",
   "Run npm run sras -- project validate <dir>, validate --all, render --check, and guard from the library repository.",
@@ -76,8 +76,8 @@ const templateText = (
     ["__PROJECT_DESCRIPTION__", description],
     ["__PROJECT_OWNER__", "Project owner"],
     ["__ASSESSOR__", "Project team"],
-    ["__SIGNOFF_NAME__", "Project owner"],
-    ["__SIGNOFF_ROLE__", "Project owner"],
+    ["__SIGNOFF_NAME__", "Not signed"],
+    ["__SIGNOFF_ROLE__", "Not signed"],
     ["0.0.0", input.srasVersion],
     ["1970-01-01", input.date],
     ["profile: full", `profile: ${input.profile}`],

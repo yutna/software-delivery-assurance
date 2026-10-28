@@ -59,6 +59,7 @@ export {
   type ProjectDirectoryInput,
   type ProjectDirectoryResult,
   type ProjectRefreshResult,
+  type ProjectValidationResult,
 } from "./project/workflow.js";
 export {
   resolveProject,
@@ -69,6 +70,8 @@ export {
   type UnassessedGateStatus,
 } from "./project/resolution.js";
 export {
+  projectWarnings,
+  SIGNOFF_PLACEHOLDER,
   validateEvidenceTypeCoverage,
   validateProject,
 } from "./project/validate.js";
@@ -90,8 +93,10 @@ export type {
   ProjectIssue,
   ProjectLock,
   ProjectManifest,
+  ProjectWarning,
   Risk,
   RiskRegister,
+  SignoffField,
   ValidatedProject,
 } from "./project/types.js";
 export {

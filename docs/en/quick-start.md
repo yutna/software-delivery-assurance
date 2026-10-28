@@ -69,11 +69,13 @@ Edit these files in the new project instance:
 | `claims.yaml`         | Allowed and prohibited wording                                 |
 | `risk-register.yaml`  | Gaps and risks with an owner and a due date                    |
 
-`init` pre-fills `signoff` with `Project owner`, the role `Project owner`, and
-the creation date so the generated file is schema-valid. That is a placeholder,
-not an approval. Replace the name, role, and date with a named human decision
-before the instance is used for any delivery decision. `project validate` checks
-the structure, not who signed.
+`init` writes `signoff.name` and `signoff.role` as `Not signed` and records the
+creation date so the generated file is schema-valid. The sentinel is not an
+approval. `project validate` prints a non-fatal warning while either field is
+still `Not signed` and exits 0, so a legitimate draft stays valid. Replace both
+fields and, when the approval date differs, the date with a named human decision
+before the instance is used for any delivery decision. `project validate` still
+checks the structure, not who signed.
 
 An assessed requirement has this shape:
 
