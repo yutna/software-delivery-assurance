@@ -50,6 +50,7 @@ Shared environments let test activity damage production and leak production data
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.31` (supports) — Separation of development, test, and production.
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `PR.PS-06` (partial) — Secure development practices support environment separation; the separation control is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PO.5` (supports) — Separate development, test, and production environments implement the SSDF environment practice.
 - [MAP-PCIDSS — SRAS Core to PCI DSS 4.0.1](../crosswalks/MAP-PCIDSS.md): `6.5.3` (supports) — Separation of pre-production and production environments.
 
 ## Review

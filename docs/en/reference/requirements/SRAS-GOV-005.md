@@ -50,6 +50,7 @@ Unassigned decision rights create gaps between finding a problem and acting on i
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `5.3, A.5.2` (supports) — Roles, responsibilities, and segregation of duties.
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `GV.RR-02` (supports) — Roles and responsibilities for cybersecurity risk management.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PO.2` (supports) — Assurance roles and decision rights cover the SSDF roles and responsibilities practice.
 
 ## Review
 

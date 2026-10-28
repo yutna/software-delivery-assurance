@@ -50,6 +50,7 @@ Review catches defects and unsafe assumptions before they reach users.
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.32` (partial) — Change management is required; peer review is an SRAS addition.
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `PR.PS-06` (partial) — Secure software development practices support review; peer review is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PW.7` (supports) — Peer review is the SSDF code-review practice applied to every change.
 - [MAP-PCIDSS — SRAS Core to PCI DSS 4.0.1](../crosswalks/MAP-PCIDSS.md): `6.3.2` (supports) — Review of custom code before release.
 
 ## Review

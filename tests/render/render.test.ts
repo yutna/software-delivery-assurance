@@ -216,12 +216,12 @@ describe("render golden pages", () => {
 });
 
 describe("render bundle", () => {
-  test("renders 161 unique pages in deterministic path order", async () => {
+  test("renders 162 unique pages in deterministic path order", async () => {
     const loaded = must(await loadStandardFromRoot(process.cwd()));
     const pages = renderStandard(loaded.standard);
     const paths = pages.map((page) => page.path);
 
-    expect(pages).toHaveLength(161);
+    expect(pages).toHaveLength(162);
     expect(new Set(paths).size).toBe(paths.length);
     expect(paths).toEqual([...paths].sort());
     expect(paths).toContain("index.md");
@@ -229,6 +229,7 @@ describe("render bundle", () => {
     expect(paths).toContain("overlays/TH-FIN.md");
     expect(paths).toContain("registers/TH-PDPA-001.md");
     expect(paths).toContain("crosswalks/MAP-NISTCSF.md");
+    expect(paths).toContain("crosswalks/MAP-NISTSSDF.md");
     expect(renderStandard(loaded.standard)).toEqual(pages);
   });
 });
@@ -295,7 +296,7 @@ describe("sras render", () => {
     const first = makeIo();
 
     expect(await run(["render"], first.io, root)).toBe(0);
-    expect(first.stdout.join("")).toContain("rendered 161 pages");
+    expect(first.stdout.join("")).toContain("rendered 162 pages");
 
     const check = makeIo();
 

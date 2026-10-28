@@ -50,6 +50,7 @@ An unverified dependency can introduce code that nobody reviewed.
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.5.21, A.8.19, A.8.7` (supports) — Supply chain, software installation, and malware protection.
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `GV.SC-04, PR.PS-06` (partial) — Supplier requirements and secure development support trusted sources; integrity verification is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PS.2` (supports) — Trusted sources and integrity verification implement release integrity.
 - [MAP-PCIDSS — SRAS Core to PCI DSS 4.0.1](../crosswalks/MAP-PCIDSS.md): `6.3.2` (partial) — Secure software development is covered; trusted sources and integrity verification are SRAS additions.
 
 ## Review

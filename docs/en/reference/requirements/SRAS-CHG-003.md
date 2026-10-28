@@ -50,6 +50,7 @@ A repeatable pipeline finds failures before release, not after deployment.
 ## Crosswalks
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.25, A.8.29` (partial) — Secure development and testing are covered; CI gating is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PS.2, PW.8, PO.3` (partial) — CI builds, tests, and scans with a supporting toolchain; artifact integrity verification and toolchain hardening remain environment-specific.
 
 ## Review
 

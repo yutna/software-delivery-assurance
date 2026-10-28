@@ -49,6 +49,7 @@ An unknown license can block distribution or create an unexpected obligation.
 ## Crosswalks
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.5.32` (supports) — Intellectual property rights.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PW.4` (partial) — Third-party components are tracked for license obligations; the secure acquisition review that PW.4 also expects is an SRAS addition to this requirement.
 
 ## Review
 

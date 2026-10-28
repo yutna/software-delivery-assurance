@@ -155,7 +155,7 @@ npm run sras -- validate --all
 ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-validated 53 files
+validated 54 files
 ```
 
 คำสั่งนี้ตรวจ requirement, module, overlay, register และ crosswalk ใน library
@@ -177,7 +177,7 @@ npm run sras -- render --check
 ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-render check passed: 154 pages; 154 files
+render check passed: 162 pages; 162 files
 ```
 
 คำสั่งนี้ deterministic: ลำดับหน้า ลำดับรายการ และเนื้อหาไม่มี timestamp หรือ
@@ -192,7 +192,7 @@ npm run sras -- guard
 ผลลัพธ์ที่คาดหวังมีลักษณะดังนี้:
 
 ```text
-guard passed: scanned 365 files; excluded 0
+guard passed: scanned 374 files; excluded 0
 ```
 
 จำนวนไฟล์อาจเปลี่ยนเมื่อเพิ่มหรือลบไฟล์ สิ่งสำคัญคือผลผ่านหรือไม่ผ่าน

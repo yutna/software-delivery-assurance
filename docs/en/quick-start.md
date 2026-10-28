@@ -157,7 +157,7 @@ npm run sras -- validate --all
 Expected output:
 
 ```text
-validated 53 files
+validated 54 files
 ```
 
 This command validates the SRAS standard content in the library: requirements,
@@ -180,7 +180,7 @@ npm run sras -- render --check
 without writing. Expected output:
 
 ```text
-render check passed: 154 pages; 154 files
+render check passed: 162 pages; 162 files
 ```
 
 The command is deterministic: page order, list order, and content contain no
@@ -195,7 +195,7 @@ npm run sras -- guard
 Expected output:
 
 ```text
-guard passed: scanned 365 files; excluded 0
+guard passed: scanned 374 files; excluded 0
 ```
 
 The count changes as files are added or removed; the pass/fail result is what

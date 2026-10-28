@@ -49,6 +49,7 @@ Configuration drift makes a tested release behave differently in production.
 ## Crosswalks
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.9` (supports) — Configuration management.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PW.6` (partial) — Versioned and reviewed configuration covers build inputs; compiler and build hardening are not specified.
 
 ## Review
 

@@ -52,6 +52,8 @@ A finding without an owner and deadline is a permanent, invisible risk.
 - [MAP-ASVS — SRAS Core and Integration to OWASP ASVS 5.0](../crosswalks/MAP-ASVS.md): `v5.0.0-15.2` (supports) — Security architecture and dependency management.
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.8.8` (supports) — Technical vulnerability management.
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `ID.RA-01, PR.PS-02` (supports) — Vulnerability identification and remediation.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `RV.1` (supports) — Vulnerability identification and remediation cover the SSDF vulnerability response practice.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `RV.2` (partial) — Prioritization and remediation targets cover assessment and treatment; root-cause analysis is RV.3 and is not covered.
 - [MAP-PCIDSS — SRAS Core to PCI DSS 4.0.1](../crosswalks/MAP-PCIDSS.md): `6.3, 11.3` (supports) — Vulnerability management and remediation.
 
 ## Review

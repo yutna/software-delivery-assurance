@@ -78,7 +78,7 @@ repository นี้
 | overlay ภาคธุรกิจ  |     4 | `overlays/industries/` |
 | ข้อกำหนดใน overlay |    45 | `overlays/industries/` |
 | ทะเบียนประเทศไทย   |    12 | `registers/th/`        |
-| crosswalk          |     7 | `mappings/`            |
+| crosswalk          |     8 | `mappings/`            |
 | profile            |     2 | `core/profiles/`       |
 | template โปรเจกต์  |     1 | `templates/project/`   |
 | ตัวอย่าง synthetic |     5 | `examples/`            |

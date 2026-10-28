@@ -50,6 +50,7 @@ Without an SBOM, component risk cannot be found or answered quickly.
 
 - [MAP-ISO27001 — SRAS Core to ISO/IEC 27001:2022](../crosswalks/MAP-ISO27001.md): `A.5.21, A.8.19` (partial) — Supply chain and software installation controls support component visibility; SBOM is an SRAS addition.
 - [MAP-NISTCSF — SRAS Core to NIST CSF 2.0](../crosswalks/MAP-NISTCSF.md): `ID.AM-02, GV.SC-04` (partial) — Software inventory and supplier requirements support component visibility; an SBOM is an SRAS addition.
+- [MAP-NISTSSDF — SRAS Core to NIST SP 800-218 (SSDF) 1.1](../crosswalks/MAP-NISTSSDF.md): `PS.3` (supports) — An SBOM records release components for archiving and traceability.
 
 ## Review
 

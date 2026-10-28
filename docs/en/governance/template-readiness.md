@@ -37,7 +37,7 @@ external reviewer has approved the content.
 | Inspect resolution and coverage   | Ready   | `sras project resolve <dir>`; lists every unassessed gate          |
 | Record a public-sector authority  | Ready   | `scope.public_sector` with contracting authority and contract      |
 | Core, modules, and overlays       | Present | 70 Core, 52 module, and 45 overlay requirements at SRAS 1.0.0      |
-| Thailand registers and crosswalks | Present | 12 Thailand register entries and 7 informative crosswalks          |
+| Thailand registers and crosswalks | Present | 12 Thailand register entries and 8 informative crosswalks          |
 | Deterministic reference pages     | Ready   | `sras render --check`                                              |
 | Public-content guard              | Ready   | `sras guard` and CI annotations                                    |
 
