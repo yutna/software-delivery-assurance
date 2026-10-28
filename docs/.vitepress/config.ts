@@ -44,6 +44,10 @@ const enNav: DefaultTheme.NavItem[] = [
         text: "Review policy",
         link: "/en/governance/review-policy",
       },
+      {
+        text: "v1.0.0 audit",
+        link: "/en/governance/v1-audit",
+      },
     ],
   },
   { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
@@ -89,6 +93,10 @@ const thNav: DefaultTheme.NavItem[] = [
         text: "นโยบายการทบทวน",
         link: "/th/governance/review-policy",
       },
+      {
+        text: "การตรวจ v1.0.0",
+        link: "/th/governance/v1-audit",
+      },
     ],
   },
   { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
@@ -133,6 +141,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "Review policy",
         link: "/en/governance/review-policy",
+      },
+      {
+        text: "v1.0.0 audit",
+        link: "/en/governance/v1-audit",
       },
     ],
   },
@@ -239,6 +251,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       {
         text: "นโยบายการทบทวน",
         link: "/th/governance/review-policy",
+      },
+      {
+        text: "การตรวจ v1.0.0",
+        link: "/th/governance/v1-audit",
       },
     ],
   },
