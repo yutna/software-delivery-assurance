@@ -47,14 +47,17 @@ external reviewer has approved the content.
 | Registers are unverified         | The entries index official sources but are not legal advice or a compliance finding. | Consult a qualified legal or regulatory focal point                  |
 | No external review               | No independent reviewer has validated the standard or the template.                  | Do not claim external review or independent validation               |
 | Four legal questions are open    | Retention, BOT cloud approval, WCAG level, and open-data licence remain unanswered.  | Resolve them for your project and record the answer privately        |
-| Evidence type coverage is absent | A gate can be marked verified with one document; coverage is not checked.            | Review the evidence set manually before sign-off                     |
-| Resolution output is not in CLI  | The CLI does not print the full resolved requirement and gate set.                   | Use the generated reference and the project lockfile                 |
-| No WCAG register entry           | WCAG 2.2 is cited by a gate but is not a register entry.                             | Treat the citation as informative, not legally verified              |
+| Evidence type coverage is absent | A gate can be marked verified with one document; coverage is not checked.            | Review the evidence set manually before sign-off (#134)              |
+| Resolution output is not in CLI  | The CLI does not print the full resolved requirement and gate set.                   | Use the generated reference and the project lockfile (#126)          |
 | Template is generic              | It does not encode agency-specific procurement, records, or approval rules.          | Add local rules in the private instance, not in this repository      |
 
 The open legal questions are `#128`, `#129`, `#130`, and `#131`. The remaining
-deferred findings are `#126`, `#134`, and `#135`. The high findings `#127` and
-`#132` were fixed by `#140` and `#141`.
+deferred findings are `#126` and `#134`. The high findings `#127` and `#132` were
+fixed by `#140` and `#141`; the external-standards rule was recorded in `#135`.
+
+WCAG 2.2 and the NIST AI Risk Management Framework 1.0 are external standards,
+not register entries. The rule and official sources are in
+[registers](../registers/index.md#external-standards-cited-by-requirements).
 
 ## Minimum conditions before a real use
 

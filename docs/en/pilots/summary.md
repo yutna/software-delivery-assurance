@@ -20,9 +20,10 @@ SRAS 0.8.0 and the synthetic projects only.
 - Review performed: AI self-review on 2026-10-28, accepted by the owner for the
   v0.9.0 review step. It is not independent, human, or legal review.
 
-After the v0.9.0 release, two deferred findings were fixed: PF-02 by #140 and
-PS-04 by #141. The current disposition is 11 fixed, 3 deferred, and 4 open legal
-questions. The earlier deferral is kept below as history, not rewritten.
+After the v0.9.0 release, three deferred findings were fixed: PF-02 by #140,
+PS-04 by #141, and PS-06 by #135. The current disposition is 12 fixed, 2
+deferred, and 4 open legal questions. The earlier deferral is kept below as
+history, not rewritten.
 
 The owner confirmed that no external reviewer is available. This page records
 that fact instead of inventing a name, a date, or a sign-off.
@@ -62,8 +63,8 @@ with an issue, or an `open legal question` with an issue.
 | PS-03 | Public  | Medium   | `TH-PUB-003` has no minimum accessibility target, and no field records the agreed target.                         | @yutna | Legal question #131             |
 | PS-04 | Public  | High     | The schema has no field for the contracting authority or contract reference.                                      | @yutna | Deferred to #132; fixed in #141 |
 | PS-05 | Public  | Medium   | `TH-PUB-005` does not name an acceptable open-data licence set.                                                   | @yutna | Legal question #130             |
-| PS-06 | Public  | Low      | WCAG 2.2 is cited by a gate but has no register entry.                                                            | @yutna | Deferred to #134                |
-| PS-07 | Public  | Medium   | Evidence type coverage is not checked; a gate can be `verified` with one document.                                | @yutna | Deferred to #135                |
+| PS-06 | Public  | Low      | WCAG 2.2 is cited by a gate but has no register entry.                                                            | @yutna | Fixed in #135                   |
+| PS-07 | Public  | Medium   | Evidence type coverage is not checked; a gate can be `verified` with one document.                                | @yutna | Deferred to #134                |
 
 ## Disposition detail
 
@@ -85,18 +86,18 @@ pipeline:
 
 ### Deferred at v0.9.0
 
-| Finding | Issue | Why it was deferred                                                                                        | Resolution now |
-| ------- | ----- | ---------------------------------------------------------------------------------------------------------- | -------------- |
-| PF-02   | #127  | A project validate and lock refresh command is a new CLI surface. It needs a design note, tests, and docs. | Fixed by #140  |
-| PF-03   | #126  | Resolution output and coverage reporting need an output contract and a decision on gate failure semantics. | Still deferred |
-| PS-04   | #132  | A contracting-authority field is a schema change with a migration note, so it needs its own review cycle.  | Fixed by #141  |
-| PS-06   | #134  | Register entries for voluntary external standards need a policy decision and verified sources.             | Still deferred |
-| PS-07   | #135  | Evidence type coverage needs the requirement evidence map at validation time and a substitute-type rule.   | Still deferred |
+| Finding | Issue | Why it was deferred                                                                                        | Resolution now                    |
+| ------- | ----- | ---------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| PF-02   | #127  | A project validate and lock refresh command is a new CLI surface. It needs a design note, tests, and docs. | Fixed by #140                     |
+| PF-03   | #126  | Resolution output and coverage reporting need an output contract and a decision on gate failure semantics. | Still deferred                    |
+| PS-04   | #132  | A contracting-authority field is a schema change with a migration note, so it needs its own review cycle.  | Fixed by #141                     |
+| PS-06   | #135  | Register entries for voluntary external standards need a policy decision and verified sources.             | Fixed by #135 (policy documented) |
+| PS-07   | #134  | Evidence type coverage needs the requirement evidence map at validation time and a substitute-type rule.   | Still deferred                    |
 
-This table preserves the v0.9.0 disposition. PF-02 and PS-04 were fixed after
-the release by #140 and #141. The fix does not erase the original deferral or
-the v0.9.0 limitation; it records the later resolution. The detailed pilot pages
-keep their original disposition as a historical record.
+This table preserves the v0.9.0 disposition. PF-02, PS-04, and PS-06 were fixed
+after the release by #140, #141, and #135. The fix does not erase the original
+deferral or the v0.9.0 limitation; it records the later resolution. The detailed
+pilot pages keep their original disposition as a historical record.
 
 Each remaining deferred finding stays visible in the pilot reports. None of them
 blocks the template track, and none is a gate waiver.

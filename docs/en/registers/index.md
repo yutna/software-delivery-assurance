@@ -102,6 +102,32 @@ EU entries are register-only. They are not an EU overlay, and they do not create
 region-level requirements. The [EU comparison and applicability
 page](eu-comparison.md) summarises the nine entries without ranking them.
 
+## External standards cited by requirements
+
+Some requirements cite a voluntary external standard for assessment guidance.
+Two examples are WCAG 2.2 for accessibility (`TH-PUB-003` and `TH-ECM-004`) and
+the NIST AI Risk Management Framework 1.0 (`TH-FIN-010`). These standards are
+not register entries.
+
+The rule is:
+
+- A register entry is for a law, regulation, or other instrument with a
+  jurisdiction, an official source, and a review due date.
+- A voluntary external standard stays in the requirement's `references` with a
+  title, URL, and type. It is not an overlay, not a legal conclusion, and not a
+  statement that a product conforms.
+- If a law gives the standard binding force in a jurisdiction, add a register
+  entry for the instrument that gives it force and map the requirement to that
+  entry.
+- A project records the version and conformance target it selected in its own
+  assessment. Do not treat the standard's presence in a requirement as proof of
+  conformance.
+
+The official sources are:
+
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
+- [NIST AI Risk Management Framework 1.0](https://www.nist.gov/itl/ai-risk-management-framework)
+
 ## Review limitation
 
 Every register entry in this release is `unverified`. A named qualified

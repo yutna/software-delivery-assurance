@@ -102,6 +102,18 @@ effective date, review due date, neutral summary, obligations, and mapped
 requirements. The entry defaults to `unverified`. Do not copy statute text
 beyond a short necessary quote. Do not give legal advice.
 
+A register entry is reserved for a law, regulation, or other instrument with a
+jurisdiction, an official source, and a review due date. A voluntary external
+standard cited for assessment guidance is not a register entry. It stays in the
+requirement's `references` with a title, URL, and type. If a law gives the
+standard binding force in a jurisdiction, add a register entry for the
+instrument that gives it force and map the requirement to that entry.
+
+For example, WCAG 2.2 and the NIST AI Risk Management Framework 1.0 are cited by
+gate requirements as external standards. They are not register entries because
+no Thailand instrument in this library gives them that status. A project may
+still use them as assessment guidance and record the version it selected.
+
 ## Breaking changes and deprecation
 
 Mark a deprecated requirement with `status: deprecated`, `deprecated_in`, and a
