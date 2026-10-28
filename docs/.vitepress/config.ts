@@ -409,7 +409,31 @@ const config = {
     "Open, evidence-based assurance for software delivery: SRAS reference requirements, registers, and tools.",
   base: readBase(process.env["DOCS_BASE"]),
   lastUpdated: true,
-  head: [["meta", { name: "theme-color", content: "#0f766e" }]],
+  head: [
+    ["meta", { name: "theme-color", content: "#0f766e" }],
+    [
+      "meta",
+      {
+        name: "robots",
+        content:
+          "noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate, noai, noimageai",
+      },
+    ],
+    [
+      "meta",
+      {
+        name: "googlebot",
+        content: "noindex, nofollow, noarchive, nosnippet, noimageindex",
+      },
+    ],
+    [
+      "meta",
+      {
+        name: "bingbot",
+        content: "noindex, nofollow, noarchive, nosnippet, noimageindex",
+      },
+    ],
+  ],
   vite: {
     build: { chunkSizeWarningLimit: 1200 },
     esbuild: {

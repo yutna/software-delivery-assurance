@@ -80,6 +80,7 @@ const requiredFiles = [
   "docs/.vitepress/theme/Layout.vue",
   "docs/.vitepress/theme/TranslationBanner.vue",
   "docs/.vitepress/theme/LanguageLinks.vue",
+  "docs/public/robots.txt",
   "docs/index.md",
   "docs/en/index.md",
   "docs/en/overview.md",
@@ -106,6 +107,27 @@ const theme = existsSync("docs/.vitepress/theme/index.ts")
 const layout = existsSync("docs/.vitepress/theme/Layout.vue")
   ? read("docs/.vitepress/theme/Layout.vue")
   : "";
+
+const robotsPath = "docs/public/robots.txt";
+if (existsSync(robotsPath)) {
+  const robots = read(robotsPath);
+  if (
+    !/^User-agent:\s*\*/mu.test(robots) ||
+    !/^Disallow:\s*\/$/mu.test(robots)
+  ) {
+    fail(`${robotsPath}: must disallow every crawler`);
+  }
+}
+
+for (const name of ["robots", "googlebot", "bingbot"]) {
+  const content = new RegExp(
+    `name:\\s*"${name}",\\s*content:\\s*"([^"]+)"`,
+    "u",
+  ).exec(config)?.[1];
+  if (content?.includes("noindex") !== true) {
+    fail(`docs/.vitepress/config.ts: missing noindex ${name} metadata`);
+  }
+}
 
 for (const locale of ["en", "th"]) {
   if (!new RegExp(`^\\s+${locale}: \\{`, "mu").test(config)) {
