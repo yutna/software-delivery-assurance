@@ -14,7 +14,7 @@ machine_translated: true
 
 ทดสอบว่าทีมการเงินนำไลบรารีไปใช้ได้โดยไม่ต้องมีคนช่วยหรือไม่: สร้าง project
 instance เลือก Core พร้อม module และ overlay ของภาคการเงิน หาข้อกำหนดที่เกี่ยวข้อง
-ประเมิน และรัน checks การนำร่องยังเปรียบเทียบผลกับ `examples/finance-synthetic/`
+ประเมิน และรันการตรวจสอบ การนำร่องยังเปรียบเทียบผลกับ `examples/finance-synthetic/`
 
 ## ขอบเขต
 
