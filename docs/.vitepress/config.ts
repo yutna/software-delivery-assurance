@@ -16,6 +16,10 @@ const enNav: DefaultTheme.NavItem[] = [
       { text: "Overview", link: "/en/overview" },
       { text: "Quick start", link: "/en/quick-start" },
       { text: "Glossary", link: "/en/glossary" },
+      {
+        text: "v1.0.0 readiness",
+        link: "/en/governance/v1-readiness",
+      },
     ],
   },
   { text: "Concepts", link: "/en/concepts/", activeMatch: "/en/concepts/" },
@@ -33,6 +37,10 @@ const thNav: DefaultTheme.NavItem[] = [
       { text: "ภาพรวม", link: "/th/overview" },
       { text: "เริ่มต้นอย่างรวดเร็ว", link: "/th/quick-start" },
       { text: "อภิธานศัพท์", link: "/th/glossary" },
+      {
+        text: "ความพร้อม v1.0.0",
+        link: "/th/governance/v1-readiness",
+      },
     ],
   },
   { text: "แนวคิด", link: "/th/concepts/", activeMatch: "/th/concepts/" },
@@ -50,6 +58,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       { text: "Overview", link: "/en/overview" },
       { text: "Quick start", link: "/en/quick-start" },
       { text: "Glossary", link: "/en/glossary" },
+      {
+        text: "v1.0.0 readiness",
+        link: "/en/governance/v1-readiness",
+      },
     ],
   },
   {
@@ -127,6 +139,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       { text: "ภาพรวม", link: "/th/overview" },
       { text: "เริ่มต้นอย่างรวดเร็ว", link: "/th/quick-start" },
       { text: "อภิธานศัพท์", link: "/th/glossary" },
+      {
+        text: "ความพร้อม v1.0.0",
+        link: "/th/governance/v1-readiness",
+      },
     ],
   },
   {
@@ -203,7 +219,7 @@ const thSidebar: DefaultTheme.Sidebar = [
  * literal on its own line; the version checker reads it from this file.
  */
 const config = {
-  version: "0.8.0",
+  version: "0.9.0",
   title: "Software Delivery Assurance",
   description:
     "Open, evidence-based assurance for software delivery: SRAS standards, registers, and tools.",

@@ -4,7 +4,7 @@ title: "Software Delivery Assurance Library"
 authors:
   - family-names: "Siphuengchai"
     given-names: "Yutthana"
-version: 0.8.0
+version: 0.9.0
 date-released: "2026-10-28"
 url: "https://github.com/yutna/software-delivery-assurance"
 license: MIT

@@ -16,10 +16,12 @@ SRAS 0.8.0 and the synthetic projects only.
 - Fixed in #59: 9.
 - Deferred with a follow-up issue: 5.
 - Open legal questions: 4.
-- External review: not started. No external reviewer has been engaged.
+- External review: none. No external reviewer has been engaged.
+- Review performed: AI self-review on 2026-10-28, accepted by the owner for the
+  v0.9.0 review step. It is not independent, human, or legal review.
 
-The owner confirmed that no external reviewer is available yet. This page
-records that fact instead of inventing a name, a date, or a sign-off.
+The owner confirmed that no external reviewer is available. This page records
+that fact instead of inventing a name, a date, or a sign-off.
 
 ## Triage method
 
@@ -90,29 +92,29 @@ pipeline:
 Each deferred finding stays visible in the pilot reports. None of them blocks
 the v0.9.0 release, and none is a gate waiver.
 
-## External review notes
+## Review notes
 
-**Status: pending. No external reviewer has been engaged as of 2026-10-28.**
+**External review: none.** No external reviewer has been engaged as of
+2026-10-28.
 
-The owner confirmed that no reviewer is available yet. The repository does not
-record a name, an affiliation, a date, or a sign-off that does not exist.
+**AI self-review: completed 2026-10-28.** The reviewer was the AI execution agent
+(DeepSeek V4.1 Flash via OpenCode), under owner direction. It is not an external
+reviewer, not a human reviewer, and not a qualified legal reviewer. The owner
+accepted it for the v0.9.0 review step.
 
-When a reviewer is engaged, the note must record:
+Scope: the two pilot reports, the 18 dispositions, the readiness evidence, the
+release metadata, and the docs and content gates.
 
-- the reviewer's name and relevant qualification, with their consent,
-- the scope reviewed (Core, finance overlay, public sector overlay, registers,
-  pilot method, or limitations),
-- the review date and the version reviewed,
-- each comment with a severity and a disposition,
-- any conflict of interest.
+Result: every finding has an owner and a disposition; the fixed findings have
+tests and the deferred findings have an issue; the examples validate as project
+instances; the version is consistent; and all gates pass. No new
+release-blocking defect was found in v0.9.0.
 
-Until then:
-
-- the readiness review in the governance section records the review as
-  pending,
-- no page claims external review, peer review, or independent validation,
-- the register entries remain `unverified`,
-- the v0.9.0 release notes do not claim external review.
+Limitations: the review is not independent and cannot verify the legal meaning
+or current status of an official source. It does not replace a qualified legal
+or external review. The register entries remain `unverified`, no page claims
+external review or independent validation, and the v0.9.0 release notes do not
+claim external review. An external human review remains a v1.0.0 blocker.
 
 ## Open legal questions
 
