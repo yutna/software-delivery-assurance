@@ -51,6 +51,8 @@ review, or a certification runs that work in its own context.
 - [Confidence labels](governance/confidence-labels.md) — how claims are labelled.
 - [Legal concerns](governance/legal-concerns.md) — sources and questions for
   project-specific decisions.
+- [Accessibility](governance/accessibility.md) — the target, the automated
+  check, and the known limitations for this site.
 - [Glossary](glossary.md) — the shared vocabulary used across the site.
 
 The English pages are canonical for identifiers, schema keys, and file names.
