@@ -32,6 +32,8 @@ placeholder ใช้ profile คำนวณ lockfile ตรวจสอบผ�
   lockfile และตรวจ coverage
 - [อ่านตัวอย่าง end-to-end](e2e-walkthrough.md) — ดูอินสแตนซ์ synthetic
   ที่กรอกครบและเหตุผลที่มัน valid
+- [ร่างการประเมินด้วย AI](ai-assessment.md) — prompt ที่คัดลอกได้ ซึ่งใส่
+  assessment guidance, scope ของโปรเจกต์ และรายการไฟล์เข้าไปในตัว
 - [แพลตฟอร์มที่รองรับ](ci-validation.md) — macOS และ Ubuntu CI พร้อมแนวทาง
   WSL สำหรับ Windows
 

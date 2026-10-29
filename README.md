@@ -152,7 +152,7 @@ template release publishes the concern template. It is not a standard release.
 | `overlays/`  | Sector and jurisdiction deltas                             |
 | `registers/` | Regulatory registers with official sources                 |
 | `mappings/`  | Informative crosswalks to external standards               |
-| `templates/` | Project-instance templates                                 |
+| `templates/` | Project-instance templates and the AI assessment prompt    |
 | `examples/`  | Synthetic examples only                                    |
 | `schemas/`   | JSON Schema 2020-12 contracts                              |
 | `src/sras/`  | TypeScript domain core, adapters, and CLI                  |
