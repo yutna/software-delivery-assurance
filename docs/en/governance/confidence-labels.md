@@ -6,7 +6,7 @@ machine_translated: false
 # Confidence labels
 
 **Status:** docs-only convention. Introduced with the v0.10.0 template
-positioning and carried into the v1.1.0 template release. **Not a schema field.
+positioning and carried into the v1.2.0 template release. **Not a schema field.
 Not a certification. Not a review status.**
 
 Confidence labels help a reader tell the difference between a result that a
@@ -32,7 +32,7 @@ Use an inline label after the claim, or a `Confidence` column in a table:
 ```text
 Standard content validates: 54 files (`checked`, 2026-10-28).
 The template is suitable for a Thai public-sector pilot (`provisional`).
-The v1.1.0 template release includes the owner map (`checked`).
+The v1.2.0 template release includes the owner map (`checked`).
 ```
 
 Keep the scope small. "54 files validate" is `checked`; "the standard is
@@ -67,7 +67,7 @@ template is certified" is never allowed.
 | All 167 active requirements are `translation_status: partial`.   | `checked`     | The inventory and YAML fields can be inspected and counted. |
 | The registers are `review_status: unverified`.                   | `checked`     | The status field is machine-readable and inspectable.       |
 | The kit is suitable for a first Thai public-sector pilot.        | `provisional` | No real project has used it in this repository's evidence.  |
-| v1.1.0 ships the owner map and confidence labels.                | `checked`     | The release includes both; the files can be inspected.      |
+| v1.2.0 ships the owner map and confidence labels.                | `checked`     | The release includes both; the files can be inspected.      |
 | The public sector overlay covers procurement law advice.         | not allowed   | It does not cover legal advice; the statement is false.     |
 
 ## Relation to the AI audit

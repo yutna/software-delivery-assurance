@@ -14,8 +14,8 @@ machine_translated: true
 [ความพร้อมของ template](template-readiness.md) โปรเจกต์ที่นำไปใช้ตัดสินใจเองว่าจะ
 จัดให้มีการทบทวนภายนอกสำหรับขอบเขตหรือการส่งมอบของตนหรือไม่
 
-**จัดทำ:** 2026-10-28 **เป้าหมาย:** ขอบเขตของโปรเจกต์ที่นำไปใช้ ซึ่งอิงจาก
-concern template SRAS 1.1.0 **ผู้ตรวจ:** _ให้โปรเจกต์ระบุชื่อ_
+**จัดทำ:** 2026-10-29 **เป้าหมาย:** ขอบเขตของโปรเจกต์ที่นำไปใช้ ซึ่งอิงจาก
+concern template SRAS 1.2.0 **ผู้ตรวจ:** _ให้โปรเจกต์ระบุชื่อ_
 **วันที่ตรวจ:** _ให้โปรเจกต์บันทึก_
 
 หน้านี้เป็น packet สำหรับผู้ตรวจภายนอกในอนาคต ระบุขอบเขต คำถาม หลักฐาน และวิธี
@@ -148,17 +148,17 @@ concern template SRAS 1.1.0 **ผู้ตรวจ:** _ให้โปรเจ
 ## ลิงก์หลักฐาน
 
 รันคำสั่งเหล่านี้จาก clean checkout ที่ commit ที่ตรวจ และบันทึกผล ตัวเลขด้านล่าง
-เป็น baseline ที่บันทึกตอนจัดทำ packet เมื่อ 2026-10-28 หลัง #140 และ #141
+เป็น baseline ที่บันทึกตอนจัดทำ packet เมื่อ 2026-10-29 ที่ release v1.2.0
 ให้คำนวณใหม่ที่ commit ที่ตรวจ
 
-- **เนื้อหามาตรฐาน:** `npm run sras -- validate --all` — 53 ไฟล์
-- **Tests:** `npm test` — ผ่าน 327
+- **เนื้อหามาตรฐาน:** `npm run sras -- validate --all` — 54 ไฟล์
+- **Tests:** `npm test` — ผ่าน 352
 - **Type และ style:** `npm run typecheck`, `npm run lint`,
   `npm run format:check` — ผ่าน
-- **Reference pages:** `npm run sras -- render --check` — 154 หน้า
-- **เอกสารสองภาษา:** `npm run check:docs`, `npm run docs:build` — 182 English,
-  29 Thai
-- **Content guard:** `npm run sras -- guard` — สแกน 346 ไฟล์
+- **Reference pages:** `npm run sras -- render --check` — 162 หน้า
+- **เอกสารสองภาษา:** `npm run check:docs`, `npm run docs:build` — 208 English,
+  47 Thai
+- **Content guard:** `npm run sras -- guard` — สแกน 393 ไฟล์
 - **FDS pack:** `npm run check:fds` — 43 skills ที่ `4d3875c`
 - **ตัวอย่างโปรเจกต์:** `npm run sras -- project validate examples/<name>` —
   ผ่าน 5 จาก 5
@@ -167,8 +167,8 @@ concern template SRAS 1.1.0 **ผู้ตรวจ:** _ให้โปรเจ
 - **AI audit:** `docs/en/governance/v1-readiness.md` — มีข้อจำกัดที่บันทึกไว้
 - **ข้อกังวลทางกฎหมาย:** issues #128, #129, #130, #131;
   `docs/en/governance/legal-concerns.md` — research notes; โปรเจกต์ต้องตัดสินใจเอง
-- **Release:** template release 1.1.0 (2026-10-28)
-- **Content version ที่ตรวจ:** SRAS 1.1.0
+- **Release:** template release 1.2.0 (2026-10-29)
+- **Content version ที่ตรวจ:** SRAS 1.2.0
 
 Repository: <https://github.com/yutna/software-delivery-assurance>
 

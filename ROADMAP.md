@@ -92,3 +92,15 @@ fields. It also completes the issue-form and citation metadata follow-ups.
 No requirement ID, schema shape, or gate changed. The Thai translation remains
 partial, the registers remain unverified, and no human, external, or legal
 review is claimed.
+
+## v1.2.0 — Adopter tooling and documentation assurance
+
+Published as a 1.2.0 template release on 2026-10-29. The release adds an
+accessibility statement and an automated axe-core check for the documentation
+site, a refreshed security policy, and a copyable AI assessment prompt that
+injects each requirement's assessment guidance. It keeps the documentation site
+out of search indexes and records the check in the local gate.
+
+No requirement ID, schema shape, CLI command, or gate changed. The Thai
+translation remains partial, the registers remain unverified, and no human,
+external, or legal review is claimed.

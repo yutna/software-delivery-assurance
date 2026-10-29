@@ -5,7 +5,7 @@ machine_translated: false
 
 # Upgrade a 1.x project instance
 
-This procedure covers a minor upgrade inside 1.x, with 1.0.0 → 1.1.0 as the
+This procedure covers a minor upgrade inside 1.x, with 1.1.0 → 1.2.0 as the
 worked example. Read the release notes and the announcement before you change
 an instance.
 
@@ -25,7 +25,7 @@ an instance.
    version number; read the note.
 
 2. **Update the version in both files.** Set `sras_version` in `assurance.yaml`
-   and `assessment.yaml` to the target version, for example `1.1.0`. The
+   and `assessment.yaml` to the target version, for example `1.2.0`. The
    manifest and the assessment must agree or validation fails.
 
 3. **Refresh the lockfile.** Run the command from the library checkout:
@@ -73,21 +73,22 @@ an instance.
 
 6. **Record the change.** Add the upgrade to the private change record and note
    any new requirement, evidence expectation, or check in the risk register. In
-   1.1.0 there is no requirement ID, schema, or gate change.
+   1.2.0 there is no requirement ID, schema, or gate change.
 
 7. **Commit the instance.** Commit `assurance.yaml`, `assessment.yaml`, and the
    regenerated `assurance.lock.yaml` together so the next reader can reproduce
    the result.
 
-## What changed in 1.1.0
+## What changed in 1.2.0
 
-- Generated requirement pages show rationale, assessment guidance, references,
-  and crosswalk links.
-- A NIST SP 800-218 (SSDF) crosswalk is available.
-- New instances write `Not signed` for the sign-off and `project validate`
-  warns until a person signs. Existing signed instances are unchanged.
-- `check-version` verifies both `package-lock.json` version fields.
-- No requirement ID, schema shape, or gate changed.
+- The documentation site has an accessibility statement and an automated
+  axe-core check; neither changes the requirement set or the CLI.
+- `SECURITY.md` records scope, supported versions, and the development-only
+  advisories.
+- `templates/ai-assessment/prompt.md` and its guide are additions for drafting
+  an assessment.
+- The documentation site is kept out of search indexes.
+- No requirement ID, schema shape, CLI command, or gate changed.
 
 ## If a step fails
 
@@ -105,11 +106,11 @@ an instance.
 
 Return the library checkout to the previous tag, restore the committed
 instance files and lockfile, and run `project validate` again. Do not mix a
-1.0.0 lockfile with a 1.1.0 library and call the result current.
+1.1.0 lockfile with a 1.2.0 library and call the result current.
 
 ## Related pages
 
 - [Validate a private project instance in CI](ci-validation.md)
 - [Project template guide](project.md)
 - [Walk through the end-to-end example](e2e-walkthrough.md)
-- [v1.0.0 release notes](../releases/v1.0.0.md)
+- [v1.2.0 release notes](../releases/v1.2.0.md)

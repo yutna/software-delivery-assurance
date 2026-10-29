@@ -12,8 +12,8 @@ to commission an external review for its own scope or delivery. The library does
 not require it and does not claim one. The template is usable with limitations
 under [template readiness](template-readiness.md).
 
-**Prepared:** 2026-10-28. **Target:** the adopting project's scope, based on the
-SRAS 1.1.0 concern template. **Reviewer:** _to be named by the project_.
+**Prepared:** 2026-10-29. **Target:** the adopting project's scope, based on the
+SRAS 1.2.0 concern template. **Reviewer:** _to be named by the project_.
 **Review date:** _to be recorded by the project_.
 
 This page is a working packet for a project that commissions an external review.
@@ -144,24 +144,24 @@ Answer each question with a verdict, the evidence inspected, and any finding.
 
 Run these from a clean checkout at the commit under review and record the
 outputs. The numbers below are the baseline recorded when this packet was
-prepared on 2026-10-28, after #140 and #141. Recompute them at the commit under
+prepared on 2026-10-29, at the v1.2.0 release. Recompute them at the commit under
 review.
 
 | Evidence             | Command or location                                                     | Baseline at preparation                   |
 | -------------------- | ----------------------------------------------------------------------- | ----------------------------------------- |
-| Standard content     | `npm run sras -- validate --all`                                        | 53 files                                  |
-| Tests                | `npm test`                                                              | 327 passed                                |
+| Standard content     | `npm run sras -- validate --all`                                        | 54 files                                  |
+| Tests                | `npm test`                                                              | 352 passed                                |
 | Type and style       | `npm run typecheck`, `npm run lint`, `npm run format:check`             | pass                                      |
-| Reference pages      | `npm run sras -- render --check`                                        | 154 pages                                 |
-| Bilingual docs       | `npm run check:docs`, `npm run docs:build`                              | 182 English, 29 Thai                      |
-| Content guard        | `npm run sras -- guard`                                                 | 346 files scanned                         |
+| Reference pages      | `npm run sras -- render --check`                                        | 162 pages                                 |
+| Bilingual docs       | `npm run check:docs`, `npm run docs:build`                              | 208 English, 47 Thai                      |
+| Content guard        | `npm run sras -- guard`                                                 | 393 files scanned                         |
 | FDS pack             | `npm run check:fds`                                                     | 43 skills at `4d3875c`                    |
 | Project examples     | `npm run sras -- project validate examples/<name>`                      | 5 of 5 valid                              |
 | Pilot reports        | `docs/en/pilots/`                                                       | two synthetic pilots                      |
 | Finding triage       | `docs/en/pilots/summary.md`                                             | 18 findings dispositioned                 |
 | AI audit             | `docs/en/governance/v1-readiness.md`                                    | limitations documented                    |
 | Legal concerns       | issues #128, #129, #130, #131; `docs/en/governance/legal-concerns.md`   | research notes; project decision required |
-| Release under review | [v1.1.0](https://github.com/yutna/software-delivery-assurance/releases) | published                                 |
+| Release under review | [v1.2.0](https://github.com/yutna/software-delivery-assurance/releases) | published                                 |
 
 Repository: <https://github.com/yutna/software-delivery-assurance>
 

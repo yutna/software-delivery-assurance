@@ -8,9 +8,9 @@ through an issue, a pull request, CI, and a squash merge.
 
 ## Policy version and applicability
 
-This policy applies to the 1.1.0 template release and later. The library
-is a concern template, not a standard. The content version is SRAS 1.1.0 in
-the 1.1.0 template release. No page may describe the repository as a
+This policy applies to the 1.2.0 template release and later. The library
+is a concern template, not a standard. The content version is SRAS 1.2.0 in
+the 1.2.0 template release. No page may describe the repository as a
 standard, certified, externally reviewed, or human-reviewed.
 
 The policy cannot be satisfied by a document alone. A review status changes

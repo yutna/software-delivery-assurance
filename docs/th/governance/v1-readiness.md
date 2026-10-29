@@ -6,7 +6,7 @@ machine_translated: true
 # AI audit และข้อจำกัด
 
 **สถานะ:** บันทึก AI audit **ผู้ตรวจ:** AI execution agent (DeepSeek V4.1 Flash
-ผ่าน OpenCode) **วันที่:** 2026-10-28 **เวอร์ชันเนื้อหา:** SRAS 1.1.0
+ผ่าน OpenCode) **วันที่:** 2026-10-29 **เวอร์ชันเนื้อหา:** SRAS 1.2.0
 
 นี่ไม่ใช่การทบทวนโดยมนุษย์ การทบทวนภายนอก การทบทวนทางกฎหมาย หรือการรับรอง
 ไม่มี human sign-off ที่บันทึกไว้ และ repository ไม่ได้อ้างว่ามี
@@ -35,9 +35,12 @@ repository นี้เป็น concern template ไม่ใช่มาตร
   162 หน้า รวมหน้า crosswalk 8 หน้า
 - **Content guard:** `npm run sras -- guard` ผ่านเนื้อหาสาธารณะ
 - **Docs QA และ build:** `npm run check:docs` และ `npm run docs:build` ผ่าน
+- **Accessibility check:** `npm run check:a11y` ผ่าน 257 หน้าที่ build แล้ว โดย
+  `color-contrast` และ `label-content-name-mismatch` ถูกรายงานว่าประเมินไม่ได้
+  ใน DOM ที่ไม่มี layout หรือ assistive technology
 - **Tests และ types:** `npm test`, `npm run typecheck`, `npm run lint` และ
   `npm run format:check` ผ่าน
-- **Version consistency:** `node tools/check-version.ts 1.1.0` ผ่าน และตรวจทั้ง
+- **Version consistency:** `node tools/check-version.ts 1.2.0` ผ่าน และตรวจทั้ง
   สอง field ของ version ใน `package-lock.json`
 - **FDS pack:** `npm run check:fds` ผ่าน pack ที่ pin ไว้
 - **จำนวน:** Core 70, module 52, overlay 45, register 27 และ crosswalk 8
@@ -59,6 +62,9 @@ repository นี้เป็น concern template ไม่ใช่มาตร
   หรือหน่วยงานรับรองเข้าร่วม
 - **ตัวอย่างเป็น synthetic** — pilot ใช้ผู้ประเมินหนึ่งคนและข้อมูล synthetic
   ไม่ได้วัดภาระงานบนโปรเจกต์จริง
+- **Accessibility check เป็นการตรวจเชิงโครงสร้าง** — ตรวจ rule ระดับ A และ AA
+  ที่ไม่ต้องใช้ layout engine หรือ assistive technology และไม่มีการทดสอบด้วยมือ
+  หรือ assistive technology
 - **Template เป็นแบบกลาง** — ไม่มีกฎจัดซื้อ การเก็บรักษา หรือการอนุมัติเฉพาะ
   หน่วยงาน
 

@@ -6,7 +6,7 @@ machine_translated: false
 # AI audit and limitations
 
 **Status:** AI audit record. **Auditor:** the AI execution agent (DeepSeek V4.1
-Flash via OpenCode). **Date:** 2026-10-28. **Content version:** SRAS 1.1.0.
+Flash via OpenCode). **Date:** 2026-10-29. **Content version:** SRAS 1.2.0.
 
 This is not a human review, an external review, a legal review, or a
 certification. No human sign-off is recorded, and the repository does not claim
@@ -38,9 +38,12 @@ compliant, or whether a Thai translation is ready for a formal publication.
   162 pages, including 8 crosswalk pages.
 - **Content guard:** `npm run sras -- guard` passes on the public content.
 - **Docs QA and build:** `npm run check:docs` and `npm run docs:build` pass.
+- **Accessibility check:** `npm run check:a11y` passes on 257 built pages, with
+  `color-contrast` and `label-content-name-mismatch` reported as not evaluated
+  in a DOM without layout or assistive technology.
 - **Tests and types:** `npm test`, `npm run typecheck`, `npm run lint`, and
   `npm run format:check` pass.
-- **Version consistency:** `node tools/check-version.ts 1.1.0` passes and
+- **Version consistency:** `node tools/check-version.ts 1.2.0` passes and
   checks both `package-lock.json` version fields.
 - **FDS pack:** `npm run check:fds` passes on the pinned pack.
 - **Counts:** the Core has 70 active requirements, the modules 52, the overlays
@@ -64,6 +67,9 @@ compliant, or whether a Thai translation is ready for a formal publication.
   certification body has been engaged.
 - **The examples are synthetic.** The pilots used one assessor and synthetic
   data. They do not measure the effort on a real project.
+- **The accessibility check is structural.** It evaluates WCAG A and AA rules
+  that do not need a layout engine or assistive technology. No manual or
+  assistive-technology test was performed.
 - **The template is generic.** It does not encode agency-specific procurement,
   records, or approval rules.
 

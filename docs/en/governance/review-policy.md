@@ -5,15 +5,15 @@ machine_translated: false
 
 # Review policy
 
-**Status:** governance policy for the 1.1.0 template release, the v1.x
-maintenance line, and v2.0 preparation. **Recorded:** 2026-10-28. **Applies to:**
-SRAS 1.1.0 and later content.
+**Status:** governance policy for the 1.2.0 template release, the v1.x
+maintenance line, and v2.0 preparation. **Recorded:** 2026-10-29. **Applies to:**
+SRAS 1.2.0 and later content.
 
 This page is the detailed review policy. [GOVERNANCE.md](https://github.com/yutna/software-delivery-assurance/blob/main/GOVERNANCE.md)
 is the binding summary. The policy describes how a review is recorded. It does
 not create a review, a reviewer, a date, or a sign-off that does not exist.
 
-The content version is 1.1.0. This repository is a concern template, not a
+The content version is 1.2.0. This repository is a concern template, not a
 standard. It is AI-authored and AI-audited. No human, external, or legal review
 is claimed. The [AI audit record](v1-audit.md) states what was checked and what
 remains a limitation.
@@ -192,7 +192,7 @@ the library is compliant with any law or standard.
 
 ## Related pages
 
-- [v1.1.0 readiness review](v1-readiness.md)
+- [v1.2.0 readiness review](v1-readiness.md)
 - [Template readiness](template-readiness.md)
 - [Confidence labels](confidence-labels.md)
 - [Legal concerns](legal-concerns.md)

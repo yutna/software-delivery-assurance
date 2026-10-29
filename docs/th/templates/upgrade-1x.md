@@ -5,7 +5,7 @@ machine_translated: true
 
 # อัปเกรดอินสแตนซ์โปรเจกต์ 1.x
 
-ขั้นตอนนี้ใช้กับการอัปเกรด minor ภายใน 1.x โดยยกตัวอย่าง 1.0.0 → 1.1.0
+ขั้นตอนนี้ใช้กับการอัปเกรด minor ภายใน 1.x โดยยกตัวอย่าง 1.1.0 → 1.2.0
 อ่าน release notes และ announcement ก่อนแก้อินสแตนซ์
 
 ## ก่อนเริ่ม
@@ -23,7 +23,7 @@ machine_translated: true
    หรือ schema shape อย่าดูแค่เลข version แล้วสรุปเอง
 
 2. **อัปเดต version ทั้งสองไฟล์** ตั้ง `sras_version` ใน `assurance.yaml` และ
-   `assessment.yaml` เป็น version เป้าหมาย เช่น `1.1.0` manifest กับ assessment
+   `assessment.yaml` เป็น version เป้าหมาย เช่น `1.2.0` manifest กับ assessment
    ต้องตรงกัน ไม่อย่างนั้น validation จะ fail
 
 3. **Refresh lockfile** รันจาก library checkout
@@ -70,22 +70,21 @@ machine_translated: true
    และ exit 1 จะแสดง gate ที่ยังไม่ได้ประเมิน
 
 6. **บันทึกการเปลี่ยนแปลง** เพิ่มการอัปเกรดใน private change record และบันทึก
-   requirement, evidence expectation หรือ check ใหม่ใน risk register ใน 1.1.0
+   requirement, evidence expectation หรือ check ใหม่ใน risk register ใน 1.2.0
    ไม่มี requirement ID, schema หรือ gate change
 
 7. **Commit อินสแตนซ์** commit `assurance.yaml`, `assessment.yaml` และ
    `assurance.lock.yaml` ที่สร้างใหม่พร้อมกัน เพื่อให้ผู้อ่านคนถัดไป reproduce
    ผลได้
 
-## สิ่งที่เปลี่ยนใน 1.1.0
+## สิ่งที่เปลี่ยนใน 1.2.0
 
-- หน้า requirement ที่สร้างแสดง rationale, แนวทางการประเมิน, references และ
-  crosswalk links
-- มี crosswalk ไปยัง NIST SP 800-218 (SSDF)
-- อินสแตนซ์ใหม่เขียน `Not signed` ใน sign-off และ `project validate` เตือน
-  จนกว่าคนจะลงนาม อินสแตนซ์เดิมที่ลงนามแล้วไม่ได้รับผลกระทบ
-- `check-version` ตรวจทั้งสอง field ของ version ใน `package-lock.json`
-- ไม่มี requirement ID, schema shape หรือ gate เปลี่ยน
+- เว็บไซต์เอกสารมี accessibility statement และ check axe-core อัตโนมัติ
+  ทั้งสองอย่างไม่เปลี่ยนชุด requirement หรือ CLI
+- `SECURITY.md` บันทึก scope, version ที่รองรับ และ advisory ของ development-only
+- มี `templates/ai-assessment/prompt.md` และคู่มือ สำหรับร่างการประเมิน
+- เว็บไซต์เอกสารถูกกันออกจาก search index
+- ไม่มี requirement ID, schema shape, CLI command หรือ gate เปลี่ยน
 
 ## เมื่อขั้นตอนใดล้มเหลว
 
@@ -101,8 +100,8 @@ machine_translated: true
 ## ย้อนกลับ
 
 กลับ library checkout ไปที่ tag ก่อนหน้า คืนไฟล์อินสแตนซ์และ lockfile ที่
-commit ไว้ แล้วรัน `project validate` อีกครั้ง ห้ามใช้ lockfile ของ 1.0.0 กับ
-library 1.1.0 แล้วเรียกว่าปัจจุบัน
+commit ไว้ แล้วรัน `project validate` อีกครั้ง ห้ามใช้ lockfile ของ 1.1.0 กับ
+library 1.2.0 แล้วเรียกว่าปัจจุบัน
 
 ## หน้าที่เกี่ยวข้อง
 
