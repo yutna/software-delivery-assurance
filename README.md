@@ -109,6 +109,7 @@ npm run sras -- render --check
 npm run sras -- guard
 npm run docs:build
 npm run check:docs
+npm run check:a11y
 ```
 
 Create a project instance with:

@@ -50,6 +50,7 @@ npm run sras -- render --check
 npm run sras -- guard
 npm run docs:build
 npm run check:docs
+npm run check:a11y
 ```
 
 Only run the commands that exist in the current milestone. A release also runs
@@ -97,9 +98,12 @@ lychee --config .lychee.toml docs README.md
       run.
 
 `npm run check:docs` enforces the page parity, frontmatter, navigation,
-glossary, and quick-start checks. The `link-check` CI job runs lychee with
-`.lychee.toml`. An external link is excluded only in that file, with a written
-reason; do not disable the docs build's dead-link check.
+glossary, and quick-start checks. `npm run check:a11y` runs axe-core over every
+built page, limited to the WCAG 2.0, 2.1, and 2.2 A/AA rules; its output lists
+the rules it cannot evaluate without a layout engine or assistive technology.
+The `link-check` CI job runs lychee with `.lychee.toml`. An external link is
+excluded only in that file, with a written reason; do not disable the docs
+build's dead-link check.
 
 ## Content rules
 
