@@ -87,4 +87,4 @@ release check กับหน้านี้ต้องเปลี่ยนไ
 - [ข้อกังวลทางกฎหมายและกฎระเบียบ](legal-concerns.md)
 - [นโยบายการทบทวน](review-policy.md)
 - [Confidence labels](confidence-labels.md)
-- [Crosswalk WCAG 2.2](/en/reference/crosswalks/MAP-WCAG22)
+- [Crosswalk WCAG 2.2](../../en/reference/crosswalks/MAP-WCAG22.md)
