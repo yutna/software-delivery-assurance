@@ -69,9 +69,9 @@ on any page.
 ## Feedback
 
 Open an issue at
-<https://github.com/yutna/software-delivery-assurance/issues/new> and add the
-`accessibility` label. Describe the page, what happened, and the browser or
-assistive technology you used, if that is relevant. Do not include personal
+<https://github.com/yutna/software-delivery-assurance/issues/new> with
+`accessibility` in the title. Describe the page, what happened, and the browser
+or assistive technology you used, if that is relevant. Do not include personal
 data, customer data, or confidential material in a public issue.
 
 This is a solo-maintained project; responses are best-effort and no response
