@@ -34,6 +34,8 @@ After the first `init`, use these pages to run and maintain the instance:
   lockfile, and check coverage.
 - [Walk through the end-to-end example](e2e-walkthrough.md) — see a complete
   synthetic instance and why it is valid.
+- [Draft an assessment with an AI assistant](ai-assessment.md) — a copyable
+  prompt that injects the assessment guidance, project scope, and file list.
 - [Supported platforms](ci-validation.md#supported-platforms) — macOS and
   Ubuntu CI, with WSL guidance for Windows.
 
