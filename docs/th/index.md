@@ -50,6 +50,8 @@ repository นี้เป็น concern template และใช้ได้โ
 - [Confidence labels](governance/confidence-labels.md) — วิธีติดป้ายข้อความ
 - [ข้อกังวลทางกฎหมาย](governance/legal-concerns.md) — แหล่งอ้างอิงและคำถาม
   สำหรับการตัดสินใจของแต่ละโปรเจกต์
+- [Accessibility](governance/accessibility.md) — เป้าหมาย สิ่งที่ตรวจอัตโนมัติ
+  และข้อจำกัดที่ทราบของเว็บไซต์นี้
 - [อภิธานศัพท์](glossary.md) — คำศัพท์ที่ใช้ร่วมกันทั้งไซต์
 
 หน้าภาษาอังกฤษเป็นฉบับหลักสำหรับ identifier, schema key และชื่อไฟล์

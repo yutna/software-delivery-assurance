@@ -29,6 +29,10 @@ const enNav: DefaultTheme.NavItem[] = [
         link: "/en/governance/legal-concerns",
       },
       {
+        text: "Accessibility",
+        link: "/en/governance/accessibility",
+      },
+      {
         text: "AI audit and limitations",
         link: "/en/governance/v1-readiness",
       },
@@ -94,6 +98,10 @@ const thNav: DefaultTheme.NavItem[] = [
         link: "/th/governance/legal-concerns",
       },
       {
+        text: "Accessibility",
+        link: "/th/governance/accessibility",
+      },
+      {
         text: "AI audit และข้อจำกัด",
         link: "/th/governance/v1-readiness",
       },
@@ -157,6 +165,10 @@ const enSidebar: DefaultTheme.Sidebar = [
       {
         text: "Legal concerns",
         link: "/en/governance/legal-concerns",
+      },
+      {
+        text: "Accessibility",
+        link: "/en/governance/accessibility",
       },
       {
         text: "AI audit and limitations",
@@ -286,6 +298,10 @@ const thSidebar: DefaultTheme.Sidebar = [
       {
         text: "ข้อกังวลทางกฎหมาย",
         link: "/th/governance/legal-concerns",
+      },
+      {
+        text: "Accessibility",
+        link: "/th/governance/accessibility",
       },
       {
         text: "AI audit และข้อจำกัด",
@@ -434,6 +450,16 @@ const config = {
       },
     ],
   ],
+  /**
+   * The default theme sets the appearance switch title in a client-only
+   * effect, so the server-rendered button has no accessible name. Add one at
+   * build time; `npm run check:a11y` fails if this stops matching.
+   */
+  transformHtml: (html: string): string =>
+    html.replace(
+      /(<button[^>]*class="VPSwitch VPSwitchAppearance"[^>]*?)>/gu,
+      '$1 aria-label="Dark theme">',
+    ),
   vite: {
     build: { chunkSizeWarningLimit: 1200 },
     esbuild: {
@@ -465,7 +491,9 @@ const config = {
     },
   },
   themeConfig: {
-    socialLinks: [{ icon: "github", link: REPOSITORY }],
+    socialLinks: [
+      { icon: "github", link: REPOSITORY, ariaLabel: "GitHub repository" },
+    ],
     search: { provider: "local" },
     i18nRouting: false,
     editLink: {
