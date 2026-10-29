@@ -20,8 +20,8 @@ branch, and fixes are not backported to an earlier release line.
 
 | Release           | Supported |
 | ----------------- | --------- |
-| 1.1.x (latest)    | yes       |
-| 1.0.x and earlier | no        |
+| 1.2.x (latest)    | yes       |
+| 1.1.x and earlier | no        |
 
 ## Scope
 

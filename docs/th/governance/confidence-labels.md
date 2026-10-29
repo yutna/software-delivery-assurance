@@ -8,7 +8,7 @@ machine_translated: true
 # Confidence labels
 
 **สถานะ:** ข้อตกลงสำหรับเอกสารเท่านั้น เริ่มใช้พร้อมการปรับตำแหน่ง template
-ใน v0.10.0 และใช้ต่อใน template release 1.1.0 **ไม่ใช่ฟิลด์ใน schema ไม่ใช่การรับรอง และไม่ใช่สถานะการทบทวน**
+ใน v0.10.0 และใช้ต่อใน template release 1.2.0 **ไม่ใช่ฟิลด์ใน schema ไม่ใช่การรับรอง และไม่ใช่สถานะการทบทวน**
 
 ป้าย confidence มีไว้ให้ผู้อ่านแยกสี่อย่าง: ผลที่คำสั่งหรือ test ทำซ้ำได้
 ข้อความที่ดึงมาจาก repository การตัดสินชั่วคราว และแผนที่ยังไม่ลงมือทำ
@@ -36,7 +36,7 @@ machine_translated: true
 ```text
 Standard content validates: 54 files (`checked`, 2026-10-28).
 The template is suitable for a Thai public-sector pilot (`provisional`).
-The v1.1.0 template release includes the owner map (`checked`).
+The v1.2.0 template release includes the owner map (`checked`).
 ```
 
 ให้ขอบเขตแคบ "54 ไฟล์ผ่าน validation" เป็น `checked` แต่ "มาตรฐานถูกต้อง" ไม่ใช่
@@ -68,7 +68,7 @@ The v1.1.0 template release includes the owner map (`checked`).
 | ข้อกำหนด active 167 ข้อเป็น `translation_status: partial` | `checked`     | ตรวจ inventory และฟิลด์ YAML แล้วนับได้         |
 | ทะเบียนเป็น `review_status: unverified`                   | `checked`     | ฟิลด์สถานะเป็น machine-readable และตรวจได้      |
 | kit เหมาะกับการนำร่องภาครัฐไทยครั้งแรก                    | `provisional` | ยังไม่มีโปรเจกต์จริงในหลักฐานของ repository นี้ |
-| v1.1.0 มี owner map และ confidence labels                 | `checked`     | release มีทั้งสองอย่างและตรวจไฟล์ได้            |
+| v1.2.0 มี owner map และ confidence labels                 | `checked`     | release มีทั้งสองอย่างและตรวจไฟล์ได้            |
 | overlay ภาครัฐครอบคลุมคำแนะนำกฎหมายจัดซื้อจัดจ้าง         | ไม่อนุญาต     | ไม่ครอบคลุมคำแนะนำทางกฎหมาย ข้อความนี้เป็นเท็จ  |
 
 ## ความสัมพันธ์กับ AI audit

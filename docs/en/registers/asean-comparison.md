@@ -130,7 +130,7 @@ This page does not:
 - state that an organisation, product, or service complies with any instrument;
 - create an ASEAN overlay.
 
-An ASEAN overlay does not exist in SRAS 1.1.0. A register entry does not add a
+An ASEAN overlay does not exist in SRAS 1.2.0. A register entry does not add a
 requirement and does not replace an assessment of the specific transfer.
 
 ## Review status

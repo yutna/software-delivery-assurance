@@ -1,7 +1,7 @@
 lockfile_version: 1
 sras:
-  version: 1.1.0
-  checksum: sha256:185c51a146f5f4208982e5939326e0b10b1a4f1ed83065fdea888dfbf25d7ea6
+  version: 1.2.0
+  checksum: sha256:a1660a382e5799b584eede4616a14208dd31e0ffed49c30c20d56174e063eddd
 modules:
   - id: SRAS-INT
     version: 0.1.0
@@ -30,7 +30,7 @@ inputs:
   - path: core/profiles/full.yaml
     sha256: 66158613036aefa83c83fa4714c39a06bf0f7312e24199daea675c83d1c24bbd
   - path: core/sras.yaml
-    sha256: c54de25c28ece2adc0342704b0db9279e7b51af74354d02887ff1ac8b8f8622a
+    sha256: e8e41f77b666782e6b9aaabdef2765d3b937a72b0e9e212995ec23c7325d3e19
   - path: modules/cloud-saas/module.yaml
     sha256: 8edb84b507cc23ed27e841e12feb3985cc8d3f82d02e3bcff45fc7bc8800f6ca
   - path: modules/integration/module.yaml

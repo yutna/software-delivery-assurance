@@ -1,7 +1,7 @@
 lockfile_version: 1
 sras:
-  version: 1.1.0
-  checksum: sha256:aee1d6001481b8c6ec84821a88f981f5518a19de63b69214ef823279d2b8f3ba
+  version: 1.2.0
+  checksum: sha256:a3ff225c193b96d7087c6145207e1f4c57a0439a8b0ea5f7f0376b92d254e143
 modules:
   - id: SRAS-AI
     version: 0.1.0
@@ -26,7 +26,7 @@ inputs:
   - path: core/profiles/full.yaml
     sha256: 66158613036aefa83c83fa4714c39a06bf0f7312e24199daea675c83d1c24bbd
   - path: core/sras.yaml
-    sha256: c54de25c28ece2adc0342704b0db9279e7b51af74354d02887ff1ac8b8f8622a
+    sha256: e8e41f77b666782e6b9aaabdef2765d3b937a72b0e9e212995ec23c7325d3e19
   - path: modules/ai/module.yaml
     sha256: 1d32d9442e0d519bb8eb7b12d19359daf721c5d2b321e6b9acd9659577722878
   - path: overlays/industries/finance/overlay.yaml

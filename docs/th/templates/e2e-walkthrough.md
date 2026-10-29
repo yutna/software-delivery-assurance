@@ -14,7 +14,7 @@ machine_translated: true
 ### `assurance.yaml`
 
 manifest เลือก `profile: full`, `tier: 2`, module `SRAS-AI` และ overlay `TH-FIN`
-ระบุ owner ตัวอย่างและ `sras_version: 1.1.0` selection ตรงนี้ต้องตรงกับ
+ระบุ owner ตัวอย่างและ `sras_version: 1.2.0` selection ตรงนี้ต้องตรงกับ
 `assessment.yaml`
 
 ### `assessment.yaml`

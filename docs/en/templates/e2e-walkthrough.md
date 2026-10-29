@@ -14,7 +14,7 @@ Every name, evidence file, and result is invented.
 ### `assurance.yaml`
 
 The manifest selects `profile: full`, `tier: 2`, the `SRAS-AI` module, and the
-`TH-FIN` overlay. It names an example owner and records `sras_version: 1.1.0`.
+`TH-FIN` overlay. It names an example owner and records `sras_version: 1.2.0`.
 The selection here must match `assessment.yaml`.
 
 ### `assessment.yaml`

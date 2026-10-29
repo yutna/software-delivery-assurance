@@ -11,7 +11,7 @@ especially Thai public-sector delivery, and it includes the SRAS reference
 requirements, Thailand sector overlays, regulatory registers, project templates,
 and TypeScript tools that validate, render, and guard the content.
 
-This site documents SRAS 1.1.0. The v1.1.0 template release positions the
+This site documents SRAS 1.2.0. The v1.2.0 template release positions the
 repository as a concern template. It does not claim a standard status,
 certification, or external review.
 
