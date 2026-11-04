@@ -79,7 +79,7 @@ and 4 are legal or regulatory concerns with desk research notes. The
 what it found, and what remains a limitation.
 
 The repository also publishes an English and Thai VitePress site at
-[yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
+[yutna.xyz/software-delivery-assurance](https://yutna.xyz/software-delivery-assurance/).
 English pages are canonical for identifiers, schema keys, and file names. Thai
 pages are machine-assisted drafts marked `translation_status: partial`. A
 project that needs a human-confirmed translation runs that review in its own
@@ -139,7 +139,7 @@ Then read, in this order:
    repository labels what it knows.
 
 The published site is
-[yutna.github.io/software-delivery-assurance](https://yutna.github.io/software-delivery-assurance/).
+[yutna.xyz/software-delivery-assurance](https://yutna.xyz/software-delivery-assurance/).
 Follow [ROADMAP.md](ROADMAP.md) for the released milestones. The 1.2.0
 template release publishes the concern template. It is not a standard release.
 

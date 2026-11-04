@@ -9,7 +9,7 @@ machine_translated: true
 **สถานะ:** ระบุเป้าหมายแล้ว ยังไม่ได้ประเมิน ไม่มีข้อกล่าวอ้างเรื่อง conformance
 
 แถลงการณ์นี้ครอบคลุมเว็บไซต์เอกสารที่
-<https://yutna.github.io/software-delivery-assurance/> ไม่ครอบคลุมข้อกำหนด
+<https://yutna.xyz/software-delivery-assurance/> ไม่ครอบคลุมข้อกำหนด
 SRAS, template โปรเจกต์, เอาต์พุตที่ CLI สร้าง, เว็บภายนอกที่เอกสารนี้ลิงก์ไป
 หรือผลิตภัณฑ์ใด ๆ ที่สร้างจาก template นี้
 

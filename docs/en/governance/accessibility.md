@@ -9,7 +9,7 @@ machine_translated: false
 **Status:** target stated, not assessed, no conformance claim.
 
 This statement covers the documentation site at
-<https://yutna.github.io/software-delivery-assurance/>. It does not cover the
+<https://yutna.xyz/software-delivery-assurance/>. It does not cover the
 SRAS requirements, the project template, the generated CLI output, the external
 sites this documentation links to, or any product built from the template.
 
